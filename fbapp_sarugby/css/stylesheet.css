@@ -129,7 +129,8 @@ span{
 
 #divTopMenu a {
 	text-decoration: none;
-	color: #CECFD1;
+	color: #faf8f8;
+	font-weight: 900;
 }
 
 .divContainer{
@@ -145,16 +146,17 @@ span{
 #mainIconContainer {
 	font-family:"Arial Black", "Arial";
 	font-weight: 900;
-	color: #efbd00;
+	color: #f8f5f5;
 	position:absolute;
 	height: 25px;
 	width: 50px;
 	top:30px;
-	left:687px;
+	left:681px;
 	z-index: 2;
+	font-size: 14px;
 }
 #mainIconContainer:hover{
-	color:#c59741;
+	color: #f0bd00;
 }
 
 #play{margin-left:17px}
@@ -180,11 +182,12 @@ span{
     top: 347px;
     left: 200px;
     width: 140px;
+	display: none;
 }
 
 
 #creditContainer{
-	font-size: 11px;
+	font-size: 9px;
     left: 480px;
     position: absolute;
     text-align: center;
@@ -384,12 +387,13 @@ span{
 	padding-top:40px;
 	width:195px;
 	height:130px;
-	font-size: 25px;
+	font-size: 20px;
 }
 .creditsText{
 	float:left;
 	line-height:45px;
 	color: #FFF;
+	font-weight: 900;
 	
 }
 .creditsBuyHeader{
@@ -582,10 +586,10 @@ span{
 	height:100%;
 }
 .headMiniTitle{
-	top:11px;
+	top:5px;
 	padding-top:8px;
 	text-align:center;
-	font-size:12px;
+	font-size:15px;
 	position:absolute;
 	width:100%;
 }
@@ -612,6 +616,20 @@ span{
 .headBestCard img{
 	box-shadow: 1px 1px 2px #000;
 	margin:0 33%;
+	cursor: pointer;
+}
+
+.headCardOfDay{
+	position:absolute;
+	top:45px;
+	width:100%;
+	
+	
+}
+.headCardOfDay img{
+	box-shadow: 1px 1px 2px #000;
+	margin:0 33%;
+	cursor: pointer;
 }
 
 .headLeaderboard{
@@ -754,8 +772,8 @@ span{
 .leaderSectAddFriend{
 	cursor: pointer;
     height: 90px;
-    margin-left: 20px;
-    margin-top: 25px;
+    margin-left: 27px;
+    margin-top: 2px;
     width: 80px;
 	background:url(../_site/all.png) -100px -180px no-repeat;
 }
@@ -1825,15 +1843,15 @@ input[type="submit"] {
 .picture-box {
 	float: left;
 	clear: left;
-	margin-left: 1px;
-    margin-top: 9px;
+	margin-left: 6px;
+    margin-top: 10px;
     display:inline;
 	cursor: pointer;
 }
 .picture-box-container{
-	background: url('../_site/all.png') -580px -280px no-repeat;
+	background: url('../_site/all.png') -571px -280px no-repeat;
 	width:76px;
-	height:111px;
+	height:123px;
 	float:left;
 }
 #play-window {
@@ -3585,7 +3603,7 @@ input[type="submit"] {
 	*/
 }
 .official{
-	background:url(../_site/all.png) 0px -285px no-repeat;
+	background:url(../_site/all.png) 0px -282px no-repeat;
 	left:10px;
 	width:203px;
 	height:62px;
@@ -3594,11 +3612,11 @@ input[type="submit"] {
 }
 .poweredby{
 	float:left;
-	background:url(../_site/all.png) -376px -420px no-repeat;
+	background:url(../_site/all.png) -365px -420px no-repeat;
     height: 65px;
     left: 390px;
     width: 163px;
-    top:10px;
+    top:3px;
     position:relative;
 }
 
