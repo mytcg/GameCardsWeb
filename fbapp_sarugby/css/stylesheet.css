@@ -164,10 +164,10 @@ span{
 
 #mainNavIconContainer {
 	background:url(../_site/all.png) -0px -120px no-repeat;
-	height: 50px;
+	height: 60px;
     left: 550px;
     position: absolute;
-    top: 17px;
+    top: 13px;
     width: 200px;
     z-index: 1;
 }
@@ -1825,15 +1825,15 @@ input[type="submit"] {
 .picture-box {
 	float: left;
 	clear: left;
-	margin-left: 6px;
-    margin-top: 6px;
+	margin-left: 1px;
+    margin-top: 9px;
     display:inline;
 	cursor: pointer;
 }
 .picture-box-container{
 	background: url('../_site/all.png') -580px -280px no-repeat;
 	width:76px;
-	height:123px;
+	height:111px;
 	float:left;
 }
 #play-window {
