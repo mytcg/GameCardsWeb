@@ -2739,6 +2739,8 @@ $(document).ready (function(){
 	App.callAjax("_app/main.php?init=1",function(xml){
 		App.init(xml);
 	});
+	
+	sURL = window.location.href;
 	if(sURL.indexOf("localhost") == 0){
 	     FB.init({
 	       appId      : '342203842518329', // App ID
