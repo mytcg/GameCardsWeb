@@ -387,6 +387,7 @@
 					   var value = parseInt($(inputBid).text());
 					   if(value >= bidMin){
 						App.bidORbuy("bid",marketID,value);
+						App.redrawAuction("all");
 					   }else{
 						App.showNotice("Oops, we noticed an incorrect bidding amount. Bidding amount has to be at least 1 TCG Credit more than current bid.",0,false)
 					   }
