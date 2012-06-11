@@ -1,7 +1,13 @@
 <?php
 require_once("configuration.php");
 require_once("functions.php");
-require_once("fbuser.php");
+if(!$localhost){
+	require_once("fbuser.php");
+}
+
+if(!$_SESSION['auctions']){
+	require_once("process_auctions.php");
+}
 
 function TopMenu($need,$have) {
 	if ($have >= $need) {
@@ -15,13 +21,15 @@ function TopMenu($need,$have) {
  		echo("navMenuItem_active");
  	}
  }
+if($localhost){
+	$user['user_id'] = 92;
+	$user['username'] = "Senjiro";
+	$user['premium'] = 1865;
+	$user['gameswon'] = 2;
+	$user['xp'] = 110;
+	$user['facebook_process'] = 3;
+}
 
-// $user['user_id'] = 92;
-// $user['username'] = "Senjiro";
-// $user['premium'] = 1865;
-// $user['gameswon'] = 2;
-// $user['xp'] = 110;
-// $user['facebook_process'] = 3;
 if($user['premium']==NULL){
 	$user['premium'] = 0;
 }

@@ -23,8 +23,16 @@
      	App.initXML = sXML;
      	App.userName = App.getXML(sXML,"username");
      	//CHECK FOR USERS ACCEPTING FRIEND REQUESTS HERE
-     	
      }
+     
+     APP_Main.prototype.browserPopup=function(){
+		userAgent = navigator.userAgent;
+		uaMatch = userAgent.match(/(Firefox|Chrome|MSIE 9.0|Safari|Opera)/i);
+		if(uaMatch == ""){
+		 App.showNotice("We see you are using an outdated browser. Support for older version are very limited. Too fix this, you can simply update your current browser.",0,true)
+		}
+	 };
+     
      APP_Main.prototype.calcAuctionCost=function(sMin,sPrice){
      	sMin = parseInt(sMin);
      	sPrice = parseInt(sPrice);
@@ -2725,17 +2733,21 @@ var App = new APP_Main();
 
 //THE REAL SLIM SHADY... I mean DOC.READY
 $(document).ready (function(){
-	App.callAjax("_app/main.php?init=1",function(xml){
-		App.init(xml); 
-	});
 	
-     FB.init({
-       appId      : '342203842518329', // App ID
-       status     : true, // check login status
-       cookie     : true, // enable cookies to allow the server to access the session
-      // oauth       : true, 
-      // channelUrl : '//www.sarugbycards.com/fbapp/index.php', // Channel File
-     });
+	App.browserPopup();
+	
+	App.callAjax("_app/main.php?init=1",function(xml){
+		App.init(xml);
+	});
+	if(sURL.indexOf("localhost") == 0){
+	     FB.init({
+	       appId      : '342203842518329', // App ID
+	       status     : true, // check login status
+	       cookie     : true, // enable cookies to allow the server to access the session
+	       oauth       : true, 
+	       channelUrl : '//www.sarugbycards.com/fbapp/index.php', // Channel File
+	     });
+     }
     
     function buy($credits){
 		App.creditsAmount=$credits;

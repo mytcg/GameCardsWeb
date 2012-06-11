@@ -84,7 +84,7 @@ span{
 
 .divSigninText{
   position: absolute;
-  top:326px;
+  top:386px;
   left:115px;
   width:580px;
   font-size:11px;
@@ -3585,20 +3585,19 @@ input[type="submit"] {
 	*/
 }
 .official{
-	background:url(../_site/all.png) 0px -280px no-repeat;
+	background:url(../_site/all.png) 0px -285px no-repeat;
 	left:10px;
-	top:7px;
-	width:210px;
-	height:70px;
+	width:203px;
+	height:62px;
 	float:left;
 	position: relative;
 }
 .poweredby{
 	float:left;
-	background:url(../_site/all.png) -215px -280px no-repeat;
-    height: 60px;
-    left: 400px;
-    width: 130px;
+	background:url(../_site/all.png) -376px -420px no-repeat;
+    height: 65px;
+    left: 390px;
+    width: 163px;
     top:10px;
     position:relative;
 }

@@ -62,7 +62,7 @@
 			<div class="segregation" style="top:5px;right:0px;"></div>
 		</div>
 		<div id="aContainer">
-			<div style="font-size:24px;margin:13% 32% 13%;width:250px;">COMING SOON</div>
+			<div style="margin-left:50px;"><img src="_site/coming_soon.png" /></div>
 			<div id="trophies" style="display:none">
 				<div class="leaderLeftArrow"></div>
 				<div id="achiev">

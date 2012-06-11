@@ -44,6 +44,9 @@ if($_GET['signup']){
   $sPassword = $_GET["password"];
   $sAge = $_GET["age"];
   $sGender = $_GET["gender"];
+  $sName = $_GET["name"];
+  $sSurname = $_GET["surname"];
+  
   
   $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";
   $getUser = myqu($sql);
@@ -52,7 +55,7 @@ if($_GET['signup']){
     exit;
   }
   
-  $sql = "INSERT INTO mytcg_user (date_register,username,email_address,age,gender,facebook_user_id) VALUES (NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."')";
+  $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,age,gender,facebook_user_id) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."')";
   $res = myqu($sql);
   
   $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";

@@ -2,34 +2,35 @@
 require_once("configuration.php");
 require_once("functions.php");
 
-require_once("facebooksdk/facebook.php");
-$user = null; //facebook user ui
-$facebook = new Facebook(array(
-  'appId'  => $fbconfig['appid'],
-  'secret' => $fbconfig['secret'],
-  'cookie' => true,
-));
-$fbuser = $facebook->getUser(); //TRY TO GET USER DETAILS IF AUTHENTICATED
-
-if (!$fbuser) {
-  $loginUrl   = $facebook->getLoginUrl( array('scope' => 'publish_stream') );
-  echo "<script type='text/javascript'>top.location.href = '$loginUrl';</script>";
-  exit;
-}else{
-  $userProfile = $facebook->api('/me');
-  $_SESSION['userProfile'] = $userProfile;
+if(!$localhost){
+	require_once("facebooksdk/facebook.php");
+	$user = null; //facebook user ui
+	$facebook = new Facebook(array(
+	  'appId'  => $fbconfig['appid'],
+	  'secret' => $fbconfig['secret'],
+	  'cookie' => true,
+	));
+	$fbuser = $facebook->getUser(); //TRY TO GET USER DETAILS IF AUTHENTICATED
+	
+	if (!$fbuser) {
+	  $loginUrl   = $facebook->getLoginUrl( array('scope' => 'publish_stream') );
+	  echo "<script type='text/javascript'>top.location.href = '$loginUrl';</script>";
+	  exit;
+	}else{
+	  $userProfile = $facebook->api('/me');
+	  $_SESSION['userProfile'] = $userProfile;
+	}
+	if (isset($_GET['code'])){
+	  header("Location: " . $fbconfig['appBaseUrl']);
+	}
+	if (isset($_GET['request_ids'])){
+	  
+	}
+	$user = myqu("SELECT username FROM mytcg_user WHERE facebook_user_id = '".$userProfile['id']."' LIMIT 1");
+	if($user){
+	  header("Location: home.php");
+	}
 }
-if (isset($_GET['code'])){
-  header("Location: " . $fbconfig['appBaseUrl']);
-}
-if (isset($_GET['request_ids'])){
-  
-}
-$user = myqu("SELECT username FROM mytcg_user WHERE facebook_user_id = '".$userProfile['id']."' LIMIT 1");
-if($user){
-  header("Location: home.php");
-}
-
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -65,6 +66,8 @@ if($user){
     
     $("#register").click(function(){
       	$("#txtResponse").fadeIn();
+      	var name = $("#name").val();
+        var surname = $("#surname").val();
         var email_address = $("#email_address").val();
         var password = $("#password").val();
         var age = $("#age").val();
@@ -78,11 +81,18 @@ if($user){
 		}else if(age==""){
 			$("#age").focus();
 			$("#txtResponse").fadeOut();
-		}else if(gender==undefined){
+		}else if(name==""){
+			$("#name").focus();
+			$("#txtResponse").fadeOut();
+		}else if(surname==""){
+			$("#surname").focus();
+			$("#txtResponse").fadeOut();
+		}
+		else if(gender==undefined){
 			$("#gender").focus();
 			$("#txtResponse").fadeOut();
 		}else{
-	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender,function(data){
+	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"name="+name+"surname="+surname,function(data){
 	        	if(data == "1"){
 	        		location.href = "<?php echo($fbconfig['baseUrl']); ?>";	
 	        	}else{
@@ -125,12 +135,22 @@ if($user){
         <div class="divSignin"></div>
         <div class="divSign"><span>Sign</span> In</div>
         <div class="divSigninBox" style="top:202px;left:115px;">
+          <div syle="">
+	          <span>Name</span><br />
+	          <input type="text" class="signin" id="name" />
+          </div>
+          <div style="position: absolute;left:250px;">
+          	<span>Sur</span>name<br />
+          	<input type="text" class="signin" id="surname" />
+          </div>
+        </div>
+        <div class="divSigninBox" style="top:262px;left:115px;">
           <span>Email</span> address<br />
           <input type="text" class="signin" id="email_address" /><br /><br />
           <span>Pass</span>word<br />
           <input type="text" class="signin" id="password" />
         </div>
-        <div class="divSigninBox" style="top:202px;left:385px;">
+        <div class="divSigninBox" style="top:262px;left:365px;">
           <span>Age</span><br />
           <input type="text" class="signin" id="age" style="width:30px;" maxlength="3" /><br /><br />
           <span>Gender</span><br />
