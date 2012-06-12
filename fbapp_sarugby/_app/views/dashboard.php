@@ -111,10 +111,10 @@
 	</div>
 </div>
 <?php 
-	$query = "select a.user_id, SUBSTRING_INDEX(a.username, '@', 1) as username, cnt as val, a.username as usr,a.facebook_user_id as fbid
+	$query = "select a.user_id, IFNULL(a.name, SUBSTRING_INDEX(a.username, '@', 1)) as username, cnt as val, a.username as usr,a.facebook_user_id as fbid
 						from
 					(
-										select distinct a.username, a.user_id, count(distinct d.card_id) as cnt, a.facebook_user_id
+										select distinct a.username, a.name, a.user_id, count(distinct d.card_id) as cnt, a.facebook_user_id
 										from mytcg_user a
 										inner join mytcg_frienddetail b
 										on b.friend_id = a.user_id

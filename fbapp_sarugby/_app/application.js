@@ -263,8 +263,6 @@
         	// $(divAuctionCat).html(App.getXML(sXML,"details/category"));
         	var divAuctionSeller = App.createDiv(divAuctionInfo,"seller-name");
         	var owner = App.getXML(sXML,"details/owner");
-			var owner = owner.substring(0, owner.indexOf('@'));
-        	//owner = owner.substring(0, owner.indexof("@"));
         	$(divAuctionSeller).html(owner);
         	$(divAuctionSeller).prepend("Seller: ");
         	
@@ -465,7 +463,6 @@
      			
 	     			var divSellerName = App.createDiv(divAuctionBlockDetails,"auction_seller_name");
 					var sellerName = App.getXML(sXML,"auction_"+i+"/owner");
-					var sellerName = sellerName.substring(0,sellerName.indexOf("@"));
 					
 	     			$(divSellerName).html("Seller: "+sellerName);
 	     			
@@ -1256,7 +1253,7 @@
 						$("#"+(App.cardTarget)+" .album_card_title").css("opacity",0.1);
 					}
 				 	//App.showCards('all');
-					App.updateCreditView(App.getXML(xml,"cost"));
+					//App.updateCreditView(App.getXML(xml,"cost"));
 				 	//window.location.reload();
 				}
 				else
@@ -1491,9 +1488,9 @@
 		//Buyout price
 		var divPriceInputDesc=App.createDiv(divWindow,"inputdesc","priceLabel");
 		var divInput=App.createDiv(divWindow,"","price");
-		$(divInput).attr('val',minBid);
-		$(divPriceInputDesc).append("<span>Buyout</span> Price");
 		var buyout = minBid*2;
+		$(divInput).attr('val',buyout);
+		$(divPriceInputDesc).append("<span>Buyout</span> Price");
 		$("#price").append(parseInt(buyout));
 		
 		priceSpan = App.createDiv(divInput,"","","span");
