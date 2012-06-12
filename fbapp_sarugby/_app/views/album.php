@@ -33,7 +33,7 @@ $iCount = 0;
 				<div class="album-card-drop-shadow"></div>
 				<div class="album_card_pic">
 				<?php if($iCC > 0){ ?>
-					<img id="img_<?php echo($iCardID); ?>" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo($aCards[$iCount]['image']); ?>_web.jpg" title="" >
+					<img id="img_<?php echo($iCardID); ?>" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo($aCards[$iCount]['image']); ?>_web.jpg" title="" alt=''>
 				<?php } ?>
 				</div>
 				<div id="<?php echo($showID); ?>" class="album-card-pic-container" style="<?php echo($cursor); ?>background-image:url('<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo($aCards[$iCount]['image']); ?>_web.jpg')"></div>

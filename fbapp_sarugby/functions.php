@@ -75,7 +75,7 @@ function getRichestUsers() {
 	//$sql = rtrim($leaderboardQuery,";");
 	$result = myqu($sql);
 	return $result;
-	}
+}
 
 function getCardInAlbumCount($userID,$catID = 0)
 {
@@ -141,8 +141,9 @@ function sanitize($sStringUserInput){
 }
 
 function sendEmail($sEmailAddress,$sFromEmailAddress,$sSubject,$sMessage){
-$sHeaders='From: '.$sFromEmailAddress;
-mail($sEmailAddress,$sSubject,$sMessage,$sHeaders);
+	$sHeaders='From: '.$sFromEmailAddress;
+	mail($sEmailAddress,$sSubject,$sMessage,$sHeaders);
+	return;
 }
 
 // execute mysql query and log, return in associative array 

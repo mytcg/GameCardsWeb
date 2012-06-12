@@ -84,7 +84,7 @@ if (isset($_GET['page'])) {
     	<div id="mainNavIconContainer">
     	</div>
 		<div id="creditContainer">
-    			<a href="index.php?page=credits">YOU HAVE <span id="creditAvailable"><?php echo $user['premium']; ?></span> CREDITS</a>
+    			<a href="index.php?page=credits"><Span>You</span> have <span id="creditAvailable"><?php echo $user['premium']; ?></span> credits</a>
 		</div>		
     </div>
     
@@ -101,18 +101,6 @@ if (isset($_GET['page'])) {
     	<div class="poweredby"></div>
     </div>
     <!-- mask for modal window -->
-    <?php if($dailyCreds == true){ ?>
-    <div id="mask" style="display:block"></div>
-    <div class="modal-window" id="credits-modal-window" style="height: 130px;">
-    	<div class="closeButtonContainer">
-    		<div class="half" id="topHalf"></div>
-    		<div class="half" id="bottomHalf"></div>
-    		<div class="close-button"></div>
-    	</div>
-    	<div class="modal-error-text" style="top:45px;left:60px;width: 200px;"><span>Congratulation</span><br />You have received 50 credits for logging in today</div>
-    </div>
-    <?php } else { ?>
     <div id="mask" style="display:none"></div>
-    <?php } ?>
   </body>
 </html>

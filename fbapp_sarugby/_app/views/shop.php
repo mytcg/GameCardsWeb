@@ -24,7 +24,7 @@ $iCount = 0;
 	<div id="shopScrollPane">
 		<?php while ($iPackID=$aProducts[$iCount]['product_id']){ ?>
 	   <div class="productBlock" >
-	    	<img class="shop-pic" id="<?php echo($iPackID); ?>" src="<?php echo($aProducts[$iCount]['imageserver']); ?>products/<?php echo($aProducts[$iCount]['image']); ?>.jpg" title="View potential cards">
+	    	<img class="shop-pic" id="<?php echo($iPackID); ?>" src="<?php echo($aProducts[$iCount]['imageserver']); ?>products/<?php echo($aProducts[$iCount]['image']); ?>.jpg" title="View potential cards" alt="">
 	    	<div class="numberOfCards"><span><?php echo($aProducts[$iCount]['no_of_cards']); ?> Card</span> Booster</div>
 	    	<div class="productPrice"><span class="productPriceAmount"><?php echo($aProducts[$iCount]['premium']); ?> TCG</span></div>
 	    	<div class="buyItemButton" id="<?php echo($iPackID); ?>">

@@ -35,7 +35,7 @@ if(!$localhost){
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
-    <title>MyTCG Trading Card Games</title>
+    <title>Mytcg Trading Card Games</title>
     <link rel="icon" href="favicon.ico" />
     <script type="text/javascript" src="jquery/jquery-1.6.1.min.js"></script>
     <link href="css/stylesheet.css" type="text/css" rel="stylesheet" media="all"  />
@@ -92,7 +92,7 @@ if(!$localhost){
 			$("#gender").focus();
 			$("#txtResponse").fadeOut();
 		}else{
-	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"name="+name+"surname="+surname,function(data){
+	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(data){
 	        	if(data == "1"){
 	        		location.href = "<?php echo($fbconfig['baseUrl']); ?>";	
 	        	}else{

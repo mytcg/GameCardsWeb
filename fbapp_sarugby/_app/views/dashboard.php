@@ -16,8 +16,8 @@
 		</div>
 		<div class="headBlocks">
 			<div class="headMiniTitle"><span>Card</span> of the <span>Day</span></div>
-			<div class="headBestCard">
-				<?php $cardOfDay = getCardOfDay($_SESSION['userDetails']['user_id']); ?>
+			<?php $cardOfDay = getCardOfDay($_SESSION['userDetails']['user_id']); ?>
+			<div class="headCardOfDay" id="<?php echo $cardOfDay[0][1];  ?>">
 				<img id="" src="https://sarugbycards.com/img/cards/<?php echo $cardOfDay[0][1];  ?>_web.jpg" width="64px" height="90px" />
 			</div>
 		</div>
@@ -29,20 +29,14 @@
 		</div>
 		<div class="headBlocks">
 			<div class="headMiniTitle"><span>Best</span> Card</div>
-			<div class="headBestCard">
-				<?php $bestCard = getBestCard($_SESSION['userDetails']['user_id']); ?>
+			<?php $bestCard = getBestCard($_SESSION['userDetails']['user_id']); ?>
+			<div class="headBestCard" id="<?php echo $bestCard[0]['image'];  ?>">
 				<img id="" src="https://sarugbycards.com/img/cards/<?php echo $bestCard[0]['image'];  ?>_web.jpg" width="64px" height="90px" />
 			</div>
 			<div class="segregation" style="top:20px;left:0px;"></div>
 		</div>
 	</div>
 </div>
-<?php 
-	$query = "SELECT * FROM mytcg_leaderboards";
-	$aQueries=myqu($query);
-	$aBoard=myqu($aQueries[0]['lquery']);
-	$iCount = 0;
-?>
 <div id="leaderboard" >
 	<div class="leaderTitle">
 		<div class="headLeaderboard">
@@ -120,7 +114,7 @@
 	$query = "select a.user_id, SUBSTRING_INDEX(a.username, '@', 1) as username, cnt as val, a.username as usr,a.facebook_user_id as fbid
 						from
 					(
-										select distinct a.username, a.user_id, count(distinct d.usercard_id) as cnt, a.facebook_user_id
+										select distinct a.username, a.user_id, count(distinct d.card_id) as cnt, a.facebook_user_id
 										from mytcg_user a
 										inner join mytcg_frienddetail b
 										on b.friend_id = a.user_id
@@ -176,6 +170,7 @@
 			<div class="leaderRightArrow"></div>
 		</div>
 		<div id="invite_friend" class="leaderSect">
+			<div class="inviteFriend" style="margin-left: 10px; margin-top: 19px;"><span>Invite</span> Friend</div>
 			<div class="leaderSectAddFriend"></div>
 			<div class="segregation" style="top:15px;left:5px;"></div>
 	    </div>

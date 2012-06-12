@@ -25,14 +25,6 @@
      	//CHECK FOR USERS ACCEPTING FRIEND REQUESTS HERE
      }
      
-     APP_Main.prototype.browserPopup=function(){
-		userAgent = navigator.userAgent;
-		uaMatch = userAgent.match(/(Firefox|Chrome|MSIE 9.0|Safari|Opera)/i);
-		if(uaMatch == ""){
-		 App.showNotice("We see you are using an outdated browser. Support for older version are very limited. Too fix this, you can simply update your current browser.",0,true)
-		}
-	 };
-     
      APP_Main.prototype.calcAuctionCost=function(sMin,sPrice){
      	sMin = parseInt(sMin);
      	sPrice = parseInt(sPrice);
@@ -84,6 +76,7 @@
 		var divFullPic = App.createDiv(divModalPic,"modal-full-picture");
 		var imgPic = App.createDiv(divFullPic,"","","img");
 		imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+		imgPic.alt = '';
 		
 		 //Get the screen height and width
 	     // var maskHeight = $(document).height();
@@ -103,14 +96,14 @@
 				$(this).flip({
 				speed:200,
 				direction:'lr',
-				content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg'/>"
+				content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg' alt=''/>"
 				});
 				window.flipped = true;
 			} else {
 				$(this).flip({
 				speed:200,
 				direction:'lr',
-				content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg'/>"
+				content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg' alt=''/>"
 				});
 				window.flipped = false;
 			}	
@@ -386,6 +379,7 @@
 					   var value = parseInt($(inputBid).text());
 					   if(value >= bidMin){
 						App.bidORbuy("bid",marketID,value);
+						App.redrawAuction("all");
 					   }else{
 						App.showNotice("Oops, we noticed an incorrect bidding amount. Bidding amount has to be at least 1 TCG Credit more than current bid.",0,false)
 					   }
@@ -1259,7 +1253,7 @@
 				}
 				else
 				{
-					App.showBuy("Unfortunately you have insufficient credits to create this auction, why not go buy some more on the Credits tab?",0,true);
+					App.showBuy("Unfortunately you have insufficient credits to create this auction, why not go buy some more?",0,true);
 				}
 			});
 			
@@ -1650,7 +1644,7 @@
 					$("#auction-modal-window").remove();
 					$("#win_"+App.getXML(sXML,"id")).remove();
 				}else{
-					App.showBuy("Unfortunately you have insufficient credits, why not go buy some more on the Credits tab?",0,true);
+					App.showBuy("Unfortunately you have insufficient credits, why not go buy some more?",0,true);
 				}
 			});
 		}
@@ -1765,7 +1759,7 @@
 	     
 	     if (parseInt(App.getXML(sXML,"value"))!=1) {
 	     	
-	     	App.showBuy("Unfortunately you have insufficient credits, why not go buy some more on the Credits tab?",0,true);
+	     	App.showBuy("Unfortunately you have insufficient credits, why not go buy some more?",0,true);
 	     	return;
 	     	
 	     }
@@ -2007,6 +2001,7 @@
 			var divFullPic = App.createDiv(divModalPic,"modal-full-picture");
 			var imgPic = App.createDiv(divFullPic,"","","img");
 			imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+			imgPic.alt = '';
 			
 			
 		   //Get the screen height and width
@@ -2028,14 +2023,71 @@
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg'/>"
+						content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg' alt=''/>"
 						});
 						window.flipped = true;
 					} else {
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg'/>"
+						content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg' alt=''/>"
+						});
+						window.flipped = false;
+					}
+			});
+     }
+	 
+	 APP_Main.prototype.showCardModalNoAuction=function(imgID){
+        
+			// var imgID = $('#cardBigView img').attr('id');
+			App.cardTarget = imgID;
+			var divBody = document.body;
+			var divModalPic = App.createDiv(divBody,"modal-picture-holder modal-window");
+			var divCloseButtonContainer = App.createDiv(divModalPic,"closeButtonContainer");
+			var divClose = App.createDiv(divCloseButtonContainer,"close-button");
+			$(divClose).html("<span>CLOSE</span>");
+			
+			$(divClose).click(function() {
+		        window.flipped = false;
+		        $('.modal-window').fadeTo("fast",1);
+		        $(".modal-window").remove();
+		        $(".modal-picture-holder").remove();
+		        $("#mask").hide();
+		    });
+			
+			var divFullPic = App.createDiv(divModalPic,"modal-full-picture");
+			var imgPic = App.createDiv(divFullPic,"","","img");
+			imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+			imgPic.alt = "";
+			
+			
+		   //Get the screen height and width
+	    	var maskHeight = $(document).height();
+	    	var maskWidth = $(window).width();
+	    	
+	      //Set height and width of mask to fill up the whole screen
+	    	$('#mask').css({'width':maskWidth,'height':maskHeight});
+      
+     		//transition effect - show the mask  
+     		$('#mask').fadeIn('fast');   
+     		$('#mask').fadeTo("medium",0.6); 
+    
+			$('.modal-picture-holder').css({top:'200px',left:'215px'});
+			$('.modal-picture-holder').show('300');
+		
+			$('.modal-full-picture').click(function() {
+					if (window.flipped!=true){
+						$(this).flip({
+						speed:200,
+						direction:'lr',
+						content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg' alt=''/>"
+						});
+						window.flipped = true;
+					} else {
+						$(this).flip({
+						speed:200,
+						direction:'lr',
+						content:"<img src='https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg' alt=''/>"
 						});
 						window.flipped = false;
 					}
@@ -2732,24 +2784,18 @@
 var App = new APP_Main();
 
 //THE REAL SLIM SHADY... I mean DOC.READY
-$(document).ready (function(){
-	
-	App.browserPopup();
-	
+$(document).ready(function(){
 	App.callAjax("_app/main.php?init=1",function(xml){
 		App.init(xml);
 	});
 	
-	sURL = window.location.href;
-	if(sURL.indexOf("localhost") == 0){
-	     FB.init({
-	       appId      : '342203842518329', // App ID
-	       status     : true, // check login status
-	       cookie     : true, // enable cookies to allow the server to access the session
-	       oauth       : true, 
-	       channelUrl : '//www.sarugbycards.com/fbapp/index.php', // Channel File
-	     });
-     }
+	 FB.init({
+	   appId      : '342203842518329', // App ID
+	   status     : true, // check login status
+	   cookie     : true, // enable cookies to allow the server to access the session
+	   //oauth       : true, 
+	   //channelUrl : '//www.sarugbycards.com/fbapp/index.php', // Channel File
+	 });
     
     function buy($credits){
 		App.creditsAmount=$credits;
@@ -3252,6 +3298,7 @@ $(document).ready(function(){
 	        var divListPic = App.createDiv(divPlaceHolder,"booster-list-pic");
 	        var imgBoosterIcon = App.createDiv(divListPic,"","","img");
 	        imgBoosterIcon.src = App.getXML(sXML,"cards/card_"+i+"/path")+'cards/'+App.getXML(sXML,"cards/card_"+i+"/image")+'_web.jpg';
+			imgBoosterIcon.alt = "";
 	        var divListPicCaption = App.createDiv(divPlaceHolder,"booster-list-pic-caption");
 	        $(divListPicCaption).html(App.getXML(sXML,"cards/card_"+i+"/description"));
 	        var boosterListPicIconContainer = App.createDiv(divListPic,"boosterListPicIconContainer");
@@ -3352,6 +3399,20 @@ $(document).ready(function(){
 		var cardID = parseInt($(this).attr('id'));
 		if(cardID > 0){
 			App.showCardModal(cardID);
+		}
+	});
+	
+	$('.headBestCard').click(function(){
+		var cardID = parseInt($(this).attr('id'));
+		if(cardID > 0){
+			App.showCardModalNoAuction(cardID);
+		}
+	});
+	
+	$('.headCardOfDay').click(function(){
+		var cardID = parseInt($(this).attr('id'));
+		if(cardID > 0){
+			App.showCardModalNoAuction(cardID);
 		}
 	});
 	
