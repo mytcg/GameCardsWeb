@@ -92,7 +92,7 @@ if(!$localhost){
 			$("#gender").focus();
 			$("#txtResponse").fadeOut();
 		}else{
-	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"name="+name+"surname="+surname,function(data){
+	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(data){
 	        	if(data == "1"){
 	        		location.href = "<?php echo($fbconfig['baseUrl']); ?>";	
 	        	}else{
