@@ -73,6 +73,8 @@
 	{
 		myqu("UPDATE mytcg_user SET gameswon=0 WHERE user_id=".$user['user_id']);
 	}
+	$sUA=$_SERVER["HTTP_USER_AGENT"];
+	$sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user['user_id']."'");
     
     $token = $facebook->getAccessToken();
     //$friends = $facebook->api('/me/friends?access_token='.$token.'&fields=id,name');

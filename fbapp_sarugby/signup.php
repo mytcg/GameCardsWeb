@@ -30,6 +30,10 @@ if(!$localhost){
 	if($user){
 	  header("Location: home.php");
 	}
+	
+	$male = ($userProfile['gender']=="male")? "checked='checked'" : "";
+	$female = ($userProfile['gender']=="female")? "checked='checked'" : "";
+	$age = floor((time() - strtotime($userProfile['birthday'])) / 31556926);
 }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -183,24 +187,24 @@ if(!$localhost){
         <div class="divSigninBox" style="top:202px;left:115px;">
           <div syle="">
 	          <span>Name</span><br />
-	          <input type="text" class="signin" id="name" />
+	          <input type="text" class="signin" id="name" value="<?php echo($userProfile['first_name']); ?>" />
           </div>
           <div style="position: absolute;left:250px;">
           	<span>Sur</span>name<br />
-          	<input type="text" class="signin" id="surname" />
+          	<input type="text" class="signin" id="surname" value="<?php echo($userProfile['last_name']); ?>" />
           </div>
         </div>
         <div class="divSigninBox" style="top:262px;left:115px;">
           <span>Email</span> address<br />
-          <input type="text" class="signin" id="email_address" /><br /><br />
+          <input type="text" class="signin" id="email_address" value="<?php echo($userProfile['email']); ?>" /><br /><br />
           <span>Pass</span>word<br />
           <input type="text" class="signin" id="password" />
         </div>
         <div class="divSigninBox" style="top:262px;left:365px;">
           <span>Age</span><br />
-          <input type="text" class="signin" id="age" style="width:30px;" maxlength="2" /><br /><br />
+          <input type="text" class="signin" id="age" style="width:30px;" maxlength="2" value="<?php echo($age); ?>" /><br /><br />
           <span>Gender</span><br />
-          <div style="margin-top: 5px;"><input type="radio" name="gender" style="margin-top:5px;width:20px;" value="0" /> Male &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="1" /> Female</div>
+          <div style="margin-top: 5px;"><input type="radio" name="gender" style="margin-top:5px;width:20px;" value="0" <?php echo($male); ?> /> Male &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="1" <?php echo($female); ?> /> Female</div>
         </div>
         <div class="divSigninText">
           <span>Welcome to SA rugby cards</span>.
