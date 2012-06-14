@@ -79,7 +79,7 @@ if (isset($_GET['market']))
 	$user_credits = $query[0]['premium'];
 	
 	// return auction data - xml
-	$sql = "SELECT U.username AS 'owner', I.description AS 'imageserver', CA.description AS 'category', C.description, C.image, C.category_id, UC.card_id, M.* 
+	$sql = "SELECT IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)) AS 'owner', I.description AS 'imageserver', CA.description AS 'category', C.description, C.image, C.category_id, UC.card_id, M.* 
 			FROM mytcg_market M
 			JOIN mytcg_usercard UC USING (usercard_id)
 			JOIN mytcg_card C USING (card_id)
@@ -98,7 +98,7 @@ if (isset($_GET['market']))
 	{
 		$auction = $aDetails[0];
 		
-		$sql = "SELECT MC.*, U.username, U.name
+		$sql = "SELECT MC.*, IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)), U.name
 				FROM mytcg_marketcard MC
 				JOIN mytcg_user U USING (user_id)
 				WHERE MC.market_id = ".$market_id."
