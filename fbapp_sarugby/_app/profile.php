@@ -50,6 +50,10 @@ if($_GET['verify']){
   	if($theCode == $_GET['verify']){
   		echo $sTab."<success>1</success>".$sCRLF;
   		myqu("UPDATE mytcg_user SET email_verified = 1 WHERE user_id = ".$userID);
+		
+		myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+			SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+			FROM mytcg_user WHERE user_id=".$userID);
   	}
   	else{
 		  echo $sTab."<success>0</success>".$sCRLF;

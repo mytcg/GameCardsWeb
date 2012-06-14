@@ -40,6 +40,10 @@ if($_POST['action']=="save"){
 			$res=myqu("UPDATE mytcg_user SET email_verified=0 WHERE user_id=".$user['user_id']);
 		}
 		
+		myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+			SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+			FROM mytcg_user WHERE user_id=".$user['user_id']);
+		
 		//UPDATE Personal information dynamic data
 		$sql = "SELECT * FROM mytcg_user_detail";
 		$aDetails = myqu($sql);

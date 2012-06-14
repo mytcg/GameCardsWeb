@@ -34,6 +34,9 @@ if($_GET['login']){
   
   $sql = "UPDATE mytcg_user SET facebook_user_id = '".$userProfile['id']."',facebook_process = 1 WHERE user_id = ".$user_id;
   $response = myqu($sql);
+  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+	SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+	FROM mytcg_user WHERE user_id=".$user_id);
   echo("1");
   exit;
 }
@@ -62,6 +65,11 @@ if($_GET['signup']){
   $getUser = myqu($sql);
   
   $user_id = $getUser[0]['user_id'];
+  
+  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+	SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+	FROM mytcg_user WHERE user_id=".$user_id);
+  
   $iMod=(intval($user_id) % 10)+1;
   $sPassword=substr(md5($user_id),$iMod,10).md5($sPassword);
   
