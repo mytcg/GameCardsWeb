@@ -34,9 +34,6 @@ if($localhost){
 	$user['gameswon'] = 2;
 	$user['xp'] = 110;
 	$user['facebook_process'] = 3;
-	
-	
-	var_dump($_SESSION['userProfile']);
 }
 
 if($user['premium']==NULL){

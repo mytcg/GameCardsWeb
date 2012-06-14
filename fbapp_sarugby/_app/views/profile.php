@@ -15,7 +15,7 @@ if($_POST['action']=="save"){
 	
 	$sql = "SELECT email_address FROM mytcg_user WHERE email_address = '".$sEmail."'";
 	$sValidEmail = myqu($sql);
-	if(sizeof($sValidEmail) > 0){
+	if((sizeof($sValidEmail) > 0)&&($sEmail != $sOldEmail)){
 		$returnMsg = "<span>Email address</span> already in use.";
 	}else{
 		//Update password if new one given
@@ -104,7 +104,7 @@ $showMsg = ($response)? "" : "display:none;";
 			Get the verification code, enter it in the box<br /> below and click the verify code button
 			<input id="email_verified" type="text" name="email_verified" /><br /><br />
 			
-			<div class="profileDots <?php echo($verified); ?>" id="verified" style="top:416px;left:215px;"></div>
+			<div class="profileDots <?php echo($verified); ?>" id="verified" style="top:423px;left:215px;"></div>
 			
 			<div id="btnSendEmail" class="profileButton" style="top:455px;left:0px;">SEND EMAIL</div>
 			<div id="btnVerifyEmail" class="profileButton" style="top:455px;left:100px;">VERIFY CODE</div>
