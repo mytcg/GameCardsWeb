@@ -22,7 +22,8 @@ $payload = $request['credits'];
 
 // retrieve all params passed in
 $func = $_REQUEST['method'];
-$order_id = $payload['order_id'];
+$order_id = 0;
+$order_id = $_REQUEST['order_id'];
 
 if ($func == 'payments_status_update') {
   $status = $payload['status'];
@@ -33,10 +34,10 @@ if ($func == 'payments_status_update') {
 	$data['content']['status'] = $next_state;
 
 	$buyer_info = json_decode($request['credits']['order_details'], true);
-	$buyer_id = $buyer_info['buyer'];
+	$buyer_id = $request['user_id'];
 	$item = $buyer_info['items'][0];
 	
-	$order_id = $buyer_info['order_id'];
+	$order_id = json_decode($request['credits']['order_id'], true);
 	
 	if ($item['item_id'] == "350") {
 		$val = 350;
@@ -47,15 +48,15 @@ if ($func == 'payments_status_update') {
 	}
 	
 	
-    $description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
+	$description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
 	
 	$query = "insert into mytcg_transactionlog (user_id, description, date, val, transactiontype_id, transactionstatus_id, response, transactionlogtype_id, facebook_user_id, order_id) values ((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'),'".$description."', now(), ".$item['item_id'].", 5, 2, 'Settled', 2, ".$buyer_id.", ".$order_id.")";
 	
 	myqu($query);
 	
-	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
 		VALUES((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'), NULL, NULL, NULL, 
-			now(), '".$description."', ".$item['item_id'].", 5, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15)");
+			now(), '".$description."', ".$item['item_id'].", 5, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15, '".$order_id."')");
 	
 	$query = "update mytcg_user set premium=ifnull(premium,0)+".$item['item_id']." where facebook_user_id = '".$buyer_id."'";
 	
@@ -77,7 +78,7 @@ if ($func == 'payments_status_update') {
 	}
 	
 	
-    $description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
+	$description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
 	
 	$query = "insert into mytcg_transactionlog (user_id, description, date, val, transactiontype_id, transactionstatus_id, response, transactionlogtype_id, facebook_user_id, order_id) values ((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'),'".$description."', now(), ".$item['item_id'].", 5, 4, 'Cancelled', 2, ".$buyer_id.", ".$order_id.")";
 	
@@ -90,13 +91,13 @@ if ($func == 'payments_status_update') {
   }
   // compose returning data array_change_key_case
   $data['content']['order_id'] = $order_id;
-  } else if ($func == 'payments_get_items') {
+} else if ($func == 'payments_get_items') {
   
     // remove escape characters  
 	$order_info = json_decode($request['credits']['order_info'], true);
 	$item_id = $order_info['item_id'];
 	$buyer_id = json_decode($request['credits']['buyer'], true);
-	$order_id =json_decode($request['credits']['order_id'], true);
+	//$order_id =json_decode($request['credits']['order_id'], true);
 	
 	/*$order_info = stripcslashes($payload['order_info']);
     $item_info = json_decode($order_info, true);
