@@ -5,6 +5,12 @@ if(!$localhost){
 	require_once("fbuser.php");
 }
 
+$ie = ieversion();
+if((!$ie >= 9)&&(!$_SESSION['stable'])){
+	$_SESSION['stable'] = true;
+	header("Location:browser_error.php");
+}
+
 if(!$_SESSION['auctions']){
 	require_once("process_auctions.php");
 }
@@ -28,6 +34,9 @@ if($localhost){
 	$user['gameswon'] = 2;
 	$user['xp'] = 110;
 	$user['facebook_process'] = 3;
+	
+	
+	var_dump($_SESSION['userProfile']);
 }
 
 if($user['premium']==NULL){

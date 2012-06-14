@@ -31,6 +31,17 @@ span{
 	z-index: -1;
 }
 
+.signupTerms{
+	position: absolute;
+	top:515px;
+	left:490px;
+	font-size:10px;
+}
+.signupTerms a{
+	text-decoration: none;
+	color:#F2C126;
+}
+
 .divPageLogin {
    top:130px;
    left:0px;

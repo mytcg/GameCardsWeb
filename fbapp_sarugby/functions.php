@@ -1,4 +1,12 @@
 <?php
+function ieversion() {
+  $match=preg_match('/MSIE ([0-9]\.[0-9])/',$_SERVER['HTTP_USER_AGENT'],$reg);
+  if($match==0)
+    return -1;
+  else
+    return floatval($reg[1]);
+}
+
 function getUserPic($username) {
 	$return = false;
 	$sql = "SELECT facebook_user_id FROM mytcg_user WHERE username = '".$username."' AND facebook_user_id IS NOT NULL";

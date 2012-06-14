@@ -13,7 +13,7 @@ if(!$localhost){
 	$fbuser = $facebook->getUser(); //TRY TO GET USER DETAILS IF AUTHENTICATED
 	
 	if (!$fbuser) {
-	  $loginUrl   = $facebook->getLoginUrl( array('scope' => 'publish_stream') );
+	  $loginUrl   = $facebook->getLoginUrl( array('scope' => 'user_birthday,email') );
 	  echo "<script type='text/javascript'>top.location.href = '$loginUrl';</script>";
 	  exit;
 	}else{
@@ -64,40 +64,63 @@ if(!$localhost){
 		}
 	});
     
+    var validateEmail = function(email){
+     	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   		return re.test(email);
+	}
+    
     $("#register").click(function(){
-      	$("#txtResponse").fadeIn();
       	var name = $("#name").val();
         var surname = $("#surname").val();
         var email_address = $("#email_address").val();
         var password = $("#password").val();
         var age = $("#age").val();
         var gender = $("input[name='gender']:checked").val();
-        if(email_address==""){
-			$("#email_address").focus();
-			$("#txtResponse").fadeOut();
-		}else if(password==""){
-			$("#password").focus();
-			$("#txtResponse").fadeOut();
-		}else if(age==""){
-			$("#age").focus();
-			$("#txtResponse").fadeOut();
-		}else if(name==""){
+        
+        var validEmail = validateEmail(email_address);
+        var validAge = !isNaN(age);
+        
+        if(name==""){
 			$("#name").focus();
-			$("#txtResponse").fadeOut();
+			$("#txtError").html("Name is required.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
 		}else if(surname==""){
 			$("#surname").focus();
-			$("#txtResponse").fadeOut();
-		}
-		else if(gender==undefined){
+			$("#txtError").html("Surname is required.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+		}else if(email_address==""){
+        	$("#email_address").focus();
+			$("#txtError").html("Email address is required.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+        }else if(!validEmail){
+        	$("#email_address").focus();
+        	$("#txtError").html("Invalid email address.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+        }else if(age==""){
+			$("#age").focus();
+			$("#txtError").html("Age is required.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+		}else if(!validAge){
+        	$("#age").focus();
+        	$("#txtError").html("Age is a number only value.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+        }else if(password==""){
+			$("#password").focus();
+			$("#txtError").html("Password is required.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+		}else if(gender==undefined){
 			$("#gender").focus();
-			$("#txtResponse").fadeOut();
+			$("#txtError").html("Select a gender.");
+        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
 		}else{
+			$("#txtResponse").fadeIn();
 	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(data){
 	        	if(data == "1"){
 	        		location.href = "<?php echo($fbconfig['baseUrl']); ?>";	
 	        	}else{
 	        		$("#txtResponse").fadeOut();
-	        		$(".divSigninText").html(data);
+	        		$("#txtError").html(data);
+        			$(".errorNotice").fadeIn().delay(5000).fadeOut();
 	        	}
 	        });
         }
@@ -117,6 +140,26 @@ if(!$localhost){
 		  background-color:#C6C6C6;
 		  color:#FFF;
 		}
+		.errorNotice{
+			display:none;
+			position:absolute;
+			top:135px;
+			left:360px;
+			width:300px;
+			padding:3px;
+			-moz-border-radius: 9px;
+  			border-radius: 9px;
+  			background-color:#747474;
+			
+		}
+		.errorNotice div{
+			font-weight:bold;
+			font-size:13px;
+			position:absolute;
+			top:17px;
+			left:50px;
+			float: left;
+		}
     </style>
   </head>
   <body>
@@ -130,8 +173,11 @@ if(!$localhost){
          xfbml  : true  // parse XFBML
        });
      </script>
-  
       <div class="divPageLogin">
+      	<div class="errorNotice">
+      		<img src="_site/important.png" width="40" height="40" />
+      		<div id='txtError'>Not a valid email</div>
+      	</div>
         <div class="divSignin"></div>
         <div class="divSign"><span>Sign</span> In</div>
         <div class="divSigninBox" style="top:202px;left:115px;">
@@ -152,16 +198,19 @@ if(!$localhost){
         </div>
         <div class="divSigninBox" style="top:262px;left:365px;">
           <span>Age</span><br />
-          <input type="text" class="signin" id="age" style="width:30px;" maxlength="3" /><br /><br />
+          <input type="text" class="signin" id="age" style="width:30px;" maxlength="2" /><br /><br />
           <span>Gender</span><br />
           <div style="margin-top: 5px;"><input type="radio" name="gender" style="margin-top:5px;width:20px;" value="0" /> Male &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="1" /> Female</div>
         </div>
         <div class="divSigninText">
           <span>Welcome to SA rugby cards</span>.
-          <br>Just enter your details above, and we will create a brand new shiny account for you.
+          <br>Just enter your details above, and we will create a brand new shiny account for you.<br /><br />
+          <span>Already have an account?</span><br />
+          Just enter the email address and password field and we will link your facebook account to your SA Rugby cards account.
           </div>
         <div id="txtResponse" class="profileResponse" style="display:none;height:16px;top:488px;left:670px;"><img src="_site/loading51.gif" width="15" height="15" /></div>
         <div id="login" class="divSigninEnter" style="top:490px;left:485px;">Login</div> <div id="register" class="divSigninEnter" style="top:490px;left:585px;">Register</div>
+      	<div class="signupTerms"><a href="terms.php">*Terms and conditions apply.</a></div>
       </div>
 
   </body>

@@ -45,7 +45,7 @@
 	
     if (!$fbuser) {
 		$params = array(
-		  scope => 'publish_stream',
+		  scope => 'user_birthday,email',
 		  redirect_uri => $fbconfig['baseUrl']
 		);
 

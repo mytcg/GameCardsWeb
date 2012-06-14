@@ -10,46 +10,53 @@ if($_POST['action']=="save"){
 	$sEmail = $_POST['email_address'];
 	$sPassword = $_POST['password'];
 	$sCell = $_POST['msisdn'];
-	$sAge = $_POST['age'];
-	$sGender = $_POST['gender'];
+	$sName = $_POST['name'];
+	$sSurname = $_POST['surname'];
 	
-	//Update password if new one given
-	if($sPassword != ""){
-		$iMod=($user['user_id'] % 10)+1;
-	    $sSalt=substr(md5($user['user_id']),$iMod,10);
-	    $aSaltPassword=myqu("UPDATE mytcg_user SET password='".$sSalt.md5($sPassword)."' WHERE user_id=".$user['user_id']);
-	}
-	
-	//Update other fields
-	$sql = "UPDATE mytcg_user SET
-			username = '".$sEmail."',
-			email_address = '".$sEmail."',
-			msisdn = '".$sCell."',
-			age = '".$sAge."',
-			gender = '".$sGender."'
-			WHERE user_id = ".$user['user_id'];
-	$res = myqu($sql);
-	
-	//Set email verified if email address changed
-	if($sOldEmail != $sEmail){
-		$res=myqu("UPDATE mytcg_user SET email_verified=0 WHERE user_id=".$user['user_id']);
-	}
-	
-	
-	//UPDATE Personal information dynamic data
-	$sql = "SELECT * FROM mytcg_user_detail";
-	$aDetails = myqu($sql);
-	foreach($aDetails as $d){
-		$id = $d['detail_id'];
-		$var = $_POST[$id];
-		if($var!=""){
-			$res=myqu("UPDATE mytcg_user_answer SET answered=1, answer='".$var."' WHERE detail_id = ".$id." AND user_id=".$user['user_id']);
+	$sql = "SELECT email_address FROM mytcg_user WHERE email_address = '".$sEmail."'";
+	$sValidEmail = myqu($sql);
+	if(sizeof($sValidEmail) > 0){
+		$returnMsg = "<span>Email address</span> already in use.";
+	}else{
+		//Update password if new one given
+		if($sPassword != ""){
+			$iMod=($user['user_id'] % 10)+1;
+		    $sSalt=substr(md5($user['user_id']),$iMod,10);
+		    $aSaltPassword=myqu("UPDATE mytcg_user SET password='".$sSalt.md5($sPassword)."' WHERE user_id=".$user['user_id']);
 		}
+		
+		//Update other fields
+		$sql = "UPDATE mytcg_user SET
+				username = '".$sEmail."',
+				email_address = '".$sEmail."',
+				msisdn = '".$sCell."',
+				name = '".$sName."',
+				surname = '".$sSurname."'
+				WHERE user_id = ".$user['user_id'];
+		$res = myqu($sql);
+		
+		//Set email verified if email address changed
+		if($sOldEmail != $sEmail){
+			$res=myqu("UPDATE mytcg_user SET email_verified=0 WHERE user_id=".$user['user_id']);
+		}
+		
+		//UPDATE Personal information dynamic data
+		$sql = "SELECT * FROM mytcg_user_detail";
+		$aDetails = myqu($sql);
+		foreach($aDetails as $d){
+			$id = $d['detail_id'];
+			$var = $_POST[$id];
+			if($var!=""){
+				$res=myqu("UPDATE mytcg_user_answer SET answered=1, answer='".$var."' WHERE detail_id = ".$id." AND user_id=".$user['user_id']);
+			}
+		}
+		$returnMsg = "Your details have been <span>saved successfully</span>.";
 	}
+	
 	$response = true;
 }
 
-$sql = "SELECT user_id,email_address,email_verified, age, gender, msisdn
+$sql = "SELECT user_id,email_address,email_verified, name, surname, msisdn
 		FROM mytcg_user
 		WHERE user_id = ".$user['user_id'];
 $aUserData = myqu($sql);
@@ -62,8 +69,7 @@ $sql = "SELECT UD.description, UA.answer, UD.detail_id
 $aPersonalData = myqu($sql);
 
 $verified = ($aUserData['email_verified']==1)? "dotActive" : "" ;
-$male = ($aUserData['gender']==0) ? "checked" : "" ;
-$female = ($aUserData['gender']=="Female") ? "checked" : "" ;
+$showMsg = ($response)? "" : "display:none;";
 ?>
 <div id="header" >
 	<div class="headTitle">
@@ -74,7 +80,7 @@ $female = ($aUserData['gender']=="Female") ? "checked" : "" ;
 	<form id="frmProfile" method="post" action="index.php?page=profile">
 	<input type="hidden" name="action" value="save" />
 	<div class="profileBody">
-		<?php if($response) { ?><div class="profileSaved">Your details have been <span>saved successfully</span>.</div><?php } ?>
+		<div class="profileSaved" style="<?php echo($showMsg); ?>"><?php echo($returnMsg); ?></div>
 		<div class="profileSeparator"></div>
 		<div class="profileContainerLeft">
 			<div style="font-size:13px;"><span>Account</span> Profile</div> 
@@ -84,12 +90,11 @@ $female = ($aUserData['gender']=="Female") ? "checked" : "" ;
 			<span>CHANGE</span> PASSWORD<br />
 			<input type="text" name="password" /><br /><br />
 			<span>Cell</span> Number<br />
-			<input type="text" name="msisdn" value="<?php echo($aUserData['msisdn']); ?>" /><br /><br />
-			<span>Age</span><br />
-			<input type="text" name="age" value="<?php echo($aUserData['age']); ?>" /><br /><br />
-			<span>Gender</span><br />
-			<input type="radio" name="gender" style="width:20px;" value="Male" <?php echo($male); ?>> Male &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="Female" <?php echo($female); ?>> Female 
-			<br /><br />
+			<input id="msisdn" type="text" name="msisdn" value="<?php echo($aUserData['msisdn']); ?>" /><br /><br />
+			<span>Name</span><br />
+			<input id="name" type="text" name="name" value="<?php echo($aUserData['name']); ?>" /><br /><br />
+			<span>Surname</span><br />
+			<input id="surname" type="text" name="surname" value="<?php echo($aUserData['surname']); ?>" /><br /><br /> 
 			<span>Verify your email address</span><br />
 			Click the send email button. Check your inbox.<br />
 			Get the verification code, enter it in the box<br /> below and click the verify code button
@@ -142,7 +147,28 @@ $(document).ready(function(){
 	
 	//Submit all details
 	$("#btnProfileSave").click(function(){
-		$("#frmProfile").submit();
+		//validation
+		var sEmail = $("#email_address").val();
+		var validEmail = App.validateEmail(sEmail); 
+		var sCell = $("#msisdn").val();
+		var sName = $("#name").val();
+		var sSurname = $("#surname").val();
+		
+		if(sEmail == ""){
+			$(".profileSaved").html("<span>Email</span> cannot be empty.").fadeIn().delay(4000).fadeOut();
+		}else if(!validEmail){
+			$(".profileSaved").html("Not a valid <span>email address</span>.").fadeIn().delay(4000).fadeOut();
+		}else if(sCell == ""){
+			$(".profileSaved").html("<span>Cellnumber</span> cannot be empty.").fadeIn().delay(4000).fadeOut();
+		}else if(isNaN(sCell)){
+			$(".profileSaved").html("Not a valid <span>cell number</span>.").fadeIn().delay(4000).fadeOut();
+		}else if(sName == ""){
+			$(".profileSaved").html("<span>Name</span> cannot be empty.").fadeIn().delay(4000).fadeOut();
+		}else if(sSurname == ""){
+			$(".profileSaved").html("<span>Surname</span> cannot be empty.").fadeIn().delay(4000).fadeOut();
+		}else{
+			$("#frmProfile").submit();
+		}
 	});
 	
 	$(".profileSaved").delay(4000).fadeOut();
