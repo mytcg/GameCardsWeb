@@ -60,7 +60,7 @@ if($_GET['signup']){
     exit;
   }
   
-  $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,age,gender,facebook_user_id,credits,premium) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."',0,1000)";
+  $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,age,gender,facebook_user_id,credits,premium) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."',0,0)";
   $res = myqu($sql);
   
   $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";
@@ -117,7 +117,7 @@ if($_GET['init']){
       
 	//update last visit
 	$sDate=date("Y-m-d H:i:s");
-	$aDateVisit=myqu("UPDATE mytcg_user SET date_last_visit='".$sDate."' WHERE user_id=".$aUser['user_id']);
+	$aDateVisit=myqu("UPDATE mytcg_user SET date_last_visit='".$sDate."', facebook_date_last_visit='".$sDate."' WHERE user_id=".$aUser['user_id']);
     
 	$today = date("Y-m-d");
 	if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
@@ -125,7 +125,12 @@ if($_GET['init']){
 		//give user credits for daily login
 		$amount = $aUser['credits'] + 20;
 		myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$aUser['user_id']);
-		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$aUser['user_id'].", 'Received 25 credits for logging in today', NOW(), 50)");
+		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$aUser['user_id'].", 'Received 20 credits for logging in today', NOW(), 20)");
+		
+		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
+			VALUES(".$aUser['user_id'].", NULL, NULL, NULL, 
+				now(), 'Received 20 credits for logging in today', 20, NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$aUser['user_id']."), 16,20,0)");
+
 		$popup = true;
 	}
 	

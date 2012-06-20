@@ -502,6 +502,13 @@ if (isset($_GET['buy']))
 			VALUES(".$userID.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
 					now(), 'Spent ".$price." credits on buyout of ".$carName."', -".$price.", -".$freemium_cost.", -".$premium_cost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 13)");
 
+					
+	$our_freemium_fee = $freemium_cost * 0.1;
+	$our_premium_fee = $premium_cost * 0.1;
+	
+	$freemium_cost = $freemium_cost - $our_freemium_fee;
+	$premium_cost = $premium_cost - $our_premium_fee;
+	$price = $freemium_cost + $premium_cost;
 	
 	//Add credits to seller
 	$sql = "UPDATE mytcg_user SET premium=(premium+".$freemium_cost."),credits=(credits+".$premium_cost.") WHERE user_id=".$oldowner.";";
