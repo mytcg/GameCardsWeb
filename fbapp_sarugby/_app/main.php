@@ -60,7 +60,7 @@ if($_GET['signup']){
     exit;
   }
   
-  $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,age,gender,facebook_user_id,credits,premium) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."',0,1000)";
+  $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,age,gender,facebook_user_id,credits,premium) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."',0,0)";
   $res = myqu($sql);
   
   $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";
@@ -107,8 +107,8 @@ if($_GET['signup']){
 }
 
 if($_GET['init']){
-	$userProfile = $_SESSION['userProfile'];
-	
+	$userProfile = $_SESSION['userProfile']['id'];
+
 	//FREE CREDITS ON DAILY LOGIN
 	$aUser = myqu("SELECT user_id,credits,date_last_visit,mobile_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile."' LIMIT 1");
 	$aUser = $aUser[0];
@@ -125,7 +125,7 @@ if($_GET['init']){
 		//give user credits for daily login
 		$amount = $aUser['credits'] + 20;
 		myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$aUser['user_id']);
-		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$aUser['user_id'].", 'Received 25 credits for logging in today', NOW(), 50)");
+		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$aUser['user_id'].", 'Received 20 credits for logging in today', NOW(), 20)");
 		$popup = true;
 	}
 	

@@ -26,7 +26,11 @@
      	//Daily credits
      	var credits = App.getXML(sXML,"credits");
      	if(credits=="1"){
-     		App.showNotice("You have received 20 credits for logging in today.",3,true);
+     		App.showNotice("You have received 20 credits for logging in today.",2,true);
+     		App.updateCreditView(-20);
+     		var iCreds = parseInt($(".creditsText span").html());
+     		iCreds += 20;
+     		$(".creditsText span").html(iCreds);
      	}
      }
      
