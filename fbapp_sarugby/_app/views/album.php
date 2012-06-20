@@ -29,7 +29,7 @@ $iCount = 0;
 	$cursor = ($iCC == 0)? "" : "cursor:pointer;" ;
 	?>
 			<div class="cardBlock" id="<?php echo($iCount); ?>">
-				<div class="albumCardCount<?php if ($iCC > 1)echo ' active' ?>" id="count_<?php echo($iCount); ?>"><?php if ($iCC > 1)echo $iCC; ?></div>
+				<div class="albumCardCount<?php if ($iCC > 1)echo ' active' ?>" id="count_<?php echo($iCardID); ?>"><?php if ($iCC > 1)echo $iCC; ?></div>
 				<div class="album-card-drop-shadow"></div>
 				<div class="album_card_pic">
 				<?php if($iCC > 0){ ?>
