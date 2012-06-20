@@ -2394,9 +2394,9 @@ input[type="submit"] {
 .modal-window {
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
 	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -o-linear-gradient(top, #dad8d9, #8c8c8c);
 	box-shadow: 0px 4px 4px #222327;
 	position: absolute;
 	-moz-border-radius: 8px;
