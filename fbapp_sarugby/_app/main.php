@@ -107,8 +107,8 @@ if($_GET['signup']){
 }
 
 if($_GET['init']){
-	$userProfile = $_SESSION['userProfile'];
-	
+	$userProfile = $_SESSION['userProfile']['id'];
+
 	//FREE CREDITS ON DAILY LOGIN
 	$aUser = myqu("SELECT user_id,credits,date_last_visit,mobile_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile."' LIMIT 1");
 	$aUser = $aUser[0];
@@ -126,11 +126,10 @@ if($_GET['init']){
 		$amount = $aUser['credits'] + 20;
 		myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$aUser['user_id']);
 		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$aUser['user_id'].", 'Received 20 credits for logging in today', NOW(), 20)");
-		
+
 		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
 			VALUES(".$aUser['user_id'].", NULL, NULL, NULL, 
 				now(), 'Received 20 credits for logging in today', 20, NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$aUser['user_id']."), 16,20,0)");
-
 		$popup = true;
 	}
 	

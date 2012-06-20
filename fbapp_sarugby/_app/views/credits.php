@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT premium
+$sql = "SELECT (ifnull(premium,0)+ifnull(credits,0)) premium
 		FROM mytcg_user
 		WHERE user_id = ".$user['user_id'];
 $iCredits = myqu($sql);
