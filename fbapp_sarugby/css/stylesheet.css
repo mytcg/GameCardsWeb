@@ -2131,8 +2131,7 @@ input[type="submit"] {
 }
 
 .gradient-bg, .gameMenuContainer, .return-button,#auctionplate, #albumPlate, .modal-picture-holder, #shopPlate, #deckPlate {
-   background-color: #8c8c8c;
-   background:url(../_site/repeatx.png) 0px -541px repeat-x;
+   background-color: #DAD8D9;
    z-index: 3;
 }
 
