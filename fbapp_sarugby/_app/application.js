@@ -1229,7 +1229,7 @@
 			}
 			var date_expired = $("#date_expired").val();
 				
-			App.cardTarget = cardID-1;
+			App.cardTarget = cardID;
 			App.callAjax("_app/auction.php?create=1"
 				+"&card_id="+cardID
 				+"&minimum_bid="+minimum_bid
@@ -1250,7 +1250,7 @@
 						$("#count_"+App.cardTarget).replaceWith("<div class=\"albumCardCount\" id=count_"+App.cardTarget+"\"></div>");
 					}else{
 						$("#count_"+App.cardTarget).replaceWith("<div class=\"albumCardCount\" id=count_"+App.cardTarget+"\"></div>");
-						$("#img_"+(App.cardTarget+1)).remove();
+						$("#img_"+(App.cardTarget)).remove();
 						$("#"+(App.cardTarget)+" .album_card_title").css("opacity",0.1);
 					}
 				 	//App.showCards('all');
@@ -1584,7 +1584,8 @@
 	    	});
 		
 		//SHOW MODAL WINDOW
-		App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
+		//App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
+		$(".albumAuctionCostNotice").html("Please note, a <span style=\"color: #AC3030\">10% TCG</span> transaction fee will be deducted from the winning bid amount.");
 		$('.modal-window').fadeIn('fast');
 };
      

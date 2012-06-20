@@ -32,7 +32,7 @@ $iCount = 0;
 	<div  id="auction_scroll_pane" >
 	    	<?php
 	    		while($iAuctionID=$aAuctions[$iCount]['market_id']){
-	      		$sql = "SELECT MC.* , U.username, U.name
+	      		$sql = "SELECT MC.marketcard_id, MC.market_id, MC.usercard_id, MC.card_id, (ifnull(MC.Price,0)+ifnull(MC.premium,0)) price, MC.date_of_transaction, MC.user_id, MC.premium , U.username, U.name
 	            FROM mytcg_marketcard MC
 	            JOIN mytcg_user U USING (user_id)
 	            WHERE MC.market_id = ".$iAuctionID."
@@ -79,7 +79,7 @@ $iCount = 0;
 	    		<?php 
 				$iCount++;
 	    			}
-	    	 	?>   		
+	    	 	?>
 	</div>
 	<div id="menu-left-button" class="menu-scroll-button"></div>
 	<div id="menu-right-button" class="menu-scroll-button"></div>
