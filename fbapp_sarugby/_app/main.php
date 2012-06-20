@@ -20,7 +20,7 @@ if($_GET['login']){
   $sql = "SELECT user_id,password FROM mytcg_user WHERE username='".$sUsername."'";
   $getUser = myqu($sql);
   if(!$getUser){
-    echo('No valid username');
+    echo('Username not found<br />Are you sure you have registered?');
     exit;
   }
   $user_id = $getUser[0]['user_id'];
