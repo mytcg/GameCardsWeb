@@ -190,12 +190,11 @@ span{
 	color:#404040;
 	font-size: 11px;
     position: absolute;
-    top: 347px;
+    top: 337px;
     left: 200px;
     width: 140px;
-	display: none;
 }
-#premiumContainer{
+#creditContainer{
 	font-size: 9px;
     position: absolute;
     text-align: center;
@@ -204,7 +203,7 @@ span{
     width: 170px;
     z-index:3;
 }
-#premiumAvailable {
+#creditAvailable {
 	font-family:"Arial Black", "Arial";
 	font-weight: 900;
     color:#F0BD00;

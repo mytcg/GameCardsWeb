@@ -1585,7 +1585,7 @@
 		
 		//SHOW MODAL WINDOW
 		//App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
-		$(".albumAuctionCostNotice").html("Please note, a <span style=\"color: #AC3030\">10% TCG</span> transaction fee will be deducted from the winning bid amount.");
+		$(".albumAuctionCostNotice").html("<b>Please note</b>, a <span style=\"color: #AC3030\">10% TCG</span> transaction fee will be deducted from the winning bid amount.");
 		$('.modal-window').fadeIn('fast');
 };
      
