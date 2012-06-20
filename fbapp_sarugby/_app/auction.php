@@ -13,7 +13,7 @@ if (isset($_GET['market']))
 		$bid_amount = $_GET['placebid'];
 		
 		//get user's available credits
-		$query = myqu("SELECT premium FROM mytcg_user WHERE user_id = ".$userID);
+		$query = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium FROM mytcg_user WHERE user_id = ".$userID);
 		$available_credits = $query[0]['premium'];
 		
 		if($available_credits < $bid_amount)
@@ -75,7 +75,7 @@ if (isset($_GET['market']))
 	}
 	
 	//get user's credits
-	$query = myqu("SELECT premium FROM mytcg_user WHERE user_id = ".$userID);
+	$query = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium FROM mytcg_user WHERE user_id = ".$userID);
 	$user_credits = $query[0]['premium'];
 	
 	// return auction data - xml

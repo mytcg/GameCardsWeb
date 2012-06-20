@@ -1477,7 +1477,7 @@
 		
 		$("#slideMin").slider({
 			range: "min",
-			min: 1,
+			min: 10,
 			max: 250,
 			step: 10,
 			value: minBid,
@@ -1485,7 +1485,6 @@
 			slide: function(event, ui){
 				$("#minimum_bid").html(ui.value+' <span>TCG</span>');
 				$("#minimum_bid").attr('val',ui.value);
-				App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
 				if($("#slidePrice").slider("value") != 0 && $("#slidePrice").slider("value") < (ui.value*2)){
 					$("#slidePrice").slider("value",ui.value*2);
 				}
@@ -1525,7 +1524,6 @@
 						$("#slideMin").slider("value",newval);
 						$("#minimum_bid").html(newval+' <span>TCG</span>');
 						$("#minimum_bid").attr('val',newval);
-						App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
 					}
 				}
 				slidePriceChange(ui.value); 
@@ -1544,7 +1542,6 @@
 			}
 			$("#price").html(tcg);
 			$("#price").attr('val',val);
-			App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
 		}
 		
 		//Auction expiry date
@@ -1589,7 +1586,6 @@
 	    	});
 		
 		//SHOW MODAL WINDOW
-		//App.calcAuctionCost($("#minimum_bid").attr('val'),$("#price").attr('val'));
 		$(".albumAuctionCostNotice").html("<b>Please note</b>, a <span style=\"color: #AC3030\">10% TCG</span> transaction fee will be deducted from the winning bid amount.");
 		$('.modal-window').fadeIn('fast');
 };
