@@ -102,9 +102,34 @@ if($_GET['signup']){
 }
 
 if($_GET['init']){
+	$userProfile = $_SESSION['userProfile'];
+	
+	//FREE CREDITS ON DAILY LOGIN
+	$aUser = myqu("SELECT user_id,credits,date_last_visit,mobile_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile."' LIMIT 1");
+	$aUser = $aUser[0];
+	$sLastDate = $aUser['date_last_visit'];
+	$sMobileLastDate = $aUser['mobile_date_last_visit'];
+      
+	//update last visit
+	$sDate=date("Y-m-d H:i:s");
+	$aDateVisit=myqu("UPDATE mytcg_user SET date_last_visit='".$sDate."' WHERE user_id=".$aUser['user_id']);
+    
+	$today = date("Y-m-d");
+	if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
+	{
+		//give user credits for daily login
+		$amount = $aUser['credits'] + 20;
+		myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$aUser['user_id']);
+		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$aUser['user_id'].", 'Received 25 credits for logging in today', NOW(), 50)");
+		$popup = true;
+	}
+	
 	$sql = "SELECT request_user_fb_id AS fbid FROM mytcg_userrequest WHERE user_fb_id = '".$fbuserID."'";
 	$aList = myqu($sql);
 	echo '<init>'.$sCRLF;
+	if($popup){
+		echo($sTab."<credits>1</credits>".$sCRLF);
+	}
 	echo $sTab.'<requests>'.$sCRLF;
 	echo $sTab.$sTab.'<iCount>'.sizeof($aList).'</iCount>'.$sCRLF;
 	$i = 0;

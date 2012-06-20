@@ -195,25 +195,22 @@ span{
     width: 140px;
 	display: none;
 }
-
-
-#creditContainer{
+#premiumContainer{
 	font-size: 9px;
-    left: 480px;
     position: absolute;
     text-align: center;
     top: 41px;
+    left: 480px;
     width: 170px;
     z-index:3;
 }
-#creditAvailable {
+#premiumAvailable {
 	font-family:"Arial Black", "Arial";
 	font-weight: 900;
     color:#F0BD00;
     font-size:14px;
     text-align: center;
 }
-
 .navSpacer{
 	width:32px;
 	height: 80px;
@@ -1057,13 +1054,21 @@ span{
   left:20px;
   background-image: url("../_site/important.png");
 }
-.modal-success-icon {
+.modal-credits-icon {
   position:absolute;
   width:80px;
   height:80px;
   top:30px;
   left:20px;
   background-image: url("../_site/success-icon.png");
+}
+.modal-success-icon {
+  position:absolute;
+  width:80px;
+  height:80px;
+  top:30px;
+  left:20px;
+  background-image: url("../_site/credits-icon.png");
 }
 .modal-error-text {
   position:absolute;

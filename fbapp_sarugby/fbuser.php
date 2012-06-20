@@ -58,28 +58,22 @@
     }
     
     //Login user
-    $user = myqu("SELECT user_id,username,premium,gameswon,xp,facebook_process,date_last_visit,mobile_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile['id']."' LIMIT 1");
+    $user = myqu("SELECT user_id,username,credits,premium,gameswon,xp,facebook_process,date_last_visit,mobile_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile['id']."' LIMIT 1");
     $user = $user[0];
 	
 	if(!$user){
       header("Location: signup.php");
     }
 	
-	//update last visit
-	$sDate=date("Y-m-d H:i:s");
-	$aDateVisit=myqu("UPDATE mytcg_user SET date_last_visit='".$sDate."', facebook_date_last_visit='".$sDate."' WHERE user_id=".$user['user_id']);
-	$today = date("Y-m-d");
-	if((substr($user['date_last_visit'],0,10) != $today)&&(substr($user['mobile_date_last_visit'],0,10) != $today))
-	{
-		myqu("UPDATE mytcg_user SET gameswon=0 WHERE user_id=".$user['user_id']);
+	if(sizeof($_SESSION['userDetails'])==0){
+		$sUA=$_SERVER["HTTP_USER_AGENT"];
+		$sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user['user_id']."'");
+		
+		myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+			SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+			FROM mytcg_user WHERE user_id=".$user['user_id']);
 	}
-	$sUA=$_SERVER["HTTP_USER_AGENT"];
-	$sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user['user_id']."'");
-	
-	myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
-		SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
-		FROM mytcg_user WHERE user_id=".$user['user_id']);
-    
+
     $token = $facebook->getAccessToken();
     //$friends = $facebook->api('/me/friends?access_token='.$token.'&fields=id,name');
     

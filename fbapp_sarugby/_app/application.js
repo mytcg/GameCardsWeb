@@ -21,8 +21,13 @@
    if (typeof APP_Main._iInited=="undefined"){
      APP_Main.prototype.init=function(sXML){
      	App.initXML = sXML;
-     	App.userName = App.getXML(sXML,"username");
      	//CHECK FOR USERS ACCEPTING FRIEND REQUESTS HERE
+     	
+     	//Daily credits
+     	var credits = App.getXML(sXML,"credits");
+     	if(credits=="1"){
+     		App.showNotice("You have received 20 credits for logging in today.",3,true);
+     	}
      }
      
      APP_Main.prototype.calcAuctionCost=function(sMin,sPrice){
@@ -1295,6 +1300,9 @@
        		$(divText).html(sMessage);
        	} else if (iStatus==2) {
        		var divIcon = App.createDiv(divCenter,"modal-success-icon");
+       		$(divText).html(sMessage);
+       	} else if (iStatus==3) {
+       		var divIcon = App.createDiv(divCenter,"modal-credits-icon");
        		$(divText).html(sMessage);
        	} 
        	
