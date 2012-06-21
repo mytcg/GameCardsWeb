@@ -98,7 +98,7 @@ if (isset($_GET['market']))
 	{
 		$auction = $aDetails[0];
 		
-		$sql = "SELECT MC.*, IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)), U.name
+		$sql = "SELECT MC.date_of_transaction, (IFNULL(MC.price,0)+IFNULL(MC.premium,0)) price, IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)) username, U.name
 				FROM mytcg_marketcard MC
 				JOIN mytcg_user U USING (user_id)
 				WHERE MC.market_id = ".$market_id."
