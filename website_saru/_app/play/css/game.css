@@ -1,0 +1,187 @@
+/* begin Page */
+
+/* Generated with Artisteer version 2.3.0.25189, file checksum is 8ED53AF5. */
+.hpBar{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:131px;
+  height:17px;
+  text-align:left;
+  overflow:hidden;
+}
+
+.status{
+  color:#FFFFFF;
+  position:absolute;
+  padding:5px;
+  top:283px;
+  left:15px;
+  width:138px;
+  height:16px;
+  text-align:left;
+  background-color:#000;
+  overflow:hidden;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.console{
+  color:#FFFFFF;
+  position:absolute;
+  padding:5px;
+  top:308px;
+  left:31px;
+  width:164px;
+  height:198px;
+  text-align:left;
+  overflow:hidden;
+}
+.picHolder{
+  position:absolute;
+  top:19px;
+  left:16px;
+  width:170px;
+  height:237px;
+}
+
+
+.coinImage{
+  background-image:url("../images/coins.png");
+  width:15px;
+  height:17px;
+  position:absolute;
+  top:-30px;
+  left:-30px;
+}
+.plusImage{
+  background-image:url("../images/plus-icon.png");
+  width:13px;
+  height:13px;
+  position:absolute;
+  top:-30px;
+  left:-30px;
+}
+
+.prizeblock{
+  padding:10px;
+  text-align:center;
+  width:90%;
+  height:120px;
+  background-color:#000;
+}
+.prizeblock span{
+  color:#0055BB;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.gamenotice{
+  position:absolute;
+  font-size:18px;
+  font-weight:bold;
+  font-family:Arial;
+  color:#C00;
+}
+
+.statblock{
+  position:absolute;
+  background-color:#FFFFFF;
+  width:221px;
+  height:15px;
+}
+.statblock:hover{
+  background-color:#000000;
+}
+
+.deckholder{
+  width:70px;
+  padding:10px;
+  background-color:#999999;
+  float:left;
+}
+
+.statsposition{
+  position:absolute;
+  top:70px;
+  left:85px;
+  width:221px;
+  height:309px;
+}
+
+.gamewindowpos{
+  top:0px;
+  position:absolute;
+  overflow:hidden;
+}
+
+.gamewindow{
+  background-image:url("../images/popup.png");
+  background-position:center;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  -webkit-box-shadow: 3px 3px 5px #000000;
+  -moz-box-shadow: 3px 3px 5px #000000;
+  box-shadow: 3px 3px 5px #000000;  
+}
+
+.gamecloak{
+  position:absolute;
+  top:20px;
+  left:20px;
+  background-color:#000000;
+  filter:alpha(opacity=80);
+  -moz-opacity:0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+}
+
+.blackBox{ 
+  background-color:#000000;
+  border-bottom:1px;
+  border-bottom-color:#666666;
+  border-bottom-style:solid;
+  padding:5px;
+}
+
+.button{
+  position:absolute;
+  cursor:pointer;
+}
+div.button:active{
+  margin-top:1px;
+}
+.buttoncenter{
+  position:absolute;
+  left:10px;
+  height:25px;
+  background-image:url('../images/mytcg_repeatx.png');
+  background-position:0px -41px;
+}
+.buttondesc{
+  position:absolute;
+  left:0px;
+  top:2px;
+  font-size:larger;
+  text-align:center;
+  font-weight:bold;
+  width:100%;
+  color:rgb(230,230,230);
+}
+.buttonleft{
+  position:absolute;
+  left:0px;
+  height:25px;
+  width:10px;
+  background-image:url('../images/mytcg_all.png');
+  background-position:-161px -181px;
+}
+.buttonright{
+  position:absolute;
+  right:0px;
+  height:30px;
+  width:10px;
+  background-image:url('../images/mytcg_all.png');
+  background-position:-181px -181px;
+}

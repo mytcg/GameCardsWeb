@@ -1,0 +1,64 @@
+[2011-09-09 12:29:25] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:25] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:25] SELECT user_id, password FROM mytcg_user WHERE username="jthailandkuba27"
+[2011-09-09 12:29:25] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='jthailandkuba27' AND is_active='1'
+[2011-09-09 12:29:27] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:27] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:31] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:31] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:36] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:36] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:37] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:37] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:39] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:39] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:42] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:42] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:29:44] SELECT user_id, password FROM mytcg_user WHERE username="jthailandkuba27"
+[2011-09-09 12:29:44] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='jthailandkuba27' AND is_active='1'
+[2011-09-09 12:29:52] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:29:52] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:07] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:30:07] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:08] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:30:08] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:10] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:30:10] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:11] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:30:11] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:14] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:30:14] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:21] SELECT user_id, password FROM mytcg_user WHERE username="heinzs"
+[2011-09-09 12:30:21] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='heinzs' AND is_active='1'
+[2011-09-09 12:30:32] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:30:32] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:30:34] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:30:34] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:30:43] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:30:43] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:30:48] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:30:48] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:31:00] SELECT user_id, password FROM mytcg_user WHERE username="jthailandkuba27"
+[2011-09-09 12:31:00] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='jthailandkuba27' AND is_active='1'
+[2011-09-09 12:31:01] SELECT user_id, password FROM mytcg_user WHERE username="jthailandkuba27"
+[2011-09-09 12:31:01] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='jthailandkuba27' AND is_active='1'
+[2011-09-09 12:31:07] SELECT user_id, password FROM mytcg_user WHERE username="jthailandkuba27"
+[2011-09-09 12:31:07] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='jthailandkuba27' AND is_active='1'
+[2011-09-09 12:31:11] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:31:11] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:31:13] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:31:13] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:32:05] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:32:05] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:32:11] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:32:11] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:32:13] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:32:13] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:32:17] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:32:17] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:33:30] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:33:30] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:33:49] SELECT user_id, password FROM mytcg_user WHERE username="keldarn"
+[2011-09-09 12:33:49] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='keldarn' AND is_active='1'
+[2011-09-09 12:33:50] SELECT user_id, password FROM mytcg_user WHERE username="jthailandkuba27"
+[2011-09-09 12:33:50] SELECT user_id, username, password, date_last_visit, credits FROM mytcg_user WHERE username='jthailandkuba27' AND is_active='1'
