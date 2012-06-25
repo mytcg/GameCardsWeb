@@ -59,7 +59,7 @@ if($activeAuctionsCount > 0)
 						FROM mytcg_marketcard MC
 						JOIN mytcg_user U USING(user_id)
 						WHERE market_id=".$auction['market_id']."
-						ORDER BY price DESC LIMIT 1;";
+						ORDER BY MC.marketcard_id DESC LIMIT 1;";
 				$bids = myqu($sql);
 				$winningbid = $bids[0];
 				
@@ -82,7 +82,18 @@ if($activeAuctionsCount > 0)
 				myqu($sql);
 				//add transaction log
 				myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-					VALUES(".$auction['user_id'].", 'Received ".$total." credits for auction ".$auction['market_id']."', NOW(), ".$winningbid['price'].")");
+					VALUES(".$auction['user_id'].", 'Received ".$total." credits for winning bid on ".$auction['card']."', NOW(), ".$winningbid['price'].")");
+				
+				myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+						VALUES(".$auction['user_id'].", NULL, ".$auction['usercard_id'].", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$auction['usercard_id']."), 
+							now(), 'Received ".$total." credits for winning bid on ".$auction['card']."', ".$winningbid['price'].",".$freemium_cost.",".$premium_cost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$auction['user_id']."), 9)");
+				
+				$auction_fee = $freemium_fee + $premium_fee;
+				
+				myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+						VALUES(".$auction['user_id'].", NULL, ".$auction['usercard_id'].", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$auction['usercard_id']."), 
+							now(), 'Transaction fee of ".$auction_fee." credits for wining bid on ".$auction['card']."', ".$auction_fee.",".$freemium_fee.",".$premium_fee.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$auction['user_id']."), 17)");
+
 				
 				//Change ownership of card
 				$sql = "UPDATE mytcg_usercard SET user_id=".$winningbid['user_id'].", usercardstatus_id=1 WHERE usercard_id=".$auction['usercard_id'].";";

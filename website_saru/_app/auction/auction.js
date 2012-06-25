@@ -309,7 +309,7 @@ WORK_Auction.prototype.loadAuctions=function()
 					+"_front.jpg)";
 			$(divAuctionBlock).css({
 				background:backgroundimage,
-				backgroundPosition:"center center",
+				backgroundPosition:"64% 7%",
 				backgroundRepeat:"no-repeat",
 				bottom:10,
 			});

@@ -8,6 +8,8 @@ if (isset($_COOKIE["rLogin"])){
   if(!$_SESSION['user']['id']){
     $_SESSION['user']['username']=$aValidUser[0]['username'];
     $_SESSION['user']['credits']=$aValidUser[0]['credits'];
+	$_SESSION['user']['premium']=$aValidUser[0]['premium'];
+	$_SESSION['user']['freemium']=$aValidUser[0]['freemium'];
     $_SESSION['user']['xp']=$aValidUser[0]['xp'];
     $_SESSION['user']['id']=$aValidUser[0]['user_id'];
   }
