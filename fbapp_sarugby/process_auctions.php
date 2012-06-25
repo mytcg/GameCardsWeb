@@ -55,7 +55,7 @@ if($activeAuctionsCount > 0)
 			if($auction['nob'] > 0)
 			{
 				//Get winning bid info
-				$sql = "SELECT MC.user_id, MC.price AS 'price', U.username AS 'winner'
+				$sql = "SELECT MC.user_id, (ifnull(MC.price,0)+ifnull(MC.premium,0)) AS 'price', ifnull(MC.price,0) credits, ifnull(MC.premium,0) premium, IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)) AS 'winner'
 						FROM mytcg_marketcard MC
 						JOIN mytcg_user U USING(user_id)
 						WHERE market_id=".$auction['market_id']."
@@ -66,12 +66,23 @@ if($activeAuctionsCount > 0)
 				//Winning bid
 				$textResponse .= $winningbid['price']." by ".$winningbid['winner'];
 				
+				$freemium_cost = $winningbid['credits'];
+				$premium_cost = $winningbid['premium'];
+				
+				$freemium_fee = $premium_cost * 0.1;
+				$premium_fee = $freemium_cost * 0.1;
+				
+				$freemium_cost = $freemium_cost - $freemium_fee;
+				$premium_cost = $premium_cost - $premium_fee;
+				
+				$total = $freemium_cost + $premium_cost;
+				
 				//Give credits to seller
-				$sql = "UPDATE mytcg_user SET premium=(premium+".$winningbid['price'].") WHERE user_id=".$auction['user_id'].";";
+				$sql = "UPDATE mytcg_user SET premium=(premium+".$premium_cost."), credits=(credits+".$freemium_cost.") WHERE user_id=".$auction['user_id'].";";
 				myqu($sql);
 				//add transaction log
 				myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-					VALUES(".$auction['user_id'].", 'Received ".$winningbid['price']." credits for auction ".$auction['market_id']."', NOW(), ".$winningbid['price'].")");
+					VALUES(".$auction['user_id'].", 'Received ".$total." credits for auction ".$auction['market_id']."', NOW(), ".$winningbid['price'].")");
 				
 				//Change ownership of card
 				$sql = "UPDATE mytcg_usercard SET user_id=".$winningbid['user_id'].", usercardstatus_id=1 WHERE usercard_id=".$auction['usercard_id'].";";

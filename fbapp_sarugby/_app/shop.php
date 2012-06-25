@@ -56,16 +56,16 @@ if($_GET['buy']){
 	  }else{
 	  	$iCreditsAfterPurchase = $premium - ($itemCost-$freemium);
       	$aCreditsLeft=myqu("UPDATE mytcg_user SET credits=0,premium={$iCreditsAfterPurchase} WHERE user_id=".$userID);
-		$premiumCost = ($premium - ($itemCost-$freemium))*-1;
+		$premiumCost = ($itemCost-$freemium)*-1;
 		$freemiumCost = $freemium*-1;
 	  }
 	  
       myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
         VALUES(".$userID.",'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', NOW(), ".(-1*$itemCost).")");
 		
-	  myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
+	  myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 		VALUES(".$userID.", ".$iProductID.", NULL, NULL, 
-				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10,{$freemiumCost},{$premiumCost})");
+				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", ".$freemiumCost.", ".$premiumCost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10)");
 
       $xml .=  '<response>'.$sCRLF;
       $xml .=  $sTab.'<value>1</value>'.$sCRLF;

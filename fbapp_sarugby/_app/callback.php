@@ -54,9 +54,9 @@ if ($func == 'payments_status_update') {
 	
 	myqu($query);
 	
-	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
+	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
 		VALUES((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'), NULL, NULL, NULL, 
-			now(), '".$description."', ".$item['item_id'].", 5, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15, '".$order_id."')");
+			now(), '".$description."', ".$item['item_id'].", 0, ".$item['item_id'].", 5, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15, '".$order_id."')");
 	
 	$query = "update mytcg_user set premium=ifnull(premium,0)+".$item['item_id']." where facebook_user_id = '".$buyer_id."'";
 	

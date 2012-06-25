@@ -204,10 +204,9 @@ if (isset($_GET['bid']))
 		
 		$lastBidderQuery = myqu($sql);
 		
-		$total = $lastBidder['price'] + $lastBidder['premium'];
-		
 		if(sizeof($lastBidderQuery) > 0){
 			foreach($lastBidderQuery as $lastBidder){
+				$total = $lastBidder['price'] + $lastBidder['premium'];
 				if ($bid_amount <= $total) {
 					//user has insuffient credits to place the bid
 					echo '<result>'.$sCRLF;
@@ -521,6 +520,12 @@ if (isset($_GET['buy']))
 	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 			VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
 				now(), 'Received ".$price." credits for buyout on ".$carName."', ".$price.",".$freemium_cost.",".$premium_cost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 14)");
+	
+	$auction_fee = $our_freemium_fee + $our_premium_fee;
+	
+	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+			VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
+				now(), 'Transaction fee of ".$auction_fee." credits for buyout on ".$carName."', ".$auction_fee.",".$our_freemium_fee.",".$our_premium_fee.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 17)");
 
 	
 	//Close auction
