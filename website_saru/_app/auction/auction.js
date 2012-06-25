@@ -363,7 +363,7 @@ WORK_Auction.prototype.loadAuctions=function()
 			}
 			var owner;
 			var sellerName=ZA.getXML(ZU.sXML,'cards/card_'+iCount+'/description');
-			var sellerTrimName=sellerName.substr(0,17);
+			var sellerTrimName=sellerName.substr(0,13);
 			var mine = ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/mine");
 			if(mine == '1'){
 				owner = '<span style="font-weight:bold;">*** Your Auction ***</span>';
@@ -648,7 +648,8 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			var divAuctionBlock = ZA.createDiv(divAuctionsHolder,"auctionBlockLarge",iCount.toString(),"div");
 			$(divAuctionBlock).attr('alt', ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/usercard_id"));
 			
-			var divAuctionImage=ZA.createDiv(divAuctionBlock,"pagebox","auctionthumbnail_"+iCount);
+			var pictureCon = ZA.createDiv(divAuctionBlock,"auctionBlockBg");
+			var divAuctionImage=ZA.createDiv(pictureCon,"pagebox","auctionthumbnail_"+iCount);
 			$(divAuctionImage).css({
 				backgroundImage:"url("
 					+ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/imageserver")
@@ -660,9 +661,10 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 				"box-shadow":"inset 0px 0px 2px #000",
 				width:64,
 				height:90,
-				"cursor":"pointer"
+				marginLeft: 5,
+    			marginTop: 10,
 			});
-			divAuctionImage.onclick=ZU.clickShowFullImage(iCount);
+			//divAuctionImage.onclick=ZU.clickShowFullImage(iCount);
 			
 			var divAuctionTitle = ZA.createDiv(divAuctionBlock,"txtGreen","","div");
 			$(divAuctionTitle).css({
@@ -718,7 +720,7 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			}
 			var owner;
 			var sellerName=ZA.formatUsername(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/owner"));
-			var sellerTrimName=sellerName.substr(0,14);
+			var sellerTrimName=sellerName.substr(0,13);
 			if(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/mine") == '1'){
 				owner = '<span style="font-weight:bold;">*** Your Auction ***</span>';
 				$(divAuctionBlock).addClass("mine");
@@ -739,9 +741,9 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			$(divAuctionLink).html('View');
 			$(divAuctionLink).addClass('cmdButton');
 			$(divAuctionLink).css({
-				padding:"4px 5px",
+				padding:"4px 5px 2px",
 				left: 85,
-    			top: 77,
+    			top: 80,
     			width: 30,
 			});
 			var buyoutPrice = ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/price");
@@ -1079,7 +1081,6 @@ WORK_AuctionWindow.prototype.create=function(ID)
 			top:iTop,
 			width:64,
 			height:90,
-			"cursor":"pointer"
 		});
 		divAuctionImage.onclick=ZU.clickShowFullImage(ID,'p');
 	

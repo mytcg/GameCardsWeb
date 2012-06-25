@@ -1858,9 +1858,9 @@ table.grid tr.numberone td{
 .auctionBlockLarge {
 	position:relative;
 	float:left;
-	border:1px solid #ccc;
+	border:1px solid transparent;
 	width:210px;
-	height:95px;
+	height:115px;
 	margin-left:14px;
 	margin-bottom:8px;
 	padding:10px;
@@ -1869,7 +1869,12 @@ table.grid tr.numberone td{
 .auctionBlockLarge:hover {
 	border:1px solid #F2C126;
 }
-
+.auctionBlockBg{
+	background: url(_site/all.png) -420px -260px no-repeat;
+	width:80px;
+	height:125px;
+	float:left;
+}
 .bidAdjuster {
 	color:#666;
 	width:14px;
@@ -1940,7 +1945,11 @@ table.grid tr.numberone td{
 }
 .filterSelected{
 	color:#161616;
-  	background: #F2C126;
+  	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
 	cursor:default;
 }
 
