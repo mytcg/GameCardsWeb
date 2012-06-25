@@ -363,7 +363,7 @@ WORK_Auction.prototype.loadAuctions=function()
 			}
 			var owner;
 			var sellerName=ZA.getXML(ZU.sXML,'cards/card_'+iCount+'/description');
-			var sellerTrimName=sellerName.substr(0,17);
+			var sellerTrimName=sellerName.substr(0,13);
 			var mine = ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/mine");
 			if(mine == '1'){
 				owner = '<span style="font-weight:bold;">*** Your Auction ***</span>';
@@ -648,7 +648,8 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			var divAuctionBlock = ZA.createDiv(divAuctionsHolder,"auctionBlockLarge",iCount.toString(),"div");
 			$(divAuctionBlock).attr('alt', ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/usercard_id"));
 			
-			var divAuctionImage=ZA.createDiv(divAuctionBlock,"pagebox","auctionthumbnail_"+iCount);
+			var pictureCon = ZA.createDiv(divAuctionBlock,"auctionBlockBg");
+			var divAuctionImage=ZA.createDiv(pictureCon,"pagebox","auctionthumbnail_"+iCount);
 			$(divAuctionImage).css({
 				backgroundImage:"url("
 					+ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/imageserver")
@@ -660,13 +661,12 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 				"box-shadow":"inset 0px 0px 2px #000",
 				width:64,
 				height:90,
-				"cursor":"pointer"
+				marginLeft: 5,
+    			marginTop: 10,
 			});
-			divAuctionImage.onclick=ZU.clickShowFullImage(iCount);
-			
-			var divAuctionTitle = ZA.createDiv(divAuctionBlock,"txtGreen","","div");
+			var divAuctionInfo = ZA.createDiv(divAuctionBlock,"auctionInfoBlock");
+			var divAuctionTitle = ZA.createDiv(divAuctionInfo,"txtGreen","","div");
 			$(divAuctionTitle).css({
-				left:85,
 				fontSize:12,
 				textAlign:"left",
 				height:12,
@@ -679,7 +679,7 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			if(cardOwned > 0){
 				var divCardOwned = ZA.createDiv(divAuctionImage,"iconCardOwned",iCount.toString(),"div");
 				$(divCardOwned).css({
-					top: -3,
+					top: 93,
 					left: "auto",
 					right: -10,
 				});
@@ -690,15 +690,15 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			}
 			
 			//highest bidder indicator
-			var divHighestBidder = ZA.createDiv(divAuctionBlock,"iconHighestBidder",iCount.toString(),"div");
+			var divHighestBidder = ZA.createDiv(divAuctionInfo,"iconHighestBidder",iCount.toString(),"div");
 			$(divHighestBidder).attr('title','You are the highest bidder');
 			
-			var divAuctionDetails = ZA.createDiv(divAuctionBlock,"","","div");
+			var divAuctionDetails = ZA.createDiv(divAuctionInfo,"","","div");
 			$(divAuctionDetails).css({
-				left:85,
 				top:22,
 				"line-height":1.5,
-				"text-align":"left"
+				"text-align":"left",
+				fontWeight:"600"
 			});
 			var bidCount = parseInt(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/history/bid_count"),10);
 			var bidAmount;
@@ -718,7 +718,7 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			}
 			var owner;
 			var sellerName=ZA.formatUsername(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/owner"));
-			var sellerTrimName=sellerName.substr(0,14);
+			var sellerTrimName=sellerName.substr(0,12);
 			if(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/mine") == '1'){
 				owner = '<span style="font-weight:bold;">*** Your Auction ***</span>';
 				$(divAuctionBlock).addClass("mine");
@@ -727,43 +727,37 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 				owner = 'Seller: '+sellerTrimName;
 			}
 			$(divAuctionDetails).html(
-				'<span style="color:#999;font-size:10px;">'+owner+'</span><br />'+
+				'<span style="font-size:10px;">'+owner+'</span><br />'+
 				'<span>Time Left: <span class="timeLeft">'+ZU.getTimeLeft(new Date(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/expire")),true)+'</span><br />'+
 				'<input type="hidden" class="endDate" value="'+ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/expire")+'" />'+
 				'<span class="txtBlue" style="font-size:16px;font-weight:bold;"><span class="currentBid">'+bidAmount+'</span>&nbsp;TCG</span>&nbsp;&nbsp;'+
-				'<span style="color:#999;position:absolute;top:34px;"><nobr>[<span class="bidCount">'+bids+'</span>]</nobr></span>'
+				'<span style="position:absolute;top:34px;"><nobr>[<span class="bidCount">'+bids+'</span>]</nobr></span>'
 			);
 			
-			var divAuctionLink = ZA.createDiv(divAuctionBlock,"viewAuction",iCount.toString(),"div");
+			var divAuctionLink = ZA.createDiv(divAuctionInfo,"viewAuction",iCount.toString(),"div");
 			
 			$(divAuctionLink).html('View');
 			$(divAuctionLink).addClass('cmdButton');
 			$(divAuctionLink).css({
-				padding:"4px 5px",
-				left: 85,
-    			top: 77,
+				padding:"4px 5px 2px",
+    			top: 102,
     			width: 30,
+    			textAlign:"center",
 			});
 			var buyoutPrice = ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/price");
 			if(buyoutPrice != '0')
 			{
-				var div = ZA.createDiv(divAuctionBlock,"","","div");
+				var div = ZA.createDiv(divAuctionInfo,"","","div");
 				$(div).css({
-					width:20,
-					height:20,
-					bottom:8,
-					right:8,
-					background:"url(_site/all_1.png) -275px -5px no-repeat"
+					left:62,
+					width:28,
+					height:25,
+					bottom:11,
+					background:"url(_site/all.png) -482px -40px no-repeat"
 				});
 				$(div).attr('title','Buy out available');
-				var divBuyout = ZA.createDiv(divAuctionBlock,"","","div");
-				$(divBuyout).css({
-					bottom:12,
-					right:34,
-					color:"#cc0000",
-					textAlign:"right"
-				});
-				$(divBuyout).html(buyoutPrice+' TCG');
+				var divBuyout = ZA.createDiv(divAuctionInfo,"buyoutPrice");
+				$(divBuyout).html("<span>"+buyoutPrice+"</span> TCG");
 			}
 			
 			iCount++;
@@ -1079,7 +1073,6 @@ WORK_AuctionWindow.prototype.create=function(ID)
 			top:iTop,
 			width:64,
 			height:90,
-			"cursor":"pointer"
 		});
 		divAuctionImage.onclick=ZU.clickShowFullImage(ID,'p');
 	

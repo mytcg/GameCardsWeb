@@ -1937,7 +1937,7 @@ WORK_Login.prototype.create=function(){
 	ZA.createWindowPopup(0,"Login",350,240,1,0);
 	var divData=document.getElementById("window_0");
 	
-	var divInput=ZE.createInput(divData,5,25,100,30,"Username","loginusername");
+	var divInput=ZE.createInput(divData,5,25,100,30,"Email","loginusername");
 	divInput.focus();
 	
 	$(divData).keydown(function (e){

@@ -60,6 +60,7 @@
 .jspDrag
 {
 	border:1px solid #5B5B5B;
+	background-color:#EFBD00;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
 	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
