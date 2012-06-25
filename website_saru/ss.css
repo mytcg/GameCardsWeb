@@ -4,6 +4,7 @@
   width:15px;
   height:15px;
 }
+
 .chkGreen{
   background-image:url(_site/all.png);
   background-position:-456px -134px;
@@ -227,13 +228,12 @@
 	height:15px;
 	top:10px;
 	left:8px;
-	background-image:url('_site/all.png');
-	background-position: -140px -60px;
-	cursor:pointer;
+/*	background-image:url('_site/all.png');
+	background-position: -140px -60px;*/	cursor:pointer;
 }
-.viewAuction:hover{
+/*.viewAuction:hover{
 	background-position: -220px -60px;
-}
+}*/
 .time_stamp{
 	font-family:"Impact";
 	color:#F0BD00;
@@ -275,6 +275,7 @@
 .cmdButton {
 	position:absolute;
 	cursor:pointer;
+	background-color:#606060;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
 	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
@@ -295,6 +296,7 @@
 	font-size: 11px;
 	font-weight:bold;
 	color:#2B2B2B;
+	background-color:#EFBD00;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
 	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
@@ -302,6 +304,7 @@
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
 }
 .cmdButton:active {
+	background-color:#EFBD00;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
 	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
@@ -367,12 +370,14 @@
 }
 
 .txtGreen{
-	font-family:"Arial Black";
-	color:#d2d2d2;
+	font-family:"Arial Black","Arial";
+	font-weight:900;
+	color:#f1f1f1;
 }
 .txtBlue{
   /*color:#3f6386;*/
- font-family:"Arial Black";
+	font-family:"Arial Black","Arial";
+	font-weight:900;
  text-shadow: 0 1px 1px #333333;
  color:#F2C126 !important;
 }
@@ -418,7 +423,7 @@ div{
 	cursor:default;
 }
 body{
-	color:#d2d2d2;
+	color:#f1f1f1;
 	text-transform:uppercase;
 	font-size:9px;
 	font-family:"Arial";
@@ -449,7 +454,8 @@ body{
 .left_banner_info span{
     position: relative;
     text-align: right;
-    font-family: "Arial Black";
+    font-family:"Arial Black","Arial";
+	font-weight:900;
 }
 
 #right_banner_container{
@@ -559,8 +565,9 @@ body{
 	z-index:2;
 	position: relative;
 	width:100%;
-	background-image:url(_site/header.png);
-	background-repeat: no-repeat;
+	background-position: 0px -1101px;
+	background-image:url(_site/repeatx.png);
+	background-repeat: repeat-x;
 }
 #bodypage{
 	height:725px;
@@ -1071,6 +1078,8 @@ input.registerBox{
 	cursor:pointer;
 }
 .menutop{
+	background-image:url(_site/header.png);
+	background-repeat: no-repeat;
 	width:1130px;
 	height:100%;
 	margin:0 auto;
@@ -1087,13 +1096,13 @@ input.registerBox{
 }
 .menutopitem{
 	background:url(_site/repeatx.png) 0px -320px repeat-x;
-	font-family:"Arial Black";
+	font-family:"Arial Black", "Arial";
 	position:relative;
 	float:right;
 	cursor:pointer;
 	text-shadow: 0px 1px 1px #003803;
 	text-transform:uppercase;
-	font-weight:bolder;
+	font-weight:900;
 	font-size:12px;
 	padding:10px;
 	color:#FAF8F8;
@@ -1122,10 +1131,10 @@ input.registerBox{
 	background:url(_site/all.png)  -300px -80px no-repeat;
 }
 .menu_split{
-	background:url(_site/all.png) -340px -41px no-repeat;
+	background:url(_site/all.png) -341px -42px no-repeat;
 	height:30px;
 	top:80px;
-	width:30px;
+	width:29px;
 	position:relative;
 	float:right;
 }
@@ -1421,7 +1430,8 @@ input.registerBox{
 .windowtitlewords{
 	text-shadow:1px 1px 1px #E4E4E4;
 	color:#393939;
-	font-family:"Arial Black";
+	font-family:"Arial Black","Arial";
+	font-weight:900;
 	padding-top:8px;
 	padding-right:20px;
 	width:100%;
@@ -1432,7 +1442,8 @@ input.registerBox{
 .windowtitlewords_active{
 	text-shadow:1px 1px 1px #E4E4E4;
 	color:#393939;
-	font-family:"Arial Black";
+	font-family:"Arial Black","Arial";
+	font-weight:900;
 	padding-top:8px;
 	padding-right:20px;
 	width:100%;
@@ -1760,7 +1771,7 @@ table.grid tr.numberone td{
 /** AUCTION **/
 	
 .iconCardOwned{
-	background:url(_site/all.png) -462px -41px no-repeat;
+	background:url(_site/all.png) -545px 0px no-repeat;
 	width:21px;
 	height:17px;
 	padding-top:3px;
@@ -1874,6 +1885,25 @@ table.grid tr.numberone td{
 	width:80px;
 	height:125px;
 	float:left;
+	
+}
+.auctionInfoBlock{
+    height: 90%;
+    overflow: hidden;
+    padding-left: 5px;
+    text-align: left;
+    width: 135px;
+    left:90px;
+}
+.buyoutPrice{
+	bottom:17px;
+	text-align:right;
+	right:5px;
+}
+.buyoutPrice span{
+	font-family:"Arial Black","Arial";
+	font-weight:900;
+	color:#F2C126;
 }
 .bidAdjuster {
 	color:#666;

@@ -19,7 +19,7 @@ function WORK_Register(){
       var registerImg = ZA.createDiv(divWin,"register_img");
       //Heading
       var spanHead = ZA.createDiv(divWin,"register_head");
-      $(spanHead).css({fontFamily:"Arial Black",lineHeight:"18px",fontSize:"16px",fontWeight:"bold"});
+      $(spanHead).css({lineHeight:"18px",fontSize:"16px"});
       $(spanHead).html("Become part of the Game Card trend");
       
       //Text
