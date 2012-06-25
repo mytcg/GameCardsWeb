@@ -59,7 +59,7 @@
 			background-color: #747474;
 			cursor: pointer;
 			position: absolute;
-			top:365px;
+			top:395px;
 			left:315px;
 		}
 		.divContinue:hover{
@@ -80,7 +80,7 @@
         	<br /><br />
         	We recommend <span>updating your browser</span> to the <span>latest version</span> before continuing.
         </div>
-        <div class="divContinue">CONTINUE ANYWAY</div>
+        <div class="divContinue"><a href="index.php">CONTINUE ANYWAY</a></div>
   </body>
 </html>
 

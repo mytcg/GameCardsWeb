@@ -8,7 +8,7 @@ $sTab=chr(9);
 
 if($localhost){
 	$db['host'] = "localhost";
-	$db['database'] = "gamecard";
+	$db['database'] = "sarugby";
 	$db['username'] = "root";
 	$db['password'] = "";
 	$db['pre'] = "mytcg";

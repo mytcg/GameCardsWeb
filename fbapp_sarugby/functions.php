@@ -2,7 +2,7 @@
 function ieversion() {
   $match=preg_match('/MSIE ([0-9]\.[0-9])/',$_SERVER['HTTP_USER_AGENT'],$reg);
   if($match==0)
-    return -1;
+    return 10;
   else
     return floatval($reg[1]);
 }

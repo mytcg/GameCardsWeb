@@ -123,6 +123,7 @@ span{
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 	cursor:pointer;
 }
 
@@ -152,6 +153,7 @@ span{
 	background: -moz-radial-gradient(circle, #ededed, #bfbfbf);
 	background: -ms-radial-gradient(circle, #ededed, #bfbfbf);
 	background: -o-radial-gradient(circle, #ededed, #bfbfbf);
+	background-color:#EDEDED;
 }
 
 #mainIconContainer {
@@ -190,19 +192,16 @@ span{
 	color:#404040;
 	font-size: 11px;
     position: absolute;
-    top: 347px;
+    top: 337px;
     left: 200px;
     width: 140px;
-	display: none;
 }
-
-
 #creditContainer{
 	font-size: 9px;
-    left: 480px;
     position: absolute;
     text-align: center;
     top: 41px;
+    left: 480px;
     width: 170px;
     z-index:3;
 }
@@ -213,7 +212,6 @@ span{
     font-size:14px;
     text-align: center;
 }
-
 .navSpacer{
 	width:32px;
 	height: 80px;
@@ -323,6 +321,7 @@ span{
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 }
 
 .profileButton{
@@ -341,6 +340,7 @@ span{
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 	cursor:pointer;
 }
 
@@ -488,6 +488,7 @@ span{
 	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
 	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
 	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
+	background-color:#DADADA;
     border-radius: 10px 10px 10px 10px;
     box-shadow: 0 5px 5px #000000;
     padding: 15px;
@@ -1041,6 +1042,7 @@ span{
 	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
 	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
 	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
+	background-color:#DADADA;
 	-moz-box-shadow: 0px 5px 5px #000;
 	-webkit-box-shadow: 0px 5px 5px #000;
 	box-shadow: 0px 5px 5px #000;
@@ -1056,6 +1058,14 @@ span{
   top:30px;
   left:20px;
   background-image: url("../_site/important.png");
+}
+.modal-credits-icon {
+  position:absolute;
+  width:80px;
+  height:80px;
+  top:30px;
+  left:20px;
+  background-image: url("../_site/credits-icon.png");
 }
 .modal-success-icon {
   position:absolute;
@@ -1149,6 +1159,7 @@ span{
 	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
 	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
 	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
+	background-color:#DADADA;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 }
@@ -1675,6 +1686,7 @@ input[type="submit"] {
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 }
 #auction_buttons .cmdButton {
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
@@ -1682,6 +1694,7 @@ input[type="submit"] {
 	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#DAD8D9;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	margin-top:7px;
@@ -2118,8 +2131,7 @@ input[type="submit"] {
 }
 
 .gradient-bg, .gameMenuContainer, .return-button,#auctionplate, #albumPlate, .modal-picture-holder, #shopPlate, #deckPlate {
-   background-color: #8c8c8c;
-   background:url(../_site/repeatx.png) 0px -541px repeat-x;
+   background-color: #DAD8D9;
    z-index: 3;
 }
 
@@ -2390,9 +2402,10 @@ input[type="submit"] {
 .modal-window {
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
 	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#dad8d9;
 	box-shadow: 0px 4px 4px #222327;
 	position: absolute;
 	-moz-border-radius: 8px;
@@ -2569,6 +2582,7 @@ input[type="submit"] {
 	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#DAD8D9;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	width: 40px;
@@ -2754,6 +2768,7 @@ input[type="submit"] {
 	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
 	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#DAD8D9;
 	color: #404040;
 	height:19px;
 	width:85px;
@@ -2774,6 +2789,7 @@ input[type="submit"] {
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 }
 
 .bid-list-item span{
@@ -2980,6 +2996,7 @@ input[type="submit"] {
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 	cursor:pointer;
 }
 
@@ -3310,6 +3327,7 @@ input[type="submit"] {
 	background: -moz-linear-gradient(top, #F2C126, #B0750D);
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
 	cursor: pointer;
 }
 

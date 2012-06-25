@@ -24,13 +24,14 @@ if($_GET['buy']){
 
   //VALIDATE USER CREDITS
   //User credits
-  $iCredits=myqu("SELECT premium FROM mytcg_user WHERE user_id=".$userID);
-  $iCredits=$iCredits[0]['premium'];
+  $iCredits=myqu("SELECT credits,premium FROM mytcg_user WHERE user_id=".$userID);
+  $iTotalCredits=$iCredits[0]['premium']+$iCredits[0]['credits'];
   
   //Total order cost
   $itemCost = $aDetails[0]['price'];
-  $bValid = ($iCredits >= $itemCost);
   
+  //Check total credits
+  $bValid = ($iTotalCredits >= $itemCost);
   if ($bValid)
   {
     //RECEIVE ITEM
@@ -43,19 +44,29 @@ if($_GET['buy']){
     }
     
     if(sizeof($cards) > 0){
-      //PAY FOR ORDER ITEM * QUANTITY ORDERED   
-      $iCreditsAfterPurchase = $iCredits - $itemCost;
-      $aCreditsLeft=myqu("UPDATE mytcg_user SET premium={$iCreditsAfterPurchase} WHERE user_id=".$userID);
-      $_SESSION["user"]["premium"] = $iCreditsAfterPurchase;
-      
+      //PAY FOR ORDER ITEM * QUANTITY ORDERED
+      $freemium = $iCredits[0]['credits'];
+	  $premium = $iCredits[0]['premium'];
+	  
+	  if($freemium > $itemCost){
+	  	$iCreditsAfterPurchase = $freemium - $itemCost;
+      	$aCreditsLeft=myqu("UPDATE mytcg_user SET credits={$iCreditsAfterPurchase} WHERE user_id=".$userID);
+		$premiumCost = 0;
+		$freemiumCost = $itemCost*-1;
+	  }else{
+	  	$iCreditsAfterPurchase = $premium - ($itemCost-$freemium);
+      	$aCreditsLeft=myqu("UPDATE mytcg_user SET credits=0,premium={$iCreditsAfterPurchase} WHERE user_id=".$userID);
+		$premiumCost = ($premium - ($itemCost-$freemium))*-1;
+		$freemiumCost = $freemium*-1;
+	  }
+	  
       myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
         VALUES(".$userID.",'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', NOW(), ".(-1*$itemCost).")");
 		
-	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+	  myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
 		VALUES(".$userID.", ".$iProductID.", NULL, NULL, 
-				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10)");
+				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10,{$freemiumCost},{$premiumCost})");
 
-      
       $xml .=  '<response>'.$sCRLF;
       $xml .=  $sTab.'<value>1</value>'.$sCRLF;
       $xml .=  $sTab.'<credits>'.$iCreditsAfterPurchase.'</credits>'.$sCRLF;

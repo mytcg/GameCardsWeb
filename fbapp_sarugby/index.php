@@ -6,7 +6,7 @@ if(!$localhost){
 }
 
 $ie = ieversion();
-if((!$ie >= 9)&&(!$_SESSION['stable'])){
+if(($ie < 9)&&($_SESSION['stable']!=true)){
 	$_SESSION['stable'] = true;
 	header("Location:browser_error.php");
 }
@@ -28,17 +28,20 @@ function TopMenu($need,$have) {
  	}
  }
 if($localhost){
-	$user['user_id'] = 92;
-	$user['username'] = "Senjiro";
-	$user['premium'] = 1865;
-	$user['gameswon'] = 2;
-	$user['xp'] = 110;
-	$user['facebook_process'] = 3;
+	$user['user_id'] = 2;
+	$user['username'] = "piero@mytcg.net";
+	$user['credits'] = 60;
+	$user['premium'] = 300;
+	$user['gameswon'] = 0;
+	$user['xp'] = 0;
+	$_SESSION['userProfile'] = "690746721";
+	$_SESSION['userDetails']['user_id'] = 2;
 }
 
 if($user['premium']==NULL){
 	$user['premium'] = 0;
 }
+$user['premium'] = $user['premium'] + $user['credits'];
 
 $_SESSION['userDetails'] = $user;
 if (isset($_GET['page'])) {
@@ -89,9 +92,9 @@ if (isset($_GET['page'])) {
     	<a href="index.php?page=album"><div id="album" class="navMenuItem <?php fHighlightMenu($page_url,"album"); ?>">ALBUM</div></a>    	
     	<div id="mainNavIconContainer">
     	</div>
-		<div id="creditContainer">
+    	<div id="creditContainer">
     			<a href="index.php?page=credits"><Span>You</span> have <span id="creditAvailable"><?php echo $user['premium']; ?></span> credits</a>
-		</div>		
+		</div>
     </div>
     
     <div class="divContainer">
