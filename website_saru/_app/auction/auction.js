@@ -681,7 +681,7 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 				$(divCardOwned).css({
 					top: 93,
 					left: "auto",
-					right: -10,
+					right: -1,
 				});
 				$(divCardOwned).attr('title','You already own this card');
 				if(cardOwned > 1){
@@ -961,7 +961,7 @@ WORK_Auction.prototype.getTimeLeft=function(enddate,minute)
 		var s = ZA.getDoubleDigits(parseInt(msleft/diffs,10));
 		timeleftdisplay = '';
 		if(d > 0){
-			timeleftdisplay = d+'d:';
+			timeleftdisplay = d+'d&nbsp;';
 		}
 		if(typeof(minute) == "undefined"){
 			timeleftdisplay+= h+':'+m+':'+s;
@@ -1025,17 +1025,17 @@ WORK_AuctionWindow.prototype.create=function(ID)
 	
 	ZA.callAjax(ZU.sURL+"?auction=1&market="+auctionID,function(aXML){
 		
-		var divAuctionData = ZA.createDiv(divData,"","","div");
+		var divAuctionData = ZA.createDiv(divData,"auctionWindowContainer","","div");
 		$(divAuctionData).css({
 			width:585,
 			height:380,
 			padding:10,
 			"-moz-user-select":"-moz-none",
-			"text-shadow":"0px 1px 1px #eee",
 		});
 		
+		var auctionTopContainer = ZA.createDiv(divAuctionData,"auctionTopContainer");
 		//Title
-		var divAuctionTitle = ZA.createDiv(divAuctionData,"txtGreen","","div");
+		var divAuctionTitle = ZA.createDiv(auctionTopContainer,"txtGreen","","div");
 		$(divAuctionTitle).css({
 			fontSize:20,
 			marginTop:5
@@ -1044,13 +1044,13 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		iTop+=35;
 	
 		//Category
-		var val = ZA.createDiv(divAuctionData,"","","div");
+		var val = ZA.createDiv(auctionTopContainer,"","","div");
 		$(val).css({top:iTop,fontWeight:"bold",fontSize:12,color:"#999"});
 		$(val).html(ZA.getXML(aXML,"details/category"));
 		iTop+=20;
 		
 		//Owner
-		var val = ZA.createDiv(divAuctionData,"","","div");
+		var val = ZA.createDiv(auctionTopContainer,"","","div");
 		$(val).css({top:iTop,fontSize:12});
 		var owner = ZA.formatUsername(ZA.getXML(aXML,"details/owner"));
 		var mine = ZA.getXML(aXML,"details/mine");
@@ -1061,7 +1061,8 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		iTop+=25;
 		
 		//Image
-		var divAuctionImage=ZA.createDiv(divAuctionData,"pagebox","auctionthumbnail_"+ID+"p");
+		var pictureCon = ZA.createDiv(divAuctionData,"auctionBlockBg");
+		var divAuctionImage=ZA.createDiv(pictureCon,"pagebox","auctionthumbnail_"+ID+"p");
 		$(divAuctionImage).css({
 			backgroundImage:"url("
 				+ZA.getXML(aXML,"details/imageserver")
@@ -1069,20 +1070,19 @@ WORK_AuctionWindow.prototype.create=function(ID)
 				+ZA.getXML(aXML,"details/image")
 				+"_web.jpg)",
 			backgroundRepeat:"no-repeat",
-			left:20,
-			top:iTop,
+			left:6,
+			top:10,
 			width:64,
 			height:90,
 		});
-		divAuctionImage.onclick=ZU.clickShowFullImage(ID,'p');
 	
 		//card owned indicator
 		var cardOwned = parseInt(ZA.getXML(ZU.sXML,"cards/card_"+ID+"/owned"),10);
 		if(cardOwned > 0){
 			var divCardOwned = ZA.createDiv(divAuctionImage,"iconCardOwned",ID,"div");
 			$(divCardOwned).css({
-				right:3,
-				top:-1
+				right:-1,
+				top:93
 			});
 			$(divCardOwned).attr('title','You already own this card');
 			if(cardOwned > 1){
@@ -1090,22 +1090,14 @@ WORK_AuctionWindow.prototype.create=function(ID)
 			}
 		}
 		
-		//Time Left
+		var auctionInfoContainer = ZA.createDiv(divAuctionData,"auctionInfoContainer")
 		
-		var val = ZA.createDiv(divAuctionData,"","auctionTimeLeft","div");
+		//Time Left
+		var val = ZA.createDiv(auctionInfoContainer,"","auctionTimeLeft","div");
 		$(val).css({
 			left:iLeftL,
 			top:iTop,
-			padding:15,
-			borderRadius:5,
-			"-moz-border-radius":"5px",
-			"box-shadow":"1px 3px 3px #808080",
-			color:"#CC0000",
-			fontWeight:"bold",
-			fontSize:28,
-			"-moz-border-radius":5
 		});
-		
 		
 		var enddate = new Date(ZA.getXML(aXML,"details/expire"));
 		ZU.enddate = enddate;
@@ -1122,26 +1114,26 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		iTop+=50;
 		
 		//End date and time
-		var lbl = ZA.createDiv(divAuctionData,"","lblEnds","div");
+		var lbl = ZA.createDiv(auctionInfoContainer,"","lblEnds","div");
 		$(lbl).css({left:iLeftL,top:iTop});
 		$(lbl).html('Ends:');
-		var val = ZA.createDiv(divAuctionData,"","","div");
+		var val = ZA.createDiv(auctionInfoContainer,"","","div");
 		$(val).css({left:iLeftR,top:iTop});
 		var expire = ZA.getXML(aXML,"details/expire");
 		$(val).html( expire.substring(0,expire.length-9) );
 		iTop+=23;
 		
 		//Start date and time
-		var lbl = ZA.createDiv(divAuctionData,"","","div");
+		var lbl = ZA.createDiv(auctionInfoContainer,"","","div");
 		$(lbl).css({left:iLeftL,top:iTop});
 		$(lbl).html('Started:');
-		var val = ZA.createDiv(divAuctionData,"","","div");
+		var val = ZA.createDiv(auctionInfoContainer,"","","div");
 		$(val).css({left:iLeftR,top:iTop});
 		$(val).html(ZA.getXML(aXML,"details/started"));
 		iTop+=23;
 		
 		//highest bidder indicator
-		var divHighestBidder = ZA.createDiv(divAuctionData,"iconHighestBidder","iconHighestBidder","div");
+		var divHighestBidder = ZA.createDiv(auctionInfoContainer,"iconHighestBidder","iconHighestBidder","div");
 		$(divHighestBidder).attr('title','You are the highest bidder');
 		$(divHighestBidder).css({
 			right:"auto",
@@ -1157,10 +1149,10 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		var lblCurrentBid;
 		var highestBidder;
 		
-		var lbl = ZA.createDiv(divAuctionData,"","","div");
+		var lbl = ZA.createDiv(auctionInfoContainer,"","","div");
 		$(lbl).css({left:iLeftL,top:iTop});
 		$(lbl).html('Bid Count:');
-		var val = ZA.createDiv(divAuctionData,"","bidCount","div");
+		var val = ZA.createDiv(auctionInfoContainer,"","bidCount","div");
 		$(val).css({left:iLeftR,top:iTop});
 		var bids = bidCount + ' bid';
 		if(parseInt(bidCount) > 1 || parseInt(bidCount) < 1){bids = bids+'s';}
@@ -1186,19 +1178,19 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		}
 		
 		//Highest Bidder
-		var lbl = ZA.createDiv(divAuctionData,"","lblBidder","div");
+		var lbl = ZA.createDiv(auctionInfoContainer,"","lblBidder","div");
 		$(lbl).css({left:iLeftL,top:iTop});
 		$(lbl).html('Highest Bidder:');
-		var val = ZA.createDiv(divAuctionData,"","highestBidder","div");
+		var val = ZA.createDiv(auctionInfoContainer,"","highestBidder","div");
 		$(val).css({left:iLeftR,top:iTop});
 		$(val).html(highestBidder);
 		iTop+=23;
 		
 		//Current Bid
-		var lbl = ZA.createDiv(divAuctionData,"","lblCurrentBid","div");
+		var lbl = ZA.createDiv(auctionInfoContainer,"","lblCurrentBid","div");
 		$(lbl).css({left:iLeftL,top:iTop});
 		$(lbl).html(lblCurrentBid);
-		var val = ZA.createDiv(divAuctionData,"","","div");
+		var val = ZA.createDiv(auctionInfoContainer,"","","div");
 		$(val).css({left:iLeftR,top:iTop});
 		$(val).html('<span class="txtBlue" style="font-size:16px;font-weight:bold;"><span id="currentBid">'+bidAmount+'</span> TCG</span>');
 		iTop+=28;

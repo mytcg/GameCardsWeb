@@ -1772,8 +1772,8 @@ table.grid tr.numberone td{
 	
 .iconCardOwned{
 	background:url(_site/all.png) -545px 0px no-repeat;
-	width:21px;
-	height:17px;
+	width:14px;
+	height:12px;
 	padding-top:3px;
 	top:5px;
 	right:8px;
@@ -1866,6 +1866,27 @@ table.grid tr.numberone td{
 	 box-shadow: inset 0 0 6px #000;
 	
 }
+#auctionTimeLeft{
+	padding:15px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	box-shadow:1px 3px 3px #808080;
+	color:#CC0000;
+	font-weight:bold;
+	font-size:28px;
+	-moz-border-radius:5px;
+}
+.auctionTopContainer{
+	position:relative;
+	width:60%;
+	height:85px;
+}
+.auctionInfoContainer{
+	position:relative;
+	width:250px;
+	height:250px;
+	float:left;
+}
 .auctionBlockLarge {
 	position:relative;
 	float:left;
@@ -1881,6 +1902,7 @@ table.grid tr.numberone td{
 	border:1px solid #F2C126;
 }
 .auctionBlockBg{
+	position:relative;
 	background: url(_site/all.png) -420px -260px no-repeat;
 	width:80px;
 	height:125px;
