@@ -523,26 +523,44 @@ body{
 	position:relative;
 	margin:auto;
 }
-.social_fb,.social_twitter,.social_youtube,.social_vimeo{
+.social_fb,.social_twitter,.social_youtube,.social_vimeo,.social_web{
 	float: left;
-    height: 20px;
+    height: 25px;
     position: relative;
-    width: 20px;
+    width: 30px;
     cursor:pointer;
     margin-right:5px;
     text-decoration:none;
 }
 .social_fb{
-	background:url(_site/all.png) -460px 0px no-repeat;
+	background:url(_site/all.png) -500px -126px no-repeat;
 }
 .social_twitter{
-	background:url(_site/all.png) -480px 0px no-repeat;
+	background:url(_site/all.png) -470px -126px no-repeat;
 }
 .social_youtube{
-	background:url(_site/all.png) -500px 0px no-repeat;
+	background:url(_site/all.png) -560px -126px no-repeat;
 }
 .social_vimeo{
-	background:url(_site/all.png) -520px 0px no-repeat;
+	background:url(_site/all.png) -530px -126px no-repeat;
+}
+.social_web{
+	background:url(_site/all.png) -590px -126px no-repeat;
+}
+.social_fb:hover{
+	background:url(_site/all.png) -500px -156px no-repeat;
+}
+.social_twitter:hover{
+	background:url(_site/all.png) -470px -156px no-repeat;
+}
+.social_youtube:hover{
+	background:url(_site/all.png) -560px -156px no-repeat;
+}
+.social_vimeo:hover{
+	background:url(_site/all.png) -530px -156px no-repeat;
+}
+.social_web:hover{
+	background:url(_site/all.png) -590px -155px no-repeat;
 }
 .xbarlogo{
 	background:url(_site/all.png) 0px -210px no-repeat;
