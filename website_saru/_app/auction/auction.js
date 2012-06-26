@@ -1364,7 +1364,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 						//Buy Now
 						var divBuy = ZA.createDiv(divActions,"","buyNowHolder","div");
 						$(divBuy).css({
-							height:60,
+							height:50,
 							position:"relative",
 							width:"100%"
 						});
@@ -1374,7 +1374,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 						var div = ZA.createDiv(divBuy,"","","div");
 						$(div).css({
 							width:100,
-							left:113,
+							left:125,
 							top:20,
 							fontSize:14,
 							fontWeight:"900",
