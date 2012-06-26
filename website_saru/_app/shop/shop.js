@@ -42,14 +42,14 @@ function WORK_Shop(){
       var divBody=document.getElementsByTagName("body")[0];
       var divWin = ZA.createDiv(divBody,"","","div");
       $(divWin).css({ border:"1px solid #FFF",opacity:0.7,color:"#FFF",
-                      paddingTop:10,paddingLeft:35,top:-38,left:(window.innerWidth/2)-300,width:565,
+                      paddingTop:10,paddingLeft:35,top:467,left:(window.innerWidth/2)-300,width:565,
                       height:20,backgroundColor:"#000",zIndex:200,fontSize:11,fontWeight:"bold",textAlign:"left"
                     });
       $(divWin).html(message);
       var divCheckIcon = ZA.createDiv(divWin,"","","div");
       $(divCheckIcon).css({ top:5,left:5,width:23,height:21,backgroundImage:ZS.imgAll,backgroundPosition:icon});
 
-      $(divWin).animate({ top:-2 },600).delay(delay).animate({ top:-38 },600,function(){
+      $(divWin).animate({ opacity:1 },600).delay(delay).animate({ opacity:0 },600,function(){
         $(divWin).remove();
       });
     };
@@ -65,7 +65,7 @@ function WORK_Shop(){
       var iTop = 7;
       
     	ZS.divListLarge = ZA.createDiv(ZS.divData,"","divListLarge","div");
-      $(ZS.divListLarge).css({ display:"none",opacity:0,position:"relative",width:744,height:720 });
+      $(ZS.divListLarge).css({ display:"none",opacity:0,position:"relative",width:744,height:720,"z-index":7 });
     	
     	var productList = ZA.createDiv(ZS.divListLarge,"","productsholder","div");
     	$(productList).css({
@@ -99,11 +99,11 @@ function WORK_Shop(){
 
         var divTop = ZA.createDiv(itemBlock,"","","div");
         $(divTop).css({ lineHeight:1.5,textAlign:"left",paddingLeft:6,top:10,left:92,width:127,height:58});
-        $(divTop).html("<b><span class='txtGreen' style='font-size:12px;'>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/desc")+"</span><br />"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/cards")+" Cards in pack<br /><span class=\"txtBlue\" style=\"font-size:16px;\">"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/price")+" TCG</span></b>");
+        $(divTop).html("<b><span class='txtGreen' style='font-size:12px;'>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/desc")+"</span><br /><span class=\"txtBlue\" style=\"font-size:16px;\">"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/price")+" TCG</span></b>");
         
         var divBuy = ZA.createDiv(itemBlock,"cmdButton","","div");
         $(divBuy).attr('alt',itemCount.toString());
-        $(divBuy).html('Buy Now');
+        $(divBuy).html('Buy');
         $(divBuy).css({top:90,left:98});
         divBuy.onclick = (function() {
           var current_i = ZA.getXML(ZS.sXML,"pack_"+itemCount+"/id");
@@ -355,7 +355,7 @@ function WORK_Shop(){
             
             var textBox = ZA.createDiv(itemBlock,"","","div");
             $(textBox).css({ paddingTop:5,paddingRight:6,fontSize:9,width:140,height:38,top:0,color:"#FFF",textAlign:"left" });          
-            $(textBox).html("<span class=txtGreen>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/desc")+"</span><br />"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/cards")+" cards in pack <br /> <span class='txtBlue'>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/price")+" TCG</span>");
+            $(textBox).html("<span class=txtGreen>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/desc")+"</span><br />"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/cards")+" cards in pack: <span class='txtBlue'>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/price")+" TCG</span>");
             var buyButton = ZA.createDiv(itemBlock,"","buyButton","div");
             $(buyButton).attr('alt',itemCount.toString());
             //$(buyButton).html('Buy');
@@ -369,7 +369,7 @@ function WORK_Shop(){
             
             var imageBox = ZA.createDiv(itemBlock,"imageBlock","","div");
             var sImgPath = ZA.getXML(ZS.sXML,"pack_"+itemCount+"/fullimageserver")+"products/"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/img")+".jpg";
-            $(imageBox).css({ backgroundImage:"url("+sImgPath+")",backgroundPosition:ZA.getXML(ZS.sXML,"pack_"+itemCount+"/backgroundposition") }); 
+            $(imageBox).css({ backgroundImage:"url("+sImgPath+")",backgroundPosition:"0px -155px" }); 
 
             
             // var textBox = ZA.createDiv(itemBlock,"","","div");
@@ -443,7 +443,7 @@ function WORK_Shop(){
           //reload card comparison
           //ZA.callAjax(ZC.sURL+"?init=1",function(xml){ZC.init(xml);});
           //Booster Purchased Display
-          ZA.createWindowPopup(-1,"",690,490,1,0);
+          ZA.createWindowPopup(-1,"",690,483,1,0);
           var divWindow=document.getElementById("window_-1");
           var divData=ZA.createDiv(divWindow);
           $(divData).css({

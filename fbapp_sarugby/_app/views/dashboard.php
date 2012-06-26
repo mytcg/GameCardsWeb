@@ -30,8 +30,8 @@
 		<div class="headBlocks">
 			<div class="headMiniTitle"><span>Best</span> Card</div>
 			<?php $bestCard = getBestCard($_SESSION['userDetails']['user_id']); ?>
-			<div class="headBestCard" id="<?php echo $bestCard[0]['image'];  ?>">
-				<img id="" src="https://sarugbycards.com/img/cards/<?php echo $bestCard[0]['image'];  ?>_web.jpg" width="64px" height="90px" />
+			<div class="headBestCard" id="44">
+				<img id="" src="https://sarugbycards.com/img/cards/44_web.jpg" width="64px" height="90px" />
 			</div>
 			<div class="segregation" style="top:20px;left:0px;"></div>
 		</div>

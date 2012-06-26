@@ -41,7 +41,7 @@ if (isset($_GET['market']))
 					FROM mytcg_market M
 					JOIN mytcg_marketcard MC USING (market_id)
 					WHERE M.market_id = ".$market_id."
-					ORDER BY MC.price DESC
+					ORDER BY MC.marketcard_id DESC
 					LIMIT 1;";
 			$lastBidderQuery = myqu($sql);
 			if(sizeof($lastBidderQuery) > 0){
@@ -98,11 +98,11 @@ if (isset($_GET['market']))
 	{
 		$auction = $aDetails[0];
 		
-		$sql = "SELECT MC.*, IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)), U.name
+		$sql = "SELECT MC.date_of_transaction, (IFNULL(MC.price,0)+IFNULL(MC.premium,0)) price, IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)) username, U.name
 				FROM mytcg_marketcard MC
 				JOIN mytcg_user U USING (user_id)
 				WHERE MC.market_id = ".$market_id."
-				ORDER BY MC.price DESC;";
+				ORDER BY MC.marketcard_id DESC;";
 		$aHistory = myqu($sql);
 		
 		echo $sTab.$sTab.'<card_id val="'.$auction['card_id'].'" />'.$sCRLF;
@@ -197,17 +197,16 @@ if (isset($_GET['bid']))
 				FROM mytcg_market M
 				JOIN mytcg_marketcard MC USING (market_id)
 				WHERE M.market_id = ".$market_id."
-				ORDER BY MC.price DESC
+				ORDER BY MC.marketcard_id DESC
 				LIMIT 1;";
 		
 		
 		
 		$lastBidderQuery = myqu($sql);
 		
-		$total = $lastBidder['price'] + $lastBidder['premium'];
-		
 		if(sizeof($lastBidderQuery) > 0){
 			foreach($lastBidderQuery as $lastBidder){
+				$total = $lastBidder['price'] + $lastBidder['premium'];
 				if ($bid_amount <= $total) {
 					//user has insuffient credits to place the bid
 					echo '<result>'.$sCRLF;
@@ -272,7 +271,7 @@ if (isset($_GET['bid']))
 				FROM mytcg_marketcard MC
 				JOIN mytcg_user U USING (user_id)
 				WHERE MC.market_id = ".$market_id."
-				ORDER BY MC.price DESC;";
+				ORDER BY MC.marketcard_id DESC;";
 		$aHistory = myqu($sql);
 		echo $sTab.$sTab.'<history>'.$sCRLF;
 		echo $sTab.$sTab.$sTab.'<bid_count val="'.sizeof($aHistory).'" />'.$sCRLF;
@@ -441,7 +440,7 @@ if (isset($_GET['buy']))
       LEFT JOIN mytcg_usercard UC ON (M.usercard_id = UC.usercard_id)
       LEFT JOIN mytcg_card C ON (UC.card_id = C.card_id)
       WHERE M.market_id = ".$marketID."
-      ORDER BY MC.price DESC
+      ORDER BY MC.marketcard_id DESC
       LIMIT 1;";
 	$lastBidderQuery = myqu($sql);
   
@@ -511,7 +510,7 @@ if (isset($_GET['buy']))
 	$price = $freemium_cost + $premium_cost;
 	
 	//Add credits to seller
-	$sql = "UPDATE mytcg_user SET premium=(premium+".$freemium_cost."),credits=(credits+".$premium_cost.") WHERE user_id=".$oldowner.";";
+	$sql = "UPDATE mytcg_user SET premium=(premium+".$premium_cost."),credits=(credits+".$freemium_cost.") WHERE user_id=".$oldowner.";";
 	$temp[]=$sql;
 	myqu($sql);
 	//Add transaction log
@@ -521,6 +520,12 @@ if (isset($_GET['buy']))
 	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 			VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
 				now(), 'Received ".$price." credits for buyout on ".$carName."', ".$price.",".$freemium_cost.",".$premium_cost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 14)");
+	
+	$auction_fee = $our_freemium_fee + $our_premium_fee;
+	
+	myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+			VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
+				now(), 'Transaction fee of ".$auction_fee." credits for buyout on ".$carName."', ".$auction_fee.",".$our_freemium_fee.",".$our_premium_fee.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 17)");
 
 	
 	//Close auction
@@ -610,7 +615,7 @@ if(isset($_GET['filter'])){
         FROM mytcg_marketcard MC
         JOIN mytcg_user U USING (user_id)
         WHERE MC.market_id = ".$iAuctionID."
-        ORDER BY MC.price DESC;";
+        ORDER BY MC.marketcard_id DESC;";
     	$aHistory = myqu($sql);
 		$phpdate = strtotime($aAuctions[$iCount]['date_expired']);
 		$price = (sizeof($aHistory) > 0) ? $aHistory[0]['price'] : $aAuctions[$iCount]['minimum_bid'] ;

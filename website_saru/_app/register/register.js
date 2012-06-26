@@ -24,7 +24,7 @@ function WORK_Register(){
       
       //Text
       var spanText = ZA.createDiv(divWin,"register_text");
-      $(spanText).css({width:200});
+      $(spanText).css({width:200,"text-transform":"none"});
       $(spanText).html("<br />It's quick, dirty and <b>REALLY EASY</b>.<br>Simply enter your email address, a username and password below then click the Register button and you're done.<br /><br />");
       
       //FORM
@@ -34,23 +34,23 @@ function WORK_Register(){
       
       $(frmRegister).append(
 			'<div class="register_holder">'+
-			'<div id="register_div" class="register_email">Email address:<br />'+
+			'<div id="register_div" class="register_email"><span style="font-weight:900">E<span>mail<br />'+
 				'<input type="text" id="email" name="email" class="registerBox" />'+
 			'</div>'+
       		
-      				'<div id="register_div">Name:<br />'+
+      				'<div id="register_div">Name<br />'+
       					'<input type="text" id="name" name="name" class="registerBox" />'+
       				'</div>'+
-      				'<div id="register_div">Surname:<br />'+
+      				'<div id="register_div">Surname<br />'+
       					'<input type="text" id="surname" name="surname" class="registerBox" />'+
       				'</div>'+
-      				'<div id="register_div">Password:<br />'+
+      				'<div id="register_div"><span style="font-weight:900">Pass<span>word<br />'+
       					'<input type="text" id="password" name="password" class="registerBox" />'+
       				'</div>'+
-      				'<div id="register_div">Age:<br />'+
-      					'<input type="text" id="age" name="age" class="registerBox" />'+
+      				'<div id="register_div">Age<br />'+
+      					'<input type="text" id="age" name="age" style="width:133px;" class="registerBox" />'+
       				'</div>'+
-      				'<div id="register_div">Gender:<br />'+
+      				'<div id="register_div">Gender<br />'+
       					'<input type="radio" name="gender" style="width:20px;" value="0"/>male&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="1"/>female'+
       				'</div>'+
       		'</div>'
@@ -65,16 +65,21 @@ function WORK_Register(){
       
       //Response
       var spanResponse = ZA.createDiv(divWin,"","spanResponse");
-      $(spanResponse).css({ top:"155px",width:250,textAlign:"center",color:"#cc0000",left:125 });
+      $(spanResponse).css({ top:"155px",width:250,textAlign:"center",color:"#F2C126",left:125 });
       $(spanResponse).html("");
       
       var btnRegister = ZA.createDiv(divWin,"btnCreate","btnRegister","div");
-      $(btnRegister).css({ top:"158px",right:"42px",width:"90px",height:"10px" });
-      $(btnRegister).html("Register NOW!");
+      $(btnRegister).css({ top:"158px",right:"31px",width:"57px",height:"10px" });
+      $(btnRegister).html("Register");
       $(btnRegister).click(function(){
         ZR.clickRegister();
       });
     };
+	
+	var validateEmail = function(email){
+     	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   		return re.test(email);
+	}
     
     WORK_Register.prototype.clickRegister=function(){
         $("#spanResponse").html("Registration in progress...");
@@ -89,42 +94,52 @@ function WORK_Register(){
     	
     	var message = '';
 		
+		var validEmail = validateEmail(sEmail);
+        var validAge = !isNaN(age);
+		
 		if(sEmail==""){
-        $("#email").val('').focus();
+			$("#email").val('').focus();
 			message = "Please enter your email address.";
     	}
-		else if(sUsername==""){
-			$("#username").val('').focus();
-			message = "Please enter a username.";
-		}
-		else if(sPassword==""){
-        $("#password").val('').focus();
-			message = "Please enter a password.";
+		else if(!validEmail){
+			$("#email").val('').focus();
+			message = "Invalid email address.";
 		}
 		else if(name==""){
-        $("#password").val('').focus();
+			$("#name").val('').focus();
 			message = "Please enter your name.";
 		}
 		else if(surname==""){
-        $("#password").val('').focus();
+			$("#surname").val('').focus();
 			message = "Please enter your surname.";
 		}
+		else if(sPassword==""){
+			$("#password").val('').focus();
+			message = "Please enter a password.";
+		}
 		else if(age==""){
-        $("#password").val('').focus();
+			$("#age").val('').focus();
 			message = "Please enter your age.";
 		}
+		else if(!validAge){
+			$("#age").val('').focus();
+			message = "Age is a number only value.";
+		}
 		else if(gender==undefined){
-        $("#password").val('').focus();
+			//$("#password").val('').focus();
 			message = "Please select your gender.";
 		}
-		    $("#spanResponse").hide('fade',{opacity:0},150,function(){
-		    $(this).html(message).show('fade',{opactiy:100},150);
-      	});
-      	ZA.callAjax("_app/register/?register=1&username="+sUsername+"&email="+sEmail+"&password="+sPassword+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(xml){
-			ZA.sUserLogin = sUsername;
-	        ZA.sUserPassword = sPassword;
-			ZR.response(xml);
-         });
+		if (message.length == 0) {
+			ZA.callAjax("_app/register/?register=1&username="+sUsername+"&email="+sEmail+"&password="+sPassword+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(xml){
+				ZA.sUserLogin = sUsername;
+				ZA.sUserPassword = sPassword;
+				ZR.response(xml);
+			 });
+		} else {
+			$("#spanResponse").hide('fade',{opacity:0},150,function(){
+				$(this).html(message).show('fade',{opactiy:100},150);
+			});
+		}
     };
     
     WORK_Register.prototype.response=function(sXML){

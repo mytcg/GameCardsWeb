@@ -498,13 +498,13 @@ WORK_App.prototype.createPage=function(){
 	ZA.aComponents[10]=new WORK_Component();
 	ZA.aComponents[10].create(10,"515px,-50px,75px,55px");
 	ZA.drawComponents();
-	ZA.createWindow(2,"Shop");
+	ZA.createWindow(2,"Card <span style='font-family: Arial; color: #575757; font-weight: normal; text-shadow: none;'>Shop</span>");
 	if (!ZA.sUsername) {
 		//not logged in
-		ZA.createWindow(3,"Register");
+		ZA.createWindow(3,"<span style='margin-left: 622px;'>Register <span style='font-family: Arial; color: #575757; font-weight: normal; text-shadow: none;'>here</span></span>");
 		ZA.startJS("register");
 	}
-	ZA.createWindow(5,"Auction");
+	ZA.createWindow(5,"Auction <span style='font-family: Arial; color: #575757; font-weight: normal; text-shadow: none;'>Cards</span>");
 	var divComponent=document.getElementById("component_7");
 	$(divComponent).css({display:"none"});
 	var divComponent=document.getElementById("component_8");
@@ -611,7 +611,8 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 		  ,parseInt(aPos[3])-45];
 	}
 	var divWin=ZA.createDiv(divComponent,"","windowcontainer_"+iComponentNo);
-	ZA.setNextZIndex(divWin);
+	ZA.setNextZIndex(divComponent);		
+	//ZA.setNextZIndex(divWin);
 	$(divWin).css({left:aPos[0],top:aPos[1],width:aPos[2],height:aPos[3],opacity:0});
 	var divLeft=ZA.createDiv(divWin,"windowleft");
 	$(divLeft).css({width:ZA.iSizeWindowDecor+"px"});
@@ -619,8 +620,8 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 	$(divTop).css({height:"8px",top:"30px"});
 	var divCenter=ZA.createDiv
 		(divLeft,"windowleftcenter","windowleft_"+iComponentNo);
-	$(divCenter).css({bottom:"0px"
-		,height:(iMaxHeight-ZA.iHeightWindowTitle-ZA.iSizeWindowDecor)+"px"});
+	$(divCenter).css({bottom:"7px"
+		,height:(iMaxHeight-(ZA.iHeightWindowTitle+ZA.iSizeWindowDecor+7))+"px"});
 	var divBottom=ZA.createDiv(divLeft,"windowleftbottom");
 	$(divBottom).css({height:ZA.iSizeWindowDecor+"px"});
 	var divRight=ZA.createDiv(divWin,"windowright");
@@ -629,12 +630,12 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 	$(divTop).css({height:"8px",top:"30px"});
 	var divCenter=ZA.createDiv
 		(divRight,"windowrightcenter","windowright_"+iComponentNo);
-	$(divCenter).css({bottom:"0px"
-		,height:(iMaxHeight-ZA.iHeightWindowTitle-ZA.iSizeWindowDecor)+"px"});
+	$(divCenter).css({bottom:"7px"
+		,height:(iMaxHeight-(ZA.iHeightWindowTitle+ZA.iSizeWindowDecor+7))+"px"});
 	var divBottom=ZA.createDiv(divRight,"windowrightbottom");
 	$(divBottom).css({height:ZA.iSizeWindowDecor+"px"});
 	var divTitle=ZA.createDiv(divWin,"windowtitle","windowtitle_"+iComponentNo);
-	if (iControls) {
+	/*if (iControls) {
 		if(!ZA.sUsername){
 			if(iComponentNo!=6 && iComponentNo!=3){
 			divTitle.ondblclick=ZA.maximizeWindow(iComponentNo);
@@ -644,23 +645,24 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 			divTitle.ondblclick=ZA.maximizeWindow(iComponentNo);
 			}
 		}
-	}
+	}*/
 	$(divTitle).css({width:(iMaxWidth-2*ZA.iSizeWindowDecor)+"px"
 		,height:ZA.iHeightWindowTitle+"px",left:ZA.iSizeWindowDecor+"px"});
 		//just write the title, no picture
 		var divDesc=ZA.createDiv(divTitle,"windowtitlewords","windowtitledesc_"+iComponentNo);
 		divDesc.innerHTML=sName;
 
+	var divMaximize;
 	if (iControls==1) {
 		if(!ZA.sUsername){
 			if(iComponentNo!=6 & iComponentNo!=3){
-			var divMaximize=ZA.createDiv(divTitle,"windowmaximize2");
+			divMaximize=ZA.createDiv(divTitle,"windowmaximize2");
 			divMaximize.onclick=ZA.maximizeWindow(iComponentNo);
 
 			}
 		}else{
 			if(iComponentNo!=6){
-			var divMaximize=ZA.createDiv(divTitle,"windowmaximize2");
+			divMaximize=ZA.createDiv(divTitle,"windowmaximize2");
 			divMaximize.onclick=ZA.maximizeWindow(iComponentNo);
 
 			}
@@ -669,10 +671,11 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 	else{
 	// close window
 	if (iControls==2){
-		var divMaximize=ZA.createDiv(divTitle,"windowmaximize2");
+		divMaximize=ZA.createDiv(divTitle,"windowmaximize2");
 		divMaximize.onclick=ZA.closeCloakedWindow(iComponentNo);
 		}
 	}
+	
 	var divBottom=ZA.createDiv
 		(divWin,"windowtitlebottom","windowtitlebottom_"+iComponentNo);
 	$(divBottom).css({width:(iMaxWidth-2*ZA.iSizeWindowDecor)+"px"
@@ -710,6 +713,7 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 			ZA.startJS(sJSName);
 		});*/
 	ZA.setNextZIndex(divData);
+	//ZA.setNextZIndex(divMaximize);
 };
 
 // close cloaked windows
@@ -1207,8 +1211,8 @@ WORK_App.prototype.maximizeWindowA=function(iComponentNo){
 			,height:(ZA.iHeightContainer-80)+"px",opacity:1});
 		$(divBottom).animate({width:(ZA.iWidthContainer-49)+"px"});
 		$(divTitleBottom).animate({width:(ZA.iWidthContainer-49)+"px"});
-		$(divLeft).animate({height:(ZA.iHeightContainer-118)+"px"});
-		$(divRight).animate({height:(ZA.iHeightContainer-118)+"px"});
+		$(divLeft).animate({height:(ZA.iHeightContainer-125)+"px"});
+		$(divRight).animate({height:(ZA.iHeightContainer-125)+"px"});
 		
 		//how it works window strips animate
 		if ((!ZA.sUsername)&&(iComponentNo==4)) {
@@ -1258,9 +1262,9 @@ WORK_App.prototype.maximizeWindowA=function(iComponentNo){
 		$(divTitleBottom).animate({
 			width:(parseInt(ZA.aComponents[iComponentNo].aPos[2])-16)+"px"});
 		$(divLeft).animate({
-			height:(parseInt(ZA.aComponents[iComponentNo].aPos[3])-38)+"px"});
+			height:(parseInt(ZA.aComponents[iComponentNo].aPos[3])-45)+"px"});
 		$(divRight).animate({
-			height:(parseInt(ZA.aComponents[iComponentNo].aPos[3])-38)+"px"});
+			height:(parseInt(ZA.aComponents[iComponentNo].aPos[3])-45)+"px"});
 		
 		//how it works window strips animate
 		if ((!ZA.sUsername)&&(iComponentNo==4)) {
@@ -1410,7 +1414,7 @@ WORK_App.prototype.showWindow=function(icon,message,delay)
       });
       return false;
     });
-    //$(divWin).remove();
+    $(divWin).remove();
    }
 };
 

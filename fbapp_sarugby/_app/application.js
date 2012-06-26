@@ -94,7 +94,7 @@
 		img.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
 		img.onload = function() {
 			imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
-			$(imgPic).css({'margin-top':'0','margin-left':'0px'});
+			$(imgPic).css({'margin-top':'0','margin-left':'0px','cursor':'pointer'});
 		}
       
      //transition effect - show the mask  
@@ -109,14 +109,14 @@
 				$(this).flip({
 				speed:200,
 				direction:'lr',
-				content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
+				content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
 				});
 				window.flipped = true;
 			} else {
 				$(this).flip({
 				speed:200,
 				direction:'lr',
-				content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
+				content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
 				});
 				window.flipped = false;
 			}	
@@ -1256,6 +1256,8 @@
 						$("#count_"+App.cardTarget).replaceWith("<div class=\"albumCardCount\" id=count_"+App.cardTarget+"\"></div>");
 						$("#img_"+(App.cardTarget)).remove();
 						$("#"+(App.cardTarget)+" .album_card_title").css("opacity",0.1);
+						$("#"+(App.cardTarget)).css("cursor","none");
+						$("#"+(App.cardTarget)).attr("id","0");
 					}
 				 	//App.showCards('all');
 					//App.updateCreditView(App.getXML(xml,"cost"));
@@ -2022,7 +2024,7 @@
 			img.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
 			img.onload = function() {
 				imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
-				$(imgPic).css({'margin-top':'0','margin-left':'0px'});
+				$(imgPic).css({'margin-top':'0','margin-left':'0px','cursor':'pointer'});
 			}
 			
 			
@@ -2045,14 +2047,14 @@
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
+						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
 						});
 						window.flipped = true;
 					} else {
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
+						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
 						});
 						window.flipped = false;
 					}
@@ -2087,7 +2089,7 @@
 			img.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
 			img.onload = function() {
 				imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
-				$(imgPic).css({'margin-top':'0','margin-left':'0px'});
+				$(imgPic).css({'margin-top':'0','margin-left':'0px','cursor':'pointer'});
 			}
 			
 			
@@ -2110,14 +2112,14 @@
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
+						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
 						});
 						window.flipped = true;
 					} else {
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
+						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
 						});
 						window.flipped = false;
 					}
@@ -2903,7 +2905,7 @@ $(document).ready(function(){
 		
      var receiverUserIds = FB.ui({
        method: 'apprequests',
-       message: 'How would you like to join the MyTCG trend?',
+       message: 'Collect your favourite Springboks now!',
        filters: ['app_non_users'],
        display: 'iframe'
      }, function(receiverUserIds){

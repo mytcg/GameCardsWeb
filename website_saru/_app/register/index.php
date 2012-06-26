@@ -37,7 +37,7 @@ if (intval($_GET["register"])==1)
 		}
 	 }
 	 if($usernameExists && $emailExists){
-		$failMessage.= 'Username and Email already registered.';
+		$failMessage.= 'Email already registered.';
 	 }
 	 elseif($usernameExists){
 		$failMessage.= 'Username already registered.';
@@ -52,32 +52,33 @@ if (intval($_GET["register"])==1)
     echo $sTab.'<message val="'.$failMessage.'" />'.$sCRLF;
   }else{
     echo $sTab.'<action val="success" />'.$sCRLF;
-    $sDate=date("Y-m-d H:i:s");
     $aUserInsert=myqu(
-      "INSERT INTO mytcg_user (username, email_address,name,surname,age,gender,category_id, is_active, date_register, premium, xp, completion_process_stage) "
-      ."VALUES ('".$sUsername."', '".$sEmail."', '".$sName."', '".$sSurname."', '".$sAge."', '".$sGender."','".$iCat."',1,'".$sDate."',0,0,2)"
+      "INSERT INTO mytcg_user (username, email_address,name,surname,age,gender,category_id, is_active, date_register, premium, xp, completion_process_stage, credits, web_date_last_visit, last_useragent) "
+      ."VALUES ('".$sUsername."', '".$sEmail."', '".$sName."', '".$sSurname."', '".$sAge."', '".$sGender."','".$iCat."',1,now(),0,0,2,0,now(),'".$_SERVER["HTTP_USER_AGENT"]."')"
     );
     $aUserID=myqu(
       "SELECT user_id FROM "
       .$pre."_user "
       ."WHERE username='".$sUsername."' "
     );
-    $iUserID=intval($aUserID[0]["user_id"]);
+    $iUserID=$aUserID[0]["user_id"];
 	
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (1, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (2, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (3, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (4, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (5, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (6, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (7, NULL,0,".$iUserID.")");
-  myqu("INSERT INTO ".$pre."_user_answer (detail_id,answer,answered,user_id) VALUES (8, '".$sEmail."',1,".$iUserID.")");
+	myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+			SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+			FROM mytcg_user WHERE user_id=".$iUserID);
+	
+  $sql = "SELECT * FROM mytcg_user_detail";
+  $getUser = myqu($sql);
+  foreach($getUser as $u){
+  	$sql = "INSERT INTO mytcg_user_answer (detail_id,answered,user_id) VALUES (".$u['detail_id'].",0,".$iUserID.")";
+  	$res = myqu($sql);
+  }
   
-	//add transaction log for register credits
-	myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-			VALUES(".$iUserID.", 'Received 0 credits for registering', NOW(), 0)");
-			
-    $iMod=($iUserID % 10)+1;
+  $sql = "INSERT INTO mytcg_frienddetail (user_id, friend_id) values (".$user_id.",".$iUserID.")";
+	myqu($sql);
+  //TODO: Add friends code
+  
+    $iMod=(intval($iUserID) % 10)+1;
     $sSalt=substr(md5($iUserID),$iMod,10);
     $aSaltPassword=myqu(
       "UPDATE "
