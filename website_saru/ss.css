@@ -1864,15 +1864,35 @@ table.grid tr.numberone td{
 	 box-shadow: inset 0 0 6px #000;
 	
 }
+
+#actionsHolder{
+	width:345px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	box-shadow:inset 0px 0px 3px #000;
+	background:#393939;
+	border:1px solid #000;
+	text-shadow:0px 1px 1px #1a1a1a;
+}
 #auctionTimeLeft{
+	letter-spacing:2px;
+	font-family:"Impact","Arial";
+	font-weight:900;
+	color:#F2C126;
+	text-align:center;
 	padding:15px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	box-shadow:1px 3px 3px #808080;
-	color:#CC0000;
-	font-weight:bold;
 	font-size:28px;
-	-moz-border-radius:5px;
+	width:225px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	box-shadow:inset 0px 0px 3px #111;
+	background:#393939;
+	text-shadow:0px 1px 1px #000;
+}
+.placeBidHolder{
+	position:relative;
+	width:100%;
+	height:50px
 }
 .auctionTopContainer{
 	position:relative;
@@ -1882,7 +1902,7 @@ table.grid tr.numberone td{
 .auctionInfoContainer{
 	position:relative;
 	width:250px;
-	height:250px;
+	height:170px;
 	float:left;
 }
 .auctionBlockLarge {
@@ -1925,24 +1945,52 @@ table.grid tr.numberone td{
 	font-weight:900;
 	color:#F2C126;
 }
+.bidLable{
+	top:25px;
+	left:20px;
+	font-weight:900;
+}
+.bidLable span{
+	font-family:"Arial Black", "Arial";
+	font-weight:900;
+}
 .bidAdjuster {
-	color:#666;
+	color:#a1a1a1;
 	width:14px;
 	height:14px;
-	background:#ccc;
 	cursor:pointer;
 }
 .bidAdjuster:hover {
-	color:#ccc;
-	background:#666;
+	color:#D09C1B;
+}
+#bidValue{
+	color:#F2C126;
+	font-family:"Arial Black","Arial";
+	-moz-user-select:text;
+	text-shadow:0px 1px 1px #222;
+	height:25px;
+	text-align:center;
+	border:none;
+	background:none;
+	font-size:16px;
+	font-weight:900;
 }
 .bidAdjusterDisabled{
-	color:#999!important;
-	background:#ccc!important;
+	text-shadow:0 1px 1px #A1A1A1;
+	color:#333!important;
 	cursor:default!important;
 }
+.buyOutBid{
+	font-weight:bold;
+	top:20px;
+	left:20px
+}
+.buyOutBid span{
+	font-family: "Arial Black", "Arial";
+	font-weight:900;
+}
 .bidDisabled{
-	background:#bbb!important;
+	background:#333!important;
 	cursor:default!important;
 }
 .bidDisabled:hover{
@@ -1951,40 +1999,72 @@ table.grid tr.numberone td{
 	-moz-box-shadow:2px 2px 2px #999!important;
 }
 #placeBid{
-	background:#ddd;
-	color:#cc0000;
-	font-size:16px;
+	cursor:pointer;
+	background-color:#606060;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
+	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	padding: 5px 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color:#2B2B2B;
+	font-size: 11px;
 	font-weight:bold;
-	padding:8px 15px;
+	text-shadow:none;
+	text-decoration: none;
+	vertical-align: middle;
+	border:0px none;
 	right:15px;
 	top:17px;
-	-moz-border-radius:5px;
-	-moz-box-shadow:2px 2px 2px #999;
-	border:1px solid #cc0000;
-	cursor:pointer;
+	width:60px;
 }
 #placeBid:hover{
-	top:18px;
-	right:14px;
-	-moz-box-shadow:1px 1px 1px #999;
+	font-size: 11px;
+	font-weight:bold;
+	color:#2B2B2B;
+	background-color:#EFBD00;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
 }
 #buyNow{
-	background:#cc0000;
-	color:#fff;
-	font-size:16px;
+	cursor:pointer;
+	background-color:#606060;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
+	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	padding: 5px 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color:#2B2B2B;
+	font-size: 11px;
 	font-weight:bold;
-	padding:8px 15px;
+	text-shadow:none;
+	text-decoration: none;
+	vertical-align: middle;
+	border:0px none;
 	right:15px;
 	top:12px;
-	-moz-border-radius:5px;
-	-moz-box-shadow:2px 2px 2px #999;
-	border:1px solid #eee;
-	cursor:pointer;
+	width:60px;
 }
 #buyNow:hover{
-	top:13px;
-	right:14px;
-	-moz-box-shadow:1px 1px 1px #999;
+	font-size: 11px;
+	font-weight:bold;
+	color:#2B2B2B;
+	background-color:#EFBD00;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
 }
 
 .auctionMenuItem{

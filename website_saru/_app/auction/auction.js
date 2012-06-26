@@ -1018,8 +1018,8 @@ WORK_AuctionWindow.prototype.create=function(ID)
 	ZA.createWindowPopup(0,"AuctionWindow",620,440,1,0);
 	var divData=document.getElementById("window_0");
 	var iTop=0;
-	var iLeftL=105;
-	var iLeftR=200;
+	var iLeftL=10
+	var iLeftR=110;
 	
 	var auctionID = ZA.getXML(ZU.sXML,"cards/card_"+ID+"/market_id");
 	
@@ -1091,6 +1091,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		}
 		
 		var auctionInfoContainer = ZA.createDiv(divAuctionData,"auctionInfoContainer")
+		iTop = 0;
 		
 		//Time Left
 		var val = ZA.createDiv(auctionInfoContainer,"","auctionTimeLeft","div");
@@ -1193,7 +1194,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		var val = ZA.createDiv(auctionInfoContainer,"","","div");
 		$(val).css({left:iLeftR,top:iTop});
 		$(val).html('<span class="txtBlue" style="font-size:16px;font-weight:bold;"><span id="currentBid">'+bidAmount+'</span> TCG</span>');
-		iTop+=28;
+		iTop+=128;
 		
 		var buyoutPrice = ZA.getXML(aXML,"details/price");
 		
@@ -1201,23 +1202,9 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		$(divActions).css({
 			left:10,
 			top:iTop,
-			width:345,
-			//height:133,
-			"-moz-border-radius":10,
-			"border-radius":10,
-			"box-shadow":"inset 0px 0px 3px #808080",
-			background:"#ccc",
-			border:"1px solid #999",
-			textShadow:"0px 1px 1px #eee",
-			
 		});
 		
-		var divBid = ZA.createDiv(divActions,"","placeBidHolder","div");
-		$(divBid).css({
-			position:"relative",
-			width:"100%",
-			height:60
-		});
+		var divBid = ZA.createDiv(divActions,"placeBidHolder","placeBidHolder","div");
 		
 		if(finished)
 		{
@@ -1255,21 +1242,16 @@ WORK_AuctionWindow.prototype.create=function(ID)
 				else
 				{
 					//Your Bid Label
-					var div = ZA.createDiv(divBid,"","","div");
-					$(div).css({
-						top:26,
-						left:20,
-						fontWeight:"bold"
-					});
-					$(div).html('Bid Amount:');
+					var div = ZA.createDiv(divBid,"bidLable","","div");
+					$(div).html('<span>Bid</span> Amount:');
 					//Bid Amount Textbox
 					var div = ZA.createDiv(divBid,"","","div");
 					$(div).css({
-						top:19,
+						top:16,
 						left:100
 					});
 					$(div).html(
-						'<input type="text" id="bidValue" value="'+yourBid+'" style="-moz-user-select:text;-moz-border-radius:5px;border-radius:5px;text-shadow:0px 1px 1px #eee;height:25px;box-shadow:inset 0px 0px 3px #808080;text-align:center;border:1px solid #d1d1d1;background:transparent;font-size:16px;font-weight:bold;" size="4" />'+
+						'<input type="text" id="bidValue" value="'+yourBid+'" size="4" />'+
 						'<div class="bidAdjuster" id="bidMore" style="top:0px;left:65px;">&#9650;</div>'+
 						'<div class="bidAdjuster bidAdjusterDisabled" id="bidLess" style="top:15px;left:65px;">&#9660;</div>'+
 						'<div class="txtBlue" style="left:84px;top:7px;font-weight:bold;">TCG</div>'
@@ -1361,22 +1343,22 @@ WORK_AuctionWindow.prototype.create=function(ID)
 							position:"relative",
 							height:13
 						});
-						$(divSplit).html('<div style="right:65px;">OR</div>');
+						$(divSplit).html('<div style="color:#777;text-shadow:none;right:46px;">OR</div>');
 						var divLine = ZA.createDiv(divSplit,"","","div");
 						$(divLine).css({
 							height:1,
 							top:6,
-							left:4,
-							width:250,
-							borderTop:"1px solid #e8e8e8",
+							left:20,
+							width:258,
+							borderTop:"1px solid #444",
 						});
 						var divLine = ZA.createDiv(divSplit,"","","div");
 						$(divLine).css({
 							height:1,
 							top:6,
-							right:4,
-							width:50,
-							borderTop:"1px solid #e8e8e8",
+							right:16,
+							width:18,
+							borderTop:"1px solid #444",
 						});
 						
 						//Buy Now
@@ -1386,22 +1368,17 @@ WORK_AuctionWindow.prototype.create=function(ID)
 							position:"relative",
 							width:"100%"
 						});
-						var div = ZA.createDiv(divBuy,"","","div");
-						$(div).css({
-							fontWeight:"bold",
-							top:20,
-							left:20
-						});
-						$(div).html('Buyout Price:');
+						var div = ZA.createDiv(divBuy,"buyOutBid","","div");
+						$(div).html('<span>Buyout</span> Price:');
 						//Price display
 						var div = ZA.createDiv(divBuy,"","","div");
 						$(div).css({
 							width:100,
-							left:100,
+							left:113,
 							top:20,
-							fontSize:16,
-							fontWeight:"bold",
-							color:"#cc0000"
+							fontSize:14,
+							fontWeight:"900",
+							color:"#F2C126"
 						});
 						$(div).html(
 							buyoutPrice+'&nbsp;TCG'
@@ -1484,15 +1461,13 @@ WORK_AuctionWindow.prototype.setBiddingHistory=function(aXML){
 		for(i=0; i<bidCount; i++)
 		{
 			if(i > 9){return false;}
-			if(i%2==1){rowbg='#d3d3d3';}else{rowbg='#e3e3e3';}
+			if(i%2==1){rowbg='#555';}else{rowbg='#666';}
 			var div = ZA.createDiv(divBiddingHistory,"","","div");
 			$(div).css({
 				position:"relative",
 				textAlign:"left",
 				background:rowbg,
-				padding:3,
-				"text-shadow":"0px 1px 1px #eee",
-				
+				padding:3
 			});
 			$(div).html(
 				'<table width="100%"><tr><td width="105">'+
