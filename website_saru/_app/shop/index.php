@@ -146,6 +146,12 @@ function openBooster($pre,$userID,$packID){
       SELECT {$userID}, {$iCardID}, usercardstatus_id, 1 
       FROM mytcg_usercardstatus
       WHERE description = 'Album'");
+	  
+	  $sql = "INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+		VALUES({$userID}, {$packID}, (SELECT max(usercard_id) from mytcg_usercard where card_id = {$iCardID} and user_id = {$userID}), {$iCardID}, 
+				now(), 'Card received in booster', 0, NULL, 'web',  NULL, 10)";
+	myqu($sql);
+	
     $card;
     if ($cards[$iCardID] == null) {
       $card = array();
@@ -193,7 +199,7 @@ function randomQualityID($aQuality,$iPackCount){
     }
   
     //GET PRODUCT DETAILS
-    $aDetails=myqu('SELECT P.product_id, PT.description AS ptype, P.description, P.premium, P.no_of_cards '
+    $aDetails=myqu('SELECT P.product_id, PT.description AS ptype, P.description, P.premium, P.price cred, P.no_of_cards '
       .'FROM mytcg_product P '
       .'INNER JOIN mytcg_producttype PT '
       .'ON P.producttype_id = PT.producttype_id '
@@ -202,12 +208,12 @@ function randomQualityID($aQuality,$iPackCount){
 
     //VALIDATE USER CREDITS
     //User credits
-    $iCredits=myqu("SELECT premium FROM mytcg_user WHERE user_id=".$userID);
-    $iCredits=$iCredits[0]['premium'];
+    $iCredits=myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, credits cred, premium prem FROM mytcg_user WHERE user_id=".$userID);
+    $iCred=$iCredits[0]['premium'];
     
     //Total order cost
     $itemCost = $aDetails[0]['premium'];
-    $bValid = ($iCredits >= $itemCost);
+    $bValid = ($iCred >= $itemCost);
     
     if ($bValid)
     {
@@ -219,19 +225,40 @@ function randomQualityID($aQuality,$iPackCount){
       elseif($aDetails[0]['ptype'] == "Booster"){
         $cards = openBooster($pre,$userID,$iProductID);
       }
-      
+      $iCreditsAfterPurchase=0;
       if(sizeof($cards) > 0){
         //PAY FOR ORDER ITEM * QUANTITY ORDERED   
-        $iCreditsAfterPurchase = $iCredits - $itemCost;
-        $aCreditsLeft=myqu("UPDATE {$pre}_user SET premium={$iCreditsAfterPurchase} WHERE user_id=".$userID);
-        $_SESSION["user"]["premium"] = $iCreditsAfterPurchase;
+		  $freemium = $iCredits[0]['cred'];
+		  $premium = $iCredits[0]['prem'];
+		  
+		  if($freemium > $itemCost){
+			$iCreditsAfterPurchase = $freemium - $itemCost;
+			$aCreditsLeft=myqu("UPDATE mytcg_user SET credits={$iCreditsAfterPurchase} WHERE user_id=".$userID);
+			$premiumCost = 0;
+			$freemiumCost = $itemCost*-1;
+			
+			$_SESSION["user"]["credits"] = $iCreditsAfterPurchase;
+		  }else{
+			$iCreditsAfterPurchase = $premium - ($itemCost-$freemium);
+			$aCreditsLeft=myqu("UPDATE mytcg_user SET credits=0,premium={$iCreditsAfterPurchase} WHERE user_id=".$userID);
+			$premiumCost = ($itemCost-$freemium)*-1;
+			$freemiumCost = $freemium*-1;
+			
+			$_SESSION["user"]["credits"] = 0;
+			$_SESSION["user"]["premium"] = $iCreditsAfterPurchase;
+		  }
         
         myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-          VALUES(".$userID.",'Spent ".$itemCost." premium on ".$aDetails[0]['description'].".', NOW(), ".(-1*$itemCost).")");
+        VALUES(".$userID.",'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', NOW(), ".(-1*$itemCost).")");
+		
+		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+		VALUES(".$userID.", ".$iProductID.", NULL, NULL, 
+				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", ".$freemiumCost.", ".$premiumCost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10)");
         
         $xml .=  '<response>'.$sCRLF;
         $xml .=  $sTab.'<value>1</value>'.$sCRLF;
         $xml .=  $sTab.'<credits>'.$iCreditsAfterPurchase.'</credits>'.$sCRLF;
+		$xml .=  $sTab.'<price>'.$itemCost.'</price>'.$sCRLF;
         $xml .=  $sTab.'<count>'.sizeof($cards).'</count>'.$sCRLF;
         $xml .=  $sTab.'<cards>'.$sCRLF;
         $iCount = 0;
@@ -275,8 +302,7 @@ function randomQualityID($aQuality,$iPackCount){
     		.'A.background_position, B.description AS imageserver '
             .'FROM mytcg_product A '
             .'INNER JOIN mytcg_imageserver B '
-            .'ON A.full_imageserver_id=B.imageserver_id '
-            .'WHERE A.product_id < 12 ';
+            .'ON A.full_imageserver_id=B.imageserver_id ';
             
     $aProducts=myqu($query);
     $iCount = 0;

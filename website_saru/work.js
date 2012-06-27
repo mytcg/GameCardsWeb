@@ -27,7 +27,7 @@ function objPlayerBar(){
 		var divBlah = $(".left_banner_info").get(0);
 		objBar.divCredits = ZA.createDiv(divBlah,"","","div");
     	$(objBar.divCredits).css({zIndex:2,width:210,height:19,bottom:12});
-    	$(objBar.divCredits).html("<span>YOU </span>HAVE: <span id='spanCreditsID' class='txtRed'>"+objBar.iCredits+"</span><span class='txtRed'> </span>credits</div");
+    	$(objBar.divCredits).html("<span>YOU </span>HAVE <span id='spanCreditsID' class='txtBlue' style='font-size:12px'>"+objBar.iCredits+"</span><span class='txtRed'> </span>credits</div");
 	}
     objBar.spanCredits = document.getElementById("spanCreditsID");
     //$(objBar.divCredits).draggable();
@@ -760,6 +760,15 @@ WORK_App.prototype.removeLoader=function(id)
       $("#loader_overlay_"+id).remove();
    }
 }
+
+WORK_App.prototype.updateCreditView=function(iValue) {
+	var span_credit = document.getElementById('spanCreditsID').innerHTML;
+	var iCredits = parseInt(span_credit);
+	var iVal = parseInt(iValue);
+	var iDiff = iCredits - iVal;
+	$("#spanCreditsID").empty();
+	$("#spanCreditsID").append(iDiff);
+};
 
 
 //create popup window
@@ -1944,6 +1953,8 @@ WORK_Login.prototype.create=function(){
 	var iDocHeight=document.documentElement.scrollHeight;
 	ZA.createWindowPopup(0,"Login",350,240,1,0);
 	var divData=document.getElementById("window_0");
+	//$(divData).css({"background":"-webkit-linear-gradient(top,#DAD8D9,#8C8C8C)","background":"-moz-linear-gradient(top,#DAD8D9,#8C8C8C)","background":"-ms-linear-gradient(top,#DAD8D9,#8C8C8C)","background":"-o-linear-gradient(top,#DAD8D9,#8C8C8C)","background-color":"#DAD8D9"});
+	$(divData).css({"border-radius":"9px"});
 	
 	var divInput=ZE.createInput(divData,5,25,100,30,"Email","loginusername");
 	divInput.focus();
@@ -1969,13 +1980,24 @@ WORK_Login.prototype.create=function(){
 	
 	//Login response area
 	var loginResponse=ZA.createDiv(divData,"","loginResponse","div");
-  $(loginResponse).css({color:"#C00",top : '35px',left : '220px',width : '100px',height : '50px'});
+  $(loginResponse).css({color:"#F2C126",top : '35px',left : '220px',width : '100px',height : '50px'});
 		
 	var divLogin = ZA.createDiv(divData,"cmdButton","","div");
     $(divLogin).html('Login');
     $(divLogin).css({left:275,top:185});
     $(divLogin).click(function(){
-      ZA.aWindowLogin.clickLogin()
+		
+		var divUserName=document.getElementById("loginusername");
+		var sUserName=divUserName.value.trim();
+		var divPassword=document.getElementById("loginpassword");
+		var sPassword=divPassword.value.trim();
+		if (sUserName.length <= 0) {
+			$("#loginResponse").html("Please enter your email address");
+		} else if (sPassword.length <= 0) {
+			$("#loginResponse").html("Please enter your password");
+		}else {
+			ZA.aWindowLogin.clickLogin()
+		}
     });
 	
 	var divCancel = ZA.createDiv(divData,"cmdButton","","div");
