@@ -170,8 +170,9 @@ function getCardCategories($iCatID){
 
 
 function sendEmail($sEmailAddress,$sFromEmailAddress,$sSubject,$sMessage){
-$sHeaders='From: '.$sFromEmailAddress;
-mail($sEmailAddress,$sSubject,$sMessage,$sHeaders);
+	$sHeaders='From: '.$sFromEmailAddress;
+	mail($sEmailAddress,$sSubject,$sMessage,$sHeaders);
+	return;
 }
 
 

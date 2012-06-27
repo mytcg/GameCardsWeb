@@ -59,10 +59,10 @@ if($_GET['verify'] == 1)
   		$cps = $cpsQuery[0]['completion_process_stage'];
   		$credits = $cpsQuery[0]['credits'];
   		if($cps=='4'){
-    		myqu("UPDATE ".$pre."_user SET completion_process_stage = 6, credits=credits WHERE user_id = ".$userID);
+    		myqu("UPDATE ".$pre."_user SET completion_process_stage = 6, credits=credits+10 WHERE user_id = ".$userID);
   			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$userID.", 'Received 10 credits for verifying email address', NOW(), 10)");
         echo $sTab."<process>6</process>".$sCRLF;
-    		echo $sTab."<credits>".($credits)."</credits>".$sCRLF;
+    		echo $sTab."<credits>".($credits + 10)."</credits>".$sCRLF;
   		}
    }
   	else{
@@ -75,12 +75,12 @@ if($_GET['verify'] == 1)
   
 if($_GET['sendverificationemail'] == 1)
 {
-  $aUser = myqu("SELECT * FROM ".$pre."_user WHERE user_id = ".$userID);
+  $aUser = myqu("SELECT * FROM mytcg_user WHERE user_id = ".$userID);
   $sEmail = $aUser[0]['email_address'];
-$sEmail = 'test@email.com';
+  
   $eCode = substr(base64_encode($sEmail), -10);
-  $sTo = 'info@mytcg.net';
-  $sSubject = 'mytcg Email Verification';
+  $sTo = 'support@xbarsport.com';
+  $sSubject = 'Password Verification - SA Rugby Cards Web Application';
   $sMessage = <<<STR
 Dear Game Card User,
 
@@ -95,7 +95,7 @@ If you did not request this email, please ignore it.
 
 Kind regards,
 
-The mytcg Team
+The Mytcg Team
 STR;
 
   //return xml
@@ -112,6 +112,8 @@ STR;
 }
   
 if($_GET['save'] == 1){
+	
+	//Get old email
     $aUser = myqu("SELECT * FROM ".$pre."_user WHERE user_id = ".$userID);
     $aUser = $aUser[0];
     echo "<profile>".$sCRLF;
@@ -152,7 +154,7 @@ if($_GET['save'] == 1){
       $iMod=($userID % 10)+1;
       $sSalt=substr(md5($userID),$iMod,10);
       $sPassword = $sSalt.md5($password);
-      myqu("UPDATE ".$pre."_user SET password = '".$sPassword."' WHERE user_id = ".$userID);
+      myqu("UPDATE mytcg_user SET password = '".$sPassword."' WHERE user_id = ".$userID);
     }
     
     //EMAIL ADDRESS

@@ -107,7 +107,6 @@ function COMPONENT_UserProfile(){
       var inpUsername = ZA.createDiv(divLeft,"profileInput","zupUsername","input");
 		$(inpUsername)
 		.attr('readonly','readonly');
-	
       
       $(divLeft).append("<br /><br /><b>Change Password</b><br />");
       var inpPassword = ZA.createDiv(divLeft,"profileInput","zupPassword","input");
@@ -118,7 +117,7 @@ function COMPONENT_UserProfile(){
       $(divLeft).append("<br /><br /><b>Verify your email address</b><br />Click the send email button. Check your inbox. Get Verification code. Enter the code below and hit enter.<br />");
       var divVerify = ZA.createDiv(divLeft,"cmdButton","","div");
       $(divVerify).html('Send Email');
-      $(divVerify).css({bottom:125,left:15});
+      $(divVerify).css({bottom:90,left:15});
       $(divVerify).click(function(){
         ZA.callAjax("_app/userprofile/?sendverificationemail=1",function(xml){
           $("#zupResponse").html("Verification Sent.");
@@ -127,7 +126,7 @@ function COMPONENT_UserProfile(){
       
       var btnVerify = ZA.createDiv(divLeft,"cmdButton","","div");
       $(btnVerify).html('Verify code');
-      $(btnVerify).css({bottom:125,left:102});
+      $(btnVerify).css({bottom:90,left:102});
       $(btnVerify).click(function(){
         ZA.callAjax("_app/userprofile/?verify=1",function(xml){
             var sVerified = ZA.getXML(xml,"verified");
@@ -154,50 +153,49 @@ function COMPONENT_UserProfile(){
     };
     
     COMPONENT_UserProfile.prototype.drawRight=function(divRight){
-    	
+      
       $(divRight).append("<b><span class='txtBlue'>Personal Details</span></b><br />Need more creds, Get some for every one you enter and a bonus for completing all of them.<br /><br />");
       
-	      $(divRight).append("<b>Name</b><br />");
-	      var inpName = ZA.createDiv(divRight,"profileInput","zupName","input");
-	      var chkName = ZA.createDiv(divRight,"chkRed","chkName","div");
-	      $(chkName).css({top:89,left:262});
-	      
-	      	
-	      
-	      $(divRight).append("<br /><br /><b>Age</b><br />");
-	      var inpAge = ZA.createDiv(divRight,"profileInput","zupAge","input");
-	      var chkAge = ZA.createDiv(divRight,"chkRed","chkAge","div");
-	      $(chkAge).css({top:133,left:262});
-	      
-	      $(divRight).append("<br /><br /><b>Own Car</b><br />");
-	      var inpOwnCar = ZA.createDiv(divRight,"profileInput","zupOwnCar","input");
-	      var chkOwnCar = ZA.createDiv(divRight,"chkRed","chkOwnCar","div");
-	      $(chkOwnCar).css({top:176,left:262});
-	      
-	      $(divRight).append("<br /><br /><b>Aspirational Car</b><br />");
-	      var inpAspirationalCar = ZA.createDiv(divRight,"profileInput","zupAspirationalCar","input");
-	      var chkAspirationalCar = ZA.createDiv(divRight,"chkRed","chkAspirationalCar","div");
-	      $(chkAspirationalCar).css({top:220,left:262});
-	      
-	      $(divRight).append("<br /><br /><b>Gender</b><br />");
-	      var inpGender = ZA.createDiv(divRight,"profileInput","zupGender","input");
-	      var chkGender = ZA.createDiv(divRight,"chkRed","chkGender","div");
-	      $(chkGender).css({top:263,left:262});
-	      
-	      $(divRight).append("<br /><br /><b>Location</b><br />");
-	      var inpLocation = ZA.createDiv(divRight,"profileInput","zupLocation","input");
-	      var chkLocation = ZA.createDiv(divRight,"chkRed","chkLocation","div");
-	      $(chkLocation).css({top:306,left:262});
-	      
-	      $(divRight).append("<br /><br /><b>Cell Number</b><br />");
-	      var inpLocation = ZA.createDiv(divRight,"profileInput","zupCell","input");
-	      var chkLocation = ZA.createDiv(divRight,"chkRed","chkLocation","div");
-	      $(chkLocation).css({top:350,left:262});
-	      
-	      $(divRight).append("<br /><br /><b>Email</b><br />");
-	      var inpLocation = ZA.createDiv(divRight,"profileInput","zupEmail","input");
-	      var chkLocation = ZA.createDiv(divRight,"chkRed","chkLocation","div");
-	      $(chkLocation).css({top:392,left:262});
+      
+      $(divRight).append("<b>Name</b><br />");
+      var inpName = ZA.createDiv(divRight,"profileInput","zupName","input");
+      var chkName = ZA.createDiv(divRight,"chkRed","chkName","div");
+      $(chkName).css({top:89,left:262});
+      
+      $(divRight).append("<br /><br /><b>Age</b><br />");
+      var inpAge = ZA.createDiv(divRight,"profileInput","zupAge","input");
+      var chkAge = ZA.createDiv(divRight,"chkRed","chkAge","div");
+      $(chkAge).css({top:133,left:262});
+      
+      $(divRight).append("<br /><br /><b>Own Car</b><br />");
+      var inpOwnCar = ZA.createDiv(divRight,"profileInput","zupOwnCar","input");
+      var chkOwnCar = ZA.createDiv(divRight,"chkRed","chkOwnCar","div");
+      $(chkOwnCar).css({top:176,left:262});
+      
+      $(divRight).append("<br /><br /><b>Aspirational Car</b><br />");
+      var inpAspirationalCar = ZA.createDiv(divRight,"profileInput","zupAspirationalCar","input");
+      var chkAspirationalCar = ZA.createDiv(divRight,"chkRed","chkAspirationalCar","div");
+      $(chkAspirationalCar).css({top:220,left:262});
+      
+      $(divRight).append("<br /><br /><b>Gender</b><br />");
+      var inpGender = ZA.createDiv(divRight,"profileInput","zupGender","input");
+      var chkGender = ZA.createDiv(divRight,"chkRed","chkGender","div");
+      $(chkGender).css({top:263,left:262});
+      
+      $(divRight).append("<br /><br /><b>Location</b><br />");
+      var inpLocation = ZA.createDiv(divRight,"profileInput","zupLocation","input");
+      var chkLocation = ZA.createDiv(divRight,"chkRed","chkLocation","div");
+      $(chkLocation).css({top:306,left:262});
+      
+      $(divRight).append("<br /><br /><b>Cell Number</b><br />");
+      var inpLocation = ZA.createDiv(divRight,"profileInput","zupCell","input");
+      var chkLocation = ZA.createDiv(divRight,"chkRed","chkLocation","div");
+      $(chkLocation).css({top:350,left:262});
+      
+      $(divRight).append("<br /><br /><b>Email</b><br />");
+      var inpLocation = ZA.createDiv(divRight,"profileInput","zupEmail","input");
+      var chkLocation = ZA.createDiv(divRight,"chkRed","chkLocation","div");
+      $(chkLocation).css({top:392,left:262});
     };
   }
 };

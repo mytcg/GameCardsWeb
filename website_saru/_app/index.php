@@ -98,10 +98,10 @@ if (intval($_GET["login"])==1){
 	$sPassword=$_GET["password"];
 	$aConf=myqu(
 		'SELECT category, keyname, keyvalue '
-		.'FROM mytcg_system'
+		.'FROM '.$Conf["database"]["table_prefix"].'_system'
 	);
 	$sql = "SELECT user_id, username, password, date_last_visit,mobile_date_last_visit, premium, xp, freebie, completion_process_stage "
-			."FROM mytcg_user "
+			."FROM ".$Conf["database"]["table_prefix"]."_user "
 			."WHERE username='".$sUsername."' "
 			."AND is_active='1'";
 	$aValidUser=myqu($sql);
@@ -212,7 +212,7 @@ if (intval($_GET['init'])==1){
 		$cps = $aUser['completion_process_stage'];
     $sMobileLastDate = $aUser['mobile_date_last_visit'];
     if(($cps=='6')&&($sMobileLastDate!="")){
-      myqu("UPDATE ".$pre."_user SET completion_process_stage = 7 WHERE user_id = ".$userID);
+      myqu("UPDATE mytcg_user SET completion_process_stage = 7 WHERE user_id = ".$userID);
       //myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val) VALUES (".$userID.", 'Received 10 premium for verifying email address', NOW(), 10)");
       $cps = "7";
     }
