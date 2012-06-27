@@ -43,7 +43,7 @@ function WORK_Shop(){
       var divWin = ZA.createDiv(divBody,"","","div");
       $(divWin).css({ border:"1px solid #FFF",opacity:0.7,color:"#FFF",
                       paddingTop:10,paddingLeft:35,top:467,left:(window.innerWidth/2)-300,width:565,
-                      height:20,backgroundColor:"#000",zIndex:200,fontSize:11,fontWeight:"bold",textAlign:"left"
+                      height:20,backgroundColor:"#404040",zIndex:200,fontSize:11,fontWeight:"bold",textAlign:"left"
                     });
       $(divWin).html(message);
       var divCheckIcon = ZA.createDiv(divWin,"","","div");
@@ -90,16 +90,16 @@ function WORK_Shop(){
         $(divLeft).attr('title','View potential cards')
         .click(function(){
         	var index = $(this).attr('id');
-        	ZA.addLoader($(this).parent(),101,"EFEFEF");
+        	//ZA.addLoader($(this).parent(),101,"EFEFEF");
         	ZA.callAjax("_app/shop/?getcards=1&pack="+ZA.getXML(ZS.sXML,"pack_"+index+"/id"),function(xml){
-        		ZA.removeLoader(101);
+        		//ZA.removeLoader(101);
         		ZS.viewPackCards(xml);
         	});
         });
 
         var divTop = ZA.createDiv(itemBlock,"","","div");
         $(divTop).css({ lineHeight:1.5,textAlign:"left",paddingLeft:6,top:10,left:92,width:127,height:58});
-        $(divTop).html("<b><span class='txtGreen' style='font-size:12px;'>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/desc")+"</span><br /><span class=\"txtBlue\" style=\"font-size:16px;\">"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/price")+" TCG</span></b>");
+        $(divTop).html("<b><span class='txtGreen' style='font-size:12px;'>"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/desc")+"</span><br /><span class=\"txtBlue\" style=\"font-size:12px;\">"+ZA.getXML(ZS.sXML,"pack_"+itemCount+"/price")+" TCG</span></b>");
         
         var divBuy = ZA.createDiv(itemBlock,"cmdButton","","div");
         $(divBuy).attr('alt',itemCount.toString());
@@ -128,7 +128,10 @@ function WORK_Shop(){
         var divData=ZA.createDiv(divWindow,"cardsInShop");
         $(divData).css({
           width:"100%",
-          height:"100%"
+          height:"100%",
+		  "background-color":"#DAD8D9",
+		  color:"#404040",
+		  "border-radius":"9px"
         });
         
         //pack title
@@ -137,9 +140,8 @@ function WORK_Shop(){
         	textAlign:"left",
         	left:15,
         	top:18,
-        	fontSize:16,
-        	fontWeight:"bold",
-        	"text-shadow":"1px 1px 1px #fff"
+        	fontSize:12,
+        	fontWeight:"bold"
         });
         $(title).html(ZA.getXML(xml,"desc"));
         
@@ -149,7 +151,7 @@ function WORK_Shop(){
         	textAlign:"right",
         	right:15,
         	top:18,
-        	fontSize:16,
+        	fontSize:12,
         	fontWeight:"bold",
         	color:"#F2C126",
         });
@@ -179,7 +181,7 @@ function WORK_Shop(){
         	left:15,
         	width:250,
         	bottom:20,
-        	fontSize:16,
+        	fontSize:12,
         	fontWeight:"bold",
         	color:"#666"
         });
@@ -193,9 +195,13 @@ function WORK_Shop(){
         	width:420,
         	height:400,
         	paddingBottom:10,
-        	border:"1px solid #222",
-        	background:"url(_site/line.gif) repeat",
-        	"-moz-border-radius":"5px"
+        	"box-shadow":"inset 0px 0px 5px #666",
+        	/*background:"url(_site/line.gif) repeat",*/
+        	"border-radius":"5px",
+			"background-color":"#DAD8D9",
+			"font-family":"Arial Black, Arial",
+			"font-weight":"900",
+			color:"#404040"
         });
     	var divCards = ZA.createDiv(divCardsHolder);
     	$(divCards).css({
@@ -219,19 +225,20 @@ function WORK_Shop(){
     		var thumb = ZA.getXML(xml,"cards/card_"+i+"/path")+'cards/'+ZA.getXML(xml,"cards/card_"+i+"/image")+'_web.jpg';
     		$(divCard).html(
     			'<img src="'+thumb+'" style="border-right:1px solid #000;border-bottom:1px solid #000;" />'+
-    			'<div style="width:100%;height:24px;overflow:hidden;color:#000;padding-top:1px;">'+description+'</div>'
+    			'<div style="width:100%;height:24px;overflow:hidden;color:#404040;padding-top:1px;">'+description+'</div>'
     		);
     		var possess = parseInt(ZA.getXML(xml,"cards/card_"+i+"/possess"));
     		if(possess > 0){
     			var own = ZA.createDiv(divCard);
     			$(own).attr('title','You already own this card').css({
-    				background:"url(_site/all.png) -105px -40px no-repeat",
-					color:"#CC0000",
+    				background:"url(_site/all.png) -458px -41px no-repeat",
+					color:"#F2C126",
 					"font-weight":"bold",
-    				width:21,
-					height:17,
-    				top:5,
-    				right:3
+    				width:22,
+					height:34,
+    				top:-7,
+    				right:-11,
+					"padding-top":2
     			});
     			if(possess > 0){
     				$(own).html(possess.toString());
@@ -417,12 +424,12 @@ function WORK_Shop(){
 
     WORK_Shop.prototype.buyItem=function(itemID,index){
       if (!ZA.sUsername) {
-        ZA.callAjax("_app/shop/?buyItem="+itemID,function(xml){ ZS.buyResponse(xml); },2);
+        ZS.buyResponse("<response><value>0</value></response>");
       }else{
-        var bConfirm = confirm("Buy the "+ZA.getXML(ZS.sXML,"pack_"+index+"/desc")+" for "+ZA.getXML(ZS.sXML,"pack_"+index+"/price")+" TCG credits?");
-        if(bConfirm){
+        /*var bConfirm = confirm("Buy the "+ZA.getXML(ZS.sXML,"pack_"+index+"/desc")+" for "+ZA.getXML(ZS.sXML,"pack_"+index+"/price")+" TCG credits?");
+        if(bConfirm){*/
           ZA.callAjax("_app/shop/?buyItem="+itemID,function(xml){ ZS.buyResponse(xml); },2);
-        }
+        //}
       }
     };
 
@@ -443,26 +450,37 @@ function WORK_Shop(){
           //reload card comparison
           //ZA.callAjax(ZC.sURL+"?init=1",function(xml){ZC.init(xml);});
           //Booster Purchased Display
+		  
+		  ZA.updateCreditView(parseInt(ZA.getXML(xml,"price")));
           ZA.createWindowPopup(-1,"",690,483,1,0);
           var divWindow=document.getElementById("window_-1");
           var divData=ZA.createDiv(divWindow);
           $(divData).css({
             width:"100%",
             height:"100%",
-            padding:5
+            padding:5,
+			"background-color":"#DAD8D9",
+			color:"#404040",
+			"border-radius":"9px"
           });
           var divMemo=ZA.createDiv(divData);
           $(divMemo).css({textAlign:"left",position:"absolute",left:"10px",top:"10px"});
           $(divMemo).html('<strong>Booster Purchase Successful</strong><br />You have received the following cards...');
           var divCards = ZA.createDiv(divData);
           $(divCards).css({
-          	background:"url(_site/line.gif) repeat",
+          	/*background:"url(_site/line.gif) repeat",*/
           	top:45,
           	left:10,
           	width:380,
           	height:380,
           	border:"5px solid #999",
-          	"-moz-border-radius":"5px"
+          	"-moz-border-radius":"5px",
+			"box-shadow":"inset 0px 0px 5px #666",
+			"border-radius":"5px",
+			"background-color":"#DAD8D9",
+			"font-family":"Arial Black, Arial",
+			"font-weight":"900",
+			color:"#404040"
           });
           var iCount = ZA.getXML(xml,"count");
           var iItemCount = 0;
@@ -509,8 +527,7 @@ function WORK_Shop(){
               	paddingTop:1,
               	height:24,
               	overflow:"hidden",
-              	textAlign:"center",
-              	color:"#FFF"
+              	textAlign:"center"
               });
               $(cardName).html(description);
             }
