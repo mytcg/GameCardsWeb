@@ -1055,7 +1055,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 		var owner = ZA.formatUsername(ZA.getXML(aXML,"details/owner"));
 		var mine = ZA.getXML(aXML,"details/mine");
 		if(mine == '1'){
-			owner = '<span style="color:#cc0000;font-weight:bold;">You</span>';
+			owner = '<span style="font-size:16px;color:#F2C126;font-weight:900;">You</span>';
 		}
 		$(val).html('Seller: '+owner);
 		iTop+=25;
@@ -1232,7 +1232,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 						$(lbl).html('Buyout Price:');
 						var val = ZA.createDiv(divAuctionData,"","","div");
 						$(val).css({left:iLeftR,top:iTop-5});
-						$(val).html('<span style="font-size:16px;font-weight:bold;color:#cc0000;">'+buyoutPrice+' TCG</span>');
+						$(val).html('<span style="font-size:16px;font-weight:900;color:#F2C126;">'+buyoutPrice+' TCG</span>');
 						iTop+=15;
 					}
 					

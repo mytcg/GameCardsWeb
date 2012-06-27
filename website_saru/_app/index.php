@@ -219,7 +219,7 @@ if (intval($_GET['init'])==1){
 		
 		echo '" />'.$sCRLF;
 		echo $sTab.'<username val="'.$_SESSION['user']['username'].'" />'.$sCRLF;
-		echo $sTab.'<credit val="'.$aUser['premium'].'" />'.$sCRLF;
+		echo $sTab.'<credit val="'.$aUser['credits'].'" />'.$sCRLF;
     echo $sTab.'<process val="'.$cps.'" />'.$sCRLF;
     	echo $sTab.'<xp val="'.$aUser['xp'].'" />'.$sCRLF;
     	$sLastDate = $aUser['date_last_visit'];

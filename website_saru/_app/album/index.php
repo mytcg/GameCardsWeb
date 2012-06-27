@@ -296,7 +296,7 @@ if(isset($_GET['auction']) && $_GET['auction']=='1')
 {
 	$card_id = $_GET['card_id'];
 	$minimum_bid = $_GET['minimum_bid'];
-	$price = $_GET['premium'];
+	$price = $_GET['price'];
 	$date_expired = $_GET['date_expired'].' 23:59:59';
 	
 	//Get first available usercard
@@ -318,7 +318,7 @@ if(isset($_GET['auction']) && $_GET['auction']=='1')
 				`usercard_id`,
 				`date_created`,
 				`date_expired`,
-				`premium`,
+				`price`,
 				`minimum_bid`,
 				`user_id`
 			) VALUES (
@@ -333,38 +333,62 @@ if(isset($_GET['auction']) && $_GET['auction']=='1')
 			);";
 			
 	echo '<auction>'.$sCRLF;
+	
+	$auctionCost = intval(intval($minimum_bid) * 0.1);
+	if(intval($price) > 0){
+		$auctionCost = intval(intval($price) * 0.1);
+	}
+	$auctionCost = ($auctionCost < 5) ? 5 : $auctionCost;
+	$userQuery = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium FROM mytcg_user WHERE user_id=".$userID);
+	$userCredits = $userQuery[0]['premium'];
+	
 	if($market_id = myqu($sql))
 	{
 		//Update usercard status
-		$sql = "UPDATE ".$pre."_usercard SET usercardstatus_id=2, deck_id=NULL WHERE usercard_id=".$usercard_id." AND user_id=".$userID.";";
-		myqu($sql);
-		
-		//Subtract auction creation cost from user
-		$auctionCost = intval(intval($minimum_bid) * 0.1);
-		if(intval($price) > 0){
-			$auctionCost = intval(intval($price) * 0.1);
-		}
-		$auctionCost = ($auctionCost < 5) ? 5 : $auctionCost;
-		myqu("UPDATE mytcg_user SET premium = premium-".$auctionCost." WHERE user_id = ".$userID);
-		
-		//Add transactionlog entry
-		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-				VALUES(".$userID.", 'Spent ".$auctionCost." premium on creating auction for ".$uc[0]['description']."', NOW(), -".$auctionCost.")");
-		
-		//Get user premium
-		$userQuery = myqu("SELECT premium FROM ".$pre."_user WHERE user_id=".$userID);
-		$userCredits = $userQuery[0]['premium'];
-		
-		//Success
-		echo $sTab.'<result val="success" />'.$sCRLF;
-		echo $sTab.'<cost val="'.$auctionCost.'" />'.$sCRLF;
-		echo $sTab.'<credits val="'.$userCredits.'" />'.$sCRLF;
+			$sql = "UPDATE mytcg_usercard SET usercardstatus_id=2, deck_id=NULL WHERE usercard_id=".$usercard_id." AND user_id=".$userID.";";
+			myqu($sql);
+			
+			//Subtract auction creation cost from user
+			$auctionCost = 0;//intval(intval($minimum_bid) * 0.1);
+			//if(intval($price) > 0){
+				//$auctionCost = intval(intval($price) * 0.1);
+			//}
+			//$auctionCost = ($auctionCost < 5) ? 5 : $auctionCost;
+			//myqu("UPDATE mytcg_user SET premium = premium-".$auctionCost." WHERE user_id = ".$userID);
+			
+			//Add transactionlog entry
+			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
+					VALUES(".$userID.", 'Created an auction for ".$uc[0]['description']."', NOW(), 0)");
+			
+			$sql = "INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+					VALUES(".$userID.", NULL, ".$usercard_id.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercard_id."), 
+							now(), 'Created an auction for ".$uc[0]['description']."', 0, NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 6)";
+			myqu($sql);
+			
+			//Get user credits
+			$userQuery = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium FROM mytcg_user WHERE user_id=".$userID);
+			$userCredits = $userQuery[0]['premium'];
+			
+			$sql = "SELECT COUNT(usercard_id) AS counted
+				FROM mytcg_usercard UC 
+				WHERE user_id=".$userID." 
+				AND card_id=".$card_id."
+				AND usercardstatus_id=1
+				GROUP BY card_id";
+			$cardcount = myqu($sql);
+			$cardcount = $cardcount[0]['counted'];
+			
+			//Success
+			echo $sTab.'<result val="success" />'.$sCRLF;
+			echo $sTab.'<cost val="'.$auctionCost.'" />'.$sCRLF;
+			echo $sTab.'<count val="'.$cardcount.'" />'.$sCRLF;
+			echo $sTab.'<credits val="'.$userCredits.'" />'.$sCRLF;
 	}
-	else
-	{
-		//Failed to create auction
-		echo $sTab.'<result val="fail" />'.$sCRLF;
-	}
+	// else
+	// {
+		// //Failed to create auction
+		// echo $sTab.'<result val="fail" />'.$sCRLF;
+	// }
 	echo '</auction>';
 }
 

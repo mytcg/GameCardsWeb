@@ -1006,7 +1006,6 @@ WORK_App.prototype.init=function(sXMLInit){
 	var xbarlogo = ZA.createDiv(divFooterCon,"xbarlogo");
 	var mytcglogo = ZA.createDiv(divFooterCon,"mytcglogo");
 	
-	
 	ZM.createTop();
 	// ZM.createSocial();
 	ZA.oPlayerBar = new objPlayerBar;

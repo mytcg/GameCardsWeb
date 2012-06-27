@@ -23,7 +23,7 @@ if (intval($_GET['init']==1))
 				WHERE M.markettype_id = 1 AND M.marketstatus_id = 1
 				ORDER BY M.date_expired ASC, M.date_created ASC, M.market_id ASC;";
 		//get user credits
-		$userQuery = myqu("SELECT premium FROM ".$pre."_user WHERE user_id=".$userID);
+		$userQuery = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, ifnull(premium,0) prem, ifnull(credits,0) cred FROM mytcg_user WHERE user_id = ".$userID);
 		$userCredits = $userQuery[0]['premium'];
 	}
 	else{
@@ -353,9 +353,11 @@ if (isset($_GET['auction']))
 		$bid_amount = $_GET['placebid'];
 		
 		//get user's available premium
-		$query = myqu("SELECT premium FROM ".$pre."_user WHERE user_id = ".$userID);
+		$query = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, ifnull(premium,0) prem, ifnull(credits,0) cred FROM mytcg_user WHERE user_id = ".$userID);
 		$available_credits = $query[0]['premium'];
-		
+		$tcg_credits = $query[0]['cred'];
+		$tcg_premium = $query[0]['prem'];
+
 		if($available_credits < $bid_amount)
 		{
 			//user has insuffient credits to place the bid
@@ -367,52 +369,99 @@ if (isset($_GET['auction']))
 		}
 		else
 		{
-		  $sql = "SELECT C.description
-      FROM ".$pre."_market M
-      LEFT JOIN ".$pre."_usercard UC ON (M.usercard_id = UC.usercard_id)
-      LEFT JOIN ".$pre."_card C ON (UC.card_id = C.card_id)
-      WHERE M.market_id = ".$market_id."
-      LIMIT 1";
-      $carName = myqu($sql);
-      $carName = $carName[0]['description'];
-    
+		  $sql = "SELECT C.description, M.user_id
+	      FROM mytcg_market M
+	      LEFT JOIN mytcg_usercard UC ON (M.usercard_id = UC.usercard_id)
+	      LEFT JOIN mytcg_card C ON (UC.card_id = C.card_id)
+	      WHERE M.market_id = ".$market_id."
+	      LIMIT 1";
+		  
+	      $carName = myqu($sql);
+		  $selectId = $carName[0]['user_id'];
+	      $carName = $carName[0]['description'];
+		
+			if ($selectId == $userID) {
+				echo '<result>'.$sCRLF;
+				echo $sTab.'<value val="0" />'.$sCRLF;
+				echo $sTab.'<message val="Oops, this is your own auction, why not go bid on another auction?" />'.$sCRLF;
+				echo '</result>'.$sCRLF;
+				exit;
+			}
 			//give premium back to current highest bidder
-			$sql = "SELECT MC.user_id, MC.price
-					FROM ".$pre."_market M
-					JOIN ".$pre."_marketcard MC USING (market_id)
+			$sql = "SELECT MC.user_id, MC.price, MC.premium 
+					FROM mytcg_market M
+					JOIN mytcg_marketcard MC USING (market_id)
 					WHERE M.market_id = ".$market_id."
-					ORDER BY MC.price DESC
+					ORDER BY MC.marketcard_id DESC
 					LIMIT 1;";
 			$lastBidderQuery = myqu($sql);
 			if(sizeof($lastBidderQuery) > 0){
 				foreach($lastBidderQuery as $lastBidder){
-					myqu("UPDATE mytcg_user SET premium = premium+".$lastBidder['price']." WHERE user_id = ".$lastBidder['user_id']);
+					$total = $lastBidder['price'] + $lastBidder['premium'];
+					if ($bid_amount <= $total) {
+						//user has insuffient credits to place the bid
+						echo '<result>'.$sCRLF;
+						echo $sTab.'<value val="0" />'.$sCRLF;
+						echo $sTab.'<message val="Oops, the bid you tried to place was less than the current highest bidder. You need to bid more than '.$lastBidder['price'].'." />'.$sCRLF;
+						echo '</result>'.$sCRLF;
+						exit;
+					}
+					
+					if ($lastBidder['user_id'] == $userID) {
+						echo '<result>'.$sCRLF;
+						echo $sTab.'<value val="0" />'.$sCRLF;
+						echo $sTab.'<message val="You are already the highest bidder, no reason to spend more credits." />'.$sCRLF;
+						echo '</result>'.$sCRLF;
+						exit;
+					}
+					
+					myqu("UPDATE mytcg_user SET premium = premium+".$lastBidder['premium'].", credits = credits+".$lastBidder['price']." WHERE user_id = ".$lastBidder['user_id']);
+				
 					//add transaction log
 					myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-							VALUES(".$lastBidder['user_id'].", 'Refunded with ".$lastBidder['price']." premium for losing highest bid on ".$carName."', NOW(), ".$lastBidder['price'].")");
+							VALUES(".$lastBidder['user_id'].", 'Refunded with ".$total." credits for losing highest bid on ".$carName."', NOW(), ".$total.")");
+							
+					myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+							VALUES(".$lastBidder['user_id'].", NULL, (SELECT usercard_id FROM mytcg_market WHERE market_id = ".$market_id."), (SELECT card_id FROM mytcg_usercard a, mytcg_market b WHERE a.usercard_id = b.usercard_id AND market_id = ".$market_id."), 
+							now(), 'Refunded with ".$total." credits for losing highest bid on ".$carName."', ".$total.", ".$lastBidder['price'].", ".$lastBidder['premium'].", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$lastBidder['user_id']."), 8)");
 				}
 			}
 			
-			//subtract premium from this user
-			myqu("UPDATE mytcg_user SET premium = premium-".$bid_amount." WHERE user_id = ".$userID);
+			$freemium_cost = 0;
+			$premium_cost = 0;
+			
+			if ($tcg_credits <= $bid_amount) {
+				$freemium_cost = $tcg_credits;
+				
+				$remainder = $bid_amount - $tcg_credits;
+				$tcg_premium = $tcg_premium - $remainder;
+				$tcg_credits = 0;
+				
+				$premium_cost = $remainder;
+			} else {
+				$tcg_credits = $tcg_credits - $bid_amount;
+				$freemium_cost = $bid_amount;
+			}
+			
+			//subtract credits from this user
+			myqu("UPDATE mytcg_user SET premium = ".$tcg_premium.", credits = ".$tcg_credits." WHERE user_id = ".$userID);
 			//add transaction log
 			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-					VALUES(".$userID.", 'Placed bid of ".$bid_amount." premium on ".$carName."', NOW(), -".$bid_amount.")");
+					VALUES(".$userID.", 'Placed bid of ".$bid_amount." credits on ".$carName."', NOW(), -".$bid_amount.")");
+					
+			myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
+				VALUES(".$userID.", NULL, (SELECT usercard_id FROM mytcg_market WHERE market_id = ".$market_id."), (SELECT card_id FROM mytcg_usercard a, mytcg_market b WHERE a.usercard_id = b.usercard_id AND market_id = ".$market_id."), 
+						now(), 'Placed bid of ".$bid_amount." credits on ".$carName."', -".$bid_amount.", -".$freemium_cost.", -".$premium_cost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 7)");
 			
 			//place the bid
-			$sql = "INSERT INTO ".$pre."_marketcard (market_id, user_id, price, date_of_transaction)
-					VALUES (
-						".$market_id.", 
-						$userID, 
-						$bid_amount,
-						now()
-					);";
+			$sql = "INSERT INTO mytcg_marketcard (market_id, user_id, price, date_of_transaction, premium)
+					VALUES (".$market_id.",$userID,$freemium_cost,now(),$premium_cost);";
 			myqu($sql);
 		}
 	}
 	
 	//get user's credits
-	$query = myqu("SELECT premium FROM ".$pre."_user WHERE user_id = ".$userID);
+	$query = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, ifnull(premium,0) prem, ifnull(credits,0) cred FROM mytcg_user WHERE user_id = ".$userID);
 	$user_credits = $query[0]['premium'];
 	
 	// return auction data - xml
@@ -436,8 +485,8 @@ if (isset($_GET['auction']))
 		$auction = $aDetails[0];
 		
 		$sql = "SELECT MC.*, U.username, U.name
-				FROM ".$pre."_marketcard MC
-				JOIN ".$pre."_user U USING (user_id)
+				FROM mytcg_marketcard MC
+				JOIN mytcg_user U USING (user_id)
 				WHERE MC.market_id = ".$market_id."
 				ORDER BY MC.price DESC;";
 		$aHistory = myqu($sql);

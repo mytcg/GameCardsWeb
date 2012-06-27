@@ -884,21 +884,19 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 	
 	var divBody=document.getElementsByTagName("body")[0];
 	var iDocHeight=document.documentElement.scrollHeight;
-	ZA.createWindowPopup(0,"NewDeck",380,505,1,0);
+	ZA.createWindowPopup(0,"NewDeck",580,485,1,0);
 	var divData=document.getElementById("window_0");
 	var iTop=10;
 	var iLeft=10;
 	
 	//Card details
 	
-	var divCard = ZA.createDiv(divData);
+	var divCard = ZA.createDiv(divData,"auctionAlbumContainer");
 	$(divCard).css({
-		width:323,
-		height:385,
-		background:"#fff",
+		width:"93%",
+		height:"350px",
 		margin:10,
 		padding:10,
-		border:"1px solid #999"
 	});
 		
 		//Card thumbnail
@@ -908,14 +906,14 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 				+ZA.getXML(ZL.sXML,"album_"+albumID+"/cards/card_"+cardID+"/path")
 				+"cards/jpeg/"
 				+ZA.getXML(ZL.sXML,"album_"+albumID+"/cards/card_"+cardID+"/img")
-				+"_web.jpg)",
+				+"_front.jpg)",
 			"background-repeat":"no-repeat",
-			left:iLeft+"px",
+			right:iLeft+"px",
 			top:iTop+"px",
-			width:64,
-			height:90
+			width:250,
+			height:350,
 		});
-		iLeft=83;
+		//iLeft=83;
 		
 		//Card title
 		var divCardTitle = ZA.createDiv(divCard,"txtGreen","cardDescription","div");
@@ -926,7 +924,7 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 			fontWeight:"bold"
 		});
 		$(divCardTitle).html(ZA.getXML(ZL.sXML,"album_"+albumID+"/cards/card_"+cardID+"/description"));
-		iTop+=22;
+		iTop+=25;
 		
 		//Card Category
 		var divCardTitle = ZA.createDiv(divCard);
@@ -938,7 +936,7 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 			fontWeight:"bold"
 		});
 		$(divCardTitle).html(ZA.getXML(ZL.sXML,"album_"+albumID+"/description"));
-		iTop+=25;
+		iTop+=35;
 		
 	//Auction details
 		
@@ -948,18 +946,19 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 		$("#minimum_bid").addClass("txtBlue").css({
 			background:"transparent",
 			fontSize:16,
-			fontWeight:"bold",
+			boxShadow:"none",
+			fontWeight:"900",
 			fontFamily:"Arial",
 			border:"0px none",
 			"-moz-user-select":"none",
-			cursor:"default"
+			cursor:"default",
 		});
 		$("#minimum_bid").attr("readonly",true);
 		$("#minimum_bid").val(minBid+' TCG');
 		$("#minimum_bid").focus(function(){
 			$(this).blur();
 		});
-		iTop+=25;
+		iTop+=35;
 		var div = ZA.createDiv(divCard,"","slideMin");
 		$(div).css({
 			top:iTop,
@@ -979,9 +978,9 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 			}
 		});
 		$("#slideMin").find(".ui-slider-range").css({
-			background:"#58B1FD"
+			background:"#F2C126"
 		})
-		iTop+=30;
+		iTop+=40;
 		
 		//Buyout price
 		var divInput=ZE.createInput(divCard,iLeft,iTop,200,10,"Buyout Price","price");
@@ -989,7 +988,8 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 			background:"transparent",
 			color:"#cc0000",
 			fontSize:16,
-			fontWeight:"bold",
+			boxShadow:"none",
+			fontWeight:"900",
 			fontFamily:"Arial",
 			border:"0px none",
 			"-moz-user-select":"none",
@@ -1045,7 +1045,9 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 			border:"0px none",
 			color:"#999",
 			fontSize:16,
-			fontWeight:"bold"
+			boxShadow:"none",
+			fontWeight:"900",
+			fontFamily:"Arial"
 		});
 		$("#date_expired").attr('readonly',true);
 		iTop+=35;
