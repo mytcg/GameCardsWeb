@@ -966,8 +966,8 @@ WORK_App.prototype.init=function(sXMLInit){
 	
 	//load activation status
 	ZA.iActivationStatus=ZA.getXML(sXMLInit,"activate_status");
-	  ZA.sActivationMessage=ZA.getXML(sXMLInit,"activate_message");
-	  /////////////////////////
+	ZA.sActivationMessage=ZA.getXML(sXMLInit,"activate_message");
+	/////////////////////////
   
 	ZA.sUsername=ZA.getXML(sXMLInit,"username");
 	ZA.sUserCredits=ZA.getXML(sXMLInit,"credit");

@@ -11,11 +11,14 @@
   
 if($_GET['init'] == 1)
 {
-    $aUser = myqu("SELECT * FROM ".$pre."_user WHERE user_id = ".$userID);
+    $aUser = myqu("SELECT user_id,email_address,email_verified, name, surname, msisdn
+					FROM mytcg_user
+					WHERE user_id =".$userID);
     echo "<profile>".$sCRLF;
     if($aUser){
-      echo $sTab."<username>".$aUser[0]['username']."</username>".$sCRLF;
       echo $sTab."<email>".$aUser[0]['email_address']."</email>".$sCRLF;
+      echo $sTab."<name>".$aUser[0]['name']."</name>".$sCRLF;
+	  echo $sTab."<surname>".$aUser[0]['surname']."</surname>".$sCRLF;
       echo $sTab."<msisdn>".$aUser[0]['msisdn']."</msisdn>".$sCRLF;
       echo $sTab."<verified>".$aUser[0]['email_verified']."</verified>".$sCRLF;
     }

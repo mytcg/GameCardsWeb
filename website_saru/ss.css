@@ -11,7 +11,10 @@
   width:15px;
   height:15px;
 }
-
+#frmDetails span{
+	font-family:"Arial Black", "Arial";
+	font-weight:900;
+}
 .profileInput{
 	width:240px;
 	font-size:12px;
@@ -400,9 +403,10 @@
     margin-top: 9px;
     position: relative;
     width: 235px;
+    border:1px solid transparent;
 }
 .productBlock:hover{
-	/*border:1px solid #F2C126!important;*/
+	border:1px solid #F2C126!important;
 }
 div{
 	position:absolute;
