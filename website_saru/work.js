@@ -2513,13 +2513,13 @@ WORK_Menu.prototype.action=function(sAction){
 							ZA.callAjax("_app/userprofile/?init=1",function(xml){ ZUP.init(xml); });
 						break;
 						case "2":
-							ZA.maximizeWindowA(4);
+							ZA.maximizeWindowA(5);
 						break;				
 						case "3":
-							ZA.maximizeWindowA(5);
+							ZA.maximizeWindowA(2);
 						break;		
 						case "4":
-	            			ZA.maximizeWindowA(2);
+	            			ZA.maximizeWindowA(4);
 						break;
 						case "5":
 							ZA.showLeaderboard();
@@ -2617,7 +2617,7 @@ WORK_Menu.prototype.createTop=function(){
 	// logged in
 	else{
 		//ZA.sMenuItemsTop = "Logout|Profile|My Deck|Album|Auction|Buy Cards|Leaderboard|Credits|Notifications";
-		ZA.sMenuItemsTop = "Logout|Profile|Album|Auction|Shop";
+		ZA.sMenuItemsTop = "Logout|Profile|Auction|Shop|Album";
 	}
 	
 	var divMenu=ZA.createDiv(divHeader,"menutop","menutop");
