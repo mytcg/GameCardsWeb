@@ -33,14 +33,17 @@
 
 .divgotcredits{
   top:10px;
-  left:-5px;
-  width:129px;
-  height:99px;
-  background-image:url("_site/all_1.png");
+  left:5px;
+  width:130px;
+  height:90px;
+  background-image:url("_site/all.png");
   background-repeat:no-repeat;
-  background-position:-843px -5px;
+  background-position:-566px -12px;
 }
-
+.divgotcredits span{
+	font-family:"Arial Black","Arial";
+	font-weight:900;
+}
 .divprocesst{
   top:10px;
   left:875px;

@@ -151,7 +151,7 @@ WORK_App.prototype.browserPopup=function(){
   
   var divMemo=ZA.createDiv(divData);
   $(divMemo).css({textAlign:"left",position:"absolute",left:"10px",top:"10px"});
-  $(divMemo).html('<b>Congratulations</b><br>Your current browser is not fully supported. <br><br> We recommend Firefox, Chrome, Safari or Opera. \r\n IE9 is ok aswell.');
+  $(divMemo).html('<span>Congratulations</span><br>Your current browser is not fully supported. <br><br> We recommend Firefox, Chrome, Safari or Opera. \r\n IE9 is ok aswell.');
   
   var divButton = ZA.createDiv(divData,"cmdButton");
   $(divButton).css({top:73,right:20});
@@ -1125,7 +1125,7 @@ WORK_App.prototype.init=function(sXMLInit){
         var divIcon=ZA.createDiv(divData,"divgotcredits");
         var divMemo=ZA.createDiv(divData);
         $(divMemo).css({textAlign:"left",position:"absolute",left:"140px",top:"10px"});
-        $(divMemo).html('<b>Congratulations</b><br>You have received '+txtNotice+'.<br> Spend it wisely.');
+        $(divMemo).html('<span>Congratulations</span><br>You have received '+txtNotice+'.<br> Spend it wisely.');
         if(credits){
           ZA.oPlayerBar.update({credits:credits});
         }
