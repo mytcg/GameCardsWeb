@@ -397,7 +397,7 @@ function WORK_Album(){
          ZL.showAlbum(ZL.currentAlbum);
        });
        var divLine = ZA.createDiv(menuBlock,"","","div");
-       $(divLine).css({ bottom:-2,left:0,width:"100%",height:2,backgroundImage:"url(_site/repeatx.png)",backgroundPosition:"0px -121px" });
+       $(divLine).css({ bottom:-2,left:22,width:"80%",height:1,backgroundColor:"#383838" });
        CatCounter++;
      }
     
@@ -417,7 +417,7 @@ function WORK_Album(){
        ZL.showAlbum(ZL.currentAlbum);
      });
      var divLine = ZA.createDiv(menuBlock,"whiteLine","","div");
-     $(divLine).css({ bottom:-2,left:0,width:"100%",height:2,backgroundImage:"url(_site/repeatx.png)",backgroundPosition:"0px -121px" });
+     $(divLine).css({ bottom:-2,left:22,width:"80%",height:1,backgroundColor:"#383838" });
      CatCounter++;
      //END All Cards Menu
      
@@ -462,7 +462,7 @@ function WORK_Album(){
             }
          })();
         var divLine = ZA.createDiv(menuBlock,"","","div");
-        $(divLine).css({ bottom:-2,left:0,width:"100%",height:2,backgroundImage:"url(_site/repeatx.png)",backgroundPosition:"0px -121px" }); 
+        $(divLine).css({ bottom:-2,left:22,width:"80%",height:1,backgroundColor:"#383838" }); 
       }
       
       //Menu scroller: DOWN

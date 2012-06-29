@@ -1034,6 +1034,9 @@ WORK_App.prototype.init=function(sXMLInit){
 			iTop = 160;
 		}
 		
+		if(ZA.getXML(sXMLInit,"dailyvisit")=="1"){
+			ZA.gotCredits("20 credits for logging in today",ZA.getXML(sXMLInit,"newcredits"));
+		}
 		
 		if(ZA.getXML(sXMLInit,"freebie")=="1"){
 		  
@@ -2522,8 +2525,8 @@ WORK_Menu.prototype.action=function(sAction){
 							ZA.showLeaderboard();
 						break;
 						case "6":
-                     $("#component_10").show();
-                     ZA.maximizeWindowA(10);
+		                     $("#component_10").show();
+		                     ZA.maximizeWindowA(10);
 						break;
 						case "7":
 							ZA.showNotifications();
@@ -2614,7 +2617,7 @@ WORK_Menu.prototype.createTop=function(){
 	// logged in
 	else{
 		//ZA.sMenuItemsTop = "Logout|Profile|My Deck|Album|Auction|Buy Cards|Leaderboard|Credits|Notifications";
-		ZA.sMenuItemsTop = "Logout|Profile|Album|Auction|Shop|Leaderboard|Credits|Notifications";
+		ZA.sMenuItemsTop = "Logout|Profile|Album|Auction|Shop";
 	}
 	
 	var divMenu=ZA.createDiv(divHeader,"menutop","menutop");
@@ -2648,7 +2651,7 @@ WORK_Menu.prototype.createTop=function(){
 				divItem.innerHTML=sDesc;
 			}
 		}else{
-			if(iCount!=7){
+			if(iCount!=4){
 				var iLength=sDesc.length;
 				var divItem=ZA.createDiv(divMenu,"menutopitem");
 				divItem.onclick=ZM.action("top_"+iCount);
