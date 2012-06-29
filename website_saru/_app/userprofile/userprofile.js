@@ -35,15 +35,21 @@ function COMPONENT_UserProfile(){
       
       var divSave = ZA.createDiv(divData,"cmdButton","","div");
       $(divSave).html('Save All');
-      $(divSave).css({bottom:10,left:418});
+      $(divSave).css({bottom:10,left:425});
       $(divSave).click(function(){
+        
         var sendData = {
             //username:$("#zupUsername").attr('value'),
             password:$("#zupPassword").attr('value'),
             email:$("#zupEmail").attr('value'),
             msisdn:$("#zupCell").attr('value'),
             name:$("#zupName").attr('value'),
-            age:$("#zupAge").attr('value'),
+            surname:$("#zupSurname").attr('value'),
+          	// hard coding the sending of the additional details
+          	location:$("#zupLocation").attr('value'),
+          	favouriteplayer:$("#zupFavouritePlayer").attr('value'),
+          	favouriteteam:$("#zupFavouriteTeam").attr('value'),
+	           
           };
           $.post("_app/userprofile/?save=1",sendData,function(xml){
             var error = ZA.getXML(xml,"error");
@@ -57,7 +63,7 @@ function COMPONENT_UserProfile(){
 
       var divClose = ZA.createDiv(divData,"cmdButton","","div");
       $(divClose).html('Close');
-      $(divClose).css({bottom:10,left:493});
+      $(divClose).css({bottom:10,left:510});
       $(divClose).click(function(){
         $("#bodycloak_20").remove();
         $("#windowcontainer_20").remove();
@@ -132,7 +138,7 @@ function COMPONENT_UserProfile(){
       
       var btnVerify = ZA.createDiv(divLeft,"cmdButton","","div");
       $(btnVerify).html('Verify code');
-      $(btnVerify).css({bottom:5,left:102});
+      $(btnVerify).css({bottom:5,left:110});
       $(btnVerify).click(function(){
         ZA.callAjax("_app/userprofile/?verify=1",function(xml){
             var sVerified = ZA.getXML(xml,"verified");

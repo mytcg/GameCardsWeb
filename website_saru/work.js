@@ -2005,7 +2005,7 @@ WORK_Login.prototype.create=function(){
 	
 	var divCancel = ZA.createDiv(divData,"cmdButton","","div");
     $(divCancel).html('Cancel');
-    $(divCancel).css({left:210,top:185});
+    $(divCancel).css({left:205,top:185});
     $(divCancel).click(function(){
       ZA.aWindowLogin.clickCloseA()
     });
@@ -2042,7 +2042,7 @@ WORK_Login.prototype.clickForgotPassword=function(){
     divFEmail.focus();
 		
 		var divNote=ZA.createDiv(divForget,"","","div");
-    $(divNote).css({ top:"60px",left:"8px"});
+    $(divNote).css({ top:"66px",left:"15px",width:300});
 		
 		$(divNote).append("Enter your email address and we'll send you a new password");
 		
@@ -2055,7 +2055,7 @@ WORK_Login.prototype.clickForgotPassword=function(){
   
   var divClose = ZA.createDiv(divForget,"cmdButton","","div");
     $(divClose).html('Close');
-    $(divClose).css({left:220,top:185});
+    $(divClose).css({left:215,top:185});
     $(divClose).click(function(){
       ZA.aWindowLogin.clickClosePassword()
     });

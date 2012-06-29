@@ -1070,7 +1070,7 @@ WORK_CreateAuction.prototype.create=function(albumID, cardID){
 	var div = ZA.createDiv(divData,"cmdButton");
 	$(div)
 		.html('Cancel')
-		.css({bottom:10,right:125})
+		.css({bottom:10,right:135})
 		.click(function(){
 			ZL.aWindowAuction.clickCloseA();
 		});

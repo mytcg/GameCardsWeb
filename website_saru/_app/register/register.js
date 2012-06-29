@@ -20,12 +20,12 @@ function WORK_Register(){
       //Heading
       var spanHead = ZA.createDiv(divWin,"register_head");
       $(spanHead).css({lineHeight:"18px",fontSize:"16px"});
-      $(spanHead).html("Become part of the Game Card trend");
+      $(spanHead).html("Be A Part Of The Digital Trading Card Trend");
       
       //Text
       var spanText = ZA.createDiv(divWin,"register_text");
       $(spanText).css({width:200,"text-transform":"none"});
-      $(spanText).html("<br />It's quick, dirty and <b>REALLY EASY</b>.<br>Simply enter your email address, a username and password below then click the Register button and you're done.<br /><br />");
+      $(spanText).html("<br />Welcome to the new digital trading card trend! You are now one step away from becoming a part of this exciting new trend. Just fill out these fields and you're part of the team. Have fun!<br /><br />");
       
       //FORM
       var divForm = ZA.createDiv(divWin,"register_form","divForm","");
