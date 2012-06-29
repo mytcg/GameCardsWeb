@@ -332,7 +332,10 @@ WORK_Auction.prototype.loadAuctions=function()
 			if(cardOwned > 0){
 				var divCardOwned = ZA.createDiv(divAuctionBlock,"iconCardOwned",iCount.toString(),"div");
 				$(divCardOwned).css({
-					right:5
+					right:5,
+					backgroundColor:"#d1d1d1",
+					borderRadius:5,
+					border: "1px solid #BB962E",
 				});
 				$(divCardOwned).attr('title','You already own this card');
 				if(cardOwned > 1){
@@ -1432,7 +1435,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 			width:220,
 			height:365,
 			left:365,
-			borderLeft:"1px solid #bbb",
+			borderLeft:"1px solid #444",
 			padding:10
 		});
 		
