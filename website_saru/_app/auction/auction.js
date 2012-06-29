@@ -1435,7 +1435,7 @@ WORK_AuctionWindow.prototype.create=function(ID)
 			width:220,
 			height:365,
 			left:365,
-			borderLeft:"1px solid #bbb",
+			borderLeft:"1px solid #444",
 			padding:10
 		});
 		

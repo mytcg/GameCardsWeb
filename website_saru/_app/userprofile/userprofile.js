@@ -30,7 +30,7 @@ function COMPONENT_UserProfile(){
       ZUP.loadData();
       
       var divResponse = ZA.createDiv(divData,"","zupResponse","div");
-      $(divResponse).css({width:290,height:15,top:340,left:0,color:"#F2C126",textAlign:"right"});
+      $(divResponse).css({width:290,height:15,bottom:55,left:0,color:"#F2C126",textAlign:"center"});
       $(divResponse).html(response);
       
       var divSave = ZA.createDiv(divData,"cmdButton","","div");
@@ -42,14 +42,8 @@ function COMPONENT_UserProfile(){
             password:$("#zupPassword").attr('value'),
             email:$("#zupEmail").attr('value'),
             msisdn:$("#zupCell").attr('value'),
-            
             name:$("#zupName").attr('value'),
             age:$("#zupAge").attr('value'),
-            owncar:$("#zupOwnCar").attr('value'),
-            aspirationalcar:$("#zupAspirationalCar").attr('value'),
-            gender:$("#zupGender").attr('value'),
-            location:$("#zupLocation").attr('value'),
-            cellnumber:$("#zupCellNumber").attr('value'),
           };
           $.post("_app/userprofile/?save=1",sendData,function(xml){
             var error = ZA.getXML(xml,"error");
