@@ -234,7 +234,7 @@ function WORK_Credits()
 			var options = ZA.createDiv(divInner,"methodOptions");
 				
 				//sms shortcode
-				var option = ZA.createDiv(options,"methodOption");
+				/*var option = ZA.createDiv(options,"methodOption");
 				$(option).html(
 					'<table>'+
 						'<tr>'+
@@ -246,7 +246,7 @@ function WORK_Credits()
 					'<div id="smsMethodInfo" style="position:relative;padding:10px;display:none;">'+
 						'SMS "<span id="keyword">X</span>" and your username "<span>" to <span id="shortcode">Y</span>'+
 					'</div>'
-				);
+				);*/
 				
 				//paypal
 				var option = ZA.createDiv(options,"methodOption");
@@ -261,7 +261,7 @@ function WORK_Credits()
 				);
 				
 				//credit card
-				var option = ZA.createDiv(options,"methodOption");
+				/*var option = ZA.createDiv(options,"methodOption");
 				$(option)
 				.html(
 					'<table>'+
@@ -271,7 +271,7 @@ function WORK_Credits()
 							'<td><div style="position:relative;width:30px;height:25px;background:url(_site/all.png) -260px -236px no-repeat;"></div></td>'+
 						'</tr>'+
 					'</table>'
-				);
+				);*/
 				
 				//event handler
 				$("input[name='method']").bind("click change",function(){
@@ -546,7 +546,7 @@ if(dev < 0)
 '<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
 '</form>'
 */
-'<form id="frmPaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_self">'+
+/*'<form id="frmPaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_self">'+
 '<input type="hidden" name="cmd" value="_s-xclick">'+
 //'<input type="hidden" name="notify_url" value="http://mytcg.net/paypal/">'+
 '<input type="hidden" name="hosted_button_id" value="ZT4SREPVEM5J8">'+
@@ -563,6 +563,24 @@ if(dev < 0)
 '<input type="image" id="cmdPayByPaypal" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">'+
 '<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
 '</form>'
+*/
+'<form action="https://www.paypal.com/cgi-bin/webscr" method="post">'+
+'<input type="hidden" name="cmd" value="_s-xclick">'+
+'<input type="hidden" name="hosted_button_id" value="C3N4C4RT8JE5W">'+
+'<table>'+
+'<tr><td><input type="hidden" name="on0" value="TCG Credits">TCG Credits</td></tr><tr><td><select name="os0">'+
+	'<option value="350 TCG @">350 TCG @$1.00 USD</option>'+
+	'<option value="700 TCG @">700 TCG @$2.00 USD</option>'+
+	'<option value="1400 TCG @">1400 TCG @$4.00 USD</option>'+
+	'<option value="2800 TCG @">2800 TCG @$8.00 USD</option>'+
+'</select> </td></tr>'+
+'</table>'+
+'<input type="hidden" name="currency_code" value="USD">'+
+'<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">'+
+'<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
+'</form>'
+
+
 
 				);
 				var icon = ZA.createDiv(form);

@@ -536,7 +536,7 @@ if (isset($_GET['buy']))
 	//print_r($temp);
 	
 	//Return user credits
-	$sql = "SELECT premium FROM mytcg_user WHERE user_id=".$userID.";";
+	$sql = "SELECT ifnull(premium,0)+ifnull(credits,0) premium FROM mytcg_user WHERE user_id=".$userID.";";
 	$u = myqu($sql);
 	$iCreditsAfterPurchase = $u[0]['premium'];
 	$xml = '';
