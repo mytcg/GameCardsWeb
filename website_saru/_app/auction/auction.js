@@ -744,6 +744,7 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			$(divAuctionLink).addClass('cmdButton');
 			$(divAuctionLink).css({
 				padding:"4px 5px 2px",
+				left:0,
     			top: 102,
     			width: 30,
     			textAlign:"center",
@@ -753,10 +754,10 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			{
 				var div = ZA.createDiv(divAuctionInfo,"","","div");
 				$(div).css({
-					left:62,
+					left:72,
 					width:28,
 					height:25,
-					bottom:11,
+					bottom:2,
 					background:"url(_site/all.png) -482px -40px no-repeat"
 				});
 				$(div).attr('title','Buy out available');

@@ -1013,8 +1013,10 @@ WORK_App.prototype.init=function(sXMLInit){
 	// var divVimeo = ZA.createDiv(divFooterBlock,"social_vimeo");
 	
 	var xbarlogo = ZA.createDiv(divFooterCon,"xbarlogo");
-	var mytcglogo = ZA.createDiv(divFooterCon,"mytcglogo");
-	
+	var mytcglogo = ZA.createDiv(divFooterCon,"mytcglogo","","a");
+		mytcglogo.href="http://www.mytcgtech.com";
+		mytcglogo.target="_blank";
+	  
 	ZM.createTop();
 	// ZM.createSocial();
 	ZA.oPlayerBar = new objPlayerBar;

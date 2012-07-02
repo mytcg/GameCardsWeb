@@ -1922,11 +1922,11 @@ table.grid tr.numberone td{
 	position:relative;
 	float:left;
 	border:1px solid transparent;
-	width:210px;
+	width:231px;
 	height:130px;
-	margin-left:14px;
+	margin-left:10px;
 	margin-bottom:8px;
-	padding:10px;
+	padding:5px;
 	-moz-user-select:none;
 }
 .auctionBlockLarge:hover {
@@ -1943,15 +1943,14 @@ table.grid tr.numberone td{
 .auctionInfoBlock{
     height: 90%;
     overflow: hidden;
-    padding-left: 5px;
     text-align: left;
-    width: 135px;
+    width: 150px;
     left:90px;
 }
 .buyoutPrice{
-	bottom:17px;
+	bottom:8px;
 	text-align:right;
-	right:5px;
+	left:100px;
 }
 .buyoutPrice span{
 	font-family:"Arial Black","Arial";
