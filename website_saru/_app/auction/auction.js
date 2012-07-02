@@ -364,8 +364,9 @@ WORK_Auction.prototype.loadAuctions=function()
 			if(bidCount != 1){
 				bids = bids+'s';
 			}
+			var title = ZA.getXML(ZU.sXML,'cards/card_'+iCount+'/description');
 			var owner;
-			var sellerName=ZA.getXML(ZU.sXML,'cards/card_'+iCount+'/description');
+			var sellerName=ZA.formatUsername(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/owner"));
 			var sellerTrimName=sellerName.substr(0,13);
 			var mine = ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/mine");
 			if(mine == '1'){
@@ -373,10 +374,10 @@ WORK_Auction.prototype.loadAuctions=function()
 				$(divAuctionBlock).addClass("mine").hide();
 			}
 			else{
-				owner = 'Seller: '+ZA.formatUsername(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/owner"));
+				owner = 'Seller: '+sellerTrimName;
 			}
 			$(textBox).html(
-				'<span class="txtGreen">'+sellerTrimName+'</span><br />'+
+				'<span class="txtGreen">'+title+'</span><br />'+
 				'Current Bid: <span class="txtBlue" style="font-weight:bold;"><span class="currentBid">'+bidAmount+'</span>&nbsp;TCG</span><br />'+
 				'<span>Time Left: <span class="timeLeft">'+ZU.getTimeLeft(new Date(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/expire")), true)+'</span>'+
 				'<input type="hidden" class="endDate" value="'+ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/expire")+'" />'
