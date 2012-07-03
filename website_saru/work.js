@@ -151,7 +151,7 @@ WORK_App.prototype.browserPopup=function(){
   
   var divMemo=ZA.createDiv(divData);
   $(divMemo).css({textAlign:"left",position:"absolute",left:"10px",top:"10px"});
-  $(divMemo).html('<b>Congratulations</b><br>Your current browser is not fully supported. <br><br> We recommend Firefox, Chrome, Safari or Opera. \r\n IE9 is ok aswell.');
+  $(divMemo).html('<span>Congratulations</span><br>Your current browser is not fully supported. <br><br> We recommend Firefox, Chrome, Safari or Opera. \r\n IE9 is ok aswell.');
   
   var divButton = ZA.createDiv(divData,"cmdButton");
   $(divButton).css({top:73,right:20});
@@ -1013,8 +1013,10 @@ WORK_App.prototype.init=function(sXMLInit){
 	// var divVimeo = ZA.createDiv(divFooterBlock,"social_vimeo");
 	
 	var xbarlogo = ZA.createDiv(divFooterCon,"xbarlogo");
-	var mytcglogo = ZA.createDiv(divFooterCon,"mytcglogo");
-	
+	var mytcglogo = ZA.createDiv(divFooterCon,"mytcglogo","","a");
+		mytcglogo.href="http://www.mytcgtech.com";
+		mytcglogo.target="_blank";
+	  
 	ZM.createTop();
 	// ZM.createSocial();
 	ZA.oPlayerBar = new objPlayerBar;
@@ -1034,6 +1036,9 @@ WORK_App.prototype.init=function(sXMLInit){
 			iTop = 160;
 		}
 		
+		if(ZA.getXML(sXMLInit,"dailyvisit")=="1"){
+			ZA.gotCredits("20 credits for logging in today",ZA.getXML(sXMLInit,"newcredits"));
+		}
 		
 		if(ZA.getXML(sXMLInit,"freebie")=="1"){
 		  
@@ -1122,7 +1127,7 @@ WORK_App.prototype.init=function(sXMLInit){
         var divIcon=ZA.createDiv(divData,"divgotcredits");
         var divMemo=ZA.createDiv(divData);
         $(divMemo).css({textAlign:"left",position:"absolute",left:"140px",top:"10px"});
-        $(divMemo).html('<b>Congratulations</b><br>You have received '+txtNotice+'.<br> Spend it wisely.');
+        $(divMemo).html('<span>Congratulations</span><br>You have received '+txtNotice+'.<br> Spend it wisely.');
         if(credits){
           ZA.oPlayerBar.update({credits:credits});
         }
@@ -2002,7 +2007,7 @@ WORK_Login.prototype.create=function(){
 	
 	var divCancel = ZA.createDiv(divData,"cmdButton","","div");
     $(divCancel).html('Cancel');
-    $(divCancel).css({left:210,top:185});
+    $(divCancel).css({left:205,top:185});
     $(divCancel).click(function(){
       ZA.aWindowLogin.clickCloseA()
     });
@@ -2039,7 +2044,7 @@ WORK_Login.prototype.clickForgotPassword=function(){
     divFEmail.focus();
 		
 		var divNote=ZA.createDiv(divForget,"","","div");
-    $(divNote).css({ top:"60px",left:"8px"});
+    $(divNote).css({ top:"66px",left:"15px",width:300});
 		
 		$(divNote).append("Enter your email address and we'll send you a new password");
 		
@@ -2052,7 +2057,7 @@ WORK_Login.prototype.clickForgotPassword=function(){
   
   var divClose = ZA.createDiv(divForget,"cmdButton","","div");
     $(divClose).html('Close');
-    $(divClose).css({left:220,top:185});
+    $(divClose).css({left:215,top:185});
     $(divClose).click(function(){
       ZA.aWindowLogin.clickClosePassword()
     });
@@ -2510,20 +2515,20 @@ WORK_Menu.prototype.action=function(sAction){
 							ZA.callAjax("_app/userprofile/?init=1",function(xml){ ZUP.init(xml); });
 						break;
 						case "2":
-							ZA.maximizeWindowA(4);
+							ZA.maximizeWindowA(5);
 						break;				
 						case "3":
-							ZA.maximizeWindowA(5);
+							ZA.maximizeWindowA(2);
 						break;		
 						case "4":
-	            			ZA.maximizeWindowA(2);
+	            			ZA.maximizeWindowA(4);
 						break;
 						case "5":
 							ZA.showLeaderboard();
 						break;
 						case "6":
-                     $("#component_10").show();
-                     ZA.maximizeWindowA(10);
+		                     $("#component_10").show();
+		                     ZA.maximizeWindowA(10);
 						break;
 						case "7":
 							ZA.showNotifications();
@@ -2614,7 +2619,7 @@ WORK_Menu.prototype.createTop=function(){
 	// logged in
 	else{
 		//ZA.sMenuItemsTop = "Logout|Profile|My Deck|Album|Auction|Buy Cards|Leaderboard|Credits|Notifications";
-		ZA.sMenuItemsTop = "Logout|Profile|Album|Auction|Shop|Leaderboard|Credits|Notifications";
+		ZA.sMenuItemsTop = "Logout|Profile|Auction|Shop|Album";
 	}
 	
 	var divMenu=ZA.createDiv(divHeader,"menutop","menutop");
@@ -2648,7 +2653,7 @@ WORK_Menu.prototype.createTop=function(){
 				divItem.innerHTML=sDesc;
 			}
 		}else{
-			if(iCount!=7){
+			if(iCount!=4){
 				var iLength=sDesc.length;
 				var divItem=ZA.createDiv(divMenu,"menutopitem");
 				divItem.onclick=ZM.action("top_"+iCount);

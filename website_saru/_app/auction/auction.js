@@ -364,8 +364,9 @@ WORK_Auction.prototype.loadAuctions=function()
 			if(bidCount != 1){
 				bids = bids+'s';
 			}
+			var title = ZA.getXML(ZU.sXML,'cards/card_'+iCount+'/description');
 			var owner;
-			var sellerName=ZA.getXML(ZU.sXML,'cards/card_'+iCount+'/description');
+			var sellerName=ZA.formatUsername(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/owner"));
 			var sellerTrimName=sellerName.substr(0,13);
 			var mine = ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/mine");
 			if(mine == '1'){
@@ -373,10 +374,10 @@ WORK_Auction.prototype.loadAuctions=function()
 				$(divAuctionBlock).addClass("mine").hide();
 			}
 			else{
-				owner = 'Seller: '+ZA.formatUsername(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/owner"));
+				owner = 'Seller: '+sellerTrimName;
 			}
 			$(textBox).html(
-				'<span class="txtGreen">'+sellerTrimName+'</span><br />'+
+				'<span class="txtGreen">'+title+'</span><br />'+
 				'Current Bid: <span class="txtBlue" style="font-weight:bold;"><span class="currentBid">'+bidAmount+'</span>&nbsp;TCG</span><br />'+
 				'<span>Time Left: <span class="timeLeft">'+ZU.getTimeLeft(new Date(ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/expire")), true)+'</span>'+
 				'<input type="hidden" class="endDate" value="'+ZA.getXML(ZU.sXML,"cards/card_"+iCount+"/expire")+'" />'
@@ -743,6 +744,7 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			$(divAuctionLink).addClass('cmdButton');
 			$(divAuctionLink).css({
 				padding:"4px 5px 2px",
+				left:0,
     			top: 102,
     			width: 30,
     			textAlign:"center",
@@ -752,10 +754,10 @@ WORK_Auction.prototype.loadAuctionsLarge=function()
 			{
 				var div = ZA.createDiv(divAuctionInfo,"","","div");
 				$(div).css({
-					left:62,
+					left:72,
 					width:28,
 					height:25,
-					bottom:11,
+					bottom:2,
 					background:"url(_site/all.png) -482px -40px no-repeat"
 				});
 				$(div).attr('title','Buy out available');

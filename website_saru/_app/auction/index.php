@@ -51,8 +51,8 @@ if (intval($_GET['init']==1))
 		foreach($aAllCards as $card)
 		{
 			$sql = "SELECT MC.date_of_transaction, (IFNULL(MC.price,0)+IFNULL(MC.premium,0)) price, SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,8) username, U.name
-					FROM ".$pre."_marketcard MC
-					JOIN ".$pre."_user U USING (user_id)
+					FROM mytcg_marketcard MC
+					JOIN mytcg_user U USING (user_id)
 					WHERE MC.market_id = ".$card['market_id']."
 					ORDER BY  MC.marketcard_id DESC;";
 			$aHistory = myqu($sql);

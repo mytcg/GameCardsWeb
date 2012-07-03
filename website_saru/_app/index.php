@@ -9,7 +9,7 @@ $pre = $Conf["database"]["table_prefix"];
 
 // user activates account
 if ($sEmail=$_GET['forget']){
-  $aUser=myqu('SELECT * FROM '.$pre.'_user WHERE email_address = "'.$sEmail.'"');
+  $aUser=myqu('SELECT * FROM mytcg_user WHERE email_address = "'.$sEmail.'"');
   $iUsercheck = sizeof($aUser);
   if ($iUsercheck==1){
      if($aUser[0]['is_active']=="1"){
@@ -231,7 +231,19 @@ if (intval($_GET['init'])==1){
 			."SET date_last_visit='".$sDate."' "
 			."WHERE user_id='".$userID."'"
 		);
-
+    
+		$today = date("Y-m-d");
+		if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
+		{
+			$popup='1';
+			//give user credits for daily login
+			$amount = $aUser['credits'] + 20;
+			myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$userID);
+			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
+					VALUES(".$userID.", 'Received 20 credits for logging in today', NOW(), 50)");
+			echo $sTab.'<dailyvisit val="1" />'.$sCRLF;
+			echo $sTab.'<newcredits val="'.$amount.'" />'.$sCRLF;
+		}
 
 		if(($aUser['freebie']=='0') || (is_null($aUser['freebie']))){
 			$popup = '1';
