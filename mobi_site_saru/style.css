@@ -1,0 +1,432 @@
+/* --- main layout --- */
+	
+* { margin: 0; padding: 0; }
+	
+body {
+		font-family:arial, arial black;
+		font-size:12px;
+		color:#777;
+		background:url(images/bg.png) #EBEBEB;
+		padding:0;
+		margin:0;
+}
+p {height:100%;padding-top:8px;}
+a,a img,:link img,:visited img,fieldset {border:none;}
+img {vertical-align:top;}
+
+.clear {clear:both}
+.nowrp {white-space:nowrap;}
+.container {width:100%; overflow:hidden;}
+/* --- END main layout --- */
+
+/* --- header --- */
+#header {
+		background:#ffffff url(images/header_repeat.png) 0 0 repeat-x;
+		font-size:1.125em;
+}
+.header_right{
+	position:absolute;
+	right:0px;
+	top:0px;
+}
+#logo {height:44px;}
+/* --- END header --- */
+
+/* --- content --- */
+#divNext{
+	position: absolute;
+	top:60px;
+	left:380px;
+	width:30px;
+	height:15px;
+}
+
+#gameOver{
+	text-align: center;
+}
+
+#content {
+	width:100%;
+	font-size:1.125em;
+	line-height:1em;
+}
+.min-width {
+	padding:10px;
+	min-width:100px;
+}
+
+li {
+	list-style:none;
+	margin-bottom:5px;
+	clear:both;
+	background:url(images/marker4.gif) no-repeat 0 4px;
+	text-transform:uppercase;
+}
+em {color:#5e5e5e;}
+	
+#navmenu {text-align:center;}
+#navmenu li {
+	background:none;
+	margin-bottom:12px;
+	margin-right:10px;
+	padding:0;
+	display:inline;
+}
+#submitForm .button{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	margin-left:2px;
+	margin-right:2px;
+	font-size:12px;
+	color:#fff;
+	border: none;
+	background-color:#333;
+	height: 25px;
+	width: 70px;
+	margin-top:5px;
+}
+#submitForm .button:hover{
+	color: #333;
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+}
+#loginForm .button{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	margin-left:2px;
+	margin-right:2px;
+	font-size:12px;
+	color:#fff;
+	border-bottom: 1px solid #fff;
+	border: none;
+	background-color:#333;
+	height: 25px;
+	width: 70px;
+	margin-top:5px;
+}
+#loginForm .button:hover{
+	color: #333;
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+}
+p a {color:#fff; text-decoration:none;}
+p a:hover {color:#ee0000; text-decoration:none;}
+	
+/* --- END content --- */
+
+/* --- footer --- */
+	
+	#footer {
+		height:50px;
+		background-color:#000000;
+		opacity:0.5;
+		border-top:1px solid #444;
+		padding-left:20px;
+		color:#909090;
+	}
+	#footer p { padding:0;}
+	#footer p a {color:#fff; text-decoration:none;}
+	#footer p a:hover {color:#ee0000; text-decoration:none;}
+
+/* --- END footer --- */
+
+/* --- Other --- */
+	
+/* --- END Other --- */
+
+/* --- boxes --- */
+
+.textbox{
+	height:24px;
+	padding:0 0 0 5px;
+	margin: 10px 0;
+	color:#333;
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	border: 1px solid #fff;
+	background-color:#d2d2d2;
+	width:70%;
+	-moz-box-shadow:inset 0px 1px 4px #4b4b4b; /* Firefox */
+ 	-webkit-box-shadow:inset 0px 1px 4px #4b4b4b; /* Safari/Chrome */
+	box-shadow:inset 0px 1px 4px #4b4b4b; /* Opera and other CSS3 supporting browsers */
+}
+.textbox:focus{
+	background-color:#acacac;
+}
+#item_list{
+	text-align: center;
+	list-style:none;
+	width: 100%;
+	padding:0 0 0 0;
+	margin: auto;
+	
+}
+#item_list li{
+	background-image: url('images/background_bottomline.png');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	line-height:14px;
+	text-transform: none;
+	height:40px;
+}
+#item_list li a:hover{
+	color:#D69739;
+}
+#item_list li a{color:#777;text-decoration: none;text-shadow: 1px 1px 1px #fff}
+#card_list{
+	width:100%;
+	list-style:none;
+	padding:0 0 0 0;
+	margin:auto;
+}
+#card_list_bid{
+	list-style:none;
+	width: 100%;
+	padding:0 0 0 0;
+	margin:auto;
+}
+
+#card_list_bid li{
+	background-image: url('images/background_bottomline.png');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:180px;
+}
+#card_list li{
+	text-transform: none;
+	background-image: url('images/background_bottomline.png');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:115px;
+	width:96%;
+	color:#777;
+}
+#card_list li a{color:#777;text-decoration: none;text-shadow: 0px 1px 1px #fff}
+#card_list li a:hover{
+	color:#D69739;
+}
+.cardBlock {
+	height:110px;
+	float:left;
+	margin:auto;
+}
+.cardBlockBid {
+	width:100%;
+	height:100%;
+	float:left;
+	margin:auto;
+}
+
+.album-card-pic-container {
+	margin-left:7px;
+	margin-top:10px;
+	width:65px;
+	height:90px;
+	background-image:url('images/thumb.jpg');
+	background-repeat:no-repeat;
+	position:relative;
+	left:auto;
+	top:auto;
+	z-index:-1;
+}
+
+.album_card_pic {
+	margin-left:7px;
+	margin-top:10px;
+	height:90px;
+	background-color:#282828;
+	float:left;
+	display: inline;
+}
+
+.album_card_title {
+	width:auto;
+	margin: -90px 0 0 85px;
+	text-align: left;
+}
+.info_textbox{
+	margin:5px 0 0 0;
+	height:auto;
+	text-align: left;
+}
+.info_box{
+	padding:5px 0 0 5px;
+	height:19px;
+	color:#999999;
+	border: 1px solid #000000;
+	background-color:#303134;
+	width:95%;
+	margin: 10px 0px;
+	-moz-box-shadow: 0px 0.5px 0px #424242; /* Firefox */
+ 	-webkit-box-shadow: 0px 0.5px 0px #424242; /* Safari/Chrome */
+	box-shadow: 0px 0.5px 0px #424242; /* Opera and other CSS3 supporting browsers */
+ 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=0, Color='#424242')";/* IE 8 */
+ 	: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=0, Color='#424242');/* IE 5.5 - 7 */
+}
+.info_box:active{
+	background-color:#720509;
+}
+.info_box:hover{
+	background-color:#720509;
+}
+
+/* --- END boxes --- */
+/* --- Gaming css --- */
+#card_game{
+	width:100%;
+}
+
+#player-card-side {
+	display:inline-block;
+	height: 50%;
+	margin-right:5px;
+}
+
+#opponent-card-side {
+	display:inline-block;
+	height:50%;
+	margin-bottom:10px;
+}
+
+#stat_selection {
+	/*width:250px;
+	height:350px;*/
+	position:absolute;
+	margin:auto;
+	
+}
+.stat_selection_type1 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:70px;
+	width:248px;
+	height:25px;
+}
+.stat_selection_type1:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type1:active {
+	border:1px solid #A0171E;
+}
+
+.stat_selection_type2 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:8px;
+	width:248px;
+	height:25px;
+}
+
+.stat_selection_type2:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type2:active {
+	border:1px solid #A0171E;
+}
+
+.stat_selection_type3 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:8px;
+	width:248px;
+	height:25px;
+}
+
+.stat_selection_type3:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type3:active {
+	border:1px solid #A0171E;
+}
+
+.stat_selection_type4 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:9px;
+	width:248px;
+	height:25px;
+}
+
+.stat_selection_type4:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type4:active {
+	border:1px solid #A0171E;
+}
+
+.stat_selection_type5 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:9px;
+	width:248px;
+	height:25px;
+}
+
+.stat_selection_type5:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type5:active {
+	border:1px solid #A0171E;
+}
+.stat_selection_type6 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:9px;
+	width:248px;
+	height:25px;
+}
+
+.stat_selection_type6:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type6:active {
+	border:1px solid #A0171E;
+}
+
+.stat_selection_type7 {
+	cursor:pointer;
+	display:inline-block;
+	margin-top:10px;
+	width:248px;
+	height:25px;
+}
+
+.stat_selection_type7:hover {
+	border:1px dotted #A0171E;
+}
+.stat_selection_type7:active {
+	border:1px solid #A0171E;
+}
+
+.stat_selection_win {
+	display:inline-block;
+	width:248px;
+	height:25px;
+	border:1px dotted #00CC00;
+}
+.stat_selection_lose {
+	display:inline-block;
+	width:248px;
+	height:25px;
+	border:1px dotted #A0171E;
+}
+
+
+
+
+
+/* --- END Gaming css --- */
