@@ -45,8 +45,6 @@ img {vertical-align:top;}
     -webkit-border-radius: 15px;
     -khtml-border-radius: 15px;
     border-radius: 15px;
-	margin-left:2px;
-	margin-right:2px;
 	font-size:12px;
 	color:#fff;
 	float:left;
@@ -55,8 +53,18 @@ img {vertical-align:top;}
 	height: 20px;
 	padding-top:5px;
 	width: 70px;
-	margin-top:5px;
+	margin:10px;
 	text-align:center;
+	cursor:pointer;
+}
+#button:hover{
+	color: #333;
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
 }
 #gameOver{
 	text-align: center;
