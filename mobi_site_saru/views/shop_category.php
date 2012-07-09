@@ -63,4 +63,8 @@ $boosterid = $_GET['product_id'];
 		<?php
 		$iCount++;
 		}
-?>
+		?>
+		<div id="button">Buy</div>		
+
+
+

@@ -8,7 +8,7 @@ if($_SESSION['userID']){ ?>
 	<li><a href="index.php?page=credits" class="button"><img alt="Credits" src="images/Credits.png" width="115px" height="82px" /></a></li>
 	<li><a href="index.php?page=profile" class="button"><img alt="Profile" src="images/Profile.png" width="115px" height="82px" /></a></li>
 	<li><a href="index.php?page=notifications" class="button"><img alt="Notifications" src="images/Notifications.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=logout=1" class="button"><img alt="LOGOUT" src="images/Logout.png" width="115px" height="82px" /></a></li>
+	<li><a href="index.php?page=logout" class="button"><img alt="LOGOUT" src="images/Logout.png" width="115px" height="82px" /></a></li>
 </ul>
 <?php } else { ?>
 	You are not Logged in<br>

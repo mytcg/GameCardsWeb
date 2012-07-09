@@ -40,7 +40,24 @@ img {vertical-align:top;}
 	width:30px;
 	height:15px;
 }
-
+#button{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	margin-left:2px;
+	margin-right:2px;
+	font-size:12px;
+	color:#fff;
+	float:left;
+	border: none;
+	background-color:#333;
+	height: 20px;
+	padding-top:5px;
+	width: 70px;
+	margin-top:5px;
+	text-align:center;
+}
 #gameOver{
 	text-align: center;
 }
@@ -143,7 +160,9 @@ p a:hover {color:#ee0000; text-decoration:none;}
 /* --- END footer --- */
 
 /* --- Other --- */
-	
+.image_size{
+	height:100%;
+}
 /* --- END Other --- */
 
 /* --- boxes --- */

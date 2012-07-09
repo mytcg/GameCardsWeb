@@ -19,7 +19,7 @@ $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 				<div class="album_card_pic">
 				<?php if($iCC > 0){ ?>
 					<a href="index.php?page=card_display_front&card_id=<?php echo($iCardID); ?>">
-						<img border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
+						<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
 					</a>
 				<?php } ?>
 				</div>

@@ -1,6 +1,6 @@
 <?php
 	$iUserID = $user['user_id'];
-	$qu = 'SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, credits cred, premium prem FROM mytcg_user WHERE user_id='.$iUserID;
+	$qu = 'SELECT (ifnull(premium,0)+ifnull(credits,0)) credits, credits cred, premium prem FROM mytcg_user WHERE user_id='.$iUserID;
 	$aCreditsVal=myqu($qu);
 $query='SELECT A.product_id, A.description, A.premium, A.no_of_cards, A.image, '
       .'PT.description AS type, B.description AS imageserver '
@@ -23,7 +23,7 @@ while ($iPackID=$aProducts[$iCount]['product_id']){
 	<li><a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'>
 		<div class="cardBlock">
 			<div class="album_card_pic">
-			<img src=" <?php echo($aProducts[$iCount]['imageserver']); ?>products/<?php echo($aProducts[$iCount]['image']); ?>.jpg" width="64" height="90" title="View potential cards">
+			<img src="<?php echo($aProducts[$iCount]['imageserver']); ?>products/<?php echo($aProducts[$iCount]['image']); ?>.jpg" width="64" height="90" title="View potential cards">
 	        </div>
 	        <div class="album-card-pic-container"></div>
 	        <div class="album_card_title">
@@ -35,8 +35,8 @@ while ($iPackID=$aProducts[$iCount]['product_id']){
 		</div>
 	</a></li>
 	</ul>
-<?php
-$iCount++;
+	<?php
+	$iCount++;
 	}
 ?>
  

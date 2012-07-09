@@ -1,7 +1,7 @@
 <?php
-if ($_GET['logout']==1){
+if ($_SESSION['userID']){
 	setcookie('username','',time()-3600);
-	unset($_COOKIE['username']);
+	$_SESSION['userID']==null;
 	session_destroy();
 	echo ("You have been logged out succesfully");
 }else { 
