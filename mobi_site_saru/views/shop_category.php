@@ -47,7 +47,7 @@ $boosterid = $_GET['product_id'];
 			FROM mytcg_product a, mytcg_productcard b, mytcg_card c, mytcg_cardquality d 
 			WHERE a.product_id = b.product_id 
 			AND c.card_id = b.card_id 
-			AND d.cardquality_id = c.cardquality_id 
+			AND d.cardquality_id = c.cardquality_id
 			AND a.product_id = '.$boosterid.'
 		) E
 		ON E.card_id = B.card_id
@@ -55,16 +55,21 @@ $boosterid = $_GET['product_id'];
 			where uc.user_id = '.$iUserID.' and uc.usercardstatus_id = ucs.usercardstatus_id and ucs.usercardstatus_id=1) 
 		GROUP BY B.card_id 
 		ORDER BY description';
-					
+		
 		$cardList=myqu($qu);
 		$iCount=0;
+		?>
+		<div id="buttonContainer">
+			<div class="cmdButton">Buy</div>
+		</div>
+		<?php
 		foreach ($cardList as $cardInList[$iCount]){ ?>
-		<div class="album_card_pic"><img src="http://sarugbycards.com/img/cards/jpeg/<?php echo($cardInList[$iCount]['image']); ?>_web.jpg" width="64" height="90" title="View potential cards"></div>
+		<div class="album_card_pic"><img src="http://sarugbycards.com/img/cards/jpeg/<?php echo($cardInList[$iCount]['image']); ?>_web.jpg" width="64" height="90" title="<?php echo($cardInList[$iCount]['description']); ?>"></div>
 		<?php
 		$iCount++;
 		}
 		?>
-		<div id="button">Buy</div>		
+				
 
 
 

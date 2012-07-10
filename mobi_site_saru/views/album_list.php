@@ -2,7 +2,7 @@
 $vals = getCardInAlbumCount($user['user_id']);
 ?>
 <ul id="item_list">
-  <li><a href="index.php?page=album_cards"><p>All (<?php echo($vals[0]."/".$vals[1]) ?>)</p></a></li>
+  <li><p>All (<?php echo($vals[0]."/".$vals[1]) ?>)</p></li>
 	<?php 
   $query=	 'SELECT DISTINCT C.category_id, CA.description  '
 		    .'FROM mytcg_usercard UC '

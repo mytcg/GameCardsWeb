@@ -21,6 +21,8 @@ $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 					<a href="index.php?page=card_display_front&card_id=<?php echo($iCardID); ?>">
 						<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
 					</a>
+				<?php }else{ ?>
+						<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
 				<?php } ?>
 				</div>
 				<div class="album-card-pic-container"></div>
@@ -30,6 +32,11 @@ $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 					<br /><?php echo $aCards[$iCount]['cardr']; ?>
 					<br />Rating:&nbsp;<?php echo $aCards[$iCount]['ranking']; ?>
 				</div>
+				<?php if($iCC > 0){ ?>
+					<div id="buttonContainer">
+						<div class="cmdButton">Auction</div>
+					</div>
+				<?php } ?>
 			</div>
 		</li>
 		</ul>
