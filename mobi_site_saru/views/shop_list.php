@@ -19,8 +19,6 @@ $iCount = 0;
 <?php
 while ($iPackID=$aProducts[$iCount]['product_id']){
 ?>
-	<ul id="card_list">
-	<li>
 		<div class="cardBlock">
 			<div class="album_card_pic">
 			<img src="<?php echo($aProducts[$iCount]['imageserver']); ?>products/<?php echo($aProducts[$iCount]['image']); ?>.jpg" width="64" height="90" title="View potential cards">
@@ -30,15 +28,13 @@ while ($iPackID=$aProducts[$iCount]['product_id']){
 	          <?php echo($aProducts[$iCount]['description']); ?>
 	          <br />Credits:&nbsp;<?php echo($aProducts[$iCount]['premium']); ?>
 	          <br />Cards:&nbsp;<?php echo($aProducts[$iCount]['no_of_cards']); ?>
-	          <br />Type:&nbsp;<?php echo($aProducts[$iCount]['type']); ?>
+			  <br />Type:&nbsp;<?php echo($aProducts[$iCount]['type']); ?>
+		        <div id="buttonContainer">
+					<a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">View</div></a>
+					<a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">Buy</div></a>
+				</div>
 	        </div>
-	        <div id="button">
-				<a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">View</div></a>
-				<a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">Buy</div></a>
-			</div>
 		</div>
-	</li>
-	</ul>
 	<?php
 	$iCount++;
 	}

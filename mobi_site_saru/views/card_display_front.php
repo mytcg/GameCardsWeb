@@ -10,7 +10,7 @@ $iCount = 0;
 ?>
 <div id="card_display">
 <a href="index.php?page=card_display_back&card_id=<?php echo($iCardID); ?>">
-	<img class="image_size" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_front.jpg" border="0" width="95%" >
+	<img src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_front.jpg" border="0" width="95%" >
 </a>
 </div>
 

@@ -1,5 +1,5 @@
 <?php
-$iCat = $_GET['category_id'];
+$iCat = 1;
 $query= "SELECT SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,8) AS 'owner', I.description AS 'path', CA.description AS 'category', C.description, C.image, C.category_id, UC.usercard_id, UC.card_id, M.*,
         (SELECT COUNT(usercard_id) FROM mytcg_usercard WHERE user_id=".$user['user_id']." AND card_id=UC.card_id AND usercardstatus_id=1) AS 'owned'
         FROM mytcg_market M
@@ -10,11 +10,12 @@ $query= "SELECT SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,
         JOIN mytcg_user U ON M.user_id = U.user_id
         WHERE M.markettype_id = 1 AND M.marketstatus_id = 1 AND C.category_id =".$iCat." ";
 $aAuctions=myqu($query);
+
 $iCount = 0;
 ?>
 <?php
 	while($iAuctionID=$aAuctions[$iCount]['market_id']){
-	$sql = "SELECT MC.* , U.username, U.name
+	$sql = "SELECT MC.date_of_transaction, (ifnull(MC.price,0) + ifnull(MC.premium,0)) price, SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,8) as username, U.name
             FROM mytcg_marketcard MC
             JOIN mytcg_user U USING (user_id)
             WHERE MC.market_id = ".$iAuctionID."
@@ -40,7 +41,8 @@ $iCount = 0;
 	    				<?php echo($aAuctions[$iCount]['description']); ?>
 		    			&nbsp;<?php $owned = $aAuctions[$iCount]['owned'];
 	    				if($owned >= 0){
-	    					echo "(".$owned.")";}
+	    					echo "(".$owned.")";
+						}
 	    				elseif ($owned == 0){
 	    					echo "(".$owned.")";
 						}
@@ -48,15 +50,18 @@ $iCount = 0;
 					</div>
 	    			<div>Seller:&nbsp;<?php echo($aAuctions[$iCount]['owner']); ?></div>
 	    			<div>Time Left:&nbsp;<?php echo $timeRemaining; ?></div>
-	    			<div><?php echo (sizeof($aHistory)>0) ? $aHistory[0]['price'] : $aAuctions[$iCount]['minimum_bid'] ; ?>&nbsp;TCG</div>
-	    		  	<div>[<?php echo(sizeof($aHistory)); ?>&nbsp;bids]</div>
+	    			<div><?php echo (sizeof($aHistory)>0) ? $aHistory[0]['price'] : $aAuctions[$iCount]['minimum_bid'] ; ?>&nbsp;TCG&nbsp;&nbsp;[<?php echo(sizeof($aHistory)); ?>&nbsp;bids]</div>
+	    		  	<div><?php if ($aHistory[0]['username'] != null){
+	    		  		echo ("Highest Bidder:&nbsp;".$aHistory[0]['username']."&nbsp;");
+	    		  	} ?>
+	    		  	</div>
 	    		  	<div><?php echo($aAuctions[$iCount]['price']); ?> TCG</div>
-	    		  	<form method="POST" id="submitForm" action="index.php?page=auction_card&category_id="<?php $iCat ?>"">
+	    		  	<form method="POST" id="submitForm" action="index.php?page=auction&market=<?php echo($aAuctions[$iCount]['market_id']); ?>">
 			            <div class="profile_form">
-			            	<input type="text" name="Name" value="<?php echo (sizeof($aHistory)>0) ? $aHistory[0]['price'] : $aAuctions[$iCount]['minimum_bid'] ; ?>" size="35" maxlength="50" class="textbox" />
+			            	<input type="text" name="value" value="<?php echo (sizeof($aHistory) > 0) ? $aHistory[0]['price'] + 1 : $aAuctions[$iCount]['minimum_bid'] + 1 ; ?>" size="35" maxlength="50" class="textbox" />
 			           	</div>
-						<input type="submit" value="BID" class="button" title="Bid" alt="Bid"/>
-						<input type="submit" value="BUY" class="button" title="Buy" alt="Buy"/>
+						<input type="submit" name="bid" value="BID" class="button" />
+						<input type="submit" name="buy" value="BUY" class="button" />
 			    	</form>
 				</div>
 			</div>

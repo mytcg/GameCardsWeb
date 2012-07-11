@@ -1,6 +1,6 @@
 <?php
 	$iUserID = $user['user_id'];
-	$qu = 'SELECT credits FROM mytcg_user where user_id = '.$iUserID;
+	$qu = 'SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, ifnull(premium,0) prem, ifnull(credits,0) cred FROM mytcg_user WHERE user_id ='.$iUserID;
 	$aCreditsVal=myqu($qu);
 	
     $sql = "SELECT TL.* 
@@ -17,7 +17,7 @@
 	<li style="text-align:center;"><p>Credits:</p></li>
 	</ul>
 	<div class="info_textbox">
-		<div class="info_box"><?php echo($aCreditsVal[$iCount]['credits']); ?></div>
+		<div class="info_box"><?php echo($aCreditsVal[$iCount]['premium']); ?></div>
 		<ul id="item_list">
 			<li style='text-align:center;'><p>Transactions:</p></li>
 		</ul>

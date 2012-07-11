@@ -14,31 +14,33 @@ while($iCardID=$aCards[$iCount]['card_id']){
 $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 ?>
 		<ul id="card_list">
-		<li>
-			<div class="cardBlock">
-				<div class="album_card_pic">
-				<?php if($iCC > 0){ ?>
-					<a href="index.php?page=card_display_front&card_id=<?php echo($iCardID); ?>">
-						<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
-					</a>
-				<?php }else{ ?>
-						<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
-				<?php } ?>
-				</div>
-				<div class="album-card-pic-container"></div>
-				<div class="album_card_title">
-					<?php echo $aCards[$iCount]['description']; ?>
-					&nbsp;<?php echo ($iCC >= 0) ? "(".$iCC.")" : "" ; ?>
-					<br /><?php echo $aCards[$iCount]['cardr']; ?>
-					<br />Rating:&nbsp;<?php echo $aCards[$iCount]['ranking']; ?>
-				</div>
-				<?php if($iCC > 0){ ?>
-					<div id="buttonContainer">
-						<div class="cmdButton">Auction</div>
+			<li>
+				<div class="cardBlock">
+					<div class="album_card_pic">
+					<?php if($iCC > 0){ ?>
+						<a href="index.php?page=card_display_front&card_id=<?php echo($iCardID); ?>">
+							<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
+						</a>
+					<?php }else{ ?>
+							<img class="image_size" border="0" src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo ($aCards[$iCount]['image']); ?>_web.jpg" title="" >
+					<?php } ?>
 					</div>
-				<?php } ?>
-			</div>
-		</li>
+					<div class="album-card-pic-container"></div>
+					<div class="album_card_title">
+						<?php echo $aCards[$iCount]['description']; ?>
+						&nbsp;<?php echo ($iCC >= 0) ? "(".$iCC.")" : "" ; ?>
+						<br /><?php echo $aCards[$iCount]['cardr']; ?>
+						<br />Rating:&nbsp;<?php echo $aCards[$iCount]['ranking']; ?>
+						<?php if($iCC > 0){ ?>
+						<div id="buttonContainer">
+							<a href="index.php?page=auction_card&category_id=1">
+								<div class="cmdButton" style="width:90px">Auction Card</div>
+							</a>
+						</div>
+						<?php } ?>
+					</div>
+				</div>
+			</li>
 		</ul>
 <?php
 $iCount++;
