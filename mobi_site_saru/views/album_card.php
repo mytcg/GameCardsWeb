@@ -33,7 +33,7 @@ $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 						<br />Rating:&nbsp;<?php echo $aCards[$iCount]['ranking']; ?>
 						<?php if($iCC > 0){ ?>
 						<div id="buttonContainer">
-							<a href="index.php?page=auction_card&category_id=1">
+							<a href="index.php?page=auction_card&auction_card=<?php echo($iCardID); ?>">
 								<div class="cmdButton" style="width:90px">Auction Card</div>
 							</a>
 						</div>

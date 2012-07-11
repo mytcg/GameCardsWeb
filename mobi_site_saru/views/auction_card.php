@@ -1,74 +1,111 @@
 <?php
-$iCat = 1;
-$query= "SELECT SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,8) AS 'owner', I.description AS 'path', CA.description AS 'category', C.description, C.image, C.category_id, UC.usercard_id, UC.card_id, M.*,
-        (SELECT COUNT(usercard_id) FROM mytcg_usercard WHERE user_id=".$user['user_id']." AND card_id=UC.card_id AND usercardstatus_id=1) AS 'owned'
-        FROM mytcg_market M
-        JOIN mytcg_usercard UC USING (usercard_id)
-        JOIN mytcg_card C USING (card_id)
-        JOIN mytcg_imageserver I ON C.front_imageserver_id = I.imageserver_id
-        JOIN mytcg_category CA ON C.category_id = CA.category_id
-        JOIN mytcg_user U ON M.user_id = U.user_id
-        WHERE M.markettype_id = 1 AND M.marketstatus_id = 1 AND C.category_id =".$iCat." ";
-$aAuctions=myqu($query);
-
-$iCount = 0;
-?>
-<?php
-	while($iAuctionID=$aAuctions[$iCount]['market_id']){
-	$sql = "SELECT MC.date_of_transaction, (ifnull(MC.price,0) + ifnull(MC.premium,0)) price, SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,8) as username, U.name
-            FROM mytcg_marketcard MC
-            JOIN mytcg_user U USING (user_id)
-            WHERE MC.market_id = ".$iAuctionID."
-            ORDER BY MC.price DESC;";
-	$aHistory = myqu($sql);
-	$phpdate = strtotime($aAuctions[$iCount]['date_expired']);
-	$timeRemaining = $phpdate-(strtotime("now"));
-	if ($timeRemaining>0) {
-		$timeRemaining = date("H:i:s",$timeRemaining);
-	} else {
-		$timeRemaining = "Finished";
+$iUserID =$user['user_id'];
+if (isset($_GET['create_auction'])){
+		
+	$iCardId=$_GET['create_auction'];
+	$iAuctionBid=$_POST['bid'];
+	$iBuyNowPrice=$_POST['buynow'];
+	$iDays=$_POST['days'];
+	
+	
+	if (!($iAuctionType=$_GET['auctiontype'])) {
+	
+		$aCardType=myqu(
+			'select pc.card_id, sum(p.price) as freemium, sum(p.premium) as premium 
+			from mytcg_product p 
+			inner join mytcg_productcard pc 
+			on pc.product_id = p.product_id 
+			where pc.card_id = "'.$iCardId.'" 
+			group by pc.card_id'
+		);
+		
+		if (sizeof($aCardType) > 0) {
+			if ($aCardType[0]['freemium'] > 0 || $aCardType[0]['premium'] == 0) {
+				$iAuctionType = '1';
+			}
+			else if ($aCardType[0]['premium'] > 0) {
+				$iAuctionType = '2';
+			}
+		}
+	
+		//$iAuctionType = '1';
 	}
+	
+	$aCheckCard=myqu('SELECT max(usercard_id) usercard_id '
+					.'FROM mytcg_usercard '
+					.'WHERE usercardstatus_id = (select usercardstatus_id from mytcg_usercardstatus where description = "Album")  '
+					.'AND card_id = '.$iCardId.' '
+					.'AND user_id = "'.$iUserID.'"');
+
+					
+	echo sizeof($aCheckCard);
+	if (sizeof($aCheckCard) == 0){
+		echo 'Card not available anymore.';  
+		exit;
+	} else {
+		$iUserCardID = $aCheckCard[0]['usercard_id'];
+	}
+	
+	$aCheckCredits=myqu('SELECT IFNULL(credits,0)+IFNULL(premium,0) credits, IFNULL(credits,0) free, IFNULL(premium,0) premium from mytcg_user
+						WHERE user_id = '.$iUserID);
+	
+	$cost = $iAuctionBid;
+	if ($iAuctionBid < $iBuyNowPrice) {
+		$cost = $iBuyNowPrice;
+	}
+
+	myqu('UPDATE mytcg_usercard set loaded = 1 where usercard_id = '.$iUserCardID);
+	$aUpdate=myqu('UPDATE mytcg_usercard SET usercardstatus_id=(select usercardstatus_id from mytcg_usercardstatus where description = "auction") '
+					.'WHERE usercard_id="'.$iUserCardID.'"');
+	$aInsert=myqu('INSERT INTO mytcg_market '
+					.'(markettype_id, marketstatus_id, user_id, usercard_id, '
+					.'date_created, date_expired, price, minimum_bid, auctiontype_id) '
+					.'VALUES (1, 1, "'.$iUserID.'", "'.$iUserCardID.'", now(), "'.date('Y-m-d H:i:s',time()+$iDays*24*60*60).'", "'.$iBuyNowPrice.'", '
+					.'"'.$iAuctionBid.'", "'.$iAuctionType.'")');
+
+	echo "Your Auction has been created succesfully...";
+	exit;
+	}
+
+if (isset($_GET['auction_card'])){
+	
+	$iCardId=$_GET['auction_card'];
+	$query = 	'SELECT C.card_id, I.description AS path, C.category_id, CQ.description AS cardr, C.image, C.description, C.ranking  
+				FROM mytcg_card AS C 
+				INNER JOIN mytcg_imageserver I ON (C.front_imageserver_id = imageserver_id) 
+				INNER JOIN mytcg_cardquality CQ ON (C.cardquality_id = CQ.cardquality_id) 
+				WHERE C.card_id =  '.$iCardId.' ';
+	$aCards=myqu($query);
+	$iCount = 0;
 	?>
-		<ul id="card_list_bid">
+	<ul id="auction_card">
 			<li><a>
 			<div class="cardBlockBid">
 				<div class="album_card_pic">
-					<img src="<?php echo($aAuctions[$iCount]['path']); ?>/cards/jpeg/<?php echo($aAuctions[$iCount]['image']); ?>_web.jpg" title="" >
+					<img src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo($aCards[$iCount]['image']); ?>_web.jpg" title="" >
 				</div>
-				<div class="album-card-pic-container" style="background-image:url('<?php echo ($aAuctions[$iCount]['path']); ?>cards/jpeg/thumb.jpg')"></div>
+				<div class="album-card-pic-container" style="background-image:url('<?php echo ($aCards[$iCount]['path']); ?>cards/jpeg/thumb.jpg')"></div>
 				<div class="album_card_title">
-	    			<div>
-	    				<?php echo($aAuctions[$iCount]['description']); ?>
-		    			&nbsp;<?php $owned = $aAuctions[$iCount]['owned'];
-	    				if($owned >= 0){
-	    					echo "(".$owned.")";
-						}
-	    				elseif ($owned == 0){
-	    					echo "(".$owned.")";
-						}
-						?>
-					</div>
-	    			<div>Seller:&nbsp;<?php echo($aAuctions[$iCount]['owner']); ?></div>
-	    			<div>Time Left:&nbsp;<?php echo $timeRemaining; ?></div>
-	    			<div><?php echo (sizeof($aHistory)>0) ? $aHistory[0]['price'] : $aAuctions[$iCount]['minimum_bid'] ; ?>&nbsp;TCG&nbsp;&nbsp;[<?php echo(sizeof($aHistory)); ?>&nbsp;bids]</div>
-	    		  	<div><?php if ($aHistory[0]['username'] != null){
-	    		  		echo ("Highest Bidder:&nbsp;".$aHistory[0]['username']."&nbsp;");
-	    		  	} ?>
-	    		  	</div>
-	    		  	<div><?php echo($aAuctions[$iCount]['price']); ?> TCG</div>
-	    		  	<form method="POST" id="submitForm" action="index.php?page=auction&market=<?php echo($aAuctions[$iCount]['market_id']); ?>">
+						<?php echo $aCards[$iCount]['description']; ?>
+						<br /><?php echo $aCards[$iCount]['cardr']; ?><br /><br />
+	    		  	<form method="POST" id="submitForm" action="index.php?page=auction_card&create_auction=<?php echo($aCards[$iCount]['card_id']); ?>">
 			            <div class="profile_form">
-			            	<input type="text" name="value" value="<?php echo (sizeof($aHistory) > 0) ? $aHistory[0]['price'] + 1 : $aAuctions[$iCount]['minimum_bid'] + 1 ; ?>" size="35" maxlength="50" class="textbox" />
+			            	<div>Opening bid:</div>
+			            	<input type="text" name="bid" value="30" size="35" maxlength="50" class="textbox" />
+			            	<div>Buy now price:</div>
+			            	<input type="text" name="buynow" value="60" size="35" maxlength="50" class="textbox" />
+			            	<div>Auction duration(days):</div>
+			            	<input type="text" name="days" value="5" size="35" maxlength="50" class="textbox" />
 			           	</div>
-						<input type="submit" name="bid" value="BID" class="button" />
-						<input type="submit" name="buy" value="BUY" class="button" />
+						<input type="submit" name="auction" value="Auction" class="button" />
 			    	</form>
 				</div>
 			</div>
 			</a></li>
     	</ul>
-<?php 
-	$iCount++;
+		<?php
 	
-    	}
+}
+	
+	
 ?>   		

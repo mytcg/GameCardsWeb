@@ -231,7 +231,18 @@ p a:hover {color:#D69739; text-decoration:none;}
 	padding:0 0 0 0;
 	margin:auto;
 }
-
+#auction_card{
+	list-style:none;
+	width: 100%;
+	padding:0 0 0 0;
+	margin:auto;
+}
+#auction_card li{
+	background-image: url('images/background_bottomline.png');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:270px;
+}
 #card_list_bid li{
 	background-image: url('images/background_bottomline.png');
 	background-repeat:repeat-x;
@@ -257,6 +268,12 @@ p a:hover {color:#D69739; text-decoration:none;}
 	text-shadow: 0px 1px 1px #fff
 }
 .cardBlock {
+	width:240px;
+	height:110px;
+	float:left;
+	margin:auto;
+}
+#auctionCardBlock {
 	width:240px;
 	height:110px;
 	float:left;

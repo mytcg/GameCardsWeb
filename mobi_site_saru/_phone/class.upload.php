@@ -3069,7 +3069,7 @@ class upload {
         return array($red, $green, $blue);
     }
 
-     /**
+    /**
      * Decodes sizes
      *
      * @access private
