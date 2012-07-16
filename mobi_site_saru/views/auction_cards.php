@@ -9,7 +9,7 @@ $query= "SELECT SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,
         JOIN mytcg_category CA ON C.category_id = CA.category_id
         JOIN mytcg_user U ON M.user_id = U.user_id
         WHERE M.markettype_id = 1 AND M.marketstatus_id = 1 AND C.category_id =".$iCat." ";
-$aAuctions=myqu($query);
+		$aAuctions=myqu($query);
 
 $iCount = 0;
 ?>
@@ -23,7 +23,7 @@ $iCount = 0;
 	$aHistory = myqu($sql);
 	$phpdate = strtotime($aAuctions[$iCount]['date_expired']);
 	$timeRemaining = $phpdate-(strtotime("now"));
-	if ($timeRemaining>0) {
+	if ($timeRemaining > 0) {
 		$timeRemaining = date("H:i:s",$timeRemaining);
 	} else {
 		$timeRemaining = "Finished";
@@ -60,8 +60,10 @@ $iCount = 0;
 			            <div class="profile_form">
 			            	<input type="text" name="value" value="<?php echo (sizeof($aHistory) > 0) ? $aHistory[0]['price'] + 1 : $aAuctions[$iCount]['minimum_bid'] + 1 ; ?>" size="35" maxlength="50" class="textbox" />
 			           	</div>
+			           	<?php if($timeRemaining != "Finished"){ ?>
 						<input type="submit" name="bid" value="BID" class="button" />
 						<input type="submit" name="buy" value="BUY" class="button" />
+			    		<?php } ?>
 			    	</form>
 				</div>
 			</div>

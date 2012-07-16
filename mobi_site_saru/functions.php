@@ -8,6 +8,15 @@ function getUserData($prefix, $userId='')
 		."AND is_active='1'";
 	return myqu($sql);
 }
+// function myqu($sQuery) {
+	// $conn = new dbconnection();
+	// return $conn->_myqu($sQuery);
+// }
+function myqui($sQuery) {
+	$conn = new dbconnection();
+	$conn->_myqui($sQuery);
+}
+
 function resizeCard($iHeight, $iWidth, $iImage, $root, $iBBHeight=0, $jpg=0) {
 
 	//we need to check if the width after scaling would be too wide for the screen.

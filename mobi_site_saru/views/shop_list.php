@@ -11,14 +11,14 @@ $query='SELECT A.product_id, A.description, A.premium, A.no_of_cards, A.image, '
       .'WHERE A.producttype_id=PT.producttype_id '
       .'ORDER BY A.product_id ASC ';
 $aProducts=myqu($query);
-
 $iCount = 0;
-
 ?>
 <p class="text_important">Current Credits:&nbsp;<?php echo ($aCreditsVal[$iCount]['credits']) ?></p>
 <?php
 while ($iPackID=$aProducts[$iCount]['product_id']){
 ?>
+	<ul id="card_list">
+		<li>
 		<div class="cardBlock">
 			<div class="album_card_pic">
 			<img src="<?php echo($aProducts[$iCount]['imageserver']); ?>products/<?php echo($aProducts[$iCount]['image']); ?>.jpg" width="64" height="90" title="View potential cards">
@@ -31,10 +31,12 @@ while ($iPackID=$aProducts[$iCount]['product_id']){
 			  <br />Type:&nbsp;<?php echo($aProducts[$iCount]['type']); ?>
 		        <div id="buttonContainer">
 					<a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">View</div></a>
-					<a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">Buy</div></a>
+					<!-- <a href='index.php?page=shop_category&product_id=<?php echo($iPackID); ?>'><div class="cmdButton">Buy</div></a> -->
 				</div>
 	        </div>
 		</div>
+		</li>
+	</ul>
 	<?php
 	$iCount++;
 	}

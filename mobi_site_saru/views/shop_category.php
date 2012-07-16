@@ -1,7 +1,7 @@
 <?php
 $iUserID = $user['user_id'];
 $boosterid = $_GET['product_id'];
-	
+
 	$query = 'SELECT (ifnull(premium,0)+ifnull(credits,0)) credits, credits cred, premium prem FROM mytcg_user WHERE user_id='.$iUserID;
 	$aCreditsVal=myqu($query);
 	
@@ -52,16 +52,13 @@ $boosterid = $_GET['product_id'];
 		) E
 		ON E.card_id = B.card_id
 		WHERE B.card_id NOT IN (SELECT uc.card_id from mytcg_usercard uc, mytcg_usercardstatus ucs 
-			where uc.user_id = '.$iUserID.' and uc.usercardstatus_id = ucs.usercardstatus_id and ucs.usercardstatus_id=1) 
+		where uc.user_id = '.$iUserID.' and uc.usercardstatus_id = ucs.usercardstatus_id and ucs.usercardstatus_id=1) 
 		GROUP BY B.card_id 
 		ORDER BY description';
-		
 		$cardList=myqu($qu);
 		$iCount=0;
 		?>
-		<div id="buttonContainer">
-			<div class="cmdButton">Buy</div>
-		</div>
+		<div>Booster card posibilities:</div>
 		<?php
 		foreach ($cardList as $cardInList[$iCount]){ ?>
 		<div class="album_card_pic"><img src="http://sarugbycards.com/img/cards/jpeg/<?php echo($cardInList[$iCount]['image']); ?>_web.jpg" width="64" height="90" title="<?php echo($cardInList[$iCount]['description']); ?>"></div>
@@ -69,7 +66,9 @@ $boosterid = $_GET['product_id'];
 		$iCount++;
 		}
 		?>
-				
+		<div id="buttonContainer">
+			<a href="index.php?page=shop_buyout&buynow=<?php echo ($boosterid); ?>"><div class="cmdButton" style="width:85px;">Buy Booster</div></a>
+		</div>	
 
 
 
