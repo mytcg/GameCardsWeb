@@ -1,0 +1,3665 @@
+body {
+	margin:0px;
+	width:762px;
+	font-family:"Arial";
+	text-transform: uppercase;
+	/*font-variant: small-caps;*/
+	color:#efefef;
+	/*text-shadow: -1px 1px 1px #4D5154;*/
+	font-size: 12px;
+	background: url(../_site/bg.jpg) #fff repeat-x;
+}
+a {
+	text-decoration:none;
+}
+body > * {
+	float:left;
+	width: 100%;
+}
+span{
+	font-family: "Arial Black", "Arial";
+	font-weight: 900;
+}
+*:focus {
+	outline:none;
+}
+
+.noise:before {
+	content: "";
+	z-index: -1;
+}
+
+.signupTerms{
+	position: absolute;
+	top:515px;
+	left:490px;
+	font-size:10px;
+}
+.signupTerms a{
+	text-decoration: none;
+	color:#F2C126;
+}
+
+.divPageLogin {
+   top:130px;
+   left:0px;
+   width:762px;
+   height:550px;
+   position: absolute;
+   text-shadow:none;
+   background-color:#222222;
+}
+
+.divSignin {
+  top:37px;
+  left:80px;
+  width:201px;
+  height:99px;
+  background-image:url("../_site/all.png");
+  background-position:-485px -170px;
+  position: absolute;
+}
+
+.divSigninBox{
+  width:300px;
+  height:73px;
+  font-size: 13px;
+  position:absolute;
+}
+
+.divSigninBox input{
+	font-size:12px;
+	color:#222;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	border: none;
+	margin-top:5px; 
+	margin-bottom:10px;
+	width:200px;
+	padding:3px;
+	padding-left:5px;
+	-moz-box-shadow: 0px 0px 5px #111;
+	-webkit-box-shadow: 0px 0px 5px #111;
+	box-shadow: 0px 0px 5px #111;
+}
+
+.divSign{
+	position:absolute;
+	top:151px;
+	left:115px;
+	font-family:Arial Narrow;
+	font-size:28px;
+}
+
+.divSigninText{
+  position: absolute;
+  top:386px;
+  left:115px;
+  width:580px;
+  font-size:11px;
+  line-height:14px;
+  font-family:Arial Narrow;
+}
+
+.divSigninEnter{
+  font-size:12px;
+  width:60px;
+  text-align:center;
+  font-weight:bold;
+  padding:4px 10px 4px 10px; 
+  background-color: #747474;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.divSigninEnter:hover{
+	color:#2E3120;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+	cursor:pointer;
+}
+
+#divTopMenu{
+	background-repeat:no-repeat;
+  	background-position: 35px 0px;
+	width: 762px;
+	height: 94px;
+}
+
+#divTopMenu > * {
+	float:right;
+}
+
+#divTopMenu a {
+	text-decoration: none;
+	color: #faf8f8;
+	font-weight: 900;
+}
+
+.divContainer{
+	width:100%;
+}
+
+#mainIconContainer {
+	font-family:"Arial Black", "Arial";
+	font-weight: 900;
+	color: #f8f5f5;
+	position:absolute;
+	height: 25px;
+	width: 50px;
+	top:30px;
+	left:681px;
+	z-index: 2;
+	font-size: 14px;
+}
+#mainIconContainer:hover{
+	color: #f0bd00;
+}
+
+/*#play{margin-left:17px}
+#shop{margin-left:20px}
+#auction{margin-left:15px}*/
+
+
+
+#mainNavIconContainer {
+	background:url(../_site/all.png) -0px -120px no-repeat;
+	height: 60px;
+    left: 550px;
+    position: absolute;
+    top: 13px;
+    width: 200px;
+    z-index: 1;
+}
+
+.albumAuctionCostNotice{
+	text-align:center;
+	color:#404040;
+	font-size: 11px;
+    position: absolute;
+    top: 337px;
+    left: 200px;
+    width: 140px;
+}
+#creditContainer{
+	font-size: 9px;
+    position: absolute;
+    text-align: center;
+    top: 41px;
+    left: 480px;
+    width: 170px;
+    z-index:3;
+}
+#creditAvailable {
+	font-family:"Arial Black", "Arial";
+	font-weight: 900;
+    color:#F0BD00;
+    font-size:14px;
+    text-align: center;
+}
+.navSpacer{
+	width:32px;
+	height: 80px;
+}
+
+/*.lineLeft{
+	position: absolute;
+	top:74px;
+	left:0px;
+	width:27px;
+	height:2px;
+	background:url(../_site/repeatx.png) 0px 0px repeat-x;
+}
+
+.lineRight{
+	position: absolute;
+	top:74px;
+	left:136px;
+	width:626px;
+	height:2px;
+	background:url(../_site/repeatx.png) 0px 0px repeat-x;
+}*/
+.navholder{
+	padding-right:20px;
+	height:50px;
+	float:right;
+	width:650px;
+	position:relative;
+}
+.navMenuItem {
+	text-shadow: 1px 1px 1px #fff;
+	padding-top:20px;
+	float:right;
+	position:relative;
+	width: 100px;
+	height: 25px;
+	text-align: center;
+	color: #b7b7b7;
+	font-family:"Arial Black", "Arial";
+	font-weight: 900;
+}
+.navMenuItem:hover{
+	border-bottom: 1px solid #fff;
+	text-shadow: 1px 1px 1px #2381a3;
+	background-color:#2494ba;
+	color: #f1f1f1;
+}
+.navMenuItem_active{
+	border-bottom: 1px solid #fff;
+	text-shadow: 1px 1px 1px #2381a3;
+	background-color:#2494ba;
+	color: #f3f3f3;
+}
+
+.headTitle{
+    height: 45px;
+    margin-left: 35px;
+    width: 700px;
+}
+.headDashboard{
+	background: url("../_site/all.png") no-repeat 0px -52px;
+	position:relative;
+	float:right;
+	width: 215px;
+	height:36px;
+	top:8px;
+}
+
+.headProfile{
+	margin-left:25px;
+	font-size:24px;
+	color:#404040;
+	position:relative;
+	float:left;
+	width: 260px;
+}
+
+.profileBody input{
+	font-size:12px;
+	color:#222;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	border: none;
+	margin-top:5px; 
+	margin-bottom:10px;
+	width:200px;
+	padding:3px;
+	padding-left:5px;
+	-moz-box-shadow: 0px 0px 5px #111;
+	-webkit-box-shadow: 0px 0px 5px #111;
+	box-shadow: 0px 0px 5px #111;
+}
+
+.profileContainerLeft{
+	position: absolute;
+	top:200px;
+	left:50px;
+	width:325px;
+	height:425px;
+}
+
+.profileSeparator{
+	position:absolute;
+	top:185px;
+	left:385px;
+	background-color: #3E3E3E;
+	width:1px;
+	height:500px;
+}
+
+.profileDots{
+	position:absolute;
+	width:10px;
+	height:10px;
+	background-color: #747474;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.dotActive{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+}
+
+.profileButton{
+	font-weight:bold;
+	position:absolute;
+	padding:4px 10px 4px 10px; 
+	background-color: #747474;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+
+.profileButton:hover{
+	color:#2E3120;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+	cursor:pointer;
+}
+
+.profileContainerRight{
+	position: absolute;
+	float:right;
+	top:200px;
+	left:450px;
+	width:325px;
+	height:425px;
+}
+
+.profileResponse{
+	color:#2E3120;
+	font-weight:bold;
+	position:absolute;
+	padding:4px 10px 4px 10px; 
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	background-color: #747474;
+}
+
+.auctionResponse{
+	padding: 4px 10px 4px 10px;
+	padding-top: 4px;
+	background-color: #4D4D4D;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	position: absolute;
+	color: #CCC;
+	top: 283px;
+	left: 43px;
+	font-size: 14px;
+	z-index: 5;
+	text-transform: none;
+}
+.profileSaved{
+	padding:4px 10px 4px 10px; 
+	background-color: #747474;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	position: absolute;
+	color:#CCCCCC;
+	top:165px;
+	left:270px;
+	font-size:14px; 
+	z-index: 5;
+}
+
+.dashCredits{
+	text-align:center;
+	position:relative;
+	float:left;
+	margin-top:5px;
+	padding-top:40px;
+	width:195px;
+	height:130px;
+	font-size: 20px;
+}
+.creditsText{
+	float:left;
+	line-height:45px;
+	color: #FFF;
+	font-weight: 900;
+	
+}
+.creditsBuyHeader{
+	position: absolute;
+	top:30px;
+	left:30px;
+	color:#404040;
+	font-size:15px;
+}
+.buyFBcredits{
+	cursor:pointer;
+	position: absolute;
+	top:65px;
+	width:92px;
+	height:90px;
+}
+
+.creditIcon1{
+	background:url(../_site/credits_1.png);
+}
+.creditIcon2{
+	background:url(../_site/credits_2.png);
+}
+.creditIcon3{
+	background:url(../_site/credits_3.png)
+}
+.direct_credits{
+	cursor:pointer;
+	background:url(../_site/all.png) 0px 0px no-repeat;
+	width:42px;
+	height:41px;
+	position:relative;
+	top:-32px;
+	left:154px;
+	z-index:2;
+	float:left;
+}
+.creditsText span{
+	line-height:45px;
+	font-size:70px;
+	color:#F0BD00;
+	font-family:"Impact";
+	font-weight: normal;
+}
+.creditsBody{
+	position:relative;
+	float:left;
+	font-size:10px;
+	width:100%;
+	height:594px;
+	/*background:url(../_site/repeatx.png) 0px -530px repeat-x;*/
+}
+.creditsAmount{
+	text-align:center;
+	position: absolute;
+	width:200px;
+	top:100px;
+	left:0px;
+}
+.cTitle{
+	font-size: 15px;
+}
+
+.cAmount{
+	margin-top:-10px;
+	color: #F0BD00;
+    font-family: "Impact";
+    font-size: 70px;
+}
+.cCredits{
+	margin-top:-15px;
+	font-size: 28px;
+}
+
+.creditsGateWindows{
+	position:absolute;
+	top:30px;
+	left:200px;
+	background: -moz-linear-gradient(center top , #DADADA, #8B8B8B) repeat scroll 0 0 transparent;
+	background: -webkit-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
+	background-color:#DADADA;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 5px 5px #000000;
+    padding: 15px;
+    width: 500px;
+    height: 200px;
+}
+
+.creditsResponse{
+	padding:4px 10px 4px 10px; 
+	background-color: #747474;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	position: absolute;
+	color:#CCCCCC;
+	top:180px;
+	left:61px;
+	font-size:14px; 
+	z-index: 5;
+	display: none;
+}
+
+.buyCreditsButton{
+	cursor:pointer;
+	margin: 45px 10px;
+	width:145px;
+	height:100px;
+	float:left;
+	background:url(../_site/all.png) 0px 0px no-repeat;
+}
+
+.buyCreditsButton:hover{
+	background:url(../_site/all.png) -120px 0px no-repeat;
+}
+
+.creditsTransaction{
+	font-size:15px;
+	position: absolute;
+	top:285px;
+	left:25px;
+}
+.creditsRheaders{
+	font-size:13px;
+	position:absolute;
+	top:315px;
+	left:25px;
+	width:100%;
+}
+.creditsRheaders div{
+	font-weight:bold;
+	position: relative;
+	float:left;
+}
+.creditsScroller{
+	position: absolute;
+	top:335px;
+	left:0px;
+}
+.credRow{
+	font-size:11px;
+	font-weight:bold;
+	width: 736px;
+	padding-left:25px;
+	height:35px;
+}
+.credRDark{
+	background-color: #161616;
+}
+.credRow div{
+	margin-top:10px;
+	position:relative;
+	float:left;
+}
+.credRow div span{
+	color:#F0BD00;
+}
+
+.creditsCloseButton{
+	font-family:Arial Black, Arial;
+	font-weight: 900;
+	font-size:11px;
+	color:#404040;
+	cursor: pointer;
+    float: right;
+    height: 15px;
+    margin-right: 13px;
+    margin-top: 11px;
+    width: 40px;
+}
+
+.profileBody{
+	font-size:10px;
+	width:100%;
+	height:594px;
+	/*background:url(../_site/repeatx.png) 0px -530px repeat-x;*/
+}
+
+.headBody{
+	/*background:url(../_site/repeatx.png) -155px 0px repeat-x;*/
+	width:100%;
+	height:173px;
+}
+
+.headBlocks{
+	position:relative;
+	float:left;
+	width: 186px;
+	height:100%;
+}
+.headMiniTitle{
+	top:5px;
+	padding-top:8px;
+	text-align:center;
+	font-size:15px;
+	position:absolute;
+	width:100%;
+}
+
+.headMiniText{
+	/*font-family:"Impact";*/
+	position:absolute;
+	font-size: 28px;
+	top:70px;
+	text-align: center;
+	width:100%;
+}
+.headMiniText span{
+	color:#F0BD00;
+	font-family:"Arial";
+}
+
+.headBestCard{
+	position:absolute;
+	top:45px;
+	width:100%;
+	
+}
+.headBestCard img{
+	box-shadow: 1px 1px 2px #000;
+	margin:0 33%;
+	cursor: pointer;
+}
+
+.headCardOfDay{
+	position:absolute;
+	top:45px;
+	width:100%;
+	
+	
+}
+.headCardOfDay img{
+	box-shadow: 1px 1px 2px #000;
+	margin:0 33%;
+	cursor: pointer;
+}
+
+.headLeaderboard{
+	font-size:24px;
+	color:#404040;
+	position:relative;
+	float:left;
+	padding-left:20px;
+	width: 174px;
+	height: 13px;
+}
+
+.leaderTitle{
+    height: 45px;
+    margin-left: 35px;
+    width: 700px;
+}
+.line{
+	height:2px;
+	background:url(../_site/repeatx.png) 0px -70px repeat-x;
+	position:relative;
+}
+
+/*.lineGreySmaller{
+	position:relative;
+	margin-top:7px;
+	float:left;
+	height:2px;
+	background:url(../_site/repeatx.png) 0px -2px repeat-x;
+}*/
+.segregation{
+	position:absolute;
+	width:1px;
+	height:120px;
+	background: #3e3e3e;
+}
+.headLeaderBody{
+	width:100%;
+	height:188px;
+	/*background:url(../_site/repeatx.png) -0px -180px repeat-x;*/
+}
+.headLeaderModes{
+	width:100%;
+	height:30px;
+}
+.leaderSect{
+	margin-top:30px;
+	width:150px;
+	position:relative;
+	float:left;
+	height:150px;
+	font-size: 14px;
+}
+.leaderSelAchieve{
+	background:url(../_site/all.png) -330px -120px no-repeat;
+	width:35px;
+	height:40px;
+	cursor: pointer;
+	margin:0 auto;
+}
+.leaderSelAchieve:hover{
+	background:url(../_site/all.png) -290px -120px no-repeat;
+	color:#F0BD00;
+}
+#aContainer{
+	float:left;
+	width:610px;
+	height:100%;
+	position:relative;
+	overflow:hidden;
+}
+#title_wall{
+	font-size: 12px;
+	padding-bottom:10px;
+	width:100%;
+	text-align:center;
+	color:#747474;
+}
+#title_trophies{
+	font-size: 12px;
+	padding-bottom:10px;
+	width:100%;
+	text-align:center;
+	color:#747474;
+}
+#wall_of_fame{
+	float:left;
+	position: relative;
+	width:612px;
+	height:100%;
+}
+#trophies{
+	float:left;
+	position: relative;
+	width:612px;
+	height:100%;
+}
+#achiev{
+	overflow:hidden;
+	width:100%;
+	height:100%;
+	position:relative;
+}
+.achiev_holder{
+	width:140px;
+	height:140px;
+	background:url(../_site/shield_ready.png) 0px 0px no-repeat;
+	margin:30px 0 0 25px;
+	float:left;
+	position:relative;
+}
+
+.leaderSelWall{
+	background:url(../_site/all.png) -415px -120px no-repeat;
+	width:40px;
+	height:40px;
+	cursor: pointer;
+	margin:0 auto;
+}
+.leaderSelWall:hover{
+	background:url(../_site/all.png) -370px -120px no-repeat;
+	color:#F0BD00;
+}
+.leaderDesel{
+	line-height: 20px;
+	color:#888888;
+	cursor: pointer;
+}
+.leaderBox{
+	font-family:"Arial Black", "Arial";
+	font-weight: 900;
+	cursor:pointer;
+	font-size:11px;
+	text-align:center;
+	margin-top:7px;
+	width:20%;
+	color:#747474;
+	position:relative;
+	float:left;
+}
+.leaderBox:hover{
+	color:#F0BD00;
+}
+.leaderBoxActive{
+	color:#F0BD00;
+}
+.leaderSectAddFriend{
+	cursor: pointer;
+    height: 90px;
+    margin-left: 27px;
+    margin-top: 2px;
+    width: 80px;
+	background:url(../_site/all.png) -100px -180px no-repeat;
+}
+.leaderLeftArrow{
+	position: absolute;
+	top:65px;
+	left:8px;
+	width:15px;
+	height:15px;
+	background:url(../_site/all.png) -255px -120px no-repeat;
+	cursor: pointer;
+}
+.leaderLeftArrow:hover{
+	background:url(../_site/all.png) -255px -140px no-repeat;
+}
+.leaderScrolltainer{
+	position: absolute;
+	overflow: hidden;
+	width: 553px;
+	height:115px;
+	top:0px;
+	left:30px;
+	margin-top:7px;
+}
+.leaderScrollBox{
+	position: relative;
+	width:8000px;
+}
+.friendBox{
+	line-height:10px;
+	position:relative;
+	float:left;
+	width:90px;
+	height:100px;
+	margin-top:16px;
+	margin-left:20px;
+	background:url(../_site/all.png) -0px -178px no-repeat;
+	font-size: 10px;
+	color:#414141;
+}
+.friendBoxPic{
+	border:1px solid #5C5A5D;
+	margin:18% 18% 0;
+	position:relative;
+	width:52px;
+	height:52px;
+}
+
+.friendSpeechBubble{
+	color:#EFEFEF;
+	padding-top:10px;
+	position: absolute;
+	width: 35px;
+	height:40px;
+	top:-8px;
+	left:-14px;
+	background:url(../_site/all.png) -670px -120px no-repeat;
+	font-size: 14px;
+	font-family:"Arial Black", "Arial";
+	font-weight: 900;
+	text-align: center;
+}
+#invite_friend{
+	top:0px;
+	left:80px;
+	margin-top:0px;
+}
+.leaderRightArrow{
+	position: absolute;
+	top:65px;
+	left:588px;
+	width:15px;
+	height:15px;
+	background:url(../_site/all.png) -275px -120px no-repeat;
+	cursor: pointer;
+}
+.leaderRightArrow:hover{
+	background:url(../_site/all.png) -275px -140px no-repeat;
+}
+.headCredits{
+	color: #404040;
+    float: left;
+    font-size: 24px;
+    height: 13px;
+    padding-left: 20px;
+    position: relative;
+    width: 190px;
+}
+.headCreditsBody{
+	width:100%;
+	height:150px;
+	/*background: url(../_site/repeatx.png) 0px -375px repeat-x;*/
+}
+
+.headRecentActivity{
+	background: url("../_site/all.png") no-repeat 0px -95px;
+	position:relative;
+	width: 200px;
+	top:8px;
+	height: 36px;
+    font-size: 24px;
+}
+
+.selDots{
+	position:absolute;
+	top:95px;
+	width:10px;
+	height:10px;
+	cursor:pointer;
+	background:url(../_site/all.png) -352px -3px no-repeat;
+}
+.selDots-active{
+	position:absolute;
+	top:95px;
+	width:10px;
+	height:10px;
+	cursor:pointer;
+	background:url(../_site/all.png) -331px -3px no-repeat;
+}
+.selDotsText{
+	position:absolute;
+	top:92px;
+	color:#000;
+	font-size:12px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.selDotsText span{
+	color:#4B4B4B;
+}
+.buttonGrey{
+	position: absolute;
+	padding:4px 20px;
+	font-weight:bold;
+	font-size:11px;
+	color:#222325;
+	background-color: #C9C9C9;
+	-moz-box-shadow: 0px 1px 1px #606060;
+	-webkit-box-shadow: 0px 1px 1px #606060;
+	box-shadow: 0px 1px 1px #606060;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.buttonGrey:hover{
+	background-color: #BBB;
+}
+.buttonBuy{
+	position: absolute;
+	padding:4px 20px;
+	font-weight:bold;
+	font-size:11px;
+	color:#222325;
+	background-color: #C9C9C9;
+	text-decoration: none;
+	-moz-box-shadow: 0px 1px 1px #606060;
+	-webkit-box-shadow: 0px 1px 1px #606060;
+	box-shadow: 0px 1px 1px #606060;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.buttonBuy:hover{
+	background-color: #BBB;
+}
+.activityLeftArrow{
+	position: absolute;
+	top:60px;
+	left:15px;
+	width:15px;
+	height:20px;
+	background:url(../_site/all.png) -280px -40px no-repeat;
+	cursor: pointer;
+}
+.activityRightArrow{
+	position: absolute;
+	top:60px;
+	left:335px;
+	width:15px;
+	height:20px;
+	background:url(../_site/all.png) -300px -40px no-repeat;
+	cursor: pointer;
+}
+.activityScroll{
+	overflow:hidden;
+	position: absolute;
+	top:-10px;
+	left:40px;
+	width:300px;
+	height:170px;
+}
+.activityColumb{
+	position: relative;
+	float: left;
+	width: 85px;
+	height: 170px;
+	margin-right: 15px;
+	text-align: center;
+	font-weight: bold;
+}
+.shopTitle{
+	height:35px;
+	padding-top: 15px;
+}
+
+.headAlbum {
+	font-size:24px;
+	color:#404040;
+	position:relative;
+	float:left;
+	padding-left:20px;
+	width: 174px;
+	height: 13px;
+}
+
+.headAuction {
+	font-size:24px;
+	color:#404040;
+	position:relative;
+	float:left;
+	padding-left:20px;
+	width: 220px;
+	height: 13px;
+}
+
+.headShop{
+	font-size:24px;
+	color:#404040;
+	position:relative;
+	float:left;
+	padding-left:20px;
+	width: 174px;
+	height: 13px;
+}
+
+.headPlay{
+	position:relative;
+	float:left;
+	width: 70px;
+	height: 20px;
+	background:url(../_site/all.png) 0px -374px no-repeat;
+}
+
+.shopBody{
+	margin-left: 15px;
+	width:702px;
+	height:626px;
+	padding:15px;
+	margin-bottom:30px;
+	
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DADADA), to(#8B8B8B));
+	background: -webkit-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
+	background-color:#DADADA;
+	-moz-box-shadow: 0px 5px 5px #000;
+	-webkit-box-shadow: 0px 5px 5px #000;
+	box-shadow: 0px 5px 5px #000;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+.modal-error-icon {
+  position:absolute;
+  width:80px;
+  height:80px;
+  top:30px;
+  left:20px;
+  background-image: url("../_site/important.png");
+}
+.modal-credits-icon {
+  position:absolute;
+  width:80px;
+  height:80px;
+  top:30px;
+  left:20px;
+  background-image: url("../_site/credits-icon.png");
+}
+.modal-success-icon {
+  position:absolute;
+  width:80px;
+  height:80px;
+  top:30px;
+  left:20px;
+  background-image: url("../_site/success-icon.png");
+}
+.modal-error-text {
+  position:absolute;
+  text-align:center;
+  padding:8px;
+  width:250px;
+  height:54px;
+  top:35px;
+  left:110px;
+  font-size:12px;
+  text-transform: none;
+}
+
+.modal-error-text span{
+	color: #DD1125;
+	font-size: 13px;
+}
+
+
+
+.shop-pic{
+	width: 120px;
+	height:166px;
+	cursor:pointer;
+	margin-bottom:20px;
+}
+
+.shopDetailsBlock{
+	position: absolute;
+	font-size:10px;
+	top:35px;
+	left:100px;
+	width:100px;
+	height: 110px;
+	color: #000000;
+}
+.boosterCost span{
+	color: #FFF;
+}
+.boosterCost{
+	text-align:right;
+	font-weight:bold;
+	font-size:13px;
+	line-height: 25px;
+}
+.boosterView{
+	margin-top:5px;
+	position:relative;
+	float:right;
+	width: 25px;
+	height: 15px;
+	background:url(../_site/all.png) -431px -3px no-repeat;
+	cursor: pointer;
+}
+.boosterView:hover{
+	background:url(../_site/all.png) -401px -3px no-repeat;
+}
+.booster_pack_name {
+	/*position: relative;*/
+	background: url('../_site/all.png') -210px 0 transparent;
+	font-size:8px;
+	height:40px;
+	line-height: 33px;
+	color: #d7d7d7;
+	text-align: left;
+	width: 110px;
+	padding-left: 10px;
+	float: left;
+	clear: right;
+}
+
+.dailyPopup{
+	position:absolute;
+	top:50px;
+	left:50px;
+	width:200px;
+	height:160px;
+	padding:15px;
+	z-index:9002;
+	
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#DADADA), to(#8B8B8B));
+	background: -webkit-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
+	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
+	background-color:#DADADA;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+
+
+#creditsAmountBig, .columnValue span, .creditPackageOption span {
+	color:#89b005;
+}
+
+#leaderboard {
+	width:762px;
+	height:230px;
+}
+
+#credits {
+	width:762px;
+	height:190px;
+}
+
+#recentActivity {
+	float: right;
+	border-top: 1px solid #4D5154;
+	width: 380px;
+}
+
+
+.rankingType {
+	float:left;
+	font-size: 12px;
+	line-height: 6px;
+	margin-bottom:3px; 
+	text-shadow: -1px 1px 1px #616566;
+	width:115px;
+	text-align: center;
+}
+
+#rankingTypesContainer {
+	margin:0 auto;
+	width:575px;
+}
+
+.rankingType, .activityOption {
+	cursor:pointer;
+}
+
+#rankingTypesContainer .selected, #activityOptionContainer .selected{
+	color:#89b005;
+	text-shadow: -1px 1px 1px #222327;
+}
+
+#otherUserTypes {
+	padding-top:35px;
+	float:left;
+	clear:left;
+	width:105px;
+	text-align: right;
+}
+
+#creditsBig {
+	font-size: 26px;
+	width: 110px;
+	/*line-height:26px;*/
+	float: left;
+	margin:30px 40px;
+	margin-right:0px;
+	padding:27px 40px;
+	background: #4d5154;
+	color: #222327;
+	text-shadow:-1px 1px 2px #616566;
+	text-align: center;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.columnHead {
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#creditsAmountBig {
+	font-size: 60px;
+	display: block;
+	line-height: 47px;
+	text-shadow:-1px 1px 1px #222327;
+}
+
+#header {
+	width:762px;
+	height:215px;
+}
+
+.columnHead {
+	text-align: center;
+	color:#cecfd1;
+	text-shadow:-1px 1px 1px #222327;
+	font-size: 10px;
+	background: #4D5154;
+	width:78%;
+	margin:0 auto;
+	padding: 6px 0;
+}
+
+.headerColumn:nth-child(2) .columnValue {
+	margin-top: 0px;
+}
+.headerColumn:nth-child(4) .columnValue {
+	margin-top: 0px;
+}
+.headerColumn:nth-child(3) .columnValue {
+	border:solid 1px #4D5154;
+	border-bottom:0px;
+	border-top:0px;
+	
+}
+
+.columnValue {
+	margin-top: 20px;
+	font-size: 23px;
+	text-align: center;
+	line-height: 100px;
+	}
+	
+.columnValue span {
+	text-shadow: -2px 1px 1px #222327;
+}
+
+#headerColumnContainer {
+	/*float: left;*/
+	margin-left: 230px;
+	height:222px;
+}
+
+#headerLabel {
+	text-align: center;
+	width:455px;
+	font-size:24px;
+	line-height:56px;
+	color: #222327;
+	text-shadow:-1px 1px 0px #4D5154;
+}
+
+.otherUserType {
+	font-size: 15px;
+	padding-right: 10px;
+	height:25px;
+	line-height: 24px;
+	text-shadow: -1px 1px 1px #616566; 
+}
+
+#leaderboardheader {
+	float: left;
+	width:100%;
+}
+
+#addFriendButtonContainer {
+	padding-top:10px;
+	float:left;
+}
+
+#addFriendButton {
+	margin:10px 25px;
+	background:url(../_site/dashboard_sprite.png) -20px -200px #616566;
+	height:80px;
+	width:55px;
+}
+
+.activityOptionContainer {
+	margin:0 auto;
+}
+
+.activityOption {
+	float:left;
+	width:33%;
+	text-align: center;
+	font-size: 12px;
+}
+
+.sectionHeader {
+	text-align: center;
+	position:relative;
+	bottom: 12px;
+	color: #e6e6e6;
+	font-size: 15px;
+	text-shadow: -1px 1px 2px #222327;
+}
+
+#credits form {
+	margin:0;
+}
+
+#credits fieldset {
+	border: 0px;
+	padding:30px 5px;
+}
+
+#paymentIconsContainer fieldset{
+	width:65%;
+	margin: 0 auto;
+}
+
+.paymentIcon {
+	font-size:10px;
+	float: left;
+	height:40px;
+	width:80px;
+}
+
+.paymentIcon label {
+	height:40px;
+	width:55px;
+	background: url(../_site/dashboard_sprite.png) no-repeat;
+	display: block;
+	float: right;
+}
+
+.paymentIcon input {
+	display: none;
+}
+
+#paymentOption1 + label {
+	background-position:   -20px -70px;
+}
+
+#paymentOption1:checked + label {
+	background-position:   -20px -20px;
+}
+
+#paymentOption2  + label {
+	background-position:   -105px -70px;
+}
+
+#paymentOption2:checked  + label {
+	background-position:   -105px -20px;
+}
+
+#paymentOption3  + label {
+	background-position:   -185px -70px;
+}
+
+#paymentOption3:checked  + label {
+	background-position:   -185px -20px;
+}
+
+.creditPackageOption {
+	font-size: 14px;
+	float: left;
+	width:30%;
+	padding-left: 10px;
+}
+
+#creditPackageOptionContainer fieldset{
+	margin: 0px auto;
+	padding:0px;
+	padding-bottom: 45px;
+}
+
+.creditPackageOption input {
+	color:#222327;
+}
+
+input[type="submit"] {
+	float:right;
+	width:72px;
+	height: 25px;
+	text-transform: uppercase;
+	font-size: 10px;
+	text-shadow: 1px 1px 1px #222327;
+	color: #222327;
+	border-radius: 3px 3px 3px 3px;
+   box-shadow: -1px 1px 0 #222327;
+   background: -moz-linear-gradient(center top , #FFFFFF, #4D5154) repeat scroll 0 0 #CECFD1;
+	margin-right: 10px;
+} 
+
+#userFlowContainer {
+	border-left: solid 1px #616566;
+	border-right: solid 1px #616566;
+	margin-bottom: 10px;
+	margin-top:10px;
+	float:left;
+	width:545px;
+	overflow: hidden;
+}
+
+#userFlowContainer, #userFlowContainer > * {
+	height:103px;
+}
+
+#userFlowContainer > * {
+	float: left;
+}
+
+#coverFlow {
+	position: absolute;
+	margin-left: 35px;
+}
+
+#leaderboard #coverFlow {
+	overflow: hidden;
+	width:470px;
+}
+
+.flowView {
+	width:2000px;	
+	
+}
+
+.flowBlock {
+	height:105px;
+	width:70px;
+	float: left;
+}
+
+.flowItemPlaceholder {
+	background-color: #cccccc;
+	margin:10px 5px;
+	height: 80px;
+	width:60px;
+}
+
+.endBlock {
+	width:35px;
+}
+
+.next {
+	float: right !important;
+}
+
+.prev {
+	
+}
+
+.flowIteminfo {
+	text-shadow: none;	
+}
+
+.rankNumber {
+	font-size: 12px;	
+	float: right;
+}
+
+.flowIteminfo .name {
+	font-size: 9px;
+	float: left;
+}
+
+.flowIteminfo img {
+	height: 50px;
+	float: left;
+}
+
+.flowIteminfo .trophies {
+	height: 50px;
+	float: left;
+}
+
+.trophies {
+	text-transform: none;
+	font-size: 10px;
+}
+
+.trophies span {
+	font-size: 12px;
+}
+
+#album_scroll_pane {
+	float:left;
+	text-shadow: none;
+	height: 593px;
+	width:100%;
+	overflow: scroll;
+}
+
+#albumPlate {
+	height:595px;
+	width:100%;
+	margin-top:0;
+	float:left;
+}
+
+.album_card_pic {
+	float: left;
+	
+}
+
+
+.album_card_pic img{
+	float: left;
+}
+
+.album-card-pic-container {
+	height: 90px;
+	width: 64px;
+	position: relative;
+	opacity: 0.1;
+}
+
+.albumCardCount {
+	position:relative;
+	width:18px;
+	height:20px;
+	line-height:18px;
+	top:15px;
+	left: 55px;
+	text-align: center;
+	color:#EFBD00;
+}
+
+.cardBlock .active {
+	background: url(../_site/all.png) -720px -120px no-repeat;
+} 
+
+.album-card-count {
+	float: right;
+}
+
+
+#right_menu {
+	width:150px;
+	float:right;
+	color: #3f3f3f;
+	margin-top: 20px;
+	font-size: 12px;
+	height:295px;
+	margin-right:30px;
+}
+
+.right_menu_item {
+	cursor: pointer;
+	height:18px;
+	overflow: hidden;
+}
+
+#cardBigView {
+	height: 280px;
+	width:175px;
+	float:right;
+	margin-right: 20px;
+	margin-top:30px;
+	background: url('../_site/card_back_album.png') -0px -0px transparent no-repeat;
+}
+
+#cardBigView > * {
+	float:left;
+	margin: 0;
+	position: relative;
+	left:55px;
+	top:250px;
+}
+
+#cardBigView img {
+	position: relative;
+	top:-20px;
+	left:-5px;
+}
+
+.inside {
+	width: 130px;
+	height: 5px;
+	margin: 0 auto;
+	float:left;
+}
+
+.insideAbove {
+	background-color: #505457;
+}
+
+.insideBelow {
+	background-color: #E6E6E6;
+}
+
+#auctionPlate {
+	height:575px;
+	padding:10px;
+	overflow: hidden;
+}
+
+.textSearch{
+	position:absolute;
+	width:15px;
+	height: 25px;
+	top:4px;
+	left:195px;
+	cursor:pointer;
+	background: url('../_site/all.png') -748px -118px transparent no-repeat;
+}
+
+#auction_search_container {
+	float:right;
+	width:33%;
+	display: inline;
+	position: relative;
+}
+
+#auction_search_container input {
+	background-color: #c0c0c0;
+	height: 25px;
+	border-radius: 8px; 
+	-moz-border-radius:15px;
+	-moz-box-shadow:    inset 1px 1px 20px #000000;
+    -webkit-box-shadow: inset 1px 1px 20px #000000;
+    box-shadow:         inset 1px 1px 20px #000000;
+	color:#EFEFEF;
+	padding-left: 4px;
+	margin-right: 20px;
+    margin-top: 4px;
+}
+
+
+#auction_search_container > *{
+	
+}
+
+#auction_buttons {
+	width: 100%;
+	margin-bottom: 15px;
+	height:35px;
+}
+
+#auction_buttons .cmdButton:hover {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+}
+#auction_buttons .cmdButton {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
+	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#DAD8D9;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	margin-top:7px;
+	margin-right:20px;
+	width:100px;
+	text-align: center;
+	display: block;
+	float:left;
+	color:#404040;
+	text-shadow:none;
+	font-size: 12px;
+	cursor: pointer;
+	height:18px;
+	padding-top:3px;
+}
+
+#auction_scroll_pane {
+	width: 100%;
+	height: 470px;
+	overflow: scroll;
+	float:left;
+}
+
+.cardBlockContainer {
+	width:70px;
+	margin-right:10px;
+	height:90px;
+	margin-bottom:40px;
+	float:left;
+}
+
+#deck-select .cardBlockContainer {
+	background: url("../_site/all.png") no-repeat scroll -210px -71px transparent;
+}
+
+.cardBlock {
+	font-size:10px;
+	color:#EFEFEF;
+	float:left;
+	line-height:11px;
+	width:72px;
+	height:130px;
+	position:static;
+	padding-left: 25px;
+	padding-top:10px;
+}
+
+.cardBlock img {
+	margin-bottom: 5px;
+}
+
+.productBlock{
+	position:relative;
+	width: 150px !important;
+	height:250px;
+	font-size: 11px;
+	font-weight:bold;
+	text-shadow:none;
+	float: left;
+	padding: 5px 10px;
+}
+
+.auctionBlockLarge {
+	height:150px;
+	font-size: 11px;
+	font-weight:bold;
+	text-shadow:none;
+	float: left;
+	width:30%;
+	padding: 5px 10px;
+}
+
+
+.auction_block_details {
+	text-align: left;
+	height: 100%;
+	float:left;
+	width:125px;
+	padding-left:5px;
+	overflow: hidden;
+}
+
+.auction_block_details span, .productPriceAmount, .booster-price span {
+	color:#F2C126;
+}
+
+.auction_car_name{
+	clear: right;
+    height: 15px;
+    width: 100%;
+}
+
+.productDescription, #albumAuctionModalWindow .inputdesc {
+	/*position: relative;*/
+	clear: right;
+    color:#404040;
+    height: 40px;
+    line-height: 30px;
+    text-align: center;
+    width: 150px;
+}
+
+#albumAuctionModalWindow .inputdesc {
+	text-align:left;
+	font-size: 11px;
+    font-weight: 700;
+}
+
+#albumAuctionModalWindow .inputbox {
+	
+}
+
+.inputDiv {
+	    left: 83px;
+    top: 35px;
+    width: 200px;
+}
+
+#price, #minimum_bid {
+	position: relative;
+	left:155px;
+	font-weight:700;
+	color:#404040;
+}
+
+#price span, #minimum_bid span {
+	color:#222327;
+}
+
+#albumAuctionModalWindow #slideMin, #albumAuctionModalWindow #slidePrice {
+	position:relative;
+	bottom:12px;
+}
+
+#albumAuctionModalWindow .albumAuctionButton {
+	position: absolute;
+	right:35px;
+	bottom:35px;
+	font-size: 12px;
+	font-weight: 700;	
+}
+
+.auctionIcon {
+	background: url('../_site/all.png') -320px -170px transparent no-repeat;
+	width: 30px;
+	height:25px;
+	position:absolute;
+	top:8px;
+	left:15px;
+	cursor:pointer;
+}
+
+.auctionIcon:hover {
+	background: url('../_site/all.png') -290px -170px transparent no-repeat;
+}
+
+.albumViewAuctionText{
+	color:#404040;
+	font-family: Arial Black, Arial;
+	font-weight: 900;
+	position: absolute;
+	top:11px;
+	left:44px;
+	cursor:pointer;
+}
+.albumViewAuctionText:hover{
+	color:#D69739;
+}
+
+.picture-box {
+	float: left;
+	clear: left;
+	margin-left: 6px;
+    margin-top: 10px;
+    display:inline;
+	cursor: pointer;
+}
+.picture-box-container{
+	background: url('../_site/all.png') -571px -280px no-repeat;
+	width:76px;
+	height:123px;
+	float:left;
+}
+#play-window {
+	width:762px;
+	position: absolute;
+	left:0;
+}
+
+.game-view {
+	width:100%;
+	position: absolute;
+	top:0px;
+	left:765px;
+}
+
+#game_menu {
+	left:0px;
+}
+
+.active-game-card-side {
+	width: 261px;
+}
+
+#game-table-head {
+	width:100%;
+	text-align: center;
+}
+
+#player-card-side {
+	float:left;
+	margin-left: 65px;
+}
+
+#opponent-card-side {
+	float:right;
+	margin-right: 65px;
+}
+
+.card-number-background {
+	height: 68px;
+	width:140px;
+	background-color: #48494b;	
+	font-size: 30px;
+	float:left;
+	margin:61px 57px;
+	text-align: center;
+	line-height: 66px;
+	border-radius: 5px;
+	box-shadow: -1px 1px 1px #222327;
+	position: absolute;
+	left: 258px;
+	top: 425px;
+}
+
+#cardNumberLeft {
+	color:#CECFD1;
+}
+
+.gameTableTopRowItem {
+	float:left;
+	width:244px;
+	height: 110px;
+}
+
+.gameTableTopRowItem:nth-child(1) {
+	/*background: url('../_site/all.png') -609px -1000px transparent;*/
+	margin-left: 60px;
+}
+
+#gameScore {
+	/*background: url('../_site/all.png') -815px -950px transparent no-repeat;*/
+	width:170px;
+	/*position: absolute;
+	left:300px;*/
+}
+
+.attribute-overlay {
+	width: 100%;
+	height: 20px;
+	margin-bottom: 15px;
+}
+
+.indicator {
+	width: 22px;
+	height: 20px;
+}
+
+#player-card-side .attribute-overlay:hover {
+	background: url('../_site/all.png') -3px -400px transparent;
+	cursor: pointer;
+}
+
+#player-card-side .attribute-overlay:hover .indicator {
+	background: url("../_site/all.png") -400px -125px transparent;
+}
+
+#player-card-side .attribute-overlay-disabled:hover {
+	cursor: default !important;
+	background: none;
+}
+
+#player-card-side .attribute-overlay-disabled:hover .indicator {
+	background: url("../_site/all.png") -400px -162px transparent !important;
+}
+
+#player-card-side .attribute-overlay-disabled .indicator-active {
+	background: url("../_site/all.png") -400px -125px transparent;
+}
+
+
+
+.activeGameCardSideImage {
+	height:350px;
+	width:244px;
+}
+
+
+#player-card-side .card-overlay {
+	position: absolute;
+	left: 65px;
+}
+
+#player-card-side .indicator-active {
+	position: absolute;
+	right: 0;
+	background: url("../_site/all.png") -400px -160px transparent;
+	width: 22px;
+	height: 20px;
+	display: none;
+}
+
+#player-card-side .indicator {
+	float: right;
+	background: url("../_site/all.png") -400px -162px transparent;
+}
+
+#opponent-card-side .card-overlay {
+	position: absolute;
+	right: 65px;
+}
+
+.card-overlay {
+	top: 113px;
+	z-index: 2;
+	width: 282px;
+	height: 275px;
+	padding-top: 71px;
+}
+
+.card-container {
+	width:160px;
+	height:95px;
+	margin-top: 15px;
+}
+
+.card-container img {
+	height:86px;
+	width:65px;
+	position: absolute;
+	/*background: url("../_site/all.png") -530px -200px transparent;*/
+}
+
+#cardContainerLeft {
+	float: left;
+	margin-left:65px;
+} 
+
+#cardContainerRight {
+	float:right;
+	margin-right: 65px;
+}
+
+#cardContainerRight img {
+	right: 65px;
+}
+
+#opponentCardSideImage {
+	float:right;
+}
+
+
+
+/*#gameMenuContainer, .deck-chooser, .difficulty-chooser,.opponent-chooser {
+	margin:220px auto;
+	width:415px;
+	height: 180px;
+	border-radius:10px;
+	box-shadow: 0px 4px 4px #222327;
+	}*/
+
+.gameMenuContainer {
+	margin:220px auto;
+	width:415px;
+	height: 180px;
+	border-radius:10px;
+	box-shadow: 0px 4px 4px #222327;
+	}
+
+
+.game-menu-item {
+	font-size: 17px;
+	font-weight: 700;
+	color: #878787;
+	text-shadow: -1px 1px 0px #E6E6E6;
+	float:left;
+	text-align: center;
+	height:120px;
+	border-left:solid 1px #959595;
+	border-right:solid 1px #ebebeb;
+} 
+
+.game-menu-item:last-child {
+	border-right:none;
+}
+
+.game-menu-item:first-child {
+	border-left:none;
+}
+
+.initGame {
+	width:200px;
+	margin:30px 0;
+}
+
+#new-game:hover #newgameicon {
+	background:url('../_site/all.png') -662px -0px transparent;
+}
+
+#new-game:hover {
+	color:#cb0510;
+	text-shadow: -1px 1px 0px #878787;
+}
+
+#load-game:hover #loadgameicon {
+	background:url('../_site/all.png') -662px -55px transparent;
+}
+
+#load-game:hover {
+	color:#cb0510;
+	text-shadow: -1px 1px 0px #878787;
+}
+
+.deckblock {
+	cursor: pointer;
+	margin: 10px 10px 10px 10px;
+	float: left;
+	width: 120px;
+	height: 80px;
+}
+
+.deckblock img {
+	margin: 0px 30px;
+}
+
+.gradient-bg, .gameMenuContainer, .return-button,#auctionplate, #albumPlate, .modal-picture-holder, #shopPlate, #deckPlate {
+   /*background-color: #8c8c8c;*/
+   /*background:url(../_site/repeatx.png) 0px -541px repeat-x;*/
+   z-index: 3;
+}
+
+.gameMenuIcon {
+	height:50px;
+	width:50px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#newGameIcon {
+	background: url('../_site/all.png') -716px -0px transparent;
+} 
+
+#loadGameIcon {
+	background: url('../_site/all.png') -716px -55px transparent;
+} 
+
+.menu-scroll-button {
+	height:15px;
+	width:15px;
+	margin-top: 10px;
+	float:left;
+	position: relative;
+	cursor:pointer;
+	top:12px;
+}
+
+#menu-left-button {
+	background: url(../_site/all.png)-255px -120px no-repeat;
+	left:25px;
+}
+
+#menu-right-button {
+	left:645px;
+	background:url(../_site/all.png) -275px -120px no-repeat;
+}
+
+
+
+#deck_list {
+	/*margin-top: 40px;*/
+	height: 100px;
+	width:100%;
+	float:left;
+}
+
+#difficulty_level .game-menu-item, #choose_opponent .game-menu-item {
+	width:136px;
+	float: left;
+	text-align: center;
+	height:100px;
+	font-size: 10px;
+}
+
+.chooseCaption {
+	float:left;
+	width:120px;
+	height:37px;
+	background: url('../_site/all.png') -207px 0px transparent;
+	line-height: 30px;
+	color: #CECFD1;
+	text-align: center;
+	font-size: 10px;
+	margin-top:3px;
+	margin-right: 290px;
+}
+.game-deck-info{
+	font-size:11px;
+	padding-top:10px;
+	margin:auto;
+	width:350px;
+	height:35px;
+	text-align: center;
+	text-shadow: -1px 1px 0px #E6E6E6; 
+}
+.search-find-box{
+	text-shadow: -1px 1px 0px #E6E6E6;
+	width:380px;
+	margin:auto;
+}
+.search-find-box-label{
+	font-size:11px;
+}
+.friend-finder-input{
+	background-color: #C0C0C0;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    height: 30px;
+    padding-left: 4px;
+    text-shadow: 1px 1px 1px #9A9A9A;
+    width:100%;
+}
+#friendSearch{
+	background-color: #C7C7C7;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 2px 2px #5B5B5B;
+    cursor: pointer;
+    height: 25px;
+    line-height: 27px;
+    text-align: center;
+    font-weight: 700;
+    width: 70px;
+    top:5px;
+}
+#searchAgain{
+	background-color: #C7C7C7;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 2px 2px #5B5B5B;
+    cursor: pointer;
+    height: 25px;
+    line-height: 27px;
+    text-align: center;
+    font-weight: 700;
+    width: 85px;
+}
+#friendSearchResultsList{
+	margin-bottom:5px;
+	height:145px;
+	width:100%;
+	margin-left:auto;
+	margin-right:auto;
+	overflow-y:auto;
+	border: 1px solid #d1d1d1;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.progress-indicator{
+	border: 1px solid #D1D1D1;
+    border-radius: 5px 5px 5px 5px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+    width: 100%;
+	
+}
+
+
+.choose-friend .gameMenuIcon {
+	background: url('../_site/all.png') -605px -565px transparent;
+}
+
+.choose-friend:hover .gameMenuIcon {
+	background: url('../_site/all.png') -605px -630px transparent;
+}
+
+.choose-computer .gameMenuIcon{
+	background: url('../_site/all.png') -670px -565px transparent;
+	width: 70px;
+}
+
+.choose-computer:hover .gameMenuIcon{
+	background: url('../_site/all.png') -670px -634px transparent;
+	width: 70px;
+}
+
+.choose-player .gameMenuIcon{
+	background: url('../_site/all.png') -751px -565px transparent;
+}
+
+.choose-player:hover .gameMenuIcon{
+	background: url('../_site/all.png') -751px -626px transparent;
+}
+
+
+#choose-easy .gameMenuIcon {
+	background: url('../_site/all.png') -355px -296px transparent;
+}
+
+#choose-easy:hover .gameMenuIcon {
+	background: url('../_site/all.png') -355px -375px transparent;
+}
+
+#choose-easy:hover {
+	color:#cb0510;
+	text-shadow: -1px 1px 0px #878787;
+}
+
+#choose-normal .gameMenuIcon {
+	background: url('../_site/all.png') -440px -296px transparent;
+}
+
+#choose-normal:hover .gameMenuIcon {
+	background: url('../_site/all.png') -440px -375px transparent;
+}
+
+#choose-normal:hover {
+	color:#cb0510;
+	text-shadow: -1px 1px 0px #878787;
+}
+
+#choose-hard .gameMenuIcon {
+	background: url('../_site/all.png') -522px -296px transparent;
+}
+
+#choose-hard:hover .gameMenuIcon {
+	background: url('../_site/all.png') -522px -375px transparent;
+}
+
+#choose-hard:hover {
+	color:#cb0510;
+	text-shadow: -1px 1px 0px #878787;
+}
+
+.game-menu-item:hover {
+	color:#cb0510;
+	text-shadow: -1px 1px 0px #878787;
+}
+
+#difficulty_level .gameMenuIcon {
+	height:80px;
+	width:80px;
+	margin-bottom: 0px;
+	
+}
+
+.avatar {
+	width: 65px;
+	height:65px;
+	margin:25px auto;
+}
+
+.avatarXp {
+	text-align: right;
+	position:absolute;
+	width: 65px;
+	color:white;
+}
+
+#opponentAvatar .avatar{
+	background: url('../_site/all.png') -600px -558px transparent;
+	margin-left: 50px !important;
+}
+
+#opponentAvatar {
+	/*position:absolute;*/
+	/*left:480px;*/
+}
+
+
+#playerAvatar {
+	margin-left:65px;
+	width: 255px;
+}
+
+.gameConclusionImage {
+	text-align: center;
+	line-height: 30px;
+}
+
+#gameContinueButton {
+	margin:auto;
+	text-align:center;
+	width:100px;
+	height:30px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color:#444444;
+	color: #C3C3C4;
+	padding: 5px;
+	text-shadow: none;
+	line-height:30px;
+}
+
+.modal-window {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
+	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background: -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#dad8d9;
+	box-shadow: 0px 4px 4px #222327;
+	position: absolute;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	padding: 5px;
+	padding: 12px;
+	text-shadow: none;
+}
+
+.modal-window .close-button {
+	color: #404040;
+	cursor: pointer;
+	float: right;
+	margin-top: 11px;
+	margin-right:10px;
+	
+}
+
+.modal-window .close-button:hover {
+	color:#404040;	
+}
+
+.closeButtonContainer {
+	width:100%;
+	height:35px;
+}
+
+.half {
+	height:50%;
+	width:100%;
+}
+
+#topHalf {
+	border-bottom:1px solid #a6a6a6;
+}
+
+#bottomHalf {
+	border-top:1px solid #e9e9e9;
+}
+
+#gameConclusionScore {
+	font-size: 30px;
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+}
+
+#mask {
+  	position: absolute;
+	z-index: 0;
+  	background-color:#000;
+  	width: 100%;
+  	height:830px;
+  	opacity: 0.5;
+}
+
+.saved-game-list {
+	height:330px;
+	font-size: 10px;
+	text-shadow: none;
+	overflow: auto;
+	padding-bottom: 0px;
+	margin-top: 120px;
+}
+
+.saved-game-list ul {
+	list-style-type: none;
+	padding:10px;
+	padding-left: 30px;
+}
+
+.saved-game-list li {
+	cursor:pointer;
+}
+
+.saved-game-list li:hover {
+	list-style-type: disc;
+} 
+
+.game-window-heading {
+	display: none;
+}
+
+#loadGamesIndicator {
+	text-align: center;
+}
+#loadGamesIndicator img{
+	text-align: center;
+	margin-top: 110px;
+}
+
+.return-button {
+	width: 160px;
+	height:30px;
+	line-height: 30px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 0px 5px;
+	position: absolute;
+	left:300px;
+	bottom: 20px;
+	text-shadow: none;
+	text-align: center;
+	cursor: pointer;
+}
+
+.deckBlockTitle {
+	font-size: 10px;
+	text-align: center;
+}
+
+#gameMenuButton {
+	position: absolute;
+	top:575px;
+}
+
+.roundResult {
+	background: url('../_site/gaming.png') -400px -0px transparent;
+	width:200px;
+	height: 120px;
+	position: absolute;
+	left:300px;
+	top:35px;
+	display: none;
+}
+
+#youWin {
+	background-position: -255px -150px;
+	left:320px;
+	width: 140px;
+}
+
+#youDraw {
+}
+
+#youLose {
+	background-position: -400px -150px;
+}
+
+#gameIconSmall {
+	background: url('../_site/all.png') -815px -950px transparent no-repeat;
+	width: 270px;
+	height: 190px;
+	position: absolute;
+	left:260px;
+	top:430px;
+}
+
+.starIcon {
+	background: url('../_site/all.png') -455px -215px transparent no-repeat;
+	height:13px;
+    position: relative;
+    top: -45px;
+    width: 18px;
+}
+
+.trophyIcon {
+	background: url('../_site/all.png') -485px -2px transparent no-repeat;
+	width: 30px;
+	height:20px;
+	display: none;
+}
+
+.flagIcon {
+	background: url('../_site/all.png') -452px -29px transparent no-repeat;
+	width: 30px;
+	height:20px;
+	display:none;
+}
+
+.EyeIcon {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
+	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#DAD8D9;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	width: 40px;
+	height:18px;
+	top:-22px;
+	position: relative;
+	color:#404040;
+	text-align:center;
+	padding-top:3px;
+	
+	
+}
+
+.eyeIcon.enabled:hover {
+	background: url('../_site/all.png') -400px -2px transparent no-repeat;
+	width: 30px;
+	height:20px;
+	cursor: pointer;
+	position: relative;
+	bottom: 0;
+	right: 0;
+}
+
+.auctionBlockIcons > * {
+	float:left;
+}
+
+.auctionBlockIcons .onEyeIcon, .auctionBlockIcons .eyeIcon {
+	float:right;
+}
+
+.menutab {
+	width: 33px;
+	height: 56px;
+	cursor: pointer;
+	position: absolute;
+}
+
+#tabAuction {
+	
+	
+}
+
+.modal-picture-holder {
+	position: absolute;
+	padding:10px;
+	padding-top: 0;
+	float: left;
+	width:250px;
+	height:385px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.modal-full-picture {
+	/*position: absolute;*/
+	float:left;
+}
+
+#auction-modal-window {
+	padding-top:0px;
+	position:absolute;
+	width:600px;
+	left:65px;
+	top:150px;
+	font-size: 11px;
+	font-weight: 500;
+	color:#404040;
+}
+
+#credits-modal-window {
+	padding-top:0px;
+	position:absolute;
+	width:300px;
+	left:230px;
+	top:190px;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+#auction-modal-window .close-button,#credits-modal-window .close-button, #booster-modal-window .close-button, #booster-purchased-window .close-button, #albumAuctionModalWindow .close-button{
+	position: absolute;
+	top:0px !important;
+	right:0px !important;
+	left: 90% !important;
+}
+
+.hasDatePicker .ui-state-active {
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background-color: #F2C126 !important;
+}
+
+.hasDatePicker .ui-widget-content  {
+	background-color: transparent !important;
+}
+
+.hasDatePicker .ui-state-active, .hasDatePicker .ui-widget-content .ui-state-active, .hasDatePicker .ui-widget-header .ui-state-active {
+    background: url("images/ui-bg_glass_65_97cc29_1x400.png") repeat-x scroll 50% 50% #d50412;
+    border: none;
+    color: #FFFFFF;
+    font-weight: normal;
+}
+
+.hasDatePicker .ui-state-highlight, .hasDatePicker .ui-widget-content .ui-state-highlight, .hasDatePicker .ui-widget-header .ui-state-highlight {
+    background: url("images/ui-bg_glass_55_fbf9ee_1x400.png") repeat-x scroll 50% 50% #d50412;
+    border: none !important;
+    color: #363636;
+     font-weight: normal;
+}
+
+.hasDatePicker .ui-state-default, .hasDatePicker .ui-widget-content .ui-state-default, .hasDatePicker .ui-widget-header .ui-state-default {
+    background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50%;
+    border: none !important;
+    color: #555555;
+    font-weight: normal;
+}
+
+#albumAuctionModalWindow .ui-widget-header {
+	background-image: none;
+	
+}
+
+#albumAuctionModalWindow .ui-datepicker-header {
+	background-color:transparent;
+}
+
+#albumAuctionCardImage {
+	position:absolute;
+	right:35px;
+	top:80px;
+}
+
+
+#auction-info-table{
+	position: absolute;
+	left: 110px;
+	top:122px;
+	width:200px;
+	height:150px;
+	font-size: 10px;
+}
+.auction-end, .auction-start,.highest-bidder,
+.starting-bid, .bid-count, .buyout-panel{
+	margin-bottom:5px;
+	width:100%;
+}
+.auction-end div, .auction-start div,.highest-bidder div,
+.starting-bid div, .bid-count div, .buyout-panel div {
+	float:left;
+	width:100px;
+	overflow:hidden;
+}
+
+#booster-purchased-window {
+	color:#404040;
+	padding-top:0px;
+	width:600px;
+	font-size:12px;
+}
+
+.panel-label{
+	padding-left: 5px;
+	color:#EBEBEB;
+	width:105px
+}
+
+.bid-list-heading,  
+.auction-info-heading{
+	padding-left: 5px;
+	color: #404040;
+	width:105px
+}
+
+.bid-button, 
+.buyout-button,  
+.buyItemButton, 
+.albumAuctionButton,
+.view_button
+{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
+	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
+	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
+	background-color:#DAD8D9;
+	color: #404040;
+	height:19px;
+	width:85px;
+	text-align: center;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	cursor: pointer;
+	padding-top:5px;
+}
+
+.bid-button:hover, 
+.buyout-button:hover,  
+.buyItemButton:hover, 
+.albumAuctionButton:hover 
+{
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+}
+
+.bid-list-item span{
+	margin-right:5px;
+	font-family:"arial";
+}
+.bid-button {
+	position:absolute;
+	top:5px;
+	left:360px;
+} 
+
+.bid-list ul {
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+.bid-list {
+	padding-left:15px;
+	border-left:1px solid #AAA9AA;
+	width: 240px;
+	height: 235px;
+	position: absolute;
+	left: 340px;
+	top: 40px;
+}
+
+.bid-panel {
+	background-color:#404040;
+	border-top:1px solid #363636;
+	width:585px;
+	height:25px;
+	position: absolute;
+	left: 15px;
+	bottom: 15px;
+	padding-left:10px;
+	padding-top: 10px;
+}
+
+.bid-panel .ui-slider-horizontal, #albumAuctionModalWindow .ui-slider-horizontal {
+	height: 0.4em;
+}
+
+.bid-panel  .ui-corner-all {
+	border-radius: 9px;
+}
+
+.bid-panel .ui-widget-content, #albumAuctionModalWindow .ui-widget-content {
+	background: #bfbfbf;
+	color: #A70B16;
+}
+
+.bid-panel  .ui-slider .ui-slider-handle, #albumAuctionModalWindow .ui-slider .ui-slider-handle{
+	width: 0.3em;
+	height: 0.2em;
+	
+}
+
+.bid-panel .ui-slider-horizontal .ui-slider-handle, #albumAuctionModalWindow .ui-slider-horizontal .ui-slider-handle {
+	top: 0em;
+	margin-left: 0em;
+	cursor: pointer;
+	
+}
+
+.bid-panel .ui-slider-horizontal .ui-slider-range, #albumAuctionModalWindow .ui-slider-horizontal .ui-slider-range {
+	background:#EFBD00; 
+	border-radius: 9px 9px 9px 9px;
+}
+	
+	
+
+.bid-panel  .ui-widget-content a, #albumAuctionModalWindow  .ui-widget-content a {
+	color: #222;
+}
+
+.bid-panel  .ui-slider, #albumAuctionModalWindow .ui-slider {
+	text-align: left;
+	cursor: pointer;
+}
+
+
+.bid-panel .ui-slider {
+	left:100px;
+	position: relative;
+	top:-10px;
+}
+
+.auction-time-remaining {
+	font-size: 35px;
+	font-weight: 300;
+	color: white;
+	width:322px;
+	text-align: center;
+}
+.time_stamp{
+	font-family:"Impact";
+	color:#F0BD00;
+	float:left;
+	height:50px;
+	display:inline;
+	margin-right:10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	background-color:#404040;
+	padding:0 5px;
+}
+.bid-amount-selector {
+	color:#F2C126;
+	background-color:transparent;
+} 
+
+.counter-arrow-box {
+	width: 140px;
+}
+
+.bid-amount {
+	width:100px;
+	top:10px;
+	position: absolute;
+	left:265px;
+}
+
+.arrows-label {
+	width:30px;
+	top:10px;
+	position: absolute;
+	left:300px;
+}
+
+.buyout-amount {
+	display: inline;
+	height: 45px;
+	line-height: 45px;
+}
+
+.buyout-button {
+	position: absolute;
+	right:40;
+	top:5px;
+}
+
+
+
+.auction-pic {
+	width:91px;
+	height: 128px;
+	position:absolute;
+	top:124px;
+	left:15px;
+}
+
+.seller-name {
+	display:inline;
+} 
+
+
+#shopPlate {
+	height:575px;
+	padding:10px;
+	margin-top:0;
+}
+
+.productDescription {
+	padding-left:1px;
+	float:none;
+	text-align: center;
+	font-size: 11px;
+	font-weight: bold;
+}
+.productPrice span{
+	color:#F0BD00;
+}
+.numberOfCards, .productPrice{
+	/*position: relative;
+	top:-110px;
+	left:90px;*/
+	width: 110px;
+}
+.view_button{
+	left:70px !important;
+}
+.buyItemButton, .view_button {
+	bottom:10px;
+	left:14px;
+	position:relative;
+	padding-top:2px;
+	text-align:center;
+	color:#2E3120;
+	line-height:normal;
+	box-shadow:none;
+	width:50px;
+	height:15px;
+	font-weight:bold;
+	position:absolute;
+	background-color: #747474;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+}
+.view_button:hover, .buyItemButton:hover{
+	color:#2E3120;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+	cursor:pointer;
+}
+
+#booster-modal-window {
+	color:#404040;
+	width:610px;
+	height:425px;
+	font-size:11px;
+	font-weight:700;
+	top:200px;
+	left:65px;
+	padding-top: 0px;
+}
+
+.booster-pack-pic-holder {
+	float:right;
+	position: relative;
+	top:-7px;
+} 
+
+.booster-list-placeholder {
+	float:left;
+	width:84px;
+	height:135px;
+	padding-right: 5px;
+	font-size: 10px;
+}
+
+.booster-price {
+	position: relative;
+	top:295px;
+	left:550px;
+	width:50px;
+	color:#F2C126;
+}
+
+.boosterNumberOfCards, .boosterDescription {
+	position: relative;
+	left:410px;
+	top:281px;
+}
+
+.boosterNumberOfCards {
+	width:135px;
+}
+
+#booster-possibles-window {
+	float:left;
+	padding-top:10px;
+	padding-left:15px;
+	width:370px;
+	height:360px;
+	position: relative;
+	top:-35px;
+	box-shadow:inset 0px 0px 5px #666666;
+}
+
+#booster-modal-window .buyItemButton{
+	left:558px;
+	bottom:18px;
+	cursor: pointer;
+}
+
+#booster-purchased-window #booster-possibles-window {
+	position: relative;
+	top:10px;
+}
+
+#albumAuctionModalWindow {
+	position:absolute;
+	top:190px;
+	left:115px;
+	width:440px;
+	height:400px;
+	padding-top: 0;
+}
+
+#albumAuctionModalWindow .close-button {
+    left: 87% !important;
+}
+
+#date_expired {
+	font-weight:bold !important;
+	color:#404040 !important;
+	width:180px;
+	text-align: center;
+}
+
+#shopScrollPane {
+	margin-top:150px;
+	width:95%!important;
+	height: 50%;
+	margin-left:35px;
+}
+
+.jspTrack, .jspVerticalBar {
+	background-color: transparent !important;
+}
+
+.modal-error-text {
+	font-size:16px;
+}
+
+.menu_scroll_button {
+	cursor: pointer;
+}
+
+.pageTitle {
+	height:50px;
+	
+}
+
+.titleTopHalf, .titleBottomHalf {
+	height:50%;
+	float:left;
+	margin-left:20px;
+	margin-right:20px;
+	width:70%;
+}
+
+.titleTopHalf:nth-child(4), .titleBottomHalf:nth-child(5) {
+	height:50%;
+	float:right;
+	width:5%;
+	margin-right:20px;
+}
+
+.titleBottomHalf {
+	border-top:solid 1px #363636;
+}
+
+.titleTopHalf {
+	border-bottom:solid 1px #000000;
+}
+
+.TitleImage {
+	width:25%;
+	float:left;
+	height:50%;
+	position: relative;
+	background: url('../_site/all.png')transparent;
+}
+
+#albumTitleImage {
+	background-position: 0 -314px;
+	width:130px;
+}
+
+#auctionTitleImage {
+	background-position: 0 -334px;
+}
+
+#shopTitleImage {
+	background-position: 0 -354px;
+}
+
+#playTitleImage {
+	background-position: 0 -374px;
+}
+
+#dashboardTitleImage {
+	background-position: 5px -227px;
+	width:45%;
+}
+
+#smsCheckout {
+	width: 100%; 
+	height: 90%;
+	background: url("../_site/bg.jpg") repeat scroll 0 0 transparent;
+}
+
+#smsCheckout * {
+	position:relative;
+	text-align:center;
+}
+
+#smsCheckoutPoster{
+	position: relative; 
+	width: 150px;
+	background: url('../_site/sms_pay_instruct.png') no-repeat scroll 0 0 transparent;
+	height: 245px; 
+	top: 32px; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+#smsUserCode {
+	color: rgb(0, 0, 0); 
+	top: 40px; 
+	text-align:center;
+	width: 100%; 
+	font-weight: bold;
+	font-size: 11px;
+}
+
+#smsShortCode {
+	top: 64px; 
+	font-size: 28px; 
+	width: 100%; 
+	font-weight: bold;
+}
+
+#smsPurchasedItem {
+	color: rgb(68, 68, 68); 
+	top: 106px; 
+	width: 100%;
+}
+
+#smsItemPrice {
+	color: rgb(68, 68, 68); 
+	top: 143px; 
+	width: 100%;
+}
+
+#paymentModalWindow {
+	width:200px;
+	height: 350px;
+	padding-top: 0px;
+	top:250px;
+	left:250px;
+}
+
+#formCreditCard {
+	height:300px;
+	margin:0px;
+}
+
+#cmdPayByCreditCard {
+	width:155px;
+	color:black;
+	top:265px;
+	left:10%;
+	position: relative;
+	text-transform: uppercase;
+}
+
+#creditCardPic {
+	left:50px;
+	top:70px;
+	width:125px;
+	height:85px;
+	margin:auto;
+	position:absolute;
+	background:url("../_site/payment_images.png")no-repeat -5px -120px transparent;
+}
+
+#creditCardsManyPic {
+	height:20px;
+	width:160px;
+	background:url("../_site/payment_images.png")no-repeat -178px -70px transparent;
+	margin:0 auto;
+}
+
+#creditCardPurchasedItem {
+	top:200px;
+	font-size: 16px;
+}
+
+#creditCardItemCost{
+	top:230px;
+}
+
+#creditCardItemCost, #creditCardPurchasedItem {
+	font-weight:700;
+	position:absolute;
+	width:200px;
+	text-align: center;
+}
+
+#paypalPic {
+	width:140px;
+	height:40px;
+	background: url("../_site/payment_images.png") no-repeat scroll -184px -10px transparent;
+	margin:0 auto;
+}
+
+#paypalForm {
+	
+}
+
+#paypalPurchasedItem, #paypalItemCost {
+	height:20px;
+	width:200px;
+	position:absolute;
+	top:150px;
+	font-size:20px;
+	text-align: center;
+}
+
+#paypalItemCost {
+	top:190px;
+	
+}
+
+#cmdPayByPaypal {
+	position:absolute;
+	top:290px;
+	left:40px;
+}
+
+.auction_seller_name, .auction_car_name, .productDescription, #albumAuctionModalWindow .inputdesc {
+	overflow:hidden;
+}
+.trolleyIcon{
+	position:relative;
+	left:50px;
+	width:25px;
+	height:24px;
+	background:url("../_site/all.png") -400px -200px no-repeat;
+}
+.buyout{
+	width:50px;
+	top:19px;
+	position:relative;
+	left:75px;
+	text-align:center;
+}
+.blank{
+	width:50px;
+	height:39px;
+	position:relative;
+	left:75px;
+	text-align:center;
+}
+.eyeIcon.viewAuctionButton:hover {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+	background-color:#F2C126;
+	cursor: pointer;
+}
+
+.boosterListPicIconContainer {
+	width:80px;
+	height:25px;
+}
+
+.booster-list-pic-icon {
+	background: url("../_site/all.png") -720px -140px no-repeat;
+	height:25px;
+	width:25px;	
+	position: relative;
+	bottom:103px;
+	left:-10px;
+	display: none;
+	float:left;
+}
+
+.booster-list-pic-caption {
+	position: relative;
+	bottom:22px;
+	text-align:left;
+	float:left;
+	font-family: Arial Black, Arial;
+	font-weight:900
+}
+
+.booster-list-pic img {
+}
+.game-card-logo-container{
+	background:url("../_site/blankcard.jpg") repeat scroll 0 0 transparent;
+	cursor: pointer;
+	position:absolute;
+	top:66px;
+	right:15px;
+    height: 350px;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 250px;
+}
+#gameDrawCard {
+	width:62px;
+	height:86px;
+	background: url("../_site/gaming.png") no-repeat scroll -260px -1px transparent;
+	position:absolute;
+	left:360px;
+	top:249px;
+	display: none;
+}
+
+#drawCardDesc, #drawCardNumber {
+	height:50%;
+	width:100%;
+	line-height: 43px;
+	text-align: center;
+	text-shadow: none;
+	color:#D1D1D1;
+}
+
+#deckPlate {
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	height:595px;
+	width:700px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #222327;
+	text-shadow: none;
+	padding:20px;
+	padding-top:10px;
+	margin-top: 30px;
+	margin-left: 10px;
+}
+
+.deck-container {
+	float:left;
+	padding:10px;
+	cursor: pointer;
+}
+
+#deck-create-modal-window{
+	width:650px;
+	height:580px;
+	padding-top:0px;
+	display:none;
+	top:20px;
+	left:50px;
+}
+
+.deck-create-screenflow-container {
+	width: 210px;
+	height:200px;
+	overflow:hidden;
+}
+
+.cardImageHolder {
+	background: url("../_site/all.png") no-repeat scroll -210px -71px transparent;
+	height:90px;
+	width:64px;
+}
+
+.deck-create-image-container {
+	width: 150px;
+	height:200px;
+	overflow:hidden;
+	float:left;	
+}
+
+.deck-create-image-container .jspVerticalBar {
+	display:none;
+}
+
+.deck-attributes-table {
+	font-size:11px;
+	font-weight: bold;
+	color: #222327;
+}
+
+.deck-title {
+	float:left;
+	text-align: center;
+}
+
+.deck-top-menu-bar {
+	height:30px;
+}
+
+#deck-select {
+	width:420px;
+	height:275px;
+	float:left;
+	padding-top:5px;
+}
+
+#createDeckModalButton {
+	width:125px;
+	float:right;
+}
+
+#createSaveDeckButton {
+	margin-top:10px;
+	width:125px;
+	position:absolute;
+	top:18px;
+	right:12px;
+}
+
+.deck-modal-button {
+	margin-top:40%;
+	width:30px;
+	height:30px;
+}
+
+#deck-modal-left-button {
+	float:left;
+	background: url("../_site/all.png") repeat scroll -270px -32px transparent;
+}
+
+#deck-modal-right-button {
+	float:right;
+	background: url("../_site/all.png") repeat scroll -295px -32px transparent;
+}
+
+.deck-image-label {
+	width:210px;
+}
+
+#deck-create-modal-window form {
+	width: 220px;
+	float:left;
+	margin:0;
+	margin-top:5px;
+}
+
+#deck-available {
+	width:650px;
+	height:245px;
+	overflow:hidden;
+	float:left;
+	z-index:10;
+	margin-top: 25px;
+}
+
+#name-deck-label {
+	display:block;
+	width:200px;
+}
+
+#deck-select .cardblock {
+	padding-right:0px;
+	width:80px;
+}
+
+#deck-available .album_card_pic {
+	display:block;
+	height:95px;
+	width:72px;
+}
+
+.deck-available-heading {
+	
+}
+
+.deck-available-heading,
+#deck-cards-heading,
+#name-deck-label,
+.deck-image-label {
+	height:25px;
+	line-height: 25px;
+}
+
+#deckInitModalWindow {
+	height:350px;
+	width:200px;
+	padding-top:0px;
+	padding-bottom:0px;
+}
+
+#createDeckButton {
+	width:100px;
+	float:right;
+	margin-top:10px;
+} 
+
+#newDeckName {
+	margin-top:5px;
+	margin-bottom:10px;
+}
+
+.deckDeleteButton {
+	width:20px;
+	height:15px;
+	background: url(../_site/all.png) repeat scroll -430px -59px transparent;
+	float:right;
+}
+
+#deckDeleteModalWindow {
+	width:200px;
+	height:350px;
+	position: absolute;
+	left:265px;
+	top:30%;
+	padding-top: 0px;
+}
+
+#deckDeleteDeckImage {
+	margin-left:29px;
+}
+
+#deckDeletePromptMessage {
+	display: block;
+	margin-top: 22px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#deckDeleteCancelButton,
+#deckDeleteConfirmButton {
+	width:42%;
+	position:absolute;
+	bottom:15px;
+	font-size: 10px;
+	text-shadow: none;
+}
+
+#deckDeleteConfirmButton {
+	right:10px;
+}
+
+#dateLastVisited {
+	position: relative;
+	top: 20px;
+	left: 43px;
+	color: #ffffff;
+}
+
+#noDeckGamePrompt {
+	font-size: 10px;
+	text-shadow: none;
+	width:130px;
+	padding-left: 10px;
+}
+
+.search-find-box .progress-indicator img {
+	margin-left: 46%;
+	margin-top: 34px;
+}
+
+
+
+/******* FOOTER *******/
+#footer{
+	height:100px;
+	width: 762px;
+	/*
+	background: -webkit-gradient(radial, 50% 10%, 50% 20%, 50% 30%, 100%, from(#ededed), to(#bfbfbf));
+	background: -webkit-radial-gradient(circle, #ededed, #bfbfbf);
+	background: -moz-radial-gradient(circle, #ededed, #bfbfbf);
+	background: -ms-radial-gradient(circle, #ededed, #bfbfbf);
+	background: -o-radial-gradient(circle, #ededed, #bfbfbf);
+	*/
+}
+.official{
+	background:url(../_site/all.png) -360px 0px  no-repeat;
+	left:10px;
+	width:110px;
+	height:67px;
+	float:left;
+	top:20px;
+	position: relative;
+}
+.poweredby{
+	float:left;
+	background:url(../_site/all.png) -510px -0px no-repeat;
+    height: 54px;
+    left: 500px;
+    width: 142px;
+	top:23px;
+    position:relative;
+}
+
