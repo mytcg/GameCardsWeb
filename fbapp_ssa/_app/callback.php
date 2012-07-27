@@ -110,8 +110,8 @@ if ($func == 'payments_status_update') {
      $item['title'] = '350 Credits';
      $item['price'] = 10;
      $item['description']='350 TCG Credits';
-     $item['image_url']='https://sarugbycards.com/fbapp/_site/350.png';
-     $item['product_url']='https://sarugbycards.com/fbapp/_site/350.png';
+     $item['image_url']='https://mytcg.net/surfingcards/_site/350.png';
+     $item['product_url']='https://mytcg.net/surfingcards/_site/350.png';
     }
 	
 	if ($item_id == "700") {
@@ -119,8 +119,8 @@ if ($func == 'payments_status_update') {
      $item['title'] = '700 Credits';
      $item['price'] = 20;
      $item['description']='700 TCG Credits';
-     $item['image_url']='https://sarugbycards.com/fbapp/_site/700.png';
-     $item['product_url']='https://sarugbycards.com/fbapp/_site/700.png';
+     $item['image_url']='https://mytcg.net/surfingcards/_site/700.png';
+     $item['product_url']='https://mytcg.net/surfingcards/_site/700.png';
     }
 
 	if ($item_id == "1400") {
@@ -128,8 +128,8 @@ if ($func == 'payments_status_update') {
      $item['title'] = '1400 Credits';
      $item['price'] = 40;
      $item['description']='1400 TCG Credits';
-     $item['image_url']='https://sarugbycards.com/fbapp/_site/1400.png';
-     $item['product_url']='https://sarugbycards.com/fbapp/_site/1400.png';
+     $item['image_url']='https://mytcg.net/surfingcards/_site/1400.png';
+     $item['product_url']='https://mytcg.net/surfingcards/_site/1400.png';
     }
 	
 	$description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
