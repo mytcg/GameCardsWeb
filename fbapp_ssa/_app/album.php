@@ -15,8 +15,7 @@ if($_GET['cat']){
 	 FROM mytcg_card C 
     INNER JOIN mytcg_imageserver I 
     ON (C.front_imageserver_id = imageserver_id) 
-	 WHERE C.category_id > 17
-	 AND C.category_id < 51
+	 WHERE C.category_id > 52
     ORDER BY C.description ASC';
 	 
   } else {

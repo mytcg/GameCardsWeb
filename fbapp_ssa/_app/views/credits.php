@@ -7,7 +7,6 @@ $iCredits = $iCredits[0]['premium'];
 if($iCredits==null){
 	$iCredits = 0;
 }
-
 $sql = "SELECT * FROM mytcg_transactionlog
 		WHERE user_id={$user['user_id']}
 		AND (transactionstatus_id=2 OR transactionstatus_id IS NULL)
@@ -16,8 +15,8 @@ $aTransactions = myqu($sql);
 ?>
 <div id="header" >
 	<div class="headTitle">
+		<div class="line"></div>
 		<div class="headCredits">
-			<span>YOUR</span> CREDITS
 		</div>
 	</div>
 	<div class="creditsBody">
@@ -28,8 +27,8 @@ $aTransactions = myqu($sql);
 		</div>
 		<div class="creditsGateWindows">
 			<div class="creditsBuyHeader"><span>Buy</span> Credits</div>
-			<div id="buy350" class="buyFBcredits creditIcon1" style="left:45px;"></div>
-			<div id="buy700" class="buyFBcredits creditIcon2" style="left:220px;"></div>
+			<div id="buy350" class="buyFBcredits creditIcon1" style="left:28px;"></div>
+			<div id="buy700" class="buyFBcredits creditIcon2" style="left:208px;"></div>
 			<div id="buy1400" class="buyFBcredits creditIcon3" style="left:390px;"></div>
 			<div class="creditsResponse">Your details have been <span>saved successfully</span>.</div>
     	</div>
@@ -39,7 +38,7 @@ $aTransactions = myqu($sql);
 			<div style="width:450px;">Description</div>
 			<div style="width:85px;">Amount</div>
 		</div>
-		<div id="creditsScroller" class="creditsScroller" style="width:762px;height:259px;">
+		<div id="creditsScroller" class="creditsScroller" style="width:762px;height:209px;">
 			<?php
 			foreach($aTransactions as $sData){
 				$c = ($c=="")? "credRDark" : "";
@@ -61,9 +60,6 @@ $(document).ready(function(){
 	
 	//Active scrolling on credits log
 	$('#creditsScroller').jScrollPane();
-	
-	
-	
 	
 });
 </script>

@@ -32,6 +32,7 @@ if($_GET['buy']){
   
   //Check total credits
   $bValid = ($iTotalCredits >= $itemCost);
+ 
   if ($bValid)
   {
     //RECEIVE ITEM
@@ -59,10 +60,11 @@ if($_GET['buy']){
 		$premiumCost = ($itemCost-$freemium)*-1;
 		$freemiumCost = $freemium*-1;
 	  }
-	  
+	 
       myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
         VALUES(".$userID.",'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', NOW(), ".(-1*$itemCost).")");
-		
+	
+	 
 	  myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 		VALUES(".$userID.", ".$iProductID.", NULL, NULL, 
 				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", ".$freemiumCost.", ".$premiumCost.", NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10)");
@@ -124,7 +126,7 @@ if($_GET['free']){
 	} else {
 		myqu("UPDATE mytcg_user SET freebie = 1 WHERE user_id=".$userID);
 	}
-  }else if ($packID == 1) {
+  }else if ($packID == 17) {
 	$iFree=myqu("SELECT profile FROM mytcg_user WHERE user_id=".$userID);
 	$iFree=$iFree[0]['profile'];
 	if ($iFree == 1) {

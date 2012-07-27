@@ -207,10 +207,10 @@ if(!$localhost){
           <div style="margin-top: 5px;"><input type="radio" name="gender" style="margin-top:5px;width:20px;" value="0" <?php echo($male); ?> /> Male &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="1" <?php echo($female); ?> /> Female</div>
         </div>
         <div class="divSigninText">
-          <span>Welcome to SA rugby cards</span>.
+          <span>Welcome to Surfing Collectable Cards</span>.
           <br>Just enter your details above, and we will create a brand new shiny account for you.<br /><br />
           <span>Already have an account?</span><br />
-          Just enter the email address and password field and we will link your facebook account to your SA Rugby cards account.
+          Just enter the email address and password field and we will link your facebook account to your Surfing Cards account.
           </div>
         <div id="txtResponse" class="profileResponse" style="display:none;height:16px;top:488px;left:670px;"><img src="_site/loading51.gif" width="15" height="15" /></div>
         <div id="login" class="divSigninEnter" style="top:490px;left:485px;">Login</div> <div id="register" class="divSigninEnter" style="top:490px;left:585px;">Register</div>

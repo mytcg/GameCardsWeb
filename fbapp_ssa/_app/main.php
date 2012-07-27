@@ -102,7 +102,7 @@ if($_GET['signup']){
 	}
   }
   
-  echo("1");
+  echo("15");
   exit;
 }
 

@@ -7,6 +7,7 @@ $query = 'SELECT C.card_id,
 	FROM mytcg_card C 
 	INNER JOIN mytcg_imageserver I 
 	ON (C.front_imageserver_id = imageserver_id) 
+	WHERE C.category_id > '.$catID.'
 	ORDER BY C.description ASC';
 	
 $aCards=myqu($query);
@@ -14,8 +15,8 @@ $iCount = 0;
 ?>
 
 <div class="headTitle">
+		<div class="line"></div>
 		<div class="head<?php echo $_GET['page']; ?>">
-			<span>YOUR</span> ALBUM
 		</div>
 </div>
 
@@ -62,8 +63,7 @@ $iCount = 0;
 			INNER JOIN mytcg_usercardstatus UCS 
 			ON UC.usercardstatus_id = UCS.usercardstatus_id 
 			WHERE UC.user_id = '.$user['user_id'].' 
-			AND CA.category_id > 17
-			AND CA.category_id < 51
+			AND C.category_id >= '.$catID.' 
 			AND UCS.description = "Album" 
 			ORDER BY CA.description ASC';
   
@@ -79,9 +79,5 @@ $iCount = 0;
 		$iCount++;
 	}
 	?>
-</div>
-<div id="cardBigView">
-	<div class="eyeIcon"></div>
-	<div class="auctionIcon"></div>
 </div>
 		

@@ -9,28 +9,28 @@
 		<div class="dashCredits">
 			<a href="index.php?page=credits"><div class="direct_credits"></div></a>
 			<div class="creditsText"><span><?php echo($user['premium']); ?></span><br />Credits</div>
-			<div class="segregation" style="top:20px;left:200px"></div>
+			<div class="segregation" style="top:0px;left:200px"></div>
 		</div>
 		<div class="headBlocks">
-			<div class="headMiniTitle"><span>Card</span> of the <span>Day</span></div>
+			<div class="headMiniTitle"><span>Card</span> of the <span>Day</span><div class="pointer"></div></div>
 			<?php $cardOfDay = getCardOfDay($_SESSION['userDetails']['user_id']); ?>
 			<div class="headCardOfDay" id="<?php echo $cardOfDay[0][1];  ?>">
-				<img id="" src="https://sarugbycards.com/img/cards/<?php echo $cardOfDay[0][1];  ?>_web.jpg" width="64px" height="90px" />
+				<img id="" src="http://www.mytcg.net/img//cards/jpeg/<?php echo $cardOfDay[0][1];  ?>_web.jpg" width="64px" height="90px" />
 			</div>
 		</div>
 		<div class="headBlocks">
-			<div class="headMiniTitle"><span>Cards</span> Collected</div>
+			<div class="headMiniTitle"><span>Cards</span> Collected<div class="pointer"></div></div>
 			<?php $cardsCollected = getCardInAlbumCount($_SESSION['userDetails']['user_id']); ?>
 			<div class="headMiniText"><span id="collected"><?php echo $cardsCollected[0]; ?></span>/<?php echo $cardsCollected[1]; ?></div>
-			<div class="segregation" style="top:20px;left: 0px;"></div>
+			<div class="segregation" style="top:5px;left: 0px;"></div>
 		</div>
 		<div class="headBlocks">
-			<div class="headMiniTitle"><span>Best</span> Card</div>
+			<div class="headMiniTitle"><span>Best</span> Card<div class="pointer"></div></div>
 			<?php $bestCard = getBestCard($_SESSION['userDetails']['user_id']); ?>
-			<div class="headBestCard" id="44">
-				<img id="" src="https://sarugbycards.com/img/cards/44_web.jpg" width="64px" height="90px" />
+			<div class="headBestCard" id="<?php echo($bestCard[0]['image']); ?>">
+				<img id="" src="http://www.mytcg.net/img//cards/jpeg/<?php echo($bestCard[0]['image']); ?>_web.jpg" width="64px" height="90px" />
 			</div>
-			<div class="segregation" style="top:20px;left:0px;"></div>
+			<div class="segregation" style="top:5px;left:0px;"></div>
 		</div>
 	</div>
 </div>
@@ -58,10 +58,7 @@
 <div id="credits" >
 	<div class="leaderTitle">
 		<div class="line"></div>
-		<div class="headRecentActivity">
-			<!-- <span>YOUR</span> FRIENDS -->
-		</div>
-		
+		<div class="headRecentActivity"></div>
 	</div>	
 	<div class="headCreditsBody">
 		
@@ -72,7 +69,7 @@
 				<?php while ($iCount!=sizeof($aBoard)){
 					$picURL = getUserPic($aBoard[$iCount]["usr"]);
 					if(!$picURL){
-						$picURL = "_site/no-profile.jpg";
+						$picURL = "_site/no-profile.png";
 					}else{
 						$picURL = "http://graph.facebook.com/".$picURL."/picture";
 					}
@@ -82,7 +79,6 @@
 					<div class="friendSpeechBubble"><?php echo($iCount + 1); ?></div>
 					&nbsp;<span><?php 
 					$username = $aBoard[$iCount]["usr"];
-					$username = substr($username, 0,strrpos($username, "@"));
 					$username = substr($username, 0, 10);
 					echo $username; ?></span><br />&nbsp;Collected:&nbsp;<span><?php echo $aBoard[$iCount]["val"] ?></span>
 				</div>
@@ -97,7 +93,7 @@
 		<div id="invite_friend" class="leaderSect">
 			<div class="inviteFriend" style="margin-left: 10px; margin-top: 19px;"><span>Invite</span> Friend</div>
 			<div class="leaderSectAddFriend"></div>
-			<div class="segregation" style="top:15px;left:5px;"></div>
+			<div class="segregation" style="top:15px;left:-5px;"></div>
 	    </div>
 	</div>
 		

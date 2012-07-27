@@ -8,14 +8,14 @@ $query= "SELECT IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)) AS 'owner', 
         JOIN mytcg_category CA ON C.category_id = CA.category_id
         JOIN mytcg_user U ON M.user_id = U.user_id
         WHERE M.markettype_id = 1 AND M.marketstatus_id = 1
+        AND C.category_id > ".$catID."
         ORDER BY M.date_expired ASC, M.date_created ASC, M.market_id ASC";
 $aAuctions=myqu($query);
 $iCount = 0;
 ?>
 <div class="headTitle">
-		<div class="head<?php echo $_GET['page']; ?>">
-			<span>card</span> auctions
-		</div>
+		<div class="line"></div>
+		<div class="head<?php echo $_GET['page']; ?>"></div>
 </div>
 
 <div id="auctionPlate">
@@ -26,7 +26,7 @@ $iCount = 0;
 	    		<div class="cmdButton" id="mine">My Auctions</div>
 	    		<div id="auction_search_container">
 	    			<input type="text" id="auction_search_field" size="27" value="search">
-	    			<div id="auction_search_button" class="textSearch"></div>
+	    			<div id="auction_search_button" class="textSearch">search</div>
 	    		</div>
 	</div>
 	<div  id="auction_scroll_pane" >
@@ -54,7 +54,7 @@ $iCount = 0;
 	    				<div class="picture-box" id="<?php echo($iAuctionID); ?>" style="width:64px;height:90px;background-image:url(<?php echo($aAuctions[$iCount]['imageserver']); ?>cards/jpeg/<?php echo($aAuctions[$iCount]['image']); ?>_web.jpg)"></div>
 	    			</div>
 	    			<div class="auction_block_details">
-	    				<div class="auction_car_name"><span style="color:#EFEFEF;"><?php echo($aAuctions[$iCount]['description']); ?></span></div>
+	    				<div class="auction_car_name"><span style="color:#65B3A7;"><?php echo($aAuctions[$iCount]['description']); ?></span></div>
 		    			<div class="auction_seller_name">Seller: <?php echo($aAuctions[$iCount]['owner']); ?></div>
 		    			<div class="auction_time_remaining">Time Left: <?php echo $timeRemaining; ?></div>
 		    			<div class="bids-info-container"><br/>

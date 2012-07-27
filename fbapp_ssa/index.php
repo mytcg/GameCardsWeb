@@ -28,12 +28,9 @@ function TopMenu($need,$have) {
  	}
  }
 if($localhost){
-	$user['user_id'] = 92;
-	$user['username'] = "Senjiro";
+	$user['user_id'] = 6284;
+	$user['username'] = "genesis101";
 	$user['credits'] = 865;
-	$user['gameswon'] = 2;
-	$user['xp'] = 110;
-	$user['facebook_process'] = 3;
 }
 //set category to topcar
 $catID = 52;
@@ -54,18 +51,20 @@ if (isset($_GET['page'])) {
 	$wideBG = " windowbackground_wide";
 }
  if($page_url=="dashboard"){
+ 	$imagePos = "35px 0px";
  	$ConHeight = "410px";
  	$height = "290px";
 	$image = "_site/header.png";
  }else{
- 	$ConHeight = "634px";
+ 	$imagePos = "40px 0px";
+ 	$ConHeight = "580px";
  	$height = "130px";
 	$image = "_site/header_small.jpg";
  }
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
   <head>
-    <title>Mytcg Trading Card Games</title>
+    <title>Surfing Trading Card</title>
     <link rel="icon" href="favicon.ico" />
     <link href="css/stylesheet.css" type="text/css" rel="stylesheet" media="all"  />
     <link href="css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
@@ -98,7 +97,10 @@ if (isset($_GET['page'])) {
 	    	<a href="index.php?page=album"><div id="album" class="navMenuItem <?php fHighlightMenu($page_url,"album"); ?>">ALBUM</div></a> 
 	    	<a href="index.php?page=dashboard"><div id="home" class="navMenuItem <?php fHighlightMenu($page_url,"dashboard"); ?>">HOME</div></a>  	
     </div>
-    <div id="divTopMenu" style="height:<?php echo($height); ?>;background-image:url('<?php echo ($image) ?>');">
+    <div id="creditContainer">
+    			<a href="index.php?page=credits"><Span>You</span> have <span id="creditAvailable"><?php echo $user['premium']; ?></span> credits</a>
+	</div>
+    <div id="divTopMenu" style="height:<?php echo($height); ?>;background-image:url('<?php echo ($image) ?>');background-position:<?php echo ($imagePos); ?>; ">
     </div>
     
     <div class="divContainer" style="height:<?php echo($ConHeight); ?>">

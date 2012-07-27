@@ -91,9 +91,9 @@
 		$(imgPic).css({'margin-top':'80px','margin-left':'62px'});
 		
 		var img = new Image();
-		img.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+		img.src = "http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg";
 		img.onload = function() {
-			imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+			imgPic.src = "http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg";
 			$(imgPic).css({'margin-top':'0','margin-left':'0px','cursor':'pointer'});
 		}
       
@@ -109,14 +109,14 @@
 				$(this).flip({
 				speed:200,
 				direction:'lr',
-				content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
+				content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"http://mytcg.net/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"http://mytcg.net/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
 				});
 				window.flipped = true;
 			} else {
 				$(this).flip({
 				speed:200,
 				direction:'lr',
-				content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
+				content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
 				});
 				window.flipped = false;
 			}	
@@ -464,7 +464,7 @@
 	     			var divCarName = App.createDiv(divAuctionBlockDetails,"auction_car_name");
 	     			var divCarNamespan = App.createDiv(divCarName,"","","span");
 	     			$(divCarNamespan).html(App.getXML(sXML,"auction_"+i+"/description"));
-     				$(divCarNamespan).css({color:"#EFEFEF",})
+     				$(divCarNamespan).css({color:"#65B3A7",})
      			
 	     			var divSellerName = App.createDiv(divAuctionBlockDetails,"auction_seller_name");
 					var sellerName = App.getXML(sXML,"auction_"+i+"/owner");
@@ -696,7 +696,7 @@
 			$(formCreditCard).append('<input type="hidden" value="" name="p2" id="referenceNumber">');
 			$(formCreditCard).append('<input type="hidden" value="'+purchaseItem+' TCG credits" name="p3">');
 			$(formCreditCard).append('<input type="hidden" value="R'+cost+'.00" name="p4">');
-			$(formCreditCard).append('<input type="hidden" value="https://sarugbycards.com/index.php?page=credits&cancel=1" name="p10">');
+			$(formCreditCard).append('<input type="hidden" value="https://mytcg.net/index.php?page=credits&cancel=1" name="p10">');
 			$(formCreditCard).append('<input type="hidden" value="N" name="Budget">');
 			$(formCreditCard).append('<input type="hidden" value="'+purchaseItem+'" name="m_1">');
 			$(formCreditCard).append('<input id="cmdPayByCreditCard" type="button" value="Pay By Credit Card"></input>');
@@ -1743,14 +1743,14 @@
 	         divCardblockContainer.id = App.getXML(sXML,"card_"+i+"/cardid");
 	         $(divCardblockContainer).css('background-image', 'url(' + cardImgPath + ')');
 	         
-	         var divCardblockTitle = App.createDiv(divCardblock,"album_card_title");
+	         var divCardblockTitle = App.createDiv(divCardblock,"album_card_title","","span");
 	         $(divCardblockTitle).html(App.getXML(sXML,"card_"+i+"/cardname"));
          }
          $('.menu-scroll-button').appendTo('#albumPlate');
        	$('#album_scroll_pane').jScrollPane();
 			$('.album-card-pic-container').click(function(){
 				var cardID = $(this).attr('id');
-				App.selectAlbumCard(cardID);
+				App.showCardModal(cardID);
 			});
 			App.assignScrollAction();
       });
@@ -1891,9 +1891,9 @@
 		  });
 		
 			var divHeading = App.createDiv(divPurchasedWindow,"booster-purchase-heading");
-			if (packID == 2) {
+			if (packID == 15) {
 				$(divHeading).html("<span>Welcome and Thank You for registering.</span><br>To say thank you, we have given you the following cards...");
-			} else if (packID == 1) {
+			} else if (packID == 17) {
 				$(divHeading).html("<span>Thank you for completing your profile.</span><br>As a reward you get the following card...");
 			}
         var divFullSize = App.createDiv(divPurchasedWindow,"game-card-logo-container");
@@ -2021,9 +2021,9 @@
 			$(imgPic).css({'margin-top':'80px','margin-left':'62px'});
 			
 			var img = new Image();
-			img.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+			img.src = "http://www.mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg";
 			img.onload = function() {
-				imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+				imgPic.src = "http://www.mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg";
 				$(imgPic).css({'margin-top':'0','margin-left':'0px','cursor':'pointer'});
 			}
 			
@@ -2047,14 +2047,14 @@
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
+						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"http://mytcg.net/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"http://mytcg.net/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
 						});
 						window.flipped = true;
 					} else {
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
+						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
 						});
 						window.flipped = false;
 					}
@@ -2086,9 +2086,9 @@
 			$(imgPic).css({'margin-top':'80px','margin-left':'62px'});
 			
 			var img = new Image();
-			img.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+			img.src = "http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg";
 			img.onload = function() {
-				imgPic.src = "https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg";
+				imgPic.src = "http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg";
 				$(imgPic).css({'margin-top':'0','margin-left':'0px','cursor':'pointer'});
 			}
 			
@@ -2112,14 +2112,14 @@
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
+						content:"<img id='back' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"http://mytcg.net/img/cards/jpeg/"+imgID+"_back.jpg\"; if (!backimg.complete) {var backImg = document.getElementById(\"back\");backImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");backImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"back\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"http://mytcg.net/img/cards/jpeg/"+imgID+"_back.jpg\");}});</script>"
 						});
 						window.flipped = true;
 					} else {
 						$(this).flip({
 						speed:200,
 						direction:'lr',
-						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"https://sarugbycards.com/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
+						content:"<img id='front' style='' src='' alt=''/><script language=\"JavaScript\">$(document).ready(function(){var backimg = new Image();backimg.src = \"http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg\"; if (!backimg.complete) {var frontImg = document.getElementById(\"front\");frontImg.setAttribute(\"style\", \"margin-top:80px;margin-left:62px;\");frontImg.setAttribute(\"src\", \"_site/loading51.gif\");}var mb = document.getElementById(\"modal-full-picture\");mb.setAttribute(\"style\",\"background-color: transparent\");backimg.onload = function() { var mb = document.getElementById(\"front\");mb.setAttribute(\"style\", \"cursor: pointer\");mb.setAttribute(\"src\", \"http://mytcg.net/img/cards/jpeg/"+imgID+"_front.jpg\");}});</script>"
 						});
 						window.flipped = false;
 					}
@@ -2146,7 +2146,7 @@
         if(document.getElementById("img_"+cardID) !=null){
 			  	var cardID = cardID;
 				var imgHeight = 240;
-				var img = '<img id='+cardID+' alt="selected card" height='+imgHeight+' src="https://sarugbycards.com/img/cards/jpeg/'+cardID+'_front.jpg"/>';
+				var img = '<img id='+cardID+' alt="selected card" height='+imgHeight+' src="http://www.mytcg.net/img/cards/jpeg'+cardID+'_front.jpg"/>';
 				
 				// function removeBigCard(){
 					// $('#cardBigView img').remove();
@@ -2305,13 +2305,13 @@
 		   var deckModalImageContainer = App.createDiv(deckCreateScreenFlowContainer,"deck-create-image-container");
 		   	
 		   var deckCreateImage1 = App.createDiv(deckModalImageContainer,"deck-create-image","deckImage11",'img');
-		   $(deckCreateImage1).attr('src','https://sarugbycards.com/img/decks/11.jpg');
+		   $(deckCreateImage1).attr('src','http://mytcg.net/img/decks/11.jpg');
 		   var deckCreateImage2 = App.createDiv(deckModalImageContainer,"deck-create-image","deckImage12",'img');
-		   $(deckCreateImage2).attr('src','https://sarugbycards.com/img/decks/12.jpg');
+		   $(deckCreateImage2).attr('src','http://mytcg.net/img/decks/12.jpg');
 		   var deckCreateImage3 = App.createDiv(deckModalImageContainer,"deck-create-image","deckImage13",'img');
-		   $(deckCreateImage3).attr('src','https://sarugbycards.com/img/decks/13.jpg');
+		   $(deckCreateImage3).attr('src','http://mytcg.net/img/decks/13.jpg');
 		   var deckCreateImage4 = App.createDiv(deckModalImageContainer,"deck-create-image","deckImage14",'img');
-		   $(deckCreateImage4).attr('src','https://sarugbycards.com/img/decks/14.jpg');
+		   $(deckCreateImage4).attr('src','http://mytcg.net/img/decks/14.jpg');
 		   $(".deck-create-image").attr('height','200');
 		   var deckModalRightButton = App.createDiv(deckCreateScreenFlowContainer,"deck-modal-button","deck-modal-right-button");
 			
@@ -2554,13 +2554,13 @@
 					var deckModalLeftButton = App.createDiv(deckCreateScreenflowContainer,"deck-modal-button","deck-modal-left-button");
 					var deckCreateImageContainer = App.createDiv(deckCreateScreenflowContainer,"deck-create-image-container");
 						var deckCreateImage11 = App.createDiv(deckCreateImageContainer,"deck-create-image","deckImage11","img");
-						$(deckCreateImage11).attr({'height':'200','src':'https://sarugbycards.com/img/decks/11.jpg'});
+						$(deckCreateImage11).attr({'height':'200','src':'http://mytcg.net/img/decks/11.jpg'});
 						var deckCreateImage12 = App.createDiv(deckCreateImageContainer,"deck-create-image","deckImage12","img");
-						$(deckCreateImage12).attr({'height':'200','src':'https://sarugbycards.com/img/decks/12.jpg'});
+						$(deckCreateImage12).attr({'height':'200','src':'http://mytcg.net/img/decks/12.jpg'});
 						var deckCreateImage13 = App.createDiv(deckCreateImageContainer,"deck-create-image","deckImage13","img");
-						$(deckCreateImage13).attr({'height':'200','src':'https://sarugbycards.com/img/decks/13.jpg'});
+						$(deckCreateImage13).attr({'height':'200','src':'http://mytcg.net/img/decks/13.jpg'});
 						var deckCreateImage14 = App.createDiv(deckCreateImageContainer,"deck-create-image","deckImage14","img");
-						$(deckCreateImage14).attr({'height':'200','src':'https://sarugbycards.com/img/decks/14.jpg'});
+						$(deckCreateImage14).attr({'height':'200','src':'http://mytcg.net/img/decks/14.jpg'});
 					var deckModalRightButton = App.createDiv(deckCreateScreenflowContainer,"deck-modal-button","deck-modal-right-button");
 			
 			var deckModalButtonContainer = App.createDiv(deckCreateForm,"deck-modal-button-container","");
@@ -2822,11 +2822,11 @@ $(document).ready(function(){
 	});
 	
 	 FB.init({
-	   appId      : '342203842518329', // App ID
+	   appId      : '173115312813690', // App ID
 	   status     : true, // check login status
 	   cookie     : true, // enable cookies to allow the server to access the session
 	   //oauth       : true, 
-	   //channelUrl : '//www.sarugbycards.com/fbapp/index.php', // Channel File
+	   //channelUrl : '//www.mytcg.net/fbapp/index.php', // Channel File
 	 });
     
     function buy($credits){
@@ -2905,7 +2905,7 @@ $(document).ready(function(){
 		
      var receiverUserIds = FB.ui({
        method: 'apprequests',
-       message: 'Collect your favourite Springboks now!',
+       message: 'Collect your favourite Surfers now!',
        filters: ['app_non_users'],
        display: 'iframe'
      }, function(receiverUserIds){

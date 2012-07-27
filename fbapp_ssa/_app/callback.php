@@ -5,8 +5,8 @@ require_once("../functions.php");
 
 
   // Enter your app information below
-  $api_key = '342203842518329';
-  $secret = '840f9dbf9af87721af9b095c67b3339f';
+  $api_key = '173115312813690';
+  $secret = '5976d79461bfd3c1c96993694da72764';
 
 // prepare the return data array
 $data = array('content' => array());
@@ -77,15 +77,11 @@ if ($func == 'payments_status_update') {
 		$val = 1400;
 	}
 	
-	
 	$description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
-	
 	$query = "insert into mytcg_transactionlog (user_id, description, date, val, transactiontype_id, transactionstatus_id, response, transactionlogtype_id, facebook_user_id, order_id) values ((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'),'".$description."', now(), ".$item['item_id'].", 5, 4, 'Cancelled', 2, ".$buyer_id.", ".$order_id.")";
-	
 	myqu($query);
 	
 	/*$query = "update mytcg_user set premium=ifnull(premium,0)+1 where facebook_user_id = '".$buyer_id."'";
-	
 	myqu($query);*/
 	
   }
@@ -116,8 +112,8 @@ if ($func == 'payments_status_update') {
      $item['description']='350 TCG Credits';
      $item['image_url']='https://sarugbycards.com/fbapp/_site/350.png';
      $item['product_url']='https://sarugbycards.com/fbapp/_site/350.png';
-	 
     }
+	
 	if ($item_id == "700") {
 	$item['item_id'] = 700;	
      $item['title'] = '700 Credits';
@@ -137,7 +133,6 @@ if ($func == 'payments_status_update') {
     }
 	
 	$description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
-	
 	$query = "insert into mytcg_transactionlog (user_id, description, date, val, transactiontype_id, transactionstatus_id, response, transactionlogtype_id, facebook_user_id, order_id) values ((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'),'".$description."', now(), ".$item['item_id'].", 5, 1, 'Placed', 2, ".$buyer_id.", ".$order_id.")";
 	
 	//myqu($query);

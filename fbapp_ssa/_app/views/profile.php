@@ -77,8 +77,8 @@ $showMsg = ($response)? "" : "display:none;";
 ?>
 <div id="header" >
 	<div class="headTitle">
+		<div class="line"></div>
 		<div class="headProfile">
-			<span>YOUR</span> PROFILE
 		</div>
 	</div>
 	<form id="frmProfile" method="post" action="index.php?page=profile">
@@ -139,10 +139,10 @@ $(document).ready(function(){
 		 var sXML = xml;
 		 
 		 if (parseInt(App.getXML(sXML,"success"))==1) {
-			App.getItem(1);
+			App.getItem(17);
 		 }else {
 			setTimeout(function() {App.showDid("Did you know?<br/><br/>You will get another card for completing your profile information.",1,true);},1000);
-		}
+		 }
 	});
 	/*App.getItem(1);*/
 	

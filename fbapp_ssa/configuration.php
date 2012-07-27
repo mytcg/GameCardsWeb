@@ -13,16 +13,16 @@ if($localhost){
 	$db['password'] = "";
 	$db['pre'] = "mytcg";
 }else{
-	$db["host"]="localhost";
-	$db["databasename"]="gamecard";
-	$db["username"]="mytcg_root";
-	$db["password"]="g4m3c4rd98";
-	$db["table_prefix"]="mytcg";
+	$db['host'] = "localhost";
+	$db['database'] = "gamecard";
+	$db['username'] = "mytcg_root";
+	$db['password'] = "g4m3c4rd98";
+	$db['pre'] = "mytcg";
 }
 
 //Faceboook Config
-$fbconfig['appid'] = "342203842518329";
-$fbconfig['secret'] = "840f9dbf9af87721af9b095c67b3339f";
-$fbconfig['baseUrl']    =   "https://sarugbycards.com/fbapp";
-$fbconfig['appBaseUrl'] =   "https://apps.facebook.com/sarugbycards";
+$fbconfig['appid'] = "173115312813690";
+$fbconfig['secret'] = "5976d79461bfd3c1c96993694da72764";
+$fbconfig['baseUrl']    =   "http://mytcg.net/surfingcards";
+$fbconfig['appBaseUrl'] =   "https://apps.facebook.com/surfingcards";
 ?>

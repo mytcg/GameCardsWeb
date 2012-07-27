@@ -60,9 +60,11 @@ function getCardOfDay($userID) {
 }
 
 function getBestCard($userID) {
-  $sql = "SELECT image FROM mytcg_card
-		  ORDER BY RAND()
-		  LIMIT 1";
+  $sql = "SELECT image, category_id
+		 FROM mytcg_card
+		 WHERE category_id > 52
+		 ORDER BY RAND()
+		 LIMIT 1";
   // $sql = "SELECT ranking, image
   		  // FROM mytcg_card C
   		  // INNER JOIN mytcg_usercard UC ON (C.card_id = UC.card_id)
@@ -85,13 +87,14 @@ function getRichestUsers() {
 	return $result;
 }
 
-function getCardInAlbumCount($userID,$catID = 0)
-{
-  $add = ($catID != 0)? " WHERE C.category_id = ".$catID : "" ;
+function getCardInAlbumCount($userID,$catID = 52 ){
+	
+  $add = ($catID == 52)? " WHERE C.category_id > 52 "
+  					   : " WHERE C.category_id = ".$catID;
   
   //Get all count
   $sql = "SELECT COUNT(card_id) AS iNr
-         FROM mytcg_card AS C".$add;
+         FROM mytcg_card AS C ".$add;
   $r = myqu($sql);
   $totals[1] = $r[0]['iNr'];
   

@@ -4,8 +4,8 @@ body {
 	font-family:"Arial";
 	text-transform: uppercase;
 	/*font-variant: small-caps;*/
-	color:#efefef;
-	/*text-shadow: -1px 1px 1px #4D5154;*/
+	color:#4a545d;
+	text-shadow: 1px 1px 1px #fff;
 	font-size: 12px;
 	background: url(../_site/bg.jpg) #fff repeat-x;
 }
@@ -37,7 +37,7 @@ span{
 }
 .signupTerms a{
 	text-decoration: none;
-	color:#F2C126;
+	color:#008BB7;
 }
 
 .divPageLogin {
@@ -51,13 +51,14 @@ span{
 }
 
 .divSignin {
-  top:37px;
-  left:80px;
-  width:201px;
-  height:99px;
-  background-image:url("../_site/all.png");
-  background-position:-485px -170px;
-  position: absolute;
+	height: 80px;
+	left: 115px;
+    position: absolute;
+    top: 37px;
+    width: 80px;
+	background-image:url(../_site/icon.png);
+	background-repeat: no-repeat;
+	position: absolute;
 }
 
 .divSigninBox{
@@ -115,19 +116,17 @@ span{
 }
 
 .divSigninEnter:hover{
-	color:#2E3120;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#7abcd4), to(#1F7E9C));
+	background: -webkit-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -moz-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -ms-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -o-linear-gradient(top, #7abcd4, #1F7E9C);
+	background-color:#7abcd4;
 	cursor:pointer;
 }
 
 #divTopMenu{
 	background-repeat:no-repeat;
-  	background-position: 35px 0px;
 	width: 762px;
 	height: 94px;
 }
@@ -189,17 +188,22 @@ span{
 }
 #creditContainer{
 	font-size: 9px;
+    left: 33px;
+    line-height: 9px;
     position: absolute;
     text-align: center;
-    top: 41px;
-    left: 480px;
-    width: 170px;
-    z-index:3;
+    top: 11px;
+    width: 70px;
+    z-index: 3;
+}
+#creditContainer a{
+	color:#4A545D;
+	text-decoration: none;
 }
 #creditAvailable {
 	font-family:"Arial Black", "Arial";
 	font-weight: 900;
-    color:#F0BD00;
+    color:#1689B5;
     font-size:14px;
     text-align: center;
 }
@@ -258,7 +262,7 @@ span{
 }
 
 .headTitle{
-    height: 45px;
+    height: 55px;
     margin-left: 35px;
     width: 700px;
 }
@@ -272,33 +276,34 @@ span{
 }
 
 .headProfile{
-	margin-left:25px;
-	font-size:24px;
-	color:#404040;
+	background: url("../_site/all.png") no-repeat 0px -230px;
 	position:relative;
 	float:left;
-	width: 260px;
+	width: 215px;
+	height:36px;
+	top:8px;
 }
 
 .profileBody input{
 	font-size:12px;
 	color:#222;
-	-moz-border-radius: 9px;
-	border-radius: 9px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 	border: none;
+	margin-left:5px;
 	margin-top:5px; 
 	margin-bottom:10px;
 	width:200px;
 	padding:3px;
 	padding-left:5px;
-	-moz-box-shadow: 0px 0px 5px #111;
-	-webkit-box-shadow: 0px 0px 5px #111;
-	box-shadow: 0px 0px 5px #111;
+	background-color: #d7d7d7;
+	-moz-box-shadow:    inset 1px 1px 1px #9f9f9f;
+    -webkit-box-shadow: inset 1px 1px 1px #9f9f9f;
+    box-shadow:         inset 1px 1px 1px #9f9f9f;
 }
 
 .profileContainerLeft{
 	position: absolute;
-	top:200px;
 	left:50px;
 	width:325px;
 	height:425px;
@@ -306,10 +311,9 @@ span{
 
 .profileSeparator{
 	position:absolute;
-	top:185px;
 	left:385px;
-	background-color: #3E3E3E;
-	width:1px;
+	background:url(../_site/repeaty.png) -63px 0px repeat-y;
+	width:2px;
 	height:500px;
 }
 
@@ -317,43 +321,39 @@ span{
 	position:absolute;
 	width:10px;
 	height:10px;
-	background-color: #747474;
+	background-color: #b8b8b8;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
 .dotActive{
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#7abcd4), to(#1F7E9C));
+	background: -webkit-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -moz-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -ms-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -o-linear-gradient(top, #7abcd4, #1F7E9C);
+	background-color:#7abcd4;
 }
 
 .profileButton{
+	text-shadow:none;
+	color:#f1f1f1;
 	font-weight:bold;
 	position:absolute;
 	padding:4px 10px 4px 10px; 
-	background-color: #747474;
+	background-color: #b7b7b7;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
 }
 
 .profileButton:hover{
-	color:#2E3120;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
+	border-bottom:1px solid #7abcd4;
+	background-color:#2494ba;
 	cursor:pointer;
 }
 
 .profileContainerRight{
 	position: absolute;
 	float:right;
-	top:200px;
 	left:450px;
 	width:325px;
 	height:425px;
@@ -384,6 +384,7 @@ span{
 	text-transform: none;
 }
 .profileSaved{
+	text-shadow:none;
 	padding:4px 10px 4px 10px; 
 	background-color: #747474;
 	-moz-border-radius: 9px;
@@ -391,7 +392,7 @@ span{
 	position: absolute;
 	color:#CCCCCC;
 	top:165px;
-	left:270px;
+	left:195px;
 	font-size:14px; 
 	z-index: 5;
 }
@@ -409,7 +410,7 @@ span{
 .creditsText{
 	float:left;
 	line-height:45px;
-	color: #FFF;
+	color: #4b5258;
 	font-weight: 900;
 	
 }
@@ -424,18 +425,18 @@ span{
 	cursor:pointer;
 	position: absolute;
 	top:65px;
-	width:92px;
-	height:90px;
+	width:122px;
+	height:117px;
 }
 
 .creditIcon1{
-	background:url(../_site/credits_1.png);
+	background:url(../_site/all.png) -370px -95px no-repeat;
 }
 .creditIcon2{
-	background:url(../_site/credits_2.png);
+	background:url(../_site/all.png) -520px -95px no-repeat;
 }
 .creditIcon3{
-	background:url(../_site/credits_3.png)
+	background:url(../_site/all.png) -370px -230px no-repeat;
 }
 .direct_credits{
 	cursor:pointer;
@@ -443,15 +444,16 @@ span{
 	width:42px;
 	height:41px;
 	position:relative;
-	top:-32px;
+	top:-50px;
 	left:154px;
 	z-index:2;
 	float:left;
 }
 .creditsText span{
+	text-shadow:1px 1px 1px #fff;
 	line-height:45px;
 	font-size:70px;
-	color:#F0BD00;
+	color:#1689b5;
 	font-family:"Impact";
 	font-weight: normal;
 }
@@ -460,7 +462,7 @@ span{
 	float:left;
 	font-size:10px;
 	width:100%;
-	height:594px;
+	height:550px;
 	/*background:url(../_site/repeatx.png) 0px -530px repeat-x;*/
 }
 .creditsAmount{
@@ -476,7 +478,7 @@ span{
 
 .cAmount{
 	margin-top:-10px;
-	color: #F0BD00;
+	color:#1F7E9C;
     font-family: "Impact";
     font-size: 70px;
 }
@@ -489,17 +491,13 @@ span{
 	position:absolute;
 	top:30px;
 	left:200px;
-	background: -moz-linear-gradient(center top , #DADADA, #8B8B8B) repeat scroll 0 0 transparent;
-	background: -webkit-linear-gradient(top, #DADADA, #8B8B8B);
-	background: -moz-linear-gradient(top, #DADADA, #8B8B8B);
-	background: -ms-linear-gradient(top, #DADADA, #8B8B8B);
-	background: -o-linear-gradient(top, #DADADA, #8B8B8B);
-	background-color:#DADADA;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 5px 5px #000000;
+	background-color:#ffffff;
+    box-shadow: 0 5px 5px #a2a2a2;
     padding: 15px;
+    border-radius:10px;
+    -moz-border-radius:10px;
     width: 500px;
-    height: 200px;
+    height: 180px;
 }
 
 .creditsResponse{
@@ -560,7 +558,7 @@ span{
 	height:35px;
 }
 .credRDark{
-	background-color: #161616;
+	background-color: #e6e6e6;
 }
 .credRow div{
 	margin-top:10px;
@@ -568,7 +566,7 @@ span{
 	float:left;
 }
 .credRow div span{
-	color:#F0BD00;
+	color:#1F7E9C;
 }
 
 .creditsCloseButton{
@@ -596,32 +594,45 @@ span{
 	width:100%;
 	height:173px;
 }
-
+.pointer{
+	background: url(../_site/all.png) no-repeat -50px -2px;
+    height: 27px;
+    position: absolute;
+    top: 31px;
+    left:120px;
+    width: 30px;
+}
 .headBlocks{
 	position:relative;
 	float:left;
-	width: 186px;
+	width: 182px;
 	height:100%;
 }
 .headMiniTitle{
-	top:5px;
-	padding-top:8px;
-	text-align:center;
-	font-size:15px;
-	position:absolute;
-	width:100%;
+	text-shadow:none;
+	background-color: #65B3A6;
+	color:#fff;
+    font-size: 15px;
+    height: 26px;
+    margin-left: 13px;
+    padding-top: 5px;
+    position: absolute;
+    text-align: center;
+    top: 5px;
+    width: 90%;
 }
 
 .headMiniText{
-	/*font-family:"Impact";*/
+	font-family:"arial","arial black";
+	font-weight:900;
 	position:absolute;
-	font-size: 28px;
+	font-size: 36px;
 	top:70px;
 	text-align: center;
 	width:100%;
 }
 .headMiniText span{
-	color:#F0BD00;
+	color:#1689b5;
 	font-family:"Arial";
 }
 
@@ -679,10 +690,10 @@ span{
 	background:url(../_site/repeatx.png) 0px -2px repeat-x;
 }*/
 .segregation{
+	background:url(../_site/repeaty.png) -63px 0px repeat-y;
 	position:absolute;
-	width:1px;
-	height:120px;
-	background: #3e3e3e;
+	width:2px;
+	height:130px;
 }
 .headLeaderBody{
 	width:100%;
@@ -800,19 +811,19 @@ span{
     margin-left: 27px;
     margin-top: 2px;
     width: 80px;
-	background:url(../_site/all.png) -100px -180px no-repeat;
+	background:url(../_site/all.png) -280px -95px no-repeat;
 }
 .leaderLeftArrow{
 	position: absolute;
 	top:65px;
 	left:8px;
-	width:15px;
-	height:15px;
-	background:url(../_site/all.png) -255px -120px no-repeat;
+	width:24px;
+	height:22px;
+	background:url(../_site/all.png) -85px -1px no-repeat;
 	cursor: pointer;
 }
 .leaderLeftArrow:hover{
-	background:url(../_site/all.png) -255px -140px no-repeat;
+	background:url(../_site/all.png) -85px -25px no-repeat;
 }
 .leaderScrolltainer{
 	position: absolute;
@@ -835,12 +846,10 @@ span{
 	height:100px;
 	margin-top:16px;
 	margin-left:20px;
-	background:url(../_site/all.png) -0px -178px no-repeat;
 	font-size: 10px;
 	color:#414141;
 }
 .friendBoxPic{
-	border:1px solid #5C5A5D;
 	margin:18% 18% 0;
 	position:relative;
 	width:52px;
@@ -848,18 +857,19 @@ span{
 }
 
 .friendSpeechBubble{
-	color:#EFEFEF;
-	padding-top:10px;
-	position: absolute;
-	width: 35px;
-	height:40px;
-	top:-8px;
-	left:-14px;
-	background:url(../_site/all.png) -670px -120px no-repeat;
-	font-size: 14px;
-	font-family:"Arial Black", "Arial";
-	font-weight: 900;
-	text-align: center;
+	color: #fff;
+    font-family: "Arial Black","Arial";
+    font-size: 14px;
+    font-weight: 900;
+    height: 34px;
+    left: 65px;
+    text-shadow:none;
+    padding-top: 3px;
+    position: absolute;
+    text-align: center;
+    top: -3px;
+    width: 29px;
+	background:url(../_site/all.png) -150px -1px no-repeat;
 }
 #invite_friend{
 	top:0px;
@@ -870,22 +880,20 @@ span{
 	position: absolute;
 	top:65px;
 	left:588px;
-	width:15px;
-	height:15px;
-	background:url(../_site/all.png) -275px -120px no-repeat;
+	width:24px;
+	height:22px;
+	background:url(../_site/all.png) -110px -1px no-repeat;
 	cursor: pointer;
 }
 .leaderRightArrow:hover{
-	background:url(../_site/all.png) -275px -140px no-repeat;
+	background:url(../_site/all.png) -110px -25px no-repeat;
 }
 .headCredits{
-	color: #404040;
-    float: left;
-    font-size: 24px;
-    height: 13px;
-    padding-left: 20px;
+	background: url(../_site/all.png) no-repeat scroll 0px -320px transparent;
+    height: 40px;
     position: relative;
-    width: 190px;
+    top: 8px;
+    width: 215px;
 }
 .headCreditsBody{
 	width:100%;
@@ -1005,33 +1013,27 @@ span{
 }
 
 .headAlbum {
-	font-size:24px;
-	color:#404040;
-	position:relative;
-	float:left;
-	padding-left:20px;
-	width: 174px;
-	height: 13px;
+	background: url(../_site/all.png) no-repeat scroll 0px -140px transparent;
+    height: 36px;
+    position: relative;
+    top: 8px;
+    width: 215px;
 }
 
 .headAuction {
-	font-size:24px;
-	color:#404040;
-	position:relative;
-	float:left;
-	padding-left:20px;
-	width: 220px;
-	height: 13px;
+	background: url(../_site/all.png) no-repeat scroll 0px -185px transparent;
+    height: 36px;
+    position: relative;
+    top: 8px;
+    width: 215px;
 }
 
 .headShop{
-	font-size:24px;
-	color:#404040;
-	position:relative;
-	float:left;
-	padding-left:20px;
-	width: 174px;
-	height: 13px;
+	background: url(../_site/all.png) no-repeat scroll 0px -277px transparent;
+    height: 40px;
+    position: relative;
+    top: 8px;
+    width: 215px;
 }
 
 .headPlay{
@@ -1541,14 +1543,15 @@ input[type="submit"] {
 #album_scroll_pane {
 	float:left;
 	text-shadow: none;
-	height: 593px;
+	height: 590px;
 	width:100%;
 	overflow: scroll;
 }
 
 #albumPlate {
-	height:595px;
-	width:100%;
+	padding-left:12px;
+	height:550px;
+	width:550px;
 	margin-top:0;
 	float:left;
 }
@@ -1645,36 +1648,54 @@ input[type="submit"] {
 }
 
 #auctionPlate {
-	height:575px;
+	height:550px;
 	padding:10px;
 	overflow: hidden;
 }
 
 .textSearch{
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-align:center;
+	padding-top:5px;
 	position:absolute;
-	width:15px;
-	height: 25px;
+	background-color:#d4d4d4;
+	width:65px;
+	height: 20px;
 	top:4px;
-	left:195px;
+	left:220px;
 	cursor:pointer;
-	background: url('../_site/all.png') -748px -118px transparent no-repeat;
+}
+.textSearch:hover{
+	text-shadow:none;
+	color:#f1f1f1;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#7abcd4), to(#1F7E9C));
+	background: -webkit-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -moz-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -ms-linear-gradient(top, #7abcd4, #1F7E9C);
+	background: -o-linear-gradient(top, #7abcd4, #1F7E9C);
+	background-color:#7abcd4;
 }
 
 #auction_search_container {
-	float:right;
-	width:33%;
+	float:left;
+	left:150px;
+	width:50%;
 	display: inline;
 	position: relative;
 }
 
 #auction_search_container input {
-	background-color: #c0c0c0;
+	text-shadow:1px 1px 1px #d4d4d4;
+	font-weight:900;
+	background-color: #d7d7d7;
 	height: 25px;
-	border-radius: 8px; 
+	border:none;
+	border-radius: 15px; 
 	-moz-border-radius:15px;
-	-moz-box-shadow:    inset 1px 1px 20px #000000;
-    -webkit-box-shadow: inset 1px 1px 20px #000000;
-    box-shadow:         inset 1px 1px 20px #000000;
+	-moz-box-shadow:    inset 1px 1px 1px #9f9f9f;
+    -webkit-box-shadow: inset 1px 1px 1px #9f9f9f;
+    box-shadow:         inset 1px 1px 1px #9f9f9f;
 	color:#EFEFEF;
 	padding-left: 4px;
 	margin-right: 20px;
@@ -1693,20 +1714,11 @@ input[type="submit"] {
 }
 
 #auction_buttons .cmdButton:hover {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
+	background-color:#2494ba;
+	border-bottom:1px solid #7abcd4;
 }
 #auction_buttons .cmdButton {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
-	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
-	background-color:#DAD8D9;
+	background-color:#b7b7b7;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	margin-top:7px;
@@ -1715,7 +1727,7 @@ input[type="submit"] {
 	text-align: center;
 	display: block;
 	float:left;
-	color:#404040;
+	color:#f1f1f1;
 	text-shadow:none;
 	font-size: 12px;
 	cursor: pointer;
@@ -1744,7 +1756,7 @@ input[type="submit"] {
 
 .cardBlock {
 	font-size:10px;
-	color:#EFEFEF;
+	color:#4a5358;
 	float:left;
 	line-height:11px;
 	width:72px;
@@ -1770,13 +1782,20 @@ input[type="submit"] {
 }
 
 .auctionBlockLarge {
-	height:150px;
-	font-size: 11px;
-	font-weight:bold;
-	text-shadow:none;
-	float: left;
-	width:30%;
-	padding: 5px 10px;
+	border:1px solid #fff;
+	background-color: #FFFFFF;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 120px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 5px 10px;
+    text-shadow: none;
+    width: 210px;
+}
+.auctionBlockLarge:hover{
+	border:1px solid #3A8CB2;
 }
 
 
@@ -1790,7 +1809,7 @@ input[type="submit"] {
 }
 
 .auction_block_details span, .productPriceAmount, .booster-price span {
-	color:#F2C126;
+	color:#2494b9;
 }
 
 .auction_car_name{
@@ -1850,7 +1869,7 @@ input[type="submit"] {
 }
 
 .auctionIcon {
-	background: url('../_site/all.png') -320px -170px transparent no-repeat;
+	background: url('../_site/all.png') -220px -0px transparent no-repeat;
 	width: 30px;
 	height:25px;
 	position:absolute;
@@ -1860,11 +1879,11 @@ input[type="submit"] {
 }
 
 .auctionIcon:hover {
-	background: url('../_site/all.png') -290px -170px transparent no-repeat;
+	background: url('../_site/all.png') -220px -24px transparent no-repeat;
 }
 
 .albumViewAuctionText{
-	color:#404040;
+	color:#b8b8b8;
 	font-family: Arial Black, Arial;
 	font-weight: 900;
 	position: absolute;
@@ -1873,7 +1892,7 @@ input[type="submit"] {
 	cursor:pointer;
 }
 .albumViewAuctionText:hover{
-	color:#D69739;
+	color:#008bb7;
 }
 
 .picture-box {
@@ -2165,8 +2184,8 @@ input[type="submit"] {
 } 
 
 .menu-scroll-button {
-	height:15px;
-	width:15px;
+	height:24px;
+	width:22px;
 	margin-top: 10px;
 	float:left;
 	position: relative;
@@ -2175,13 +2194,19 @@ input[type="submit"] {
 }
 
 #menu-left-button {
-	background: url(../_site/all.png)-255px -120px no-repeat;
+	background: url(../_site/all.png)-85px -1px no-repeat;
 	left:25px;
+}
+#menu-left-button:hover {
+	background: url(../_site/all.png)-85px -25px no-repeat;
 }
 
 #menu-right-button {
 	left:645px;
-	background:url(../_site/all.png) -275px -120px no-repeat;
+	background:url(../_site/all.png) -110px -1px no-repeat;
+}
+#menu-right-button:hover {
+	background:url(../_site/all.png) -110px -25px no-repeat;
 }
 
 
@@ -2413,13 +2438,8 @@ input[type="submit"] {
 }
 
 .modal-window {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
-	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
-	background: -moz-linear-gradient(top, #dad8d9, #8c8c8c);
-	background: -ms-linear-gradient(top, #dad8d9, #8c8c8c);
-	background: -o-linear-gradient(top, #dad8d9, #8c8c8c);
-	background-color:#dad8d9;
-	box-shadow: 0px 4px 4px #222327;
+	background-color:#fff;
+	box-shadow: 0px 4px 4px #999999;
 	position: absolute;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -2469,7 +2489,7 @@ input[type="submit"] {
 #mask {
   	position: absolute;
 	z-index: 0;
-  	background-color:#000;
+  	background-color:#cccccc;
   	width: 100%;
   	height:830px;
   	opacity: 0.5;
@@ -2568,11 +2588,11 @@ input[type="submit"] {
 }
 
 .starIcon {
-	background: url('../_site/all.png') -455px -215px transparent no-repeat;
-	height:13px;
-    position: relative;
-    top: -45px;
-    width: 18px;
+	background: url('../_site/all.png') -270px -50px transparent no-repeat;
+	height:35px;
+    position: absolute;
+    top: 0px;
+    width: 30px;
 }
 
 .trophyIcon {
@@ -2590,19 +2610,14 @@ input[type="submit"] {
 }
 
 .EyeIcon {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
-	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
-	background-color:#DAD8D9;
+	background-color:#B7B7B7;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	width: 40px;
 	height:18px;
 	top:-22px;
 	position: relative;
-	color:#404040;
+	color:#f1f1f1;
 	text-align:center;
 	padding-top:3px;
 	
@@ -2759,7 +2774,6 @@ input[type="submit"] {
 
 .panel-label{
 	padding-left: 5px;
-	color:#EBEBEB;
 	width:105px
 }
 
@@ -2776,13 +2790,8 @@ input[type="submit"] {
 .albumAuctionButton,
 .view_button
 {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
-	background: -webkit-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:    -moz-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:     -ms-linear-gradient(top, #dad8d9, #8c8c8c);
-	background:      -o-linear-gradient(top, #dad8d9, #8c8c8c);
-	background-color:#DAD8D9;
-	color: #404040;
+	background-color:#b7b7b7;
+	color: #f1f1f1;
 	height:19px;
 	width:85px;
 	text-align: center;
@@ -2797,12 +2806,8 @@ input[type="submit"] {
 .buyItemButton:hover, 
 .albumAuctionButton:hover 
 {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
+	background-color:#2592b9;
+	border-bottom:#7abcd4;
 }
 
 .bid-list-item span{
@@ -2822,7 +2827,7 @@ input[type="submit"] {
 
 .bid-list {
 	padding-left:15px;
-	border-left:1px solid #AAA9AA;
+	border-left:1px solid #d1d1d1;
 	width: 240px;
 	height: 235px;
 	position: absolute;
@@ -2831,9 +2836,10 @@ input[type="submit"] {
 }
 
 .bid-panel {
-	background-color:#404040;
-	border-top:1px solid #363636;
+	background-color:#eaeae8;
+	border-top:1px solid #e6e6e6;
 	width:585px;
+	border-radius:5px;
 	height:25px;
 	position: absolute;
 	left: 15px;
@@ -2869,7 +2875,7 @@ input[type="submit"] {
 }
 
 .bid-panel .ui-slider-horizontal .ui-slider-range, #albumAuctionModalWindow .ui-slider-horizontal .ui-slider-range {
-	background:#EFBD00; 
+	background:#2494B9; 
 	border-radius: 9px 9px 9px 9px;
 }
 	
@@ -2900,18 +2906,18 @@ input[type="submit"] {
 }
 .time_stamp{
 	font-family:"Impact";
-	color:#F0BD00;
+	color:#2494B9;
 	float:left;
 	height:50px;
 	display:inline;
 	margin-right:10px;
 	border-radius:5px;
 	-moz-border-radius:5px;
-	background-color:#404040;
+	background-color:#eaeae8;
 	padding:0 5px;
 }
 .bid-amount-selector {
-	color:#F2C126;
+	color:#2494B9;
 	background-color:transparent;
 } 
 
@@ -2961,7 +2967,7 @@ input[type="submit"] {
 
 
 #shopPlate {
-	height:575px;
+	height:550px;
 	padding:10px;
 	margin-top:0;
 }
@@ -2974,13 +2980,13 @@ input[type="submit"] {
 	font-weight: bold;
 }
 .productPrice span{
-	color:#F0BD00;
+	color:#2494b9;
 }
 .numberOfCards, .productPrice{
 	/*position: relative;
 	top:-110px;
 	left:90px;*/
-	width: 110px;
+	width: 115px;
 }
 .view_button{
 	left:70px !important;
@@ -2989,27 +2995,23 @@ input[type="submit"] {
 	bottom:10px;
 	left:14px;
 	position:relative;
-	padding-top:2px;
+	padding-top:5px;
 	text-align:center;
-	color:#2E3120;
+	color:#f1f1f1;
 	line-height:normal;
 	box-shadow:none;
 	width:50px;
-	height:15px;
+	height:18px;
 	font-weight:bold;
 	position:absolute;
-	background-color: #747474;
+	background-color: #b7b7b7;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
 }
 .view_button:hover, .buyItemButton:hover{
-	color:#2E3120;
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
+	color:#f1f1f1;
+	border-bottom: 1px solid #7abcd4;
+	background-color:#2795ba;
 	cursor:pointer;
 }
 
@@ -3040,7 +3042,7 @@ input[type="submit"] {
 
 .booster-price {
 	position: relative;
-	top:295px;
+	top:310px;
 	left:550px;
 	width:50px;
 	color:#F2C126;
@@ -3064,6 +3066,7 @@ input[type="submit"] {
 	height:360px;
 	position: relative;
 	top:-35px;
+	margin-bottom:20px;
 	box-shadow:inset 0px 0px 5px #666666;
 }
 
@@ -3102,11 +3105,11 @@ input[type="submit"] {
 	margin-top:150px;
 	width:95%!important;
 	height: 50%;
-	margin-left:35px;
+	margin-left:20px;
 }
 
 .jspTrack, .jspVerticalBar {
-	background-color: transparent !important;
+	background-color: #c7c7c7;
 }
 
 .modal-error-text {
@@ -3318,7 +3321,7 @@ input[type="submit"] {
 	left:50px;
 	width:25px;
 	height:24px;
-	background:url("../_site/all.png") -400px -200px no-repeat;
+	background:url("../_site/all.png") -190px -25px no-repeat;
 }
 .buyout{
 	width:50px;
@@ -3335,13 +3338,10 @@ input[type="submit"] {
 	text-align:center;
 }
 .eyeIcon.viewAuctionButton:hover {
-	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
-	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
-	background: -moz-linear-gradient(top, #F2C126, #B0750D);
-	background: -ms-linear-gradient(top, #F2C126, #B0750D);
-	background: -o-linear-gradient(top, #F2C126, #B0750D);
-	background-color:#F2C126;
-	cursor: pointer;
+	color:#f1f1f1;
+	border-bottom: 1px solid #7abcd4;
+	background-color:#2795ba;
+	cursor:pointer;
 }
 
 .boosterListPicIconContainer {
