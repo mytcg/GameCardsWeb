@@ -189,7 +189,7 @@ function WORK_Credits()
 				);
 				
 				//700TCG
-				var option = ZA.createDiv(options,"packageOption","2");
+				/*var option = ZA.createDiv(options,"packageOption","2");
 				$(option).html(
 					'<table>'+
 						'<tr>'+
@@ -202,10 +202,10 @@ function WORK_Credits()
 							'<td><label for="TCG10">R10.00</label></td>'+
 						'</tr>'+
 					'</table>'
-				);
+				);*/
 				
 				//1050TCG
-				var option = ZA.createDiv(options,"packageOption","3");
+				/*var option = ZA.createDiv(options,"packageOption","3");
 				$(option)
 				.html(
 					'<table>'+
@@ -219,7 +219,7 @@ function WORK_Credits()
 							'<td><label for="TCG15">R15.00</label></td>'+
 						'</tr>'+
 					'</table>'
-				);
+				);*/
 			
 			//event handler
 			$("input[name='package']").bind("click",function(){
@@ -234,7 +234,7 @@ function WORK_Credits()
 			var options = ZA.createDiv(divInner,"methodOptions");
 				
 				//sms shortcode
-				/*var option = ZA.createDiv(options,"methodOption");
+				var option = ZA.createDiv(options,"methodOption");
 				$(option).html(
 					'<table>'+
 						'<tr>'+
@@ -246,10 +246,10 @@ function WORK_Credits()
 					'<div id="smsMethodInfo" style="position:relative;padding:10px;display:none;">'+
 						'SMS "<span id="keyword">X</span>" and your username "<span>" to <span id="shortcode">Y</span>'+
 					'</div>'
-				);*/
+				);
 				
 				//paypal
-				var option = ZA.createDiv(options,"methodOption");
+				/*var option = ZA.createDiv(options,"methodOption");
 				$(option).html(
 					'<table>'+
 						'<tr>'+
@@ -258,7 +258,7 @@ function WORK_Credits()
 							'<td><div style="position:relative;width:30px;height:25px;background:url(_site/all.png) -231px -236px no-repeat;"></div></td>'+
 						'</tr>'+
 					'</table>'
-				);
+				);*/
 				
 				//credit card
 				/*var option = ZA.createDiv(options,"methodOption");
@@ -432,36 +432,34 @@ if(dev < 0)
 					background:"#efefef"
 				})
 				.html
-				(
-'<form id="frmCreditCard" method="POST" action="https://www.vcs.co.za/vvonline/ccform.asp">'+
-'<input type="hidden" name="p1" value="8043">'+
-'<input type="hidden" name="p2" id="referenceNumber" value="">'+
-'<input type="hidden" name="p3" value="'+credits+' TCG credits">'+
-'<input type="hidden" name="p4" value="'+cost+'.00">'+
-//'<input type="hidden" name="p5" value="e">'+
-//'<input type="hidden" name="p6" value="f">'+
-//'<input type="hidden" name="p7" value="g">'+
-//'<input type="hidden" name="p8" value="h">'+
-//'<input type="hidden" name="p9" value="i">'+
-'<input type="hidden" name="p10" value="http://mytcg.net/vcs/cancel/">'+
-//'<input type="hidden" name="p11" value="k">'+
-//'<input type="hidden" name="p12" value="l">'+
-'<input type="hidden" name="Budget" value="N">'+
-//'<input type="hidden" name="NextOccurDate" value="n">'+
-'<input type="hidden" name="m_1" value="'+credits+'">'+
-//'<input type="hidden" name="m_2" value="z">'+
-//'<input type="hidden" name="m_2" value="z">'+
-//'<input type="hidden" name="m_3" value="z">'+
-//'<input type="hidden" name="m_4" value="z">'+
-//'<input type="hidden" name="m_6" value="z">'+
-//'<input type="hidden" name="m_7" value="z">'+
-//'<input type="hidden" name="m_8" value="z">'+
-//'<input type="hidden" name="m_9" value="z">'+
-//'<input type="hidden" name="m_10" value="z">'+
-'<input type="button" id="cmdPayByCreditCard" class="cmdButton" value="Pay by Credit Card" style="left:30px;bottom:40px;">'+
-'<div style="width:156px;height:15px;bottom:15px;left:15px;background:url(_site/all_1.png) -440px -180px no-repeat;"></div>'+
-'</form>'
-				);
+				('<form id="frmCreditCard" method="POST" action="https://www.vcs.co.za/vvonline/ccform.asp">'+
+					'<input type="hidden" name="p1" value="8043">'+
+					'<input type="hidden" name="p2" id="referenceNumber" value="">'+
+					'<input type="hidden" name="p3" value="'+credits+' TCG credits">'+
+					'<input type="hidden" name="p4" value="'+cost+'.00">'+
+					//'<input type="hidden" name="p5" value="e">'+
+					//'<input type="hidden" name="p6" value="f">'+
+					//'<input type="hidden" name="p7" value="g">'+
+					//'<input type="hidden" name="p8" value="h">'+
+					//'<input type="hidden" name="p9" value="i">'+
+					'<input type="hidden" name="p10" value="http://mytcg.net/vcs/cancel/">'+
+					//'<input type="hidden" name="p11" value="k">'+
+					//'<input type="hidden" name="p12" value="l">'+
+					'<input type="hidden" name="Budget" value="N">'+
+					//'<input type="hidden" name="NextOccurDate" value="n">'+
+					'<input type="hidden" name="m_1" value="'+credits+'">'+
+					//'<input type="hidden" name="m_2" value="z">'+
+					//'<input type="hidden" name="m_2" value="z">'+
+					//'<input type="hidden" name="m_3" value="z">'+
+					//'<input type="hidden" name="m_4" value="z">'+
+					//'<input type="hidden" name="m_6" value="z">'+
+					//'<input type="hidden" name="m_7" value="z">'+
+					//'<input type="hidden" name="m_8" value="z">'+
+					//'<input type="hidden" name="m_9" value="z">'+
+					//'<input type="hidden" name="m_10" value="z">'+
+					'<input type="button" id="cmdPayByCreditCard" class="cmdButton" value="Pay by Credit Card" style="left:30px;bottom:40px;">'+
+					'<div style="width:156px;height:15px;bottom:15px;left:15px;background:url(_site/all_1.png) -440px -180px no-repeat;"></div>'+
+					'</form>');
 				var icon = ZA.createDiv(form);
 				$(icon).css({
 					position:"relative",
@@ -528,61 +526,21 @@ if(dev < 0)
 					background:"#efefef"
 				})
 				.html
-				(
-/*
-'<form id="frmPaypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_self">'+
-'<input type="hidden" name="cmd" value="_s-xclick">'+
-'<input type="hidden" name="hosted_button_id" value="CYRRUVYYRMENC">'+
-'<table>'+
-'<tr><td><input type="hidden" name="on0" value="TCG Credits">TCG Credits</td></tr><tr><td><select name="os0">'+
-	'<option value="350 TCG Credits" alt="350" title="$1.00">350 TCG Credits $1.00</option>'+
-	'<option value="700 TCG Credits" alt="700" title="$1.50">700 TCG Credits $1.50</span></option>'+
-	'<option value="1050 TCG Credits" alt="1050" title="$2.00">1050 TCG Credits $2.00</option>'+
-'</select> </td></tr>'+
-'<input type="hidden" name="on1" value="reference"><input type="hidden" name="os1" id="referenceNumber">'+
-'</table>'+
-'<input type="hidden" name="currency_code" value="USD">'+
-'<input type="image" id="cmdPayByPaypal" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">'+
-'<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
-'</form>'
-*/
-/*'<form id="frmPaypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_self">'+
-'<input type="hidden" name="cmd" value="_s-xclick">'+
-//'<input type="hidden" name="notify_url" value="http://mytcg.net/paypal/">'+
-'<input type="hidden" name="hosted_button_id" value="ZT4SREPVEM5J8">'+
-'<table style="margin-bottom:40px;"><tr><td>'+
-'<table>'+
-'<tr><td><input type="hidden" name="on0" value="TCG Credits">TCG Credits</td></tr><tr><td><select name="os0">'+
-	'<option value="350 TCG Credits" alt="350" title="$1.00">350 TCG Credits $1.00</option>'+
-	'<option value="700 TCG Credits" alt="700" title="$1.50">700 TCG Credits $1.50</span></option>'+
-	'<option value="1050 TCG Credits" alt="1050" title="$2.00">1050 TCG Credits $2.00</option>'+
-'</select> </td></tr>'+
-'<input type="hidden" name="on1" value="reference"><input type="hidden" name="os1" id="referenceNumber">'+
-'</table>'+
-'<input type="hidden" name="currency_code" value="USD">'+
-'<input type="image" id="cmdPayByPaypal" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">'+
-'<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
-'</form>'
-*/
-'<form action="https://www.paypal.com/cgi-bin/webscr" method="post">'+
-'<input type="hidden" name="cmd" value="_s-xclick">'+
-'<input type="hidden" name="hosted_button_id" value="C3N4C4RT8JE5W">'+
-'<table>'+
-'<tr><td><input type="hidden" name="on0" value="TCG Credits">TCG Credits</td></tr><tr><td><select name="os0">'+
-	'<option value="350 TCG @">350 TCG @$1.00 USD</option>'+
-	'<option value="700 TCG @">700 TCG @$2.00 USD</option>'+
-	'<option value="1400 TCG @">1400 TCG @$4.00 USD</option>'+
-	'<option value="2800 TCG @">2800 TCG @$8.00 USD</option>'+
-'</select> </td></tr>'+
-'</table>'+
-'<input type="hidden" name="currency_code" value="USD">'+
-'<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">'+
-'<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
-'</form>'
-
-
-
-				);
+				('<form action="https://www.paypal.com/cgi-bin/webscr" method="post">'+
+					'<input type="hidden" name="cmd" value="_s-xclick">'+
+					'<input type="hidden" name="hosted_button_id" value="C3N4C4RT8JE5W">'+
+					'<table>'+
+					'<tr><td><input type="hidden" name="on0" value="TCG Credits">TCG Credits</td></tr><tr><td><select name="os0">'+
+						'<option value="350 TCG @">350 TCG @$1.00 USD</option>'+
+						'<option value="700 TCG @">700 TCG @$2.00 USD</option>'+
+						'<option value="1400 TCG @">1400 TCG @$4.00 USD</option>'+
+						'<option value="2800 TCG @">2800 TCG @$8.00 USD</option>'+
+					'</select> </td></tr>'+
+					'</table>'+
+					'<input type="hidden" name="currency_code" value="USD">'+
+					'<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">'+
+					'<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">'+
+					'</form>');
 				var icon = ZA.createDiv(form);
 				$(icon).css({
 					top:30,
@@ -619,8 +577,8 @@ if(dev < 0)
 			
 			case 'sms':
 				
-				keyword = 'TopCar Cards';
-				shortcode = '36262';
+				keyword = 'xbar5';
+				shortcode = '36012';
 				
 				$(divData).css({
 					background:"url(_site/line.gif) repeat"
@@ -636,6 +594,14 @@ if(dev < 0)
 					marginRight:'auto'
 				});
 				//keyword
+				var div = ZA.createDiv(info,'txtGreen');
+				$(div).css({
+					top:"13px",
+					width:"100%",
+					fontWeight:"bold"
+				})
+				.html('SMS');
+				
 				var div = ZA.createDiv(info);
 				$(div).css({
 					color:"#000",
@@ -644,6 +610,15 @@ if(dev < 0)
 					fontWeight:"bold"
 				})
 				.html(keyword+' '+ZA.sUsername);
+				
+				var div = ZA.createDiv(info,'txtGreen');
+				$(div).css({
+					top:"70px",
+					width:"100%",
+					fontWeight:"bold"
+				})
+				.html('To');
+				
 				//shortcode
 				var div = ZA.createDiv(info,'txtGreen');
 				$(div).css({
@@ -653,6 +628,15 @@ if(dev < 0)
 					fontWeight:"bold"
 				})
 				.html(shortcode);
+				
+				var div = ZA.createDiv(info,'txtGreen');
+				$(div).css({
+					top:"132px",
+					width:"100%",
+					fontWeight:"bold"
+				})
+				.html('and receive');
+				
 				//credits
 				var div = ZA.createDiv(info);
 				$(div).css({
@@ -661,6 +645,15 @@ if(dev < 0)
 					width:"100%"
 				})
 				.html('<strong>'+credits+' <span class="txtBlue">TCG</span></strong><br />credits');
+				
+				var div = ZA.createDiv(info,'txtGreen');
+				$(div).css({
+					top:"194px",
+					width:"100%",
+					fontWeight:"bold"
+				})
+				.html('SMS Cost');
+				
 				//cost
 				var div = ZA.createDiv(info);
 				$(div).css({

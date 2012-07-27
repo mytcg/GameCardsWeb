@@ -172,6 +172,11 @@ if($_GET['save'] == 1){
       myqu("UPDATE ".$pre."_user SET msisdn = '".$msisdn."' WHERE user_id = ".$userID);
       myqu("UPDATE ".$pre."_user_answer SET answer = '".$msisdn."',answered = 1 WHERE user_id = ".$userID);
     }
+	
+	myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+			SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+			FROM mytcg_user WHERE user_id=".$userID);
+	
     echo $sTab."<msisdn>".$msisdn."</msisdn>".$sCRLF;
     
     //RELOAD USER DETAILS

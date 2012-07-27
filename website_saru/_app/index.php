@@ -241,6 +241,10 @@ if (intval($_GET['init'])==1){
 			myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$userID);
 			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
 					VALUES(".$userID.", 'Received 20 credits for logging in today', NOW(), 50)");
+					
+			myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
+				VALUES(".$userID.", NULL, NULL, NULL, 
+				now(), 'Received 20 credits for logging in today', 20, NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 16,20,0)");
 			echo $sTab.'<dailyvisit val="1" />'.$sCRLF;
 			echo $sTab.'<newcredits val="'.$amount.'" />'.$sCRLF;
 		}

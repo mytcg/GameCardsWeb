@@ -1565,7 +1565,6 @@ input.registerBox{
    }
    .optionsBlock .title{
 		background:url(_site/repeatx_bottom.png) 0px 8px  repeat-x;
-		color: #333333;
 		font-weight: bold;
 		height: 20px;
 		padding: 5px;
