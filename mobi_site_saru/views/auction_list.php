@@ -1,5 +1,4 @@
 	<ul id="item_list">
-		<li><a href="#"><p>Create New Auction</p></a></li>
 		<?php
 			$query= "SELECT CA.description AS 'category', C.description, C.category_id, UC.usercard_id, UC.card_id, M.market_id,
 					(SELECT COUNT(usercard_id) FROM mytcg_usercard WHERE user_id=".$user['user_id']." AND card_id=UC.card_id AND usercardstatus_id=1) AS 'owned'

@@ -40,12 +40,42 @@ img {vertical-align:top;}
 	width:30px;
 	height:15px;
 }
-
+.cmdButton{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	font-size:12px;
+	color:#fff;
+	float:left;
+	border: none;
+	background-color:#333;
+	height: 20px;
+	padding-top:5px;
+	width: 60px;
+	margin:15px 5px 10px 0px;
+	text-align:center;
+	cursor:pointer;
+}
+.cmdButton:hover{
+	color: #333;
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
+	background: -webkit-linear-gradient(top, #F2C126, #B0750D);
+	background: -moz-linear-gradient(top, #F2C126, #B0750D);
+	background: -ms-linear-gradient(top, #F2C126, #B0750D);
+	background: -o-linear-gradient(top, #F2C126, #B0750D);
+}
+#buttonContainer{
+	width:100%;
+	height:50px;
+	position:relative;
+}
 #gameOver{
 	text-align: center;
 }
 
-#content {
+#content{
 	width:100%;
 	font-size:1.125em;
 	line-height:1em;
@@ -121,8 +151,8 @@ em {color:#5e5e5e;}
 	background: -ms-linear-gradient(top, #F2C126, #B0750D);
 	background: -o-linear-gradient(top, #F2C126, #B0750D);
 }
-p a {color:#fff; text-decoration:none;}
-p a:hover {color:#ee0000; text-decoration:none;}
+p a {color:#000; text-decoration:none;}
+p a:hover {color:#D69739; text-decoration:none;}
 	
 /* --- END content --- */
 
@@ -143,7 +173,9 @@ p a:hover {color:#ee0000; text-decoration:none;}
 /* --- END footer --- */
 
 /* --- Other --- */
-	
+.image_size{
+	height:100%;
+}
 /* --- END Other --- */
 
 /* --- boxes --- */
@@ -199,7 +231,18 @@ p a:hover {color:#ee0000; text-decoration:none;}
 	padding:0 0 0 0;
 	margin:auto;
 }
-
+#auction_card{
+	list-style:none;
+	width: 100%;
+	padding:0 0 0 0;
+	margin:auto;
+}
+#auction_card li{
+	background-image: url('images/background_bottomline.png');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:270px;
+}
 #card_list_bid li{
 	background-image: url('images/background_bottomline.png');
 	background-repeat:repeat-x;
@@ -215,11 +258,23 @@ p a:hover {color:#ee0000; text-decoration:none;}
 	width:96%;
 	color:#777;
 }
-#card_list li a{color:#777;text-decoration: none;text-shadow: 0px 1px 1px #fff}
+#card_list li a{
+	color:#777;
+	text-decoration: none;
+	text-shadow: 0px 1px 1px #000;
+}
 #card_list li a:hover{
 	color:#D69739;
+	text-shadow: 0px 1px 1px #fff
 }
 .cardBlock {
+	width:240px;
+	height:110px;
+	float:left;
+	margin:auto;
+}
+#auctionCardBlock {
+	width:240px;
 	height:110px;
 	float:left;
 	margin:auto;
@@ -248,7 +303,6 @@ p a:hover {color:#ee0000; text-decoration:none;}
 	margin-left:7px;
 	margin-top:10px;
 	height:90px;
-	background-color:#282828;
 	float:left;
 	display: inline;
 }
@@ -267,7 +321,7 @@ p a:hover {color:#ee0000; text-decoration:none;}
 	padding:5px 0 0 5px;
 	height:19px;
 	color:#999999;
-	border: 1px solid #000000;
+	border: 1px solid #fff;
 	background-color:#303134;
 	width:95%;
 	margin: 10px 0px;
@@ -278,10 +332,12 @@ p a:hover {color:#ee0000; text-decoration:none;}
  	: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=0, Color='#424242');/* IE 5.5 - 7 */
 }
 .info_box:active{
-	background-color:#720509;
+	color:#000000;
+	background-color:#D69739;
 }
 .info_box:hover{
-	background-color:#720509;
+	color:#000000;
+	background-color:#D69739;
 }
 
 /* --- END boxes --- */

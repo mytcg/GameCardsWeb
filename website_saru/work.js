@@ -2524,11 +2524,11 @@ WORK_Menu.prototype.action=function(sAction){
 	            			ZA.maximizeWindowA(4);
 						break;
 						case "5":
-							ZA.showLeaderboard();
+							$("#component_10").show();
+		                     ZA.maximizeWindowA(10);
 						break;
 						case "6":
-		                     $("#component_10").show();
-		                     ZA.maximizeWindowA(10);
+		                    ZA.showLeaderboard();
 						break;
 						case "7":
 							ZA.showNotifications();
@@ -2619,7 +2619,7 @@ WORK_Menu.prototype.createTop=function(){
 	// logged in
 	else{
 		//ZA.sMenuItemsTop = "Logout|Profile|My Deck|Album|Auction|Buy Cards|Leaderboard|Credits|Notifications";
-		ZA.sMenuItemsTop = "Logout|Profile|Auction|Shop|Album";
+		ZA.sMenuItemsTop = "Logout|Profile|Auction|Shop|Album|Credits";
 	}
 	
 	var divMenu=ZA.createDiv(divHeader,"menutop","menutop");
@@ -2653,7 +2653,7 @@ WORK_Menu.prototype.createTop=function(){
 				divItem.innerHTML=sDesc;
 			}
 		}else{
-			if(iCount!=4){
+			if(iCount!=5){
 				var iLength=sDesc.length;
 				var divItem=ZA.createDiv(divMenu,"menutopitem");
 				divItem.onclick=ZM.action("top_"+iCount);

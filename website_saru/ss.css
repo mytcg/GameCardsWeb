@@ -502,7 +502,7 @@ body{
 	padding-top:8px;
 	position:relative;
 	width:100%;
-	height:125px;
+	height:100px;
 	margin-bottom:5px;
 }
 .bodyfooter_container{
@@ -513,39 +513,40 @@ body{
 }
 .bodyfooter_social{
 	color:#fff;
-	float:right;
 	position:relative;
+	left:325px;
 	margin:auto;
+	top:17px;
 }
 .social_fb,.social_twitter,.social_youtube,.social_vimeo,.social_web{
 	float: left;
-    height: 25px;
+    height: 40px;
     position: relative;
-    width: 30px;
+    width: 50px;
     cursor:pointer;
     margin-right:5px;
     text-decoration:none;
 }
 .social_fb{
-	background:url(_site/all.png) -500px -126px no-repeat;
+	background:url(_site/all.png) -500px -247px no-repeat;
 }
 .social_twitter{
-	background:url(_site/all.png) -470px -126px no-repeat;
+	background:url(_site/all.png) -555px -247px no-repeat;
 }
 .social_youtube{
-	background:url(_site/all.png) -560px -126px no-repeat;
+	background:url(_site/all.png) -560px -247px no-repeat;
 }
 .social_vimeo{
-	background:url(_site/all.png) -530px -126px no-repeat;
+	background:url(_site/all.png) -530px -247px no-repeat;
 }
 .social_web{
-	background:url(_site/all.png) -590px -126px no-repeat;
+	background:url(_site/all.png) -610px -247px no-repeat;
 }
 .social_fb:hover{
-	background:url(_site/all.png) -500px -156px no-repeat;
+	background:url(_site/all.png) -500px -292px no-repeat;
 }
 .social_twitter:hover{
-	background:url(_site/all.png) -470px -156px no-repeat;
+	background:url(_site/all.png) -555px -292px no-repeat;
 }
 .social_youtube:hover{
 	background:url(_site/all.png) -560px -156px no-repeat;
@@ -554,23 +555,21 @@ body{
 	background:url(_site/all.png) -530px -156px no-repeat;
 }
 .social_web:hover{
-	background:url(_site/all.png) -590px -155px no-repeat;
+	background:url(_site/all.png) -610px -292px no-repeat;
 }
 .xbarlogo{
 	background:url(_site/all.png) 0px -210px no-repeat;
 	width:202px;
 	height:70px;
 	position: absolute;
-	left:10px;
-	top:45px;
 }
 .mytcglogo{
-	right:10px;
-	top:45px;
 	background:url(_site/all.png) 0px -290px no-repeat;
 	width:170px;
+	right:0px;
 	height:70px;
 	position: absolute;
+	top:2px;
 }
 #bodyheader{
 	z-index:2;
