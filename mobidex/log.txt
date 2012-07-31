@@ -1,0 +1,630 @@
+[2012-05-28 03:44:19] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				274,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (274,12,'0724407922',NULL,60,65,105,77,1,128,128,128,1)
+				
+[2012-05-29 09:39:50] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				275,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (275,8,'3233',NULL,48,99,166,60,1,128,128,128,1)
+				 , (275,15,'555',NULL,30,11,190,166,2,255,255,0,1)
+				
+[2012-05-29 09:42:09] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				276,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (276,16,'555',NULL,102,67,110,49,1,128,128,128,1)
+				 , (276,8,'asdf',NULL,47,106,249,89,2,128,128,128,1)
+				 , (276,17,'asdffa',NULL,117,31,129,101,2,128,128,128,1)
+				
+[2012-05-29 09:48:29] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				277,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (277,7,'11',NULL,13,10,64,32,1,0,0,0,1)
+				 , (277,8,'22',NULL,14,53,61,29,1,0,0,0,1)
+				 , (277,9,'33',NULL,16,90,58,35,1,0,0,0,1)
+				 , (277,10,'444',NULL,17,133,52,41,1,0,0,0,1)
+				 , (277,11,'55',NULL,89,10,64,31,1,0,0,0,1)
+				 , (277,12,'66',NULL,90,54,62,31,1,0,0,0,1)
+				 , (277,13,'77',NULL,12,15,64,30,2,0,0,0,1)
+				 , (277,14,'88',NULL,18,57,55,31,2,0,0,0,1)
+				 , (277,15,'99',NULL,20,99,51,31,2,0,0,0,1)
+				 , (277,16,'00',NULL,20,140,57,32,2,0,0,0,1)
+				 , (277,17,'001',NULL,85,17,68,28,2,0,0,0,1)
+				
+[2012-05-29 09:52:07] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				278,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (278,18,'11',NULL,36,24,90,55,1,0,0,0,1)
+				 , (278,19,'22',NULL,40,87,82,35,1,0,0,0,1)
+				 , (278,20,'33',NULL,40,133,83,28,1,0,0,0,1)
+				 , (278,21,'44',NULL,40,173,78,37,1,0,0,0,1)
+				 , (278,22,'55',NULL,144,30,88,43,1,0,0,0,1)
+				 , (278,12,'66',NULL,153,83,70,38,1,0,0,0,1)
+				 , (278,23,'111',NULL,15,12,118,37,2,0,0,0,1)
+				 , (278,24,'222',NULL,145,16,108,31,2,0,0,0,1)
+				 , (278,25,'333',NULL,32,63,98,29,2,0,0,0,1)
+				
+[2012-05-29 10:29:32] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				279,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (279,7,'r55',NULL,25,15,89,45,1,255,255,255,1)
+				
+[2012-05-29 10:54:27] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				280,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (280,7,'piero',NULL,106,64,44,43,1,255,0,0,1)
+				 , (280,8,'jvr',NULL,198,64,43,43,1,255,255,0,1)
+				 , (280,13,'face',NULL,153,110,42,66,1,0,255,255,1)
+				 , (280,9,'Stronger',NULL,72,51,209,38,2,0,0,0,1)
+				 , (280,10,'Fitter',NULL,112,102,132,40,2,0,255,0,1)
+				 , (280,17,'evil-twin',NULL,78,153,198,40,2,0,128,0,1)
+				
+[2012-05-29 11:59:34] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				281,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (281,7,'Name',NULL,312,4,33,13,1,255,0,0,1)
+				 , (281,9,'Company',NULL,25,40,55,13,1,204,204,204,1)
+				 , (281,10,'Designation',NULL,25,65,67,13,1,204,204,204,1)
+				 , (281,12,'Mobile Number',NULL,25,90,85,13,1,204,204,204,1)
+				 , (281,7,'Name',NULL,25,15,33,13,2,204,204,204,1)
+				 , (281,9,'Company',NULL,25,40,55,13,2,204,204,204,1)
+				 , (281,10,'Designation',NULL,25,65,67,13,2,204,204,204,1)
+				 , (281,12,'Mobile Number',NULL,25,90,85,13,2,204,204,204,1)
+				 , (281,14,'Email',NULL,25,115,31,13,2,204,204,204,1)
+				 , (281,17,'Address',NULL,25,140,46,13,2,204,204,204,1)
+				
+[2012-05-29 01:10:07] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				282,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (282,7,'Name',NULL,25,15,33,13,1,204,204,204,1)
+				 , (282,9,'Company',NULL,150,15,55,13,1,204,204,204,1)
+				 , (282,10,'Designation',NULL,209,15,67,13,1,255,0,0,1)
+				 , (282,12,'Mobile Number',NULL,62,15,85,13,1,204,204,204,1)
+				 , (282,7,'Name',NULL,25,15,33,13,2,204,204,204,1)
+				 , (282,9,'Company',NULL,25,40,55,13,2,204,204,204,1)
+				 , (282,10,'Designation',NULL,25,65,67,13,2,204,204,204,1)
+				 , (282,12,'Mobile Number',NULL,25,90,85,13,2,204,204,204,1)
+				 , (282,14,'Email',NULL,25,115,31,13,2,204,204,204,1)
+				 , (282,17,'Address',NULL,25,140,46,13,2,204,204,204,1)
+				
+[2012-05-29 02:03:01] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				283,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (283,7,'Piero',NULL,114,146,26,16,1,255,255,255,1)
+				 , (283,8,'JvR',NULL,37,90,59,59,2,255,255,0,1)
+				 , (283,9,'MyTCG',NULL,159,90,60,59,2,255,255,0,1)
+				
+[2012-05-29 02:18:30] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				284,
+				1,
+				'graphic designer, design, designer',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (284,9,'Dioxy Portfolio Studios',NULL,88,176,168,43,1,255,255,255,1)
+				 , (284,9,'Dixoy Portfolio Studios',NULL,36,131,113,20,2,255,255,255,1)
+				 , (284,10,'Graphic Designer',NULL,84,151,66,11,2,255,0,0,1)
+				 , (284,11,'255255255',NULL,228,180,56,12,2,255,255,255,1)
+				 , (284,14,'info@dioxyportfolio.com',NULL,228,211,107,14,2,255,255,255,1)
+				 , (284,15,'www.dioxyportfolio.com',NULL,229,228,108,12,2,204,204,204,1)
+				
+[2012-05-31 12:11:43] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (,15,'http://www.linkedin.com/profile/view?id=68587714&trk=tab_pro',NULL,141,161,202,29,1,204,204,204,1)
+				 , (,12,'+27833902500',NULL,26,12,122,18,2,204,204,204,1)
+				 , (,14,'mark@2talk2.co.za',NULL,25,36,157,18,2,0,0,0,1)
+				 , (,11,'0219826065',NULL,28,57,121,22,2,0,0,0,1)
+				 , (,13,'+27865746822',NULL,24,78,125,22,2,0,0,0,1)
+				 , (,0,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch,+Western+Cape,+South+Africa&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&oq=87+Dorp+Street&t=h&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&z=17',NULL,26,104,126,22,2,255,0,0,1)
+				
+[2012-05-31 01:20:54] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (,15,'http://www.linkedin.com/profile/view?id=68587714&trk=tab_pro',NULL,144,160,198,28,1,204,204,204,1)
+				 , (,12,'+27833902500',NULL,26,13,122,16,2,204,204,204,1)
+				 , (,14,'mark@2talk2.co.za',NULL,28,37,154,16,2,204,204,204,1)
+				 , (,0,'0219826065',NULL,28,57,118,20,2,204,204,204,1)
+				 , (,13,'0865746822',NULL,28,81,121,20,2,204,204,204,1)
+				 , (,23,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch,+Western+Cape,+South+Africa&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&oq=87+Dorp+Street&t=h&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&z=17',NULL,28,105,124,21,2,255,0,0,1)
+				
+[2012-05-31 01:36:31] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				,
+				1,
+				'anime',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (,7,'Asano',NULL,197,14,150,235,1,255,0,0,1)
+				 , (,7,'Money',NULL,199,170,44,79,2,255,0,0,1)
+				
+[2012-05-31 01:38:50] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (,7,'Pony1',NULL,4,41,137,181,1,255,255,255,1)
+				 , (,8,'Pony2',NULL,145,41,101,179,1,255,255,255,1)
+				 , (,9,'Yellow',NULL,87,28,61,186,2,255,255,0,1)
+				 , (,10,'Green',NULL,152,28,52,188,2,0,128,0,1)
+				
+[2012-05-31 01:54:02] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (,7,'Shower',NULL,99,50,76,148,1,0,0,0,1)
+				 , (,8,'Couch',NULL,56,84,204,89,2,192,192,192,1)
+				
+[2012-05-31 01:56:41] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				286,
+				1,
+				'asano',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (286,7,'ipod',NULL,115,195,100,52,1,255,0,0,1)
+				 , (286,7,'Asano',NULL,201,4,147,244,2,255,0,0,1)
+				
+[2012-05-31 02:12:07] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				287,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (287,15,'http://www.linkedin.com/profile/view?id=68587714&trk=tab_pro',NULL,149,165,190,24,1,204,204,204,1)
+				 , (287,0,'Enter Text',NULL,68,39,1,78,1,255,0,0,1)
+				 , (287,12,'+27833902500',NULL,28,13,122,16,2,204,204,204,1)
+				 , (287,14,'mark@2talk2.co.za',NULL,28,34,156,21,2,204,204,204,1)
+				 , (287,11,'0219826065',NULL,26,60,126,17,2,204,204,204,1)
+				 , (287,13,'0865746822',NULL,28,79,124,22,2,204,204,204,1)
+				 , (287,0,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch,+Western+Cape,+South+Africa&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&oq=87+Dorp+Street&t=h&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&z=17',NULL,28,101,128,22,2,204,204,204,1)
+				
+[2012-05-31 07:06:07] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				288,
+				1,
+				'mobile, security, data management, enterprise',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (288,15,'www.impi.net',NULL,14,65,286,125,1,204,204,204,1)
+				 , (288,7,'Mauritz',NULL,8,61,138,26,2,204,204,204,1)
+				 , (288,8,'Robertson',NULL,159,60,173,27,2,204,204,204,1)
+				 , (288,10,'Director',NULL,12,100,68,19,2,204,204,204,1)
+				 , (288,15,'www.impi.net',NULL,93,103,115,15,2,204,204,204,1)
+				 , (288,14,'mauritz@impi.net',NULL,58,133,112,12,2,204,204,204,1)
+				 , (288,12,'+27844995810',NULL,60,148,107,11,2,204,204,204,1)
+				 , (288,11,'+27219826065',NULL,61,163,105,14,2,204,204,204,1)
+				 , (288,13,'+27865746822',NULL,60,180,109,13,2,204,204,204,1)
+				
+[2012-05-31 07:13:29] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				289,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (289,8,'cdfscvz',NULL,91,90,0,0,2,255,0,0,1)
+				
+[2012-05-31 07:19:48] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				290,
+				1,
+				'edwfsdfsdf',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (290,7,'MAURITZ',NULL,20,28,309,61,2,0,0,0,1)
+				
+[2012-06-01 11:56:46] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				291,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (291,7,'vda',NULL,58,88,102,68,1,204,204,204,1)
+				 , (291,0,'fdas',NULL,234,140,36,54,1,204,204,204,1)
+				
+[2012-06-04 10:00:20] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				292,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (292,18,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a',NULL,148,162,194,28,1,204,204,204,1)
+				 , (292,12,'+27833902500',NULL,24,10,124,22,2,0,0,0,1)
+				 , (292,0,'mark@2talk2.co.za',NULL,25,37,153,16,2,0,0,0,1)
+				 , (292,11,'0219826065',NULL,25,57,154,20,2,0,0,0,1)
+				 , (292,13,'0865746822',NULL,24,84,124,14,2,0,0,0,1)
+				 , (292,15,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch,+Western+Cape,+South+Africa&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&oq=87+dorp+stree&t=h&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&z=17',NULL,26,102,124,18,2,0,0,0,1)
+				 , (292,0,'www.2talk2.co.za',NULL,194,163,140,34,2,255,0,0,1)
+				
+[2012-06-04 01:00:41] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				293,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (293,7,'Stronger',NULL,33,114,187,35,1,255,255,255,1)
+				 , (293,8,'Fitter',NULL,69,161,118,34,1,255,255,255,1)
+				 , (293,9,'Evil-Twin',NULL,41,206,175,36,1,255,255,255,1)
+				 , (293,14,'Shots',NULL,125,187,121,154,2,255,255,255,1)
+				
+[2012-06-05 11:39:55] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				294,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (294,23,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a',NULL,148,162,194,26,1,255,255,255,1)
+				 , (294,25,'www.2talk2.co.za',NULL,66,86,6,4,1,255,0,0,1)
+				 , (294,12,'+27833902500',NULL,24,7,154,22,2,255,255,255,1)
+				 , (294,14,'mark@2talk2.co.za',NULL,25,33,154,26,2,255,255,255,1)
+				 , (294,11,'0219826065',NULL,28,61,150,20,2,255,255,255,1)
+				 , (294,13,'0865746822',NULL,28,81,154,21,2,255,255,255,1)
+				 , (294,24,'http://maps.google.co.za/maps?q=87+Dorp+Street,+Stellenbosch,+Western+Cape&hl=en&sll=-28.45,24.7&sspn=33.988915,57.084961&oq=87+Dorp+Street&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600&t=m&z=17',NULL,26,105,158,20,2,255,255,255,1)
+				 , (294,15,'www.2talk2.co.za',NULL,186,158,158,42,2,255,255,255,1)
+				
+[2012-06-08 09:57:58] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				295,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (295,15,'www.2talk2.co.za',NULL,14,41,106,98,1,192,192,192,1)
+				 , (295,18,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a ',NULL,147,165,195,24,1,192,192,192,1)
+				 , (295,12,'+27833902500',NULL,27,11,154,21,2,192,192,192,1)
+				 , (295,14,'mark@2talk2.co.za',NULL,27,34,159,23,2,192,192,192,1)
+				 , (295,0,'0219826065',NULL,27,57,161,23,2,192,192,192,1)
+				 , (295,13,'0865746822',NULL,28,82,161,19,2,192,192,192,1)
+				 , (295,17,'Enter Text',NULL,28,104,164,21,2,255,0,0,1)
+				
+[2012-06-11 12:19:31] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				296,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (296,15,'www.2talk2.co.za',NULL,8,28,118,118,1,192,192,192,1)
+				 , (296,0,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a',NULL,148,162,192,24,1,192,192,192,1)
+				 , (296,13,'0865746822',NULL,28,82,152,22,2,192,192,192,1)
+				 , (296,0,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&t=m&z=17',NULL,28,105,154,20,2,192,192,192,1)
+				 , (296,15,'www.2talk2.co.za',NULL,192,157,140,41,2,255,0,0,1)
+				
+[2012-06-11 01:07:37] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				297,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (297,15,'www.2talk2.co.za',NULL,16,40,104,98,1,255,255,255,1)
+				 , (297,0,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a',NULL,148,164,192,24,1,255,255,255,1)
+				 , (297,0,'+27833902500',NULL,24,13,153,20,2,255,255,255,1)
+				 , (297,0,'mark@2talk2.co.za',NULL,25,34,153,22,2,255,255,255,1)
+				 , (297,0,'0219826065',NULL,25,57,154,18,2,255,255,255,1)
+				 , (297,0,'0865746822',NULL,24,78,156,20,2,255,255,255,1)
+				 , (297,0,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&t=m&z=17',NULL,21,101,162,25,2,255,255,255,1)
+				 , (297,24,'http://en.wikipedia.org/wiki/Stellenbosch',NULL,26,128,158,21,2,255,255,255,1)
+				 , (297,0,'2talk2.co.za',NULL,190,165,146,32,2,255,0,0,1)
+				
+[2012-06-12 09:26:53] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				298,
+				1,
+				'andrecronje',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (298,10,'Money',NULL,12,154,83,85,1,192,192,192,1)
+				 , (298,16,'more money',NULL,216,18,70,86,1,192,192,192,1)
+				 , (298,7,'headset',NULL,153,102,69,66,2,192,192,192,1)
+				 , (298,8,'cd player',NULL,295,17,49,79,2,192,192,192,1)
+				 , (298,9,'glasses',NULL,62,167,65,65,2,192,192,192,1)
+				 , (298,10,'book',NULL,51,3,121,56,2,192,192,192,1)
+				
+[2012-06-12 09:40:15] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				299,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (299,15,'www.2talk2.co.za',NULL,13,38,112,102,1,192,192,192,1)
+				 , (299,18,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a',NULL,146,163,198,26,1,192,192,192,1)
+				 , (299,12,'+27833902500',NULL,25,12,152,21,2,192,192,192,1)
+				 , (299,14,'mark@2talk2.co.za',NULL,26,36,152,18,2,192,192,192,1)
+				 , (299,11,'0833902500',NULL,24,57,156,20,2,192,192,192,1)
+				 , (299,13,'0865746822',NULL,24,79,158,20,2,192,192,192,1)
+				 , (299,23,'http://maps.google.com/maps?q=53B+Wierda+Road+West,+Sandton,+Gauteng,+South+Africa&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&oq=53B+Wierda+Road+West&hnear=53+Wierda+Rd+E,+Wierda+Valley,+Sandton,+City+of+Johannesburg,+Gauteng+2196,+South+Africa&t=m&z=17',NULL,24,101,158,24,2,192,192,192,1)
+				 , (299,24,'http://en.wikipedia.org/wiki/Stellenbosch',NULL,24,127,160,22,2,192,192,192,1)
+				 , (299,25,'www.rorotika.com',NULL,189,169,146,22,2,255,0,0,1)
+				
+[2012-06-13 10:11:20] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				300,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (300,23,'www.2talk2.co.za',NULL,15,47,103,88,1,192,192,192,1)
+				 , (300,24,'http://za.linkedin.com/pub/mark-fotheringham/1a/b77/b6a',NULL,147,165,193,25,1,192,192,192,1)
+				 , (300,12,'+27833902500',NULL,26,12,150,19,2,192,192,192,1)
+				 , (300,14,'mark@2talk2.co.za',NULL,26,32,152,22,2,192,192,192,1)
+				 , (300,11,'0219826065',NULL,27,57,152,20,2,192,192,192,1)
+				 , (300,26,'http://maps.google.com/maps?q=87+Dorp+Street,+Stellenbosch,+Western+Cape,+South+Africa&hl=en&sll=37.0625,-95.677068&sspn=41.139534,79.013672&oq=87+Dorp+Street&hnear=87+Dorp+St,+Stellenbosch+Central,+Stellenbosch,+Brede+River+DC,+Western+Cape+7600,+South+Africa&t=m&z=16',NULL,29,107,152,13,2,192,192,192,1)
+				 , (300,15,'www.2talk2.co.za',NULL,193,169,138,29,2,255,0,0,1)
+				
+[2012-06-14 02:30:13] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				301,
+				1,
+				'sales, marketing',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (301,7,'Mauritz robertson',NULL,25,15,108,20,1,204,204,204,1)
+				 , (301,9,'dfjwfyi',NULL,25,40,40,20,1,204,204,204,1)
+				 , (301,10,'qwhi',NULL,25,65,29,20,1,204,204,204,1)
+				 , (301,12,'yi',NULL,25,90,11,20,1,204,204,204,1)
+				 , (301,7,'Mauritz robertson',NULL,96,42,108,20,2,204,204,204,1)
+				 , (301,14,'yieiu',NULL,149,126,30,20,2,255,0,0,1)
+				 , (301,17,'hi',NULL,25,65,12,20,2,204,204,204,1)
+				 , (301,18,'@twitter',NULL,146,170,49,20,2,204,204,204,1)
+				
+[2012-06-15 10:05:11] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				302,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (302,8,'asdf',NULL,52,170,240,61,1,255,255,0,1)
+				 , (302,10,'asdf',NULL,75,97,79,34,1,255,255,0,1)
+				 , (302,15,'asdfsf',NULL,189,47,67,75,1,255,255,255,1)
+				 , (302,15,'aaa',NULL,23,24,71,45,1,255,255,255,1)
+				 , (302,15,'ffff',NULL,114,35,34,118,1,0,128,128,1)
+				 , (302,15,'dddd',NULL,83,48,111,68,2,255,255,255,1)
+				
+[2012-06-15 11:55:16] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				303,
+				1,
+				'car bmw',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (303,7,'Kilowatt',NULL,230,43,23,163,2,255,0,0,1)
+				 , (303,8,'torq',NULL,206,42,19,48,2,255,255,255,1)
+				 , (303,9,'WAWA',NULL,99,44,41,60,2,128,0,0,1)
+				
+[2012-06-21 11:29:27] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				304,
+				1,
+				'accounting, tax, books',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (304,7,'Chris Blaauw',NULL,243,1,104,21,1,204,204,204,1)
+				 , (304,9,'ABC Chartered Accountant',NULL,133,28,214,21,1,204,204,204,1)
+				 , (304,10,'Partner',NULL,289,57,59,21,1,204,204,204,1)
+				 , (304,12,'08255556585',NULL,236,96,112,21,1,204,204,204,1)
+				 , (304,7,'Chris Blaauw',NULL,109,12,104,21,2,204,204,204,1)
+				 , (304,14,'chris@abc',NULL,118,100,82,21,2,255,0,0,1)
+				 , (304,15,'www.ca.co.za',NULL,114,190,111,21,2,204,204,204,1)
+				
+[2012-06-21 11:34:06] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				305,
+				1,
+				'fwifuusdfsa',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (305,7,'Mauritz',NULL,13,77,116,23,2,192,192,192,1)
+				 , (305,15,'www.impi.net',NULL,82,112,100,13,2,192,192,192,1)
+				
+[2012-06-21 12:36:31] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				306,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (306,23,'http://za.linkedin.com/pub/william-cooper/22/838/90',NULL,64,43,98,17,1,255,0,0,1)
+				 , (306,11,'0117836810',NULL,240,118,92,13,1,255,0,0,1)
+				 , (306,0,'+27824633408',NULL,236,147,98,12,1,255,0,0,1)
+				 , (306,0,'sandtoncity@postnet.co.za',NULL,197,162,136,10,1,255,0,0,1)
+				 , (306,15,'http://sandtoncity.postnet.co.za/home/',NULL,20,154,122,32,1,255,0,0,1)
+				 , (306,0,'http://maps.google.com/maps?q=sandton+city,+gauteng,+south+africa&hl=en&sll=37.0625,-95.677068&sspn=60.806372,114.169922&hnear=Sandton,+City+of+Johannesburg+Metropolitan+Municipality,+Gauteng,+South+Africa&t=m&z=12',NULL,253,106,78,12,1,255,0,0,1)
+				
+[2012-06-22 09:42:15] : 
+			INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`)
+			VALUES (
+				307,
+				1,
+				'',
+				NULL,
+				NULL,NULL,NULL,NULL,
+				NULL,
+				NULL,NULL,NULL,1
+			) , (307,23,'http://za.linkedin.com/pub/william-cooper/22/838/90',NULL,58,27,94,14,1,255,0,0,1)
+				 , (307,24,'http://sandtoncity.postnet.co.za/home/',NULL,24,148,106,34,1,255,0,0,1)
+				 , (307,25,'http://maps.google.co.za/maps?q=Sandton+City+Shopping+Centre,+Sandton+Drive,+Sandton,+Gauteng&hl=en&sll=-28.45,24.7&sspn=28.347427,46.538086&oq=Sandton+Ci&hq=Sandton+City+Shopping+Centre,+Sandton+Drive,&hnear=Sandton,+City+of+Johannesburg+Metropolitan+Municipality,+Gauteng&t=m&z=12',NULL,252,96,80,10,1,255,0,0,1)
+				 , (307,11,'0117836810',NULL,236,110,97,10,1,255,0,0,1)
+				 , (307,12,'+27824633408',NULL,230,141,102,10,1,255,0,0,1)
+				 , (307,14,'sandtoncity@postnet.co.za',NULL,197,154,136,13,1,255,0,0,1)
+				
+[2012-06-25 12:19:28] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (275,8,'ds',NULL,186,169,78,64,1,255,255,255,1)
+[2012-06-25 12:19:28] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (275,11,'555',NULL,80,7,170,87,1,255,255,255,1)
+[2012-06-25 12:19:28] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (275,14,'face',NULL,235,152,103,58,2,255,255,255,1)
+[2012-06-28 10:15:01] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (277,0,'Enter Text',NULL,248,60,37,82,1,204,204,204,1)
+[2012-06-28 10:15:01] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (277,0,'asdfdd',NULL,808,147,56,44,1,255,255,255,1)
+[2012-06-28 10:15:01] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (277,0,'Enter Text',NULL,208,48,68,113,1,204,204,204,1)
+[2012-06-28 10:15:01] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (277,0,'Enter Text',NULL,178,113,99,67,2,255,0,0,1)
+[2012-06-28 04:45:23] : INSERT INTO `mytcg_cardstat`(`card_id`,`categorystat_id`,`description`,`statvalue`,`left`,`top`,`width`,`height`,`frontorback`,`colour_r`,`colour_g`,`colour_b`,`font_id`) VALUES (280,0,'Enter Text',NULL,162,100,52,114,1,255,0,0,1)
