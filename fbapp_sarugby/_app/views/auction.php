@@ -36,7 +36,7 @@ $iCount = 0;
 	            FROM mytcg_marketcard MC
 	            JOIN mytcg_user U USING (user_id)
 	            WHERE MC.market_id = ".$iAuctionID."
-	            ORDER BY MC.price DESC;";
+	            ORDER BY MC.marketcard_id DESC;";
 	        $aHistory = myqu($sql);
 	        
 	    		$phpdate = strtotime($aAuctions[$iCount]['date_expired']);

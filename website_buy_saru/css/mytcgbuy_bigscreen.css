@@ -1,0 +1,35 @@
+body {
+	font-size: medium;
+}
+
+.payment-logo {
+	left:130px;
+	margin-left: 18%;
+	background-image:url("../images/all.png");
+	display: block;
+}
+
+#sms-payment-logo {
+	height:16px;	
+	}
+
+#paypal-payment-logo {
+	height:16px;
+}
+
+#creditcard-payment-logo {
+	background-position: -298px -160px;
+	background-repeat:no-repeat;
+	width:114px;
+	margin-top: 3px;
+	height:41px;
+	margin-left:0; 
+}
+
+#select-package input{
+	margin-left: 15px;
+}
+
+#select-payment-method input{
+	margin-left: 15px;
+}

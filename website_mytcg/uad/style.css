@@ -1,0 +1,38 @@
+body{
+	margin:0px;
+	font-family:Arial;
+	font-size:12px;
+	color:#333;
+	background-color:#FFF;
+	padding:5px;
+}
+a{
+	text-decoration:none;
+	color:#999;
+}
+#head{
+	width:100%;
+	text-align:center;
+}
+.menucell{
+	text-align:center;
+	height:52px;
+}
+.instruction{
+  text-align:left;
+}
+input.borders{
+  width:200px;
+  border:1px solid #BBB;
+}
+input.submitz{
+  margin-top:4px;
+  border:1px solid #BBB;
+}
+
+
+
+
+
+
+
