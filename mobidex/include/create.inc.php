@@ -47,8 +47,8 @@ if($aCard['portrait']=="1"){
 //LOAD UPLOADED IMAGE
 $imgSrc = "";
 if($aCard != ""){
-	$front = $aCard['path']."cards/".$aCard['img']."_front.jpg";
-	$back = $aCard['path']."cards/".$aCard['img']."_back.jpg";
+	$front = /*$aCard['path'].*/"img/cards/".$aCard['img']."_front.jpg";
+	$back = /*$aCard['path'].*/"img/cards/".$aCard['img']."_back.jpg";
 }
 $cardtype = $_GET['pro'];
 if(!$cardtype){
@@ -161,12 +161,12 @@ STR;
 			<div class="cardImagesHolder <?php echo($sOrientation); ?>">
 				<div id="tabFront" style="width:530px; padding:0px; height:390px;">
 					<div class="cardImageHolder" id="front">
-						<img id="front" class="ownImage float-left default" src="<?php echo($front); ?>" />
+						<img id="front" class="ownImage float-left default" src="<?php echo($front); ?>?123" />
 					</div>
 				</div>
 				<div id="tabBack" style="width:530px; padding:0px; height:390px; display:none;">
 					<div class="cardImageHolder" id="back">
-						<img id="back" class="ownImage float-left default" src="<?php echo($back); ?>" />
+						<img id="back" class="ownImage float-left default" src="<?php echo($back); ?>?123" />
 					</div>
 				</div>
 			</div>
@@ -953,8 +953,8 @@ $(document).ready(function(){
 					sURL = window.location.href;
 					
 					//Piero
-					var url = 'http://localhost/mobidex/img/temp/';
-					//var url = 'http://mobidex.biz/img/temp/';
+					//var url = 'http://localhost/mobidex/img/temp/';
+					var url = 'http://mobidex.biz/img/temp/';
 					
 					//add image to step 3
 					if(oPopup.find("#fieldsImages").find(".ownImage[id='"+side+"']").size())
