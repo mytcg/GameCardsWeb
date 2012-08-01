@@ -1085,16 +1085,19 @@ $(document).ready(function(){
 								var type = getXML(xmlData,"stats/stat_"+i+"/type");
 								
 								if(obj.length == 0){
+									var lastRow = $("#table-fields > tbody tr:last-child").html();
+									$("#table-fields > tbody tr:last-child").remove();
 									var str = '<tr><td class="left"></td>';
 										str +='<td class="middle"><div class="checkbox x-icon" id="f"></div></td>';
 										str +='<td class="middle"><div class="checkbox x-icon" id="b"></div></td>';
 										str +='<td class="middle"><input type="text" alt="'+id+'" value="'+value+'" title="'+type+'" name="txt'+type+'" class="textbox"></td>';
 										str +='<td class="right"><div title="Delete field" class="close-small"></div></td>';
 										str +='</tr>';
-									$("#table-fields > tbody").append(str)
+									$("#table-fields > tbody").append(str);
+									$("#table-fields > tbody").append("<tr>"+lastRow+"</tr>");
 								}
-								var objRow = obj.parent().parent();
-								objRow.find("#f")
+								
+								var objRow = oPopup.find("input[alt='"+id+"']").parent().parent();
 								var frontorback = getXML(xmlData,"stats/stat_"+i+"/frontorback");
 								if(frontorback=="1"){
 									objRow.find("#f").removeClass("x-icon").addClass("check-icon");
