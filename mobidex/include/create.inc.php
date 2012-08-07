@@ -719,6 +719,56 @@ $(document).ready(function(){
 		alert(str);
 	}
 
+	function pointToPixel(pointSize)
+	{
+		var pix;
+		switch(pointSize)
+		{
+			case "6":
+			  pix = "8";
+			break;
+			case "8":
+			  pix = "11";
+			break;
+			case "10":
+			  pix = "13";
+			break;
+			case "11":
+			  pix = "15";
+			break;
+			case "12":
+			  pix = "16";
+			break;
+			case "14":
+			  pix = "19";
+			break;
+			case "16":
+			  pix = "22";
+			break;
+			case "18":
+			  pix = "24";
+			break;
+			case "20":
+			  pix = "26";
+			break;
+			case "22":
+			  pix = "29";
+			break;
+			case "24":
+			  pix = "32";
+			break;
+			case "28":
+			  pix = "37";
+			break;
+			case "36":
+			  pix = "48";
+			break;
+			default:
+			  pix = "11";
+		}
+		return pix;
+	}
+
 	function findFontID(fontname)
 	{
 		var aFont = fontlist.split("|");
@@ -1354,7 +1404,7 @@ $(document).ready(function(){
 										sLeft = getXML(xmlData,"stats/stat_"+i+"/left")+"px";
 										sWidth = getXML(xmlData,"stats/stat_"+i+"/width")+"px";
 										sHeight = getXML(xmlData,"stats/stat_"+i+"/height")+"px";
-										sFontSize = getXML(xmlData,"stats/stat_"+i+"/size")+"pt";
+										sFontSize = pointToPixel(getXML(xmlData,"stats/stat_"+i+"/size"))+"px";
 										sFont = getXML(xmlData,"stats/stat_"+i+"/font_name");
 										sFontColor = "#"+getXML(xmlData,"stats/stat_"+i+"/color");
 										$(this).css({
@@ -1376,7 +1426,7 @@ $(document).ready(function(){
 										sLeft = getXML(xmlData,"stats/stat_"+i+"/left")+"px";
 										sWidth = getXML(xmlData,"stats/stat_"+i+"/width")+"px";
 										sHeight = getXML(xmlData,"stats/stat_"+i+"/height")+"px";
-										sFontSize = getXML(xmlData,"stats/stat_"+i+"/size")+"pt";
+										sFontSize = pointToPixel(getXML(xmlData,"stats/stat_"+i+"/size"))+"px";
 										sFont = getXML(xmlData,"stats/stat_"+i+"/font_name");
 										sFontColor = "#"+getXML(xmlData,"stats/stat_"+i+"/color");
 										$(this).css({
