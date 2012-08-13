@@ -416,7 +416,7 @@ div{
 	cursor:default;
 }
 body{
-	color:#d4d4d4;
+	color:#f1f1f1;
 	text-transform:uppercase;
 	font-size:9px;
 	font-family:"Arial";
@@ -1090,16 +1090,10 @@ input.registerBox{
 .menutop{
 	background-image:url(_site/header.png);
 	background-repeat: no-repeat;
-	width:990px;
+	width:1130px;
 	height:100%;
 	margin:0 auto;
 	position: relative;
-}
-#password, #surname{
-	width:210px;	
-}
-#name, #age{
-	width:120px;
 }
 .logo{
 	float:left;
@@ -1668,10 +1662,10 @@ table.grid td.score{
 	text-align:center;
 }
 table.grid tr.odd{
-	background:#161616;
+	background:#9C9C9C;
 }
 table.grid tr.even{
-background:transparent;
+	background:#ccc;
 }
 table.grid tr.numberone{
 	font-size:16px;
@@ -1746,16 +1740,16 @@ table.grid tr.numberone td{
 	cursor:pointer;
 }
 #deckcontainer{
-	border:1px solid transparent;
+	border:2px solid #D1D1D1;
 }
 #cardscontainer{
 	overflow:hidden;
 }
 .highlight{
-	border:1px solid #555555!important;
+	border:2px solid #58B1FD!important;
 }
 .lightup{
-	border:1px solid #F2C126!important;
+	border:2px solid #CC0000!important;
 }
 .noimage{
 	width:64px;
@@ -1767,7 +1761,8 @@ table.grid tr.numberone td{
 	color:#cc0000!important;
 }
 #availablecardholders{
-	width: 780px;
+	width: 587px;
+	height: 468px;
 	overflow: visible!important;
 	padding-bottom:10px;
 }
@@ -1778,7 +1773,7 @@ table.grid tr.numberone td{
 	padding-bottom:8px;
 }
 .deckBlock:hover{
-	border:1px solid #F2C126!important;
+	border:1px solid #CC0000!important;
 }
 
 
