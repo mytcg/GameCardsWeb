@@ -362,7 +362,7 @@ if(isset($_GET['auction']) && $_GET['auction']=='1')
 			
 			$sql = "INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 					VALUES(".$userID.", NULL, ".$usercard_id.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercard_id."), 
-							now(), 'Created an auction for ".$uc[0]['description']."', 0, NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 6)";
+							now(), 'Created an auction for ".$uc[0]['description']."', 0, NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 6)";
 			myqu($sql);
 			
 			//Get user credits

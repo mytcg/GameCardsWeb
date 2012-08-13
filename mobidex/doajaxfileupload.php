@@ -46,6 +46,6 @@ exit;
 			$msg .= " File Size: " . @filesize($_FILES['fileToUpload']['tmp_name']);
 			
 			//for security reason, we force to remove all uploaded file
-			//@unlink($_FILES['fileToUpload']);		
+			//@unlink($_FILES['fileToUpload']);
 	}
 ?>

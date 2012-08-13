@@ -12,6 +12,52 @@ var currentPage = $("#currentPage").val();
 
 
 // FUNCTIONS
+function getXML(sData,sElement){
+	sBrowserName=navigator.appName;
+	if (sBrowserName=="Microsoft Internet Explorer"){
+		sBrowserName="MSIE";
+	}
+  if (sBrowserName=="MSIE"){
+    var xData=new ActiveXObject("Microsoft.XMLDOM");
+    xData.async="false";
+    xData.loadXML(sData);     
+  } else {
+    var xData=new DOMParser();  
+    xData=xData.parseFromString(sData,"text/xml");
+  }
+  if (sBrowserName=="MSIE"){
+    sElement="//"+sElement;
+    xData.setProperty("SelectionLanguage","XPath");
+    
+    if ((xData.selectSingleNode(sElement))
+    	&&(xData.selectSingleNode(sElement).attributes.getNamedItem("val")))
+      sAnswer=xData.selectSingleNode(sElement).attributes.getNamedItem("val").value;
+    else if($(xData.selectSingleNode(sElement)).text())
+      sAnswer=$(xData.selectSingleNode(sElement)).text(); 
+    else
+      sAnswer="";
+      
+    return sAnswer;
+  } else {
+    var oEvaluator=new XPathEvaluator();
+    var oResult=oEvaluator.evaluate(sElement,xData.documentElement
+      , null,XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+    if (oResult!=null) {
+      var oElement=oResult.iterateNext();
+      /** return first match */
+      if (oElement){
+        if (oElement.getAttribute("val"))
+          return oElement.getAttribute("val");
+        else if($(oElement).text())
+          return $(oElement).text();
+        else
+          return "";
+      }
+    }
+  }
+};
+
+
 
 function inArray(needle, haystack) {
     var length = haystack.length;
@@ -293,7 +339,7 @@ function userLogin(u, p, r, savecard)
    }
 }
 
-function saveCard(sDescription, iOrientation, sFrontImage, sBackImage, aFrontFields, aBackFields, sTags, pro, username)
+function saveCard(sDescription, iOrientation, sFrontImage, sBackImage, aFrontFields, aBackFields, sTags, pro, cardtype, template, username)
 {
    var failed = false;
    
@@ -323,7 +369,8 @@ function saveCard(sDescription, iOrientation, sFrontImage, sBackImage, aFrontFie
          fieldsfront: aFrontFields,
          fieldsback: aBackFields,
          searchtags: sTags,
-         pro: pro,
+         cardtype: cardtype,
+         template: template,
          user: username
       },
       success: function(result){

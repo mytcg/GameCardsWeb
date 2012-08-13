@@ -1,6 +1,4 @@
 <?php
-
-
 function getExtension($str)
 {
 	$i = strrpos($str,".");

@@ -1,0 +1,264 @@
+<?php
+
+//
+
+?>
+<div id="page-title">Create your own card - With your style, image and logo</div>
+<?php
+
+   $contents = '';
+   
+   //card preview
+   $aPreviews = array
+   (
+      'front',
+      'back'
+   );
+   foreach($aPreviews as $preview)
+   {
+      echo <<<STR
+      <div class="preview-holder" id="{$preview}">
+         <div class="card-preview">
+            <p>field 1</p>
+            <p>field 2</p>
+         </div>
+         <div class="flip-card" id="{$preview}">flip card</div>
+      </div>
+STR;
+   }
+   
+	//card orientation
+	$contents = <<<STR
+   <p style="padding:4px;">Orientation</p>
+   <div class="orientation-holder">
+      <div id="landscape" class="active" title="Landscape"></div>
+      <div id="portrait" title="portrait"></div>
+   </div>
+STR;
+
+	buildBlock(310, 45, 'left', '', $contents);
+
+   //front/back
+   $aColors = array
+   (
+      'Background colour'=>'-1',
+      'White'=>'#FFFFFF',
+      'Silver'=>'#C0C0C0',
+      'Gray'=>'#808080',
+      'Black'=>'#000000',
+      'Red'=>'#FF0000',
+      'Maroon'=>'#800000',
+      'Yellow'=>'#FFFF00',
+      'Olive'=>'#808000',
+      'Lime'=>'#00FF00',
+      'Green'=>'#008000',
+      'Aqua'=>'#00FFFF',
+      'Teal'=>'#008080',
+      'Blue'=>'#0000FF',
+      'Navy'=>'#000080',
+      'Fuchsia'=>'#FF00FF',
+      'Purple'=>'#800080'
+   );
+   $colorOptions = '';
+   foreach($aColors as $color=>$hex)
+   {
+      $colorOptions.= '<option value="'.$hex.'">'.$color.'</option>';
+   }
+   $aLayouts = array
+   (
+      '1'=>'active',
+      '2'=>'',
+      '3'=>'',
+      '4'=>'',
+      '5'=>'',
+      '6'=>''
+   );
+   $layoutOptions = '';
+   foreach($aLayouts as $layout=>$active)
+   {
+      $layoutOptions.= '<div class="optLayout '.$active.'" id="layout'.$layout.'"></div>';
+   }
+   $layoutOptions.= '<div class="clear"></div>';
+   $contents = <<<STR
+   <div class="tabs" style="position:relative; height: 30px;">
+      <p alt="#fraFront" id="front" class="active">Front</p>
+      <p alt="#fraBack" id="back">Back</p>
+   </div>
+   <hr />
+STR;
+
+   $tabs = array
+   (
+      'fraFront'=>'front',
+      'fraBack'=>'back'
+   );
+   foreach($tabs as $tab=>$id)
+   {
+      $contents.= <<<STR
+      <div class="tab-contents" id="{$tab}" alt="{$id}">
+         <select name="cboBackgroundColor" id="{$id}">
+            {$colorOptions}
+         </select>
+         <hr />
+         <div style="position:relative; padding-bottom:5px;">
+            {$layoutOptions}
+         </div>
+         <hr />
+         <div id="cmdUploadImage" class="button center" alt="{$id}" style="width:120px; margin-bottom:10px;">Upload Image</div>
+         <hr />
+         <div>image resizer and rotator</div>
+      </div>
+STR;
+   }
+   
+   buildBlock(310, 300, 'left', '', $contents);
+   clear();
+
+?>
+<div class="button" style="position:relative; width:50px; margin-left:auto; margin-right:10px;">Next</div>
+
+<div style="display:none;">
+   <div id="frmUploadImage">
+      <div class="close"></div>
+      <div style="position: relative; padding: 5px; text-align: center;">
+         <input type="file" id="txtImageFile" size="45" />
+      </div>
+      <div id="cmdUpload" class="button center" style="width:60px;">Upload</div>
+   </div>
+</div>
+
+
+
+<div id="slider" style="">SLIDE</div>
+
+
+
+<script>
+$(document).ready(function(){
+   
+   //$("#slider").slider();
+   
+   //orientation
+   $(".orientation-holder").find("div").click(function(){
+      if(!$(this).hasClass('active'))
+      {
+         $(".orientation-holder").find(".active").removeClass('active');
+         $(this).addClass('active');
+         if($(this).attr('id') == 'landscape')
+         {
+            $(".card-preview").css({
+               width:350,
+               height:250
+            });
+         }
+         else if($(this).attr('id') == 'portrait')
+         {
+            $(".card-preview").css({
+               width:250,
+               height:350
+            });
+         }
+      }
+   });
+   
+   //flip card
+   $(".flip-card").click(function(){
+      var id = $(this).attr('id');
+      switch(id)
+      {
+         case 'front':
+            $(".tabs").find("#back").click();
+            break;
+         
+         case 'back':
+            $(".tabs").find("#front").click();
+            break;
+         
+      }
+   });
+   
+   //tabs (front and back)
+   $(".tabs").find("p").click(function(){
+      if(!$(this).hasClass('active'))
+      {
+         $(".tabs").find(".active").removeClass('active');
+         $(this).addClass('active');
+         $(".tab-contents").hide();
+         $($(this).attr('alt')).show();
+         $(".preview-holder").hide();
+         $(".preview-holder[id='"+$(this).attr('id')+"']").show();
+      }
+   });
+   
+   //details layout
+   $("#fraFront").find(".optLayout").click(function(){
+      if(!$(this).hasClass('active'))
+      {
+         $("#fraFront").find(".optLayout").removeClass('active');
+         $(this).addClass('active');
+      }
+   });
+   $("#fraBack").find(".optLayout").click(function(){
+      if(!$(this).hasClass('active'))
+      {
+         $("#fraBack").find(".optLayout").removeClass('active');
+         $(this).addClass('active');
+      }
+   });
+   
+   //background color
+   $("#fraFront, #fraBack").find("select[name='cboBackgroundColor']").bind('click change',function(){
+      var id = $(this).attr('id');
+      var color = $(this).val();
+      if(color == '-1')
+      {
+         color = "#ffffff";
+      }
+      $(".preview-holder[id='"+id+"']").find(".card-preview").css('background-color',color);
+   });
+   
+   //upload image
+   $("#fraFront, #fraBack").find("#cmdUploadImage").click(function(){
+      var id = $(this).attr('alt');
+      /*
+      switch(id)
+      {
+         case 'front':
+            $(".preview-holder[id='"+id+"']").find(".card-preview").css({
+               background: 'url(img/z1.jpg) center center no-repeat'
+            });
+            break;
+         
+         case 'back':
+            $(".preview-holder[id='"+id+"']").find(".card-preview").css({
+               background: 'url(img/z2.jpg) center center no-repeat'
+            });
+            break;
+      }
+      */
+      var width = '400';
+      var height = '160';
+      var title = 'upload image';
+      var contents = $("#frmUploadImage").html();
+      var oPopup = buildPopup(width, height, title, contents);
+      
+      //close button
+      oPopup.find(".close").click(function(){
+         destroyPopup();
+      });
+      
+      //upload button
+      oPopup.find("#cmdUpload").click(function(){
+         var image = oPopup.find("#txtImageFile").val();
+         alert('uploading..'+image);
+         destroyPopup();
+      });
+   });
+   
+   //init
+   
+   $("#fraFront").show();
+   $(".preview-holder[id='front']").show();
+   
+});
+</script>

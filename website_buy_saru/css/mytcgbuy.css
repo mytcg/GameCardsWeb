@@ -1,0 +1,111 @@
+html  {
+   font-family:Arial, Helvetica, sans-serif;
+   font-size: small;  }
+	
+body {
+   background-color: #dadbdc;
+   margin:0 auto;
+   width: 45%;
+   height: 45%;	
+}
+
+#header-image {
+	display:none;
+}
+
+a:link, a:visited, a:hover, a:active {
+   text-decoration: none; 
+   color: #ffa802;
+	}
+
+a:hover { 
+   text-decoration: underline;
+   }
+
+#payment-methods {
+	background-color: white;
+	padding-top:5px;
+	margin: 1%;
+}
+	
+fieldset {
+	padding-left: 10px;
+	border: 0;
+}
+
+#payment-methods label {
+	position: absolute;
+	bottom: 0;
+}
+
+
+#select-package label {
+	padding-left: 10px;
+	font-weight:bold;
+	width:54%;
+}
+	
+#select-package label span {
+	font-size:80%;
+	font-weight: normal;
+	}
+
+#select-payment-method label{
+	margin-left: 10px;
+	min-width:10%;
+	width:38%;
+}
+
+legend {
+	width:100%;
+	background-color: #999999;
+	color: white;
+	line-height: 30px;
+	height: 30px;
+	font-weight:bold;
+	padding-left:5px;
+	position: relative;
+}
+.option-container {
+	border-bottom: 3px solid #CCCCCC;
+	min-height: 47px;
+} 
+
+.option-container:last-child option{
+	border-bottom: none;
+}
+
+legend span {
+	position: absolute;
+	bottom:0;
+}
+
+.option label span {
+	color: #58B1FD;
+}
+
+.option > * {
+	position: static !important;
+	line-height: 40px;
+}
+
+.payment-logo {
+	display: none;
+}
+
+#sms-payment-logo {
+	background-position: -370px -205px;
+	width:65px;
+	margin-top:13px;
+}
+
+#paypal-payment-logo {
+	background-position: -300px -205px;
+	width:65px;
+	margin-top:13px;
+}
+
+#check-out-container {
+	height: 10%;
+	text-align: center;
+}

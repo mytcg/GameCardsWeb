@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 ?>
 <html>
 <head>
@@ -107,9 +105,11 @@ session_start();
 		//set the destination path and filename
 		//$filename = $_SESSION['user'] . date('YmdHis') . '.' . $ext;
 		$filename = $_SESSION['user'] . '_' . $cardSide . '.' . $ext;
+
 		$uploadfile = $dir . $filename;
+		$_SESSION[$cardSide] = $uploadfile;
 		
-		if (!move_uploaded_file($_FILES[$file_id]['tmp_name'], $uploadfile))
+		if(!move_uploaded_file($_FILES[$file_id]['tmp_name'], $uploadfile))
 		{
 			$result = "Cannot upload the file '".$_FILES[$file_id]['name']."'"; //Show error if any.
 			if(!file_exists($folder)) {
