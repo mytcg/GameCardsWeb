@@ -1556,6 +1556,19 @@ input[type="submit"] {
 	cursor: pointer;
 	height:18px;
 	overflow: hidden;
+	color:#8BA90F;
+}
+.sub1{
+	font-family: "Arial","Arial Black";
+	font-size:10px;
+	font-weight: 900;
+	color:#111;
+}
+.sub2{
+	font-family: "Arial","Arial Black";
+	font-size:10px;
+	font-weight: 900;
+	color:#232323;
 }
 
 #cardBigView {

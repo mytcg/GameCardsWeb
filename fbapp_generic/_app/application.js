@@ -3054,6 +3054,7 @@ $(document).ready(function(){
     $('.right_menu_item').click(function(){
       var catID = $(this).get(0).id;
       App.showCards(catID);
+      
     });
     
     //SHOW NEW LEADERBOARD LIST

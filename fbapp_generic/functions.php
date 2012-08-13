@@ -66,7 +66,7 @@ function parse_signed_request($signed_request, $secret) {
   }
 
   // check sig
-  $expected_sig = hash_hmac('sha256', $payload, '840f9dbf9af87721af9b095c67b3339f', $raw = true);
+  $expected_sig = hash_hmac('sha256', $payload, $secret, $raw = true);
   if ($sig !== $expected_sig) {
     error_log('Bad Signed JSON signature!');
     return null;
@@ -123,23 +123,56 @@ function getRichestUsers() {
 
 function getCardInAlbumCount($userID,$catID)
 {
-  $add = ($catID != 0)? " WHERE C.category_id > ".$catID : "" ;
-  
-  //Get all count
-  $sql = "SELECT COUNT(card_id) AS iNr
-         FROM mytcg_card AS C ".$add;
-  $r = myqu($sql);
-  $totals[1] = $r[0]['iNr'];
-  
-  //Get owned count
-  $sql = "SELECT DISTINCT UC.card_id
-          FROM mytcg_usercard UC
-          INNER JOIN mytcg_card C ON UC.card_id = C.card_id
-          INNER JOIN mytcg_usercardstatus UCS ON UC.usercardstatus_id = UCS.usercardstatus_id
-          ".$add." AND UCS.description = 'Album' AND UC.user_id = ".$userID;
-  $r = myqu($sql);
-  $totals[0] = sizeof($r);
-  return $totals;
+	//ALL CARDS
+	if($catID==NULL){
+		$sql = "SELECT COUNT(card_id) AS iNr
+				FROM mytcg_card";
+		$r = myqu($sql);
+		$totals[1] = $r[0]['iNr'];
+		 
+		$sql = "SELECT DISTINCT UC.card_id
+				FROM mytcg_usercard UC
+				INNER JOIN mytcg_card C ON UC.card_id = C.card_id
+				INNER JOIN mytcg_usercardstatus UCS ON UC.usercardstatus_id = UCS.usercardstatus_id
+				WHERE UCS.description = 'Album' AND UC.user_id = ".$userID;
+		$r = myqu($sql);
+		$totals[0] = sizeof($r);
+		return $totals;
+	}else{
+		//CARDS IN CATEGORIES
+		$sCats = "";
+		
+		//Get subs categories
+		$query='SELECT category_id 
+				FROM mytcg_category 
+				WHERE parent_id = '.$catID;
+		$r = myqu($query);
+		for($a = 0;$a < sizeof($r);$a++){
+			$sCats .= $r[$a]['category_id'].",";
+			$query='SELECT category_id 
+					FROM mytcg_category 
+					WHERE parent_id = '.$r[$a]['category_id'];
+			$r2 = myqu($query);
+			for($b = 0;$b < sizeof($r2);$b++){
+				$sCats .= $r2[$b]['category_id'].",";
+			}
+		}
+		$sCats .= $catID;
+		
+		$sql = "SELECT COUNT(card_id) AS iNr
+	         	FROM mytcg_card WHERE category_id IN ({$sCats})";
+		 $r = myqu($sql);
+		 $totals[1] = $r[0]['iNr'];
+		 
+		 $sql = "SELECT DISTINCT UC.card_id
+		         FROM mytcg_usercard UC
+		         INNER JOIN mytcg_card C ON UC.card_id = C.card_id
+		         INNER JOIN mytcg_usercardstatus UCS ON UC.usercardstatus_id = UCS.usercardstatus_id
+		         WHERE C.category_id IN ({$sCats}) AND UCS.description = 'Album' AND UC.user_id = ".$userID;
+		 $r = myqu($sql);
+		 $totals[0] = sizeof($r);
+		 return $totals;
+	 }
 }
 
 function getCardOwnedCount($cardID,$userID)

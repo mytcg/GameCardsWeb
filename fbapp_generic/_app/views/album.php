@@ -47,24 +47,42 @@ $iCount = 0;
 	<div id="menu-right-button" class="menu-scroll-button"></div>
 </div>
 <div id="right_menu">
-  <div id='all' class='right_menu_item'>All (<?php echo($vals[0]."/".$vals[1]) ?>)</div>
+  <div id='all' class='right_menu_item sub1'>All (<?php echo($vals[0]."/".$vals[1]) ?>)</div>
 	<?php 
-  $query='SELECT DISTINCT category_id, description  '
-	      .'FROM mytcg_category  '
-	      .'WHERE category_id IN (2,52,58) ';
-  $aAlbums=myqu($query);
-  $iCount = 0;
-  
-  $yourCards = 0;
-  $allCards = 0;
-  
-  while ($iCatID=$aAlbums[$iCount]['category_id']){
-    $vals = getCardInAlbumCount($user['user_id'],$iCatID);
-	  if ($aAlbums[$iCount]['category_id'])
-		echo "<div id='".$iCatID."' class='right_menu_item'>".$aAlbums[$iCount]['description']." (".$vals[0]."/".$vals[1].")</div>";
-		$iCount++;
+	$query='SELECT DISTINCT category_id, description, level 
+	        FROM mytcg_category  
+	        WHERE category_id IN (2,52,58)';
+	$aAlbums=myqu($query);
+	
+	//LEVEL 1
+	for($a = 0;$a < sizeof($aAlbums);$a++){
+		$vals = getCardInAlbumCount($user['user_id'],$aAlbums[$a]['category_id']);
+		echo "<div id='".$aAlbums[$a]['category_id']."' class='right_menu_item sub1'>".$aAlbums[$a]['description']." (".$vals[0]."/".$vals[1].")</div>";
+	
+		//LEVEL 2
+		$query='SELECT DISTINCT category_id, description, level 
+			    FROM mytcg_category  
+			    WHERE parent_id = '.$aAlbums[$a]['category_id'];
+		$aSub1=myqu($query);
+		for($b = 0;$b < sizeof($aSub1);$b++){
+			$vals = getCardInAlbumCount($user['user_id'],$aSub1[$b]['category_id']);
+			$css = ($aSub1[$b]['level']=="2")? "sub2" : "sub3" ;
+			echo "<div id='".$aSub1[$b]['category_id']."' class='right_menu_item {$css}'>".$aSub1[$b]['description']." (".$vals[0]."/".$vals[1].")</div>";
+		
+			//LEVEL 3
+			$query='SELECT DISTINCT category_id, description, level 
+				    FROM mytcg_category  
+				    WHERE parent_id = '.$aSub1[$b]['category_id'];
+			$aSub2=myqu($query);
+			for($c = 0;$c < sizeof($aSub2);$c++){
+				$vals = getCardInAlbumCount($user['user_id'],$aSub2[$c]['category_id']);
+				$css = ($aSub2[$c]['level']=="2")? "sub2" : "sub3" ;
+				echo "<div id='".$aSub2[$c]['category_id']."' class='right_menu_item {$css}'>".$aSub2[$c]['description']." (".$vals[0]."/".$vals[1].")</div>";
+			}
+		
+		}
 	}
-	?>
+?>
 </div>
 <div id="cardBigView">
 	<div class="eyeIcon"></div>
