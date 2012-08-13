@@ -114,7 +114,7 @@ if($_GET['free']){
   $userID = $_SESSION['userDetails']['user_id'];
   
   
-  if ($packID == 2) {
+  if ($packID == 15) {
 	$iFree=myqu("SELECT freebie FROM mytcg_user WHERE user_id=".$userID);
 	$iFree=$iFree[0]['freebie'];
 	if ($iFree == 1) {

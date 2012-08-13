@@ -8,7 +8,8 @@ $query= "SELECT IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)) AS 'owner', 
         JOIN mytcg_category CA ON C.category_id = CA.category_id
         JOIN mytcg_user U ON M.user_id = U.user_id
         WHERE M.markettype_id = 1 AND M.marketstatus_id = 1
-        AND C.category_id > ".$catID."
+        AND C.category_id >= 52 
+		AND C.category_id <= 58
         ORDER BY M.date_expired ASC, M.date_created ASC, M.market_id ASC";
 $aAuctions=myqu($query);
 $iCount = 0;
@@ -22,11 +23,10 @@ $iCount = 0;
 
 	<div id="auction_buttons" >
 	    		
-	    		<div class="cmdButton" id="other">All Auctions</div>
+	    		<div class="cmdButton" id="all">All Auctions</div>
 	    		<div class="cmdButton" id="mine">My Auctions</div>
 	    		<div id="auction_search_container">
-	    			<input type="text" id="auction_search_field" size="27" value="search">
-	    			<div id="auction_search_button" class="textSearch">search</div>
+	    			<input type="text" id="auction_search_field" size="27" value="">
 	    		</div>
 	</div>
 	<div  id="auction_scroll_pane" >

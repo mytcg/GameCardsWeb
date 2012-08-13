@@ -7,7 +7,7 @@ $query = 'SELECT C.card_id,
 	FROM mytcg_card C 
 	INNER JOIN mytcg_imageserver I 
 	ON (C.front_imageserver_id = imageserver_id) 
-	WHERE C.category_id > '.$catID.'
+	WHERE category_id IN (52, 53, 54, 55, 56)
 	ORDER BY C.description ASC';
 	
 $aCards=myqu($query);
@@ -62,8 +62,7 @@ $iCount = 0;
 			ON C.category_id = CA.category_id 
 			INNER JOIN mytcg_usercardstatus UCS 
 			ON UC.usercardstatus_id = UCS.usercardstatus_id 
-			WHERE UC.user_id = '.$user['user_id'].' 
-			AND C.category_id >= '.$catID.' 
+			WHERE C.category_id IN (52, 53, 54, 55, 56)
 			AND UCS.description = "Album" 
 			ORDER BY CA.description ASC';
   

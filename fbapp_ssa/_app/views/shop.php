@@ -11,6 +11,7 @@ $query = 'SELECT A.product_id,
 			INNER JOIN mytcg_imageserver B 
 			ON A.full_imageserver_id=B.imageserver_id
 			WHERE A.product_id >= 15
+			AND A.product_id <= 19
 			AND A.product_id != 16
 			ORDER BY no_of_cards ASC';
 $aProducts = myqu($query);

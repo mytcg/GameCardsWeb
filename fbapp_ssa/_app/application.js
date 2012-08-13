@@ -497,7 +497,7 @@
 				}
      			// var divBids = App.createDiv(spanCurrentBidPrice,"number_of_bids");
      			// var spanNumberBids = App.createDiv(divBids,"","","span");
-//      			
+   			
      			// $(spanNumberBids).html(App.getXML(sXML,"auction_"+i+"/bids"));
      			
      			
@@ -1348,7 +1348,7 @@
        	} else if (iStatus==2) {
        		var divIcon = App.createDiv(divCenter,"modal-success-icon");
        		$(divText).html(sMessage);
-       	} 
+       	}
        	
 		var divClose = App.createDiv(divErrorWindow,"buttonGrey");
 		$(divClose).css({bottom:10,right:10});
@@ -1732,7 +1732,6 @@
 	           $(divCardblockCount).attr("id","count_"+i);
 	           $(divCardblockCount).html(cardCount);
 	         }
-	         var divCardDropShadow = App.createDiv(divCardblock,"album-card-drop-shadow");
 	         var divCardblockPic = App.createDiv(divCardblock,"album_card_pic");
 	         if(cardCount > 0){
 	           var imgCard = App.createDiv(divCardblockPic,"","","img");
@@ -1742,15 +1741,21 @@
 	         var divCardblockContainer = App.createDiv(divCardblock,"album-card-pic-container");
 	         divCardblockContainer.id = App.getXML(sXML,"card_"+i+"/cardid");
 	         $(divCardblockContainer).css('background-image', 'url(' + cardImgPath + ')');
+	         $(divCardblockContainer).css('cursor','pointer');
 	         
 	         var divCardblockTitle = App.createDiv(divCardblock,"album_card_title","","span");
 	         $(divCardblockTitle).html(App.getXML(sXML,"card_"+i+"/cardname"));
+	         if (cardID == 0){
+	         	$(divCardblockTitle).css('opacity','0.1');
+	         }
          }
          $('.menu-scroll-button').appendTo('#albumPlate');
-       	$('#album_scroll_pane').jScrollPane();
+       	 $('#album_scroll_pane').jScrollPane();
 			$('.album-card-pic-container').click(function(){
 				var cardID = $(this).attr('id');
-				App.showCardModal(cardID);
+				if(cardID > 0){
+					App.showCardModal(cardID);
+				}
 			});
 			App.assignScrollAction();
       });
@@ -1891,9 +1896,9 @@
 		  });
 		
 			var divHeading = App.createDiv(divPurchasedWindow,"booster-purchase-heading");
-			if (packID == 15) {
+			if (packID == 2) {
 				$(divHeading).html("<span>Welcome and Thank You for registering.</span><br>To say thank you, we have given you the following cards...");
-			} else if (packID == 17) {
+			} else if (packID == 1) {
 				$(divHeading).html("<span>Thank you for completing your profile.</span><br>As a reward you get the following card...");
 			}
         var divFullSize = App.createDiv(divPurchasedWindow,"game-card-logo-container");

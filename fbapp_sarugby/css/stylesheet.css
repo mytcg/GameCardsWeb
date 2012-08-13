@@ -1868,8 +1868,8 @@ input[type="submit"] {
 	float: left;
 	clear: left;
 	margin-left: 6px;
-    margin-top: 10px;
-    display:inline;
+	margin-top: 10px;
+	display:inline;
 	cursor: pointer;
 }
 .picture-box-container{
@@ -2557,9 +2557,9 @@ input[type="submit"] {
 .starIcon {
 	background: url('../_site/all.png') -455px -215px transparent no-repeat;
 	height:13px;
-    position: relative;
-    top: -45px;
-    width: 18px;
+	position: relative;
+	top: -45px;
+	width: 18px;
 }
 
 .trophyIcon {

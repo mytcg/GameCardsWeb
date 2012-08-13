@@ -105,6 +105,6 @@ $(document).ready(function(){
 	if (iCount == 0) {
 		setTimeout(function() {App.showDid("Did you know?<br/><br/>To get going trade in some facebook credits and get shopping.",1,true);},1000);
 	}
-	App.getItem(2);
+	App.getItem(15);
 });
 </script>

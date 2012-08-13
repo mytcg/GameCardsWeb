@@ -15,7 +15,7 @@ if($_GET['cat']){
 	 FROM mytcg_card C 
     INNER JOIN mytcg_imageserver I 
     ON (C.front_imageserver_id = imageserver_id) 
-	 WHERE C.category_id > 52
+	 WHERE category_id IN (52, 53, 54, 55, 56)
     ORDER BY C.description ASC';
 	 
   } else {
@@ -41,9 +41,10 @@ if($_GET['cat']){
         $k = 0;
         foreach($aCards as $card){
           $iCC = getCardOwnedCount($card['card_id'],$_SESSION['userDetails']['user_id']);
+          $showID = ($iCC == 0)? 0 : $card['card_id'] ;
           echo $sTab.'<card_'.$k.'>'.$sCRLF;
-          echo $sTab.$sTab.'<cardid val="'.$card['card_id'].'" />'.$sCRLF;
-          echo $sTab.$sTab.'<cardcount val="'.$iCC.'" />'.$sCRLF;
+          echo $sTab.$sTab.'<cardid val="'.$showID.'" />'.$sCRLF;
+          echo $sTab.$sTab.'<cardcount val="'.$iCC.'" />'.$sCRLF;;
           echo $sTab.$sTab.'<cardname val="'.$card['description'].'" />'.$sCRLF;
           echo $sTab.$sTab.'<path val="'.$card['path'].'" />'.$sCRLF;
           echo $sTab.$sTab.'<image val="'.$card['image'].'" />'.$sCRLF;
