@@ -129,8 +129,9 @@ if(intval($_GET["cat"]) > 0)
 
 if(isset($_GET['init']))
 {
+	myqu('UPDATE mytcg_competitiondeck SET active=2 WHERE active = 1 AND end_date <= NOW()');
 	// Get decks from database
-	$sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', D.description, D.competitiondeck_id, D.image, CONCAT(I.description,'decks/',CD.image,'.jpg') AS 'imageurl', end_date 
+	$sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', CD.active, D.description, D.competitiondeck_id, D.image, CONCAT(I.description,'decks/',CD.image,'.jpg') AS 'imageurl', end_date 
 			FROM mytcg_deck D
 			JOIN mytcg_category CAT USING(category_id)
 			JOIN mytcg_competitiondeck CD ON CD.competitiondeck_id = D.competitiondeck_id
@@ -176,12 +177,13 @@ if(isset($_GET['init']))
 		  myqu($sql);
 	
 	// Get decks from database
-	$sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', D.description, D.competitiondeck_id, D.image, CONCAT(I.description,'decks/',CD.image,'.jpg') AS 'imageurl', end_date 
+	$sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', CD.active, D.description, D.competitiondeck_id, D.image, CONCAT(I.description,'decks/',CD.image,'.jpg') AS 'imageurl', end_date 
 			FROM mytcg_deck D
 			JOIN mytcg_category CAT USING(category_id)
 			JOIN mytcg_competitiondeck CD ON CD.competitiondeck_id = D.competitiondeck_id
 			JOIN mytcg_imageserver I ON I.imageserver_id = D.imageserver_id
-			WHERE D.user_id = ".$userID." 
+			WHERE D.user_id = ".$userID."
+			AND ((CD.active='1' AND D.type='2')OR (D.type != '2'))
 			ORDER BY D.description ASC;";
 	$decks = myqu($sql);
 	
@@ -211,6 +213,7 @@ if(isset($_GET['init']))
 			echo $sTab.$sTab.'<deck_'.$d.'>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<index>'.$d.'</index>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<deckid>'.$deck['deck_id'].'</deckid>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<active>'.$deck['active'].'</active>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<description>'.$deck['description'].'</description>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<categoryid>'.$deck['category_id'].'</categoryid>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<category>'.$deck['category'].'</category>'.$sCRLF;
