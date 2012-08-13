@@ -117,7 +117,7 @@ STR;
 if($_GET['save'] == 1){
 	
 	//Get old email
-    $aUser = myqu("SELECT * FROM ".$pre."_user WHERE user_id = ".$userID);
+    $aUser = myqu("SELECT * FROM mytcg_user WHERE user_id = ".$userID);
     $aUser = $aUser[0];
     echo "<profile>".$sCRLF;
     
@@ -138,7 +138,7 @@ if($_GET['save'] == 1){
       }
     }*/
     if($email!=$aUser['email_address']){
-      $aCompare = myqu("SELECT * FROM ".$pre."_user WHERE email_address = '".$email."'");
+      $aCompare = myqu("SELECT * FROM mytcg_user WHERE email_address = '".$email."'");
       if(sizeof($aCompare) > 0){
         echo $sTab."<error>Email in use, please check your spelling.</error>".$sCRLF;        
         echo "</profile>".$sCRLF;
@@ -175,7 +175,7 @@ if($_GET['save'] == 1){
     echo $sTab."<msisdn>".$msisdn."</msisdn>".$sCRLF;
     
     //RELOAD USER DETAILS
-    $aUser = myqu("SELECT * FROM ".$pre."_user WHERE user_id = ".$userID);
+    $aUser = myqu("SELECT * FROM mytcg_user WHERE user_id = ".$userID);
     $aUser = $aUser[0];
     
     //VERIFIED
@@ -183,11 +183,11 @@ if($_GET['save'] == 1){
     echo $sTab."<error>Saved</error>".$sCRLF;
     
     //QUESTIONS
-    $aQuestions = myqu("SELECT * FROM ".$pre."_user_detail");
+    $aQuestions = myqu("SELECT * FROM mytcg_user_detail");
     foreach($aQuestions as $aQ){
       $title = strtolower(str_replace(" ","",$aQ['description']));
       if($_POST[$title]){
-        myqu("UPDATE ".$pre."_user_answer SET answer = '".$_POST[$title]."',answered=1 WHERE detail_id = ".$aQ['detail_id']." AND user_id = ".$userID);
+        myqu("UPDATE mytcg_user_answer SET answer = '".$_POST[$title]."',answered=1 WHERE detail_id = ".$aQ['detail_id']." AND user_id = ".$userID);
       }
     }
     

@@ -240,7 +240,7 @@ if (intval($_GET['init'])==1){
 			$amount = $aUser['credits'] + 20;
 			myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$userID);
 			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-					VALUES(".$userID.", 'Received 20 credits for logging in today', NOW(), 50)");
+					VALUES(".$userID.", 'Received 20 credits for logging in today', NOW(), 20)");
 			echo $sTab.'<dailyvisit val="1" />'.$sCRLF;
 			echo $sTab.'<newcredits val="'.$amount.'" />'.$sCRLF;
 		}

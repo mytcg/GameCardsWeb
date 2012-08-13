@@ -18,7 +18,7 @@ if(isset($_GET['getcards']))
 }
   
   
-  //GETS THE CONTENTS OF A STARTER PACK AND GIVES IT TO THE USER
+//GETS THE CONTENTS OF A STARTER PACK AND GIVES IT TO THE USER
 //also returns the card_id of the highest quality card
 function openStarter($pre,$userID,$packID){
   $aGetCards = myqu("SELECT c.*, cq.booster_probability, I.description AS path
@@ -198,12 +198,12 @@ function randomQualityID($aQuality,$iPackCount){
      exit; 
     }
   
-    //GET PRODUCT DETAILS
-    $aDetails=myqu('SELECT P.product_id, PT.description AS ptype, P.description, P.premium, P.price cred, P.no_of_cards '
-      .'FROM mytcg_product P '
-      .'INNER JOIN mytcg_producttype PT '
-      .'ON P.producttype_id = PT.producttype_id '
-      .'WHERE P.product_id="'.$_GET['buyItem'].'"');
+    //GET PRODUCT DETAIL
+    $aDetails=myqu('SELECT P.product_id, PT.description AS ptype, P.description, P.premium, P.price cred, P.no_of_cards 
+      FROM mytcg_product P 
+      INNER JOIN mytcg_producttype PT 
+      ON P.producttype_id = PT.producttype_id 
+      WHERE P.product_id='.$_GET['buyItem']);
     $iProductID = $aDetails[0]['product_id'];
 
     //VALIDATE USER CREDITS

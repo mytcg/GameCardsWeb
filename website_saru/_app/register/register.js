@@ -19,7 +19,7 @@ function WORK_Register(){
       var registerImg = ZA.createDiv(divWin,"register_img");
       //Heading
       var spanHead = ZA.createDiv(divWin,"register_head");
-      $(spanHead).css({lineHeight:"18px",fontSize:"16px"});
+      $(spanHead).css({lineHeight:"18px",fontWeight:"900",fontSize:"16px",fontFamily:"'Arial','Arial Black'"});
       $(spanHead).html("Be A Part Of The Digital Trading Card Trend");
       
       //Text
@@ -48,14 +48,13 @@ function WORK_Register(){
       					'<input type="text" id="password" name="password" class="registerBox" />'+
       				'</div>'+
       				'<div id="register_div">Age<br />'+
-      					'<input type="text" id="age" name="age" style="width:133px;" class="registerBox" />'+
+      					'<input type="text" id="age" name="age" class="registerBox" />'+
       				'</div>'+
       				'<div id="register_div">Gender<br />'+
       					'<input type="radio" name="gender" style="width:20px;" value="0"/>male&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" style="width:20px;" value="1"/>female'+
       				'</div>'+
       		'</div>'
       	);
-      $("#password, #surname").css({ width:"220px" });
       
       $("#username, #email, #password").keydown(function (e){
         if(e.keyCode == 13){

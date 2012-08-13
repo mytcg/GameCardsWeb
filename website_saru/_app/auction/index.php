@@ -405,8 +405,6 @@ if (isset($_GET['buyout']))
 	}
 }
 
-
-
 if (isset($_GET['auction']))
 {
 	$market_id = $_GET['market'];
