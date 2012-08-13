@@ -117,7 +117,7 @@ function getUserData($prefix, $userId='')
 {
 	$userId = ($userId == '') ? $_SESSION['user']['id'] : $userId; 
 	$sql = "SELECT user_id, username, password, date_last_visit, mobile_date_last_visit , (ifnull(credits,0)+ifnull(premium,0)) credits,credits freemium, premium, xp, freebie, completion_process_stage "
-		."FROM ".$prefix."_user "
+		."FROM mytcg_user "
 		."WHERE user_id='".$userId."' "
 		."AND is_active='1'";
 	return myqu($sql);
