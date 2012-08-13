@@ -1882,7 +1882,6 @@
 		
 			var divCloseButtonContainer = App.createDiv(divPurchasedWindow,"closeButtonContainer");
 		  	var divClose = App.createDiv(divCloseButtonContainer,"close-button");
-			$(divClose).html("<span>Close</span>");
 		  $(divClose).click(function() {
 		        $('.modal-window').fadeTo("fast",1);
 		        $(".modal-window").remove();

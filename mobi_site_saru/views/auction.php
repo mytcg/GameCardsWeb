@@ -300,7 +300,6 @@ if (isset($_POST['bid']))
 	    		  	} ?>
 	    		  	</div>
 	    		  	<div><?php echo($aAuction['price']); ?> TCG</div>
-	    		  	<a href="index.php?page=auction_card"><div class="cmdButton">Back</div></a>
 				</div>
 			</div>
 			</li>

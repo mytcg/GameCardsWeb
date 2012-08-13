@@ -37,10 +37,8 @@ if (isset($_GET['create_auction'])){
 					.'AND card_id = '.$iCardId.' '
 					.'AND user_id = "'.$iUserID.'"');
 
-					
-	echo sizeof($aCheckCard);
-	if (sizeof($aCheckCard) == 0){
-		echo 'Card not available anymore.';  
+	if (($aCheckCard[0]['usercard_id']) ==  null){
+		echo 'Apologies, but you do not own this card.';  
 		exit;
 	} else {
 		$iUserCardID = $aCheckCard[0]['usercard_id'];

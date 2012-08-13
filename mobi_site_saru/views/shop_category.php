@@ -61,13 +61,16 @@ $boosterid = $_GET['product_id'];
 		<div>Booster card posibilities:</div>
 		<?php
 		foreach ($cardList as $cardInList[$iCount]){ ?>
-		<div class="album_card_pic"><img src="http://sarugbycards.com/img/cards/jpeg/<?php echo($cardInList[$iCount]['image']); ?>_web.jpg" width="64" height="90" title="<?php echo($cardInList[$iCount]['description']); ?>"></div>
+		<div class="album_card_pic">
+			<img src="http://sarugbycards.com/img/cards/jpeg/<?php echo($cardInList[$iCount]['image']); ?>_web.jpg" width="64" height="90" title="<?php echo($cardInList[$iCount]['description']); ?>">
+		</div>
 		<?php
 		$iCount++;
 		}
+		$_SESSION['booster'] = $boosterid;
 		?>
 		<div id="buttonContainer">
-			<a href="index.php?page=shop_buyout&buynow=<?php echo ($boosterid); ?>"><div class="cmdButton" style="width:85px;">Buy Booster</div></a>
+			<a href="index.php?page=shop_buyout&buynow=<?php echo ($_SESSION['booster']); ?>"><div class="cmdButton" style="width:85px;margin-left:10px;">Buy Booster</div></a>
 		</div>	
 
 

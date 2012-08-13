@@ -29,7 +29,7 @@ function TopMenu($need,$have) {
  }
 if($localhost){
 	$user['user_id'] = 2;
-	$user['username'] = "piero@mytcg.net";
+	$user['username'] = "cole@mytcg.net";
 	$user['credits'] = 60;
 	$user['premium'] = 300;
 	$user['gameswon'] = 0;

@@ -5,5 +5,5 @@ if ($_SESSION['userID']){
 	session_destroy();
 	echo ("You have been logged out succesfully");
 }else { 
-	echo("Click on top car logo, to return");
+	echo("Return to main menu, click on logo");
 }?>

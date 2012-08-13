@@ -12,6 +12,10 @@ body {
 }
 p {height:100%;padding-top:8px;}
 a,a img,:link img,:visited img,fieldset {border:none;}
+a {
+	text-decoration:none;
+	color:#A0171E;
+}
 img {vertical-align:top;}
 
 .clear {clear:both}
