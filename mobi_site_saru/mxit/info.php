@@ -53,7 +53,7 @@ require_once("functions.php");
        <img src="images/header_left.png" border="0" /><br />
        <form action="info.php" method="POST"><br/>
        		<div>
-	  			<p>Enter Username of Credits Recipient</p>
+	  			<p>Enter Username of Credits Recipient<br />(*case sensitive)</p>
 	  			<input name="username" value="" type="text">
 	  			<p><?php displayInvalidMessage('username'); ?></p>
 	  		</div>

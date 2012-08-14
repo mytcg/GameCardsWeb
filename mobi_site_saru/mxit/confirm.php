@@ -38,7 +38,7 @@ require_once("conn.php");
 	   echo("<p>Purchase {$credits} credits for {$amount} Moola?</p>");
        ?>
         <form action="http://billing.internal.mxit.com/Transaction/PaymentRequest" method="post"> 
-			<input id="VendorId" name="VendorId" type="hidden" value="1" />
+			<input id="VendorId" name="VendorId" type="hidden" value="211" />
 			<input id="TransactionReference" name="TransactionReference" type="hidden" value="<?php echo($username); ?>" />
 			<input id="CallbackUrl" name="CallbackUrl" type="hidden" value="http://www.sarugbycards.com/mxit/callback.php" />
 			<input id="ProductId" name="ProductId" type="hidden" value="<?php echo($userID."-".$amount); ?>" />

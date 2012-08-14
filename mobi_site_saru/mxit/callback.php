@@ -9,10 +9,14 @@ require_once("conn.php");
    <body>
        <img src="images/header_left.png" border="0" /><br />
         <?php
-        if ($_SESSION['userID']){
        		$mxitParameters = $_GET['mxit_transaction_res'];
        		if ($mxitParameters == 0){
        			echo 'Transaction completed successfully.<br/>';
+				// $description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
+				// myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card,
+				// transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
+					// VALUES('.$userID.', NULL, NULL, NULL, 
+				// now(), '".$description."', ".$item['item_id'].", 0, ".$item['item_id'].", 5, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15, '".$order_id."')");
        		}elseif($mxitParameters == 1){
        			echo 'Transaction rejected by user.<br/>';
        		}elseif($mxitParameters == 2){
@@ -32,11 +36,16 @@ require_once("conn.php");
        		}else{
        			echo 'transaction failed, internal error. please try again later<br/>';
        		}
-		
-
+			
+			// echo ($_GET['VendorId']);
+			// echo ($_GET['TransactionReference']);
+			// echo ($_GET['ProductId']);
+			// echo ($_GET['ProductName']);
+			// echo ($_GET['ProductDescription']);
+			// echo ($_GET['MoolaAmount']);
+			// echo ($_GET['CurrencyAmount']);
 
        	?>	
-		<?php  }else{ echo("No user logged for the purchase, please <a href='info.php'>try again</a><br/> "); }?>
        <a href="purchase.php">Back</a>
    </body>
 <html>

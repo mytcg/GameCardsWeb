@@ -50,6 +50,10 @@ if (isset($_POST["login"])==1){
 			myqu("UPDATE mytcg_user SET credits = (".$amount.") , gameswon=0 WHERE user_id=".$userID);
 			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
 					VALUES(".$userID.", 'Received 20 credits for logging in on the mobi site today', NOW(), 20)");
+			myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card,
+				transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
+			VALUES(".$userID.", NULL, NULL, NULL, 
+				now(), 'Received 20 credits for logging in today on the mobi site', 20, NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 16,20,0)");
 			echo ("<div style='font-weight:bold;color:#B0750D;height:25px;text-align:center;'>You have received 20 for logging in today.</div>");
 		}
 	}
