@@ -15,6 +15,7 @@
 	font-family:"Arial Black", "Arial";
 	font-weight:900;
 }
+
 .profileInput{
 	width:240px;
 	font-size:12px;
@@ -427,7 +428,18 @@ body{
 	
 	
 }
-
+#achievements{
+	height: 50px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 45px;
+    z-index: 2;
+	background:url(_site/trophies.png) -38px 1px no-repeat;
+}
+#achievements:hover{
+	background:url(_site/trophies.png) 3px 1px no-repeat;
+}
 #left_banner{
 	position:absolute;
 	top:15px;

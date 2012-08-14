@@ -532,6 +532,7 @@ WORK_App.prototype.createPage=function(){
 	ZA.startJS('twitterconnect');
 	ZA.startJS('leaderboard');
 	ZA.startJS('notifications');
+	ZA.startJS('achievements');
 	//ZA.startJS('compare');
 	userAgent = navigator.userAgent;
   uaMatch = userAgent.match(/(Firefox|Chrome|MSIE 9.0|Safari|Opera)/i);
@@ -1385,6 +1386,13 @@ WORK_App.prototype.showNotifications=function(){
  	ZA.callAjax("_app/notifications/?init=1",function(xml)
 	{
 		CRT.init(xml);
+	});
+};
+
+WORK_App.prototype.showAchievements=function(){
+ 	ZA.callAjax("_app/achievements/?init=1",function(xml)
+	{
+		ART.init(xml);
 	});
 };
 
@@ -2533,17 +2541,23 @@ WORK_Menu.prototype.action=function(sAction){
 							ZA.maximizeWindowA(2);
 						break;		
 						case "4":
+							// deck
 							$("#component_3").show();
 	            			ZA.maximizeWindowA(3);
 						break;
 						case "5":
+							//album
 							ZA.maximizeWindowA(4);
 						break;
 						case "6":
+							//credits
 		                    $("#component_10").show();
 		                     ZA.maximizeWindowA(10);
 						break;
 						case "7":
+							ZA.showAchievements();
+						break;
+						case "8":
 							ZA.showNotifications();
 						break;
 					}
@@ -2639,8 +2653,11 @@ WORK_Menu.prototype.createTop=function(){
 	var divLogo=ZA.createDiv(divMenu,"logo");
 	var divLeft=ZA.createDiv(divMenu,"","left_banner");
 	var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
-	// var homeurl = ZA.createDiv(divLeft,"homeurl");
-	// $(homeurl).html("home");
+	var homeurl = ZA.createDiv(divLeft,"","achievements");
+		$("#achievements").click(function(event) {
+	    ZA.showAchievements();
+  	});
+  
 	if (!ZA.sUsername) {
 		//not logged in
 		$(divLeftInfo).html("<span class='txtGrey' style='top:33px;left:-40px;'>to SA Rugby Cards</span>");
