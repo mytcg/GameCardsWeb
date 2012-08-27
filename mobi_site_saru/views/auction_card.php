@@ -77,7 +77,7 @@ if (isset($_GET['auction_card'])){
 	$iCount = 0;
 	?>
 	<ul id="auction_card">
-			<li><a>
+			<li>
 			<div class="cardBlockBid">
 				<div class="album_card_pic">
 					<img src="<?php echo($aCards[$iCount]['path']); ?>/cards/jpeg/<?php echo($aCards[$iCount]['image']); ?>_web.jpg" title="" >
@@ -99,11 +99,10 @@ if (isset($_GET['auction_card'])){
 			    	</form>
 				</div>
 			</div>
-			</a></li>
+			</li>
     	</ul>
 		<?php
-	
 }
-	
-	
-?>   		
+?>
+<div><a href="index.php?page=album_card&category_id=1"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">BACK</div></a></div>
+

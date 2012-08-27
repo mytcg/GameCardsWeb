@@ -5,11 +5,12 @@
 		<input type="text" name="email_address" value="" class="textbox" /><br />
 		Password:<br />
 		<input type="password" name="password" value="" class="textbox" /><br />
-		Name:<br />
+		First Name:<br />
 		<input type="text" name="name" value="" class="textbox" /><br />
 		Surname:<br />
 		<input type="text" name="surname" value="" class="textbox" /><br />
-		<input type="submit" name="register" value="REGISTER" class="button" title="Login"/>
+		<input type="submit" name="register" value="REGISTER" style="width:80px;float:left" class="button" title="Login"/>
+	<div><a href="index.php?page=index"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">BACK</div></a></div>
 	</form>	
 
 

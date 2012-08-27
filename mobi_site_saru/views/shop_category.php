@@ -70,7 +70,8 @@ $boosterid = $_GET['product_id'];
 		$_SESSION['booster'] = $boosterid;
 		?>
 		<div id="buttonContainer">
-			<a href="index.php?page=shop_buyout&buynow=<?php echo ($_SESSION['booster']); ?>"><div class="cmdButton" style="width:85px;margin-left:10px;">Buy Booster</div></a>
+			<a href="index.php?page=shop_buyout&buynow=<?php echo ($_SESSION['booster']); ?>"><div class="cmdButton" style="margin-left:10px;">BUY</div></a>
+			<a href="index.php?page=shop_list"><div class="cmdButton" >BACK</div></a>
 		</div>	
 
 

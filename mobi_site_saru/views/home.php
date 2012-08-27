@@ -53,13 +53,13 @@ if (isset($_POST["login"])==1){
 			myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card,
 				transaction_date, description, tcg_credits, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type,tcg_freemium,tcg_premium)
 			VALUES(".$userID.", NULL, NULL, NULL, 
-				now(), 'Received 20 credits for logging in today on the mobi site', 20, NULL, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 16,20,0)");
+				now(), 'Received 20 credits for logging in today on the mobi site', 20, NULL, 'mobi site',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 16,20,0)");
 			echo ("<div style='font-weight:bold;color:#B0750D;height:25px;text-align:center;'>You have received 20 for logging in today.</div>");
 		}
 	}
 	else{
 		echo ("invalid user details, please try again <br/>");
-	}	
+	}
 }elseif (isset($_POST["register"])==1){
 	  $sEmail = $_POST["email_address"];
 	  $sPassword = $_POST["password"];
@@ -105,24 +105,43 @@ if (isset($_POST["login"])==1){
 	  	$sql = "INSERT INTO mytcg_user_answer (detail_id,answered,user_id) VALUES (".$u['detail_id'].",0,".$user_id.")";
 	  	$res = myqu($sql);
 	  }
-	  
-	  echo("<p>Your registration was successfull<br/>Welcome to SA Rugby Cards<br/></p>");
 	  $_SESSION['userID'] = $user_id;
 	  $_SESSION['booster'] = 2;
 	  header("Location: index.php?page=shop_buyout&free=2");
 }
+if($_SERVER['HTTP_X_MXIT_USERID_R'] == null){
+	
+	if($_SESSION['userID']){ ?>
+	<ul id="navmenu">
+		<li><a href="index.php?page=album_list" class="button"><img alt="Album" src="images/Album.png" width="115px" height="82px" /></a></li>
+		<li><a href="index.php?page=shop_list" class="button"><img alt="Shop" src="images/Shop.png" width="115px" height="82px" /></a></li>
+		<li><a href="index.php?page=auction_cards" class="button"><img alt="Auction" src="images/Auctions.png" width="115px" height="82px" /></a></li>
+		<li><a href="index.php?page=credits" class="button"><img alt="Credits" src="images/Credits.png" width="115px" height="82px" /></a></li>
+		<li><a href="index.php?page=profile" class="button"><img alt="Profile" src="images/Profile.png" width="115px" height="82px" /></a></li>
+		<li><a href="index.php?page=notifications" class="button"><img alt="Notifications" src="images/Notifications.png" width="115px" height="82px" /></a></li>
+		<li><a href="index.php?page=logout" class="button"><img alt="LOGOUT" src="images/Logout.png" width="115px" height="82px" /></a></li>
+	</ul>
+	<?php } else { ?>
+		Error: Your log in was unsuccesful,<br>
+		<a href='index.php?page=index'>Login in</a>
+	<?php } 
+	
+	}else{
+		
+	if($_SESSION['userID']){ ?>
+	<div id="navmenu">
+		<a href="index.php?page=album_list" class="button" style="float:left" >Album</a><br />
+		<a href="index.php?page=shop_list" class="button" style="float:left" >Shop</a><br />
+		<a href="index.php?page=auction_cards" class="button" style="float:left" >Auction</a><br />
+		<a href="index.php?page=credits" class="button" style="float:left" >Credits</a><br />
+		<a href="index.php?page=profile" class="button" style="float:left" >Profile</a><br />
+		<a href="index.php?page=notifications" class="button" style="float:left" >Notifications</a><br />
+		<a href="index.php?page=logout" class="button" style="float:left" >Logout</a>
+	</div>
+	<?php } else { ?>
+		<p>Error: Your log in was unsuccesful,</p>
+		<a href='index.php?page=index'>Login in</a>
+	<?php }
+	}
+	?>
 
-if($_SESSION['userID']){ ?>
-<ul id="navmenu">
-	<li><a href="index.php?page=album_list" class="button"><img alt="Album" src="images/Album.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=shop_list" class="button"><img alt="Shop" src="images/Shop.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=auction_cards" class="button"><img alt="Auction" src="images/Auctions.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=credits" class="button"><img alt="Credits" src="images/Credits.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=profile" class="button"><img alt="Profile" src="images/Profile.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=notifications" class="button"><img alt="Notifications" src="images/Notifications.png" width="115px" height="82px" /></a></li>
-	<li><a href="index.php?page=logout" class="button"><img alt="LOGOUT" src="images/Logout.png" width="115px" height="82px" /></a></li>
-</ul>
-<?php } else { ?>
-	Error: Your log in was unsuccesful,<br>
-	<a href='index.php?page=index'>Login in</a>
-<?php } ?>

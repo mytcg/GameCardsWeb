@@ -14,3 +14,4 @@
 	<div style="width: 100%; font-weight: bold;">SMS Cost</div>
 	<div style="color:#222; top: 218px; width: 100%;">R5.00</div>
 </div>
+<div><a href="index.php?page=credits"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">BACK</div></a></div>

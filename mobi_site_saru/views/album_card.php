@@ -46,4 +46,4 @@ $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 $iCount++;
 }
 ?>
-
+<div><a href="index.php?page=album_list"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">BACK</div></a></div>

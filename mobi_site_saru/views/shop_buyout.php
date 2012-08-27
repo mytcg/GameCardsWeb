@@ -79,7 +79,6 @@ function randomQualityID($aQuality,$iPackCount){
   return $iQualityID;
 }
 
-
 if($_GET['free'] == 2){
   $packID = $_SESSION['booster'];
   $userID = $_SESSION['userID'];
@@ -142,6 +141,7 @@ if($_GET['free'] == 2){
 
 	 } 
 	  ?>
+	  <p>Your registration was successful<br/>Welcome to SA Rugby Cards</p>
 	  <div>Here something to get you started...</div>
         <?php
         foreach($cards as $card){
@@ -240,6 +240,7 @@ if (isset($_SESSION['booster'])){
 	      	</a>
 	      	<div style="width:64px"><?php echo($aCard[0]['description']); ?></div>
 	      </div>
+	      
 		  <?php
           $iCount++;
         }
@@ -256,3 +257,4 @@ if (isset($_SESSION['booster'])){
       echo("Your purchase was unsuccesful...");
 	}
 ?>
+<div><a href="index.php?page=home"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">Back</div></a></div>

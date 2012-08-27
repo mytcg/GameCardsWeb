@@ -30,7 +30,7 @@ $iCount = 0;
 	}
 	?>
 		<ul id="card_list_bid">
-			<li><a>
+			<li>
 			<div class="cardBlockBid">
 				<div class="album_card_pic">
 					<img src="<?php echo($aAuctions[$iCount]['path']); ?>/cards/jpeg/<?php echo($aAuctions[$iCount]['image']); ?>_web.jpg" title="" >
@@ -67,10 +67,10 @@ $iCount = 0;
 			    	</form>
 				</div>
 			</div>
-			</a></li>
+			</li>
     	</ul>
 <?php 
 	$iCount++;
-	
-    	}
+   	}
 ?>   		
+<div><a href="index.php?page=home"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">Back</div></a></div>

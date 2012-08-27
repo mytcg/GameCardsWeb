@@ -33,3 +33,4 @@ $iCC = getCardOwnedCount($iCardID,$user['user_id']);
 $iCount++;
 }
 ?>
+
