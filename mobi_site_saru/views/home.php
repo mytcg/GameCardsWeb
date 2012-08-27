@@ -60,54 +60,6 @@ if (isset($_POST["login"])==1){
 	else{
 		echo ("invalid user details, please try again <br/>");
 	}
-}elseif (isset($_POST["register"])==1){
-	  $sEmail = $_POST["email_address"];
-	  $sPassword = $_POST["password"];
-	  $sName = $_POST["name"];
-	  $sSurname = $_POST["surname"];
-	  
-	  if ($sEmail == "" && $sPassword == "" && $sName == "" && $sSurname == ""){
-		echo ("Please complete all all fields, please <a href='index.php'>try again</a>");
-		exit;
-	  }
-	  
-	  $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";
-	  $getUser = myqu($sql);
-	  if(sizeof($getUser) > 0){
-	    echo('Email address already in use. <a href="index.php">try again</a>');
-	    exit;
-	  }
-	  
-	  $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,credits,premium) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',0,0)";
-	  $res = myqu($sql);
-	  
-	  $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";
-	  $getUser = myqu($sql);
-	  
-	  $user_id = $getUser[0]['user_id'];
-	  
-	  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
-		SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
-		FROM mytcg_user WHERE user_id=".$user_id);
-	  
-	  $iMod=(intval($user_id) % 10)+1;
-	  $sPassword=substr(md5($user_id),$iMod,10).md5($sPassword);
-	  
-	  $sql = "UPDATE mytcg_user SET password = '".$sPassword."' WHERE user_id = ".$user_id;
-	  $res = myqu($sql);
-	  
-	  $sUA=$_SERVER["HTTP_USER_AGENT"];
-	  $sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user_id."'");
-	  
-	  $sql = "SELECT * FROM mytcg_user_detail";
-	  $getUser = myqu($sql);
-	  foreach($getUser as $u){
-	  	$sql = "INSERT INTO mytcg_user_answer (detail_id,answered,user_id) VALUES (".$u['detail_id'].",0,".$user_id.")";
-	  	$res = myqu($sql);
-	  }
-	  $_SESSION['userID'] = $user_id;
-	  $_SESSION['booster'] = 2;
-	  header("Location: index.php?page=shop_buyout&free=2");
 }
 if($_SERVER['HTTP_X_MXIT_USERID_R'] == null){
 	

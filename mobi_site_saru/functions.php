@@ -1,4 +1,81 @@
 <?php
+//GENERATES THE CONTENTS OF A BOOSTER PACK AND GIVES IT TO THE USER
+function openBooster($userID,$packID){
+	$iReleasedBuffer = 1;
+	
+	//CARD COUNT OF PACK
+	$iPackCount = myqu("SELECT no_of_cards FROM mytcg_product WHERE product_id={$packID}");
+	$iPackCount = $iPackCount[0]['no_of_cards'];
+	
+	$aQuality = myqu("SELECT distinct cq.cardquality_id,((cq.booster_probability)*{$iPackCount}) AS bp 
+		FROM mytcg_cardquality cq 
+		INNER JOIN mytcg_card c 
+		ON c.cardquality_id = cq.cardquality_id 
+		INNER JOIN mytcg_productcard pc 
+		ON pc.card_id = c.card_id 
+		WHERE pc.product_id = {$packID} 
+		ORDER BY booster_probability ASC");
+	$iQualityID = 0;
+	$cards = array();
+	
+	//GET CARDS
+	for ($i = 0; $i < $iPackCount; $i++){
+		//GET A RANDOM QUALITY CARD
+		$iQualityID = randomQualityID($aQuality,$iPackCount);
+	
+		//GET STACK OF SAME QUALITY CARDS
+		$aGetCards = myqu(" SELECT c.card_id, c.cardquality_id, cq.booster_probability
+			FROM mytcg_card c
+			INNER JOIN  mytcg_productcard pc
+			ON pc.card_id = c.card_id
+			INNER JOIN mytcg_cardquality AS cq
+			ON cq.cardquality_id = c.cardquality_id
+			WHERE pc.product_id={$packID}
+			AND c.cardquality_id={$iQualityID}");
+		$iNumCards = sizeof($aGetCards);
+		
+		//PICK A RANDOM CARD FROM THE STACK
+		$iRandom=rand(0,$iNumCards-1);
+		$iCardID=$aGetCards[$iRandom]['card_id'];
+					
+		//GIVE THE CARD TO THE USER
+		myqu('UPDATE mytcg_usercard set loaded = 1 where card_id = '.$iCardID.' and user_id = '.$userID);
+		$aCards=myqu("INSERT INTO mytcg_usercard (user_id, card_id, usercardstatus_id)
+			SELECT {$userID}, {$iCardID}, usercardstatus_id
+			FROM mytcg_usercardstatus
+			WHERE description = 'Album'");
+		
+		$card;
+		if ($cards[$iCardID] == null) {
+			$card = array();
+			$card['cardId'] = $iCardID;
+			$card['quantity'] = 1;
+		}
+		else {
+			$card = $cards[$iCardID];
+			$card['quantity'] = $card['quantity']+1;
+		}
+		$cards[$iCardID] = $card;
+	}
+	
+	//we can remove one of the products from stock though
+	myqu("UPDATE mytcg_product SET in_stock=in_stock-1 WHERE product_id={$packID}");
+	
+	return $cards;
+}
+//ROLL DICE AND CHECK WHAT QUALITY CARD THE USER RECEIVES 
+function randomQualityID($aQuality,$iPackCount){
+  $iRandom = rand(1, $aQuality[sizeof($aQuality) - 1]['bp']);//rand(1,$iPackCount);
+  $interval=0;
+  for($l=0; $l < sizeof($aQuality); $l++){
+      $interval += $aQuality[$l]['bp'];
+        if ($iRandom <= $interval){
+          $iQualityID = $aQuality[$l]['cardquality_id'];
+          break;
+    }
+  }
+  return $iQualityID;
+}
 function getip(){
   if (validip($_SERVER["HTTP_CLIENT_IP"])) {
     return $_SERVER["HTTP_CLIENT_IP"];
