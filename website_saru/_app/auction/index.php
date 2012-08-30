@@ -179,7 +179,6 @@ if(intval($_GET["cat"]) > 0){
   $sql = "SELECT ifnull(premium,0)+ifnull(credits,0) as premium FROM ".$pre."_user WHERE user_id=".$userID.";";
   $usr = myqu($sql);
   $usr = $usr[0];
-  
   $iSizeCards=sizeof($aAllCards);
   $xml .= '<init>'.$sCRLF;
   $xml .= $sTab.'<credits val="'.$usr['credits'].'" />'.$sCRLF;
@@ -270,9 +269,7 @@ if (isset($_GET['buyout']))
 	$oldowner = $uc[0]['user_id'];
 	$price = $uc[0]['price'];
 	
-	 
-	  
-	  //get user's available credits
+	//get user's available credits
 	$query = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, credits, premium prem FROM mytcg_user WHERE user_id = ".$userID);
 	$available_credits = $query[0]['premium'];
 	$tcg_credits = $query[0]['credits'];
@@ -297,10 +294,10 @@ if (isset($_GET['buyout']))
 		
 		//give credits back to current highest bidder
 		$sql = "SELECT MC.user_id, MC.price, C.description, MC.premium
-		  FROM ".$pre."_market M
-		  JOIN ".$pre."_marketcard MC USING (market_id)
-		  LEFT JOIN ".$pre."_usercard UC ON (M.usercard_id = UC.usercard_id)
-		  LEFT JOIN ".$pre."_card C ON (UC.card_id = C.card_id)
+		  FROM mytcg_market M
+		  JOIN mytcg_marketcard MC USING (market_id)
+		  LEFT JOIN mytcg_usercard UC ON (M.usercard_id = UC.usercard_id)
+		  LEFT JOIN mytcg_card C ON (UC.card_id = C.card_id)
 		  WHERE M.market_id = ".$marketID."
 		  ORDER BY MC.marketcard_id DESC
 		  LIMIT 1;";
@@ -352,12 +349,12 @@ if (isset($_GET['buyout']))
 		//Add transaction log
 		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
 				VALUES(".$userID.", 'Spent ".$price." credits on buyout of ".$carName."', NOW(), -".$price.")");
-				
+		
 		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 				VALUES(".$userID.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
 						now(), 'Spent ".$price." credits on buyout of ".$carName."', -".$price.", -".$freemium_cost.", -".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 13)");
 
-						
+		
 		$our_freemium_fee = $freemium_cost * 0.1;
 		$our_premium_fee = $premium_cost * 0.1;
 		
@@ -383,6 +380,7 @@ if (isset($_GET['buyout']))
 				VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
 					now(), 'Transaction fee of ".$auction_fee." credits for buyout on ".$carName."', ".$auction_fee.",".$our_freemium_fee.",".$our_premium_fee.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 17)");
 
+		checkAchis($iUserID, 1);
 		
 		//Close auction
 		$sql = "UPDATE ".$pre."_market SET marketstatus_id=2 WHERE market_id=".$marketID.";";

@@ -2653,11 +2653,12 @@ WORK_Menu.prototype.createTop=function(){
 	var divLogo=ZA.createDiv(divMenu,"logo");
 	var divLeft=ZA.createDiv(divMenu,"","left_banner");
 	var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
-	var homeurl = ZA.createDiv(divLeft,"","achievements");
-		$("#achievements").click(function(event) {
-	    ZA.showAchievements();
-  	});
-  
+	if(ZA.sUsername){
+		var achiv = ZA.createDiv(divLeft,"","achievements");
+			$("#achievements").click(function(event){
+		    ZA.showAchievements();
+	  		});
+  	}
 	if (!ZA.sUsername) {
 		//not logged in
 		$(divLeftInfo).html("<span class='txtGrey' style='top:33px;left:-40px;'>to SA Rugby Cards</span>");

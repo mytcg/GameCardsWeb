@@ -8,23 +8,19 @@ function COMPONENT_Achievement()
     {
 		COMPONENT_Achievement.prototype.init=function(sXML)
 		{
-			ZA.createWindowPopup(123,"achievements",800,765,1,1);
+			ZA.createWindowPopup(123,"achievements",800,800,1,1);
 			var divData=document.getElementById("window_123");
 			var divContainer=ZA.createDiv(divData,"container");
 			$(divContainer).css({
 				overflow:'hidden',
-				height:713,
+				height:750,
 				width:785,
 			});
 
 			var divAchievements = ZA.createDiv(divContainer,"","achieve_holder");
-			$(divAchievements).css({
-				// width:760,
-				// height:377,
-			});
 			
-			//title
-			var title = ZA.createDiv(divAchievements,"achieveTitle");
+			//title 
+			var title = ZA.createDiv(divData,"txtBlue");
 			$(title).css({
 				marginBottom:10,
 				paddingTop:10,
@@ -38,64 +34,75 @@ function COMPONENT_Achievement()
 			.html('Achievement List');
 			
 			var AchieveCount = parseInt(ZA.getXML(sXML,"count"));
+			// var AchieveID = ZA.getXML(sXML,"achie/achi_1/name");
 			var iCount=0;
-			if(AchieveCount > 0){
-				
-				while (iCount < AchieveCount)
+			// var title = ZA.createDiv(divData,"achieveTitle");
+			// $(title).html(AchieveID);
+			if(AchieveCount > 0)
+			{
+				for (iCount=0; iCount<=AchieveCount; iCount++)
 				{
-					var divAchievementsCon = ZA.createDiv(divAchievements,"achieve_con");
-					$(divAchievementsCon).css({
-						"float":"left",
-						marginLeft:15,
-						marginBottom:15,
-						width:205,
-						position:"relative",
-						height:210,
-						border:"1px solid #333",
-					});
-					// var some = ZA.getXML(sXML,"achieve_"+iCount+"/name");
-					// $(divAchievementsCon).html(some);
-					
-					var divAuctionImage=ZA.createDiv(divAchievementsCon,"","achievement_"+iCount);
-					$(divAuctionImage).css({
-						backgroundImage:"url("+ZA.getXML(sXML,"achieve_"+iCount+"/incomplete_image")+")",
-						backgroundRepeat:"no-repeat",
-						width:160,
-						height:140,
-						marginLeft: 25,
-		    			marginTop: 10,
-		    			position:"relative",
-					});
-					var divAuctionTitle = ZA.createDiv(divAchievementsCon,"txtGreen","","div");
-					$(divAuctionTitle).css({
-						fontSize:12,
-						textAlign:"center",
-						height:12,
-						position:"relative",
-					});
-					$(divAuctionTitle).html('<b>'+ZA.getXML(sXML,"achieve_"+iCount+"/name")+'</b>');
-					var divAuctionDesc = ZA.createDiv(divAchievementsCon,"","","div");
-					$(divAuctionDesc).css({
-						fontSize:12,
-						textAlign:"center",
-						height:12,
-						position:"relative",
-					});
-					$(divAuctionDesc).html('<b>'+ZA.getXML(sXML,"achieve_"+iCount+"/description")+'</b>');
-				iCount++;
+					var AchieveID = parseInt(ZA.getXML(sXML,"achie/achi_"+iCount+"/id"));
+					if (AchieveID)
+					{
+						var divAchievementsCon = ZA.createDiv(divAchievements,"","achieve_con");
+						var progress = ZA.getXML(sXML,"achie/achi_"+iCount+"/subachi_"+iCount+"/progress");
+						var target = ZA.getXML(sXML,"achie/achi_"+iCount+"/subachi_"+iCount+"/target");
+						
+						var divAuctionDesc = ZA.createDiv(divAchievementsCon,"","","div");
+						$(divAuctionDesc).css({
+							fontSize:12,
+							textAlign:"right",
+							height:12,
+							position:"relative",
+						});
+						$(divAuctionDesc).html('<b>'+progress+'/'+target+'</b>')
+						
+						var divAuctionImage=ZA.createDiv(divAchievementsCon,"","achievement_"+iCount);
+						$(divAuctionImage).css({
+							backgroundImage:"url("+ZA.getXML(sXML,"achie/achi_"+iCount+"/incomplete_image")+")",
+							backgroundRepeat:"no-repeat",
+							width:160,
+							height:140,
+							marginLeft: 25,
+			    			marginTop: 10,
+			    			position:"relative",
+						});
+						
+						var divAuctionTitle = ZA.createDiv(divAchievementsCon,"txtGreen","","div");
+						$(divAuctionTitle).css({
+							fontSize:12,
+							textAlign:"center",
+							height:12,
+							position:"relative",
+						});
+						$(divAuctionTitle).html('<b>'+ZA.getXML(sXML,"achie/achi_"+iCount+"/name")+'</b>');
+						
+						var divAuctionDesc = ZA.createDiv(divAchievementsCon,"","","div");
+						$(divAuctionDesc).css({
+							fontSize:12,
+							textAlign:"center",
+							height:12,
+							position:"relative",
+						});
+						$(divAuctionDesc).html('<b>'+ZA.getXML(sXML,"achie/achi_"+iCount+"/description")+'</b>');
+					}
 				}
 	 		}
 			else
 			{
-			 var noLog = ZA.createDiv(divMain);
+			 var noLog = ZA.createDiv(divAchievements);
 			 $(noLog).html('No Logs');
 			}
 			
-			var divButton = ZA.createDiv(divContainer,"cmdButton");
+			var divButton = ZA.createDiv(divData,"cmdButton");
 			$(divButton).css({
-				bottom:1,
+				bottom:5,
 				right:15,
 			});
+			//reset vertical scrollbar
+			$("#achieve_holder").css({
+			}).jScrollPane({enableKeyboardNavigation:false});
 			$(divButton).html('Close');
 			$(divButton).click(function(){
 				ART.clickCloseAchievement();
@@ -118,7 +125,5 @@ function COMPONENT_Achievement()
 		}
 	};
 };
-
-
 
 var ART = new COMPONENT_Achievement();

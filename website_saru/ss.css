@@ -428,7 +428,23 @@ body{
 	
 	
 }
+#achieve_holder{
+	width:700px;
+	height:700px;
+	left: 48px;
+    top: 42px;
+}
+#achieve_con{
+	float:left;
+	margin-left:15px;
+	margin-bottom:15px;
+	width:205px;
+	position:relative;
+	height:210px;
+	border:1px solid #333;
+}
 #achievements{
+	cursor:pointer;
 	height: 50px;
     position: absolute;
     right: 20px;
@@ -587,7 +603,7 @@ body{
 	z-index:2;
 	position: relative;
 	width:100%;
-	background-position: 0px -1101px;
+	background-position: 0px -1200px;
 	background-image:url(_site/repeatx.png);
 	background-repeat: repeat-x;
 }
@@ -1772,14 +1788,16 @@ table.grid tr.numberone td{
 .noimage{
 	width:64px;
 	height:90px;
-	background:#ccc;
+	background:#444;
+	box-shadow:inset 0px 0px 10px #000;
 	display:none;
 }
 .incomplete{
 	color:#cc0000!important;
 }
 #availablecardholders{
-	width: 780px;
+	height:600px;
+	width: 410px;
 	overflow: visible!important;
 	padding-bottom:10px;
 }

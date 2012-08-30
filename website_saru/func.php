@@ -3,86 +3,6 @@ require_once("config.php");
 define('ACHI_INC','1'); 
 define('ACHI_TOT','2'); 
 
-function getAchis($iUserID) {
-	$aServers=myqu('SELECT b.imageserver_id, b.description as URL '
-		.'FROM mytcg_imageserver b '
-		.'ORDER BY b.description DESC '
-	);
-
-	$achiQu = ('SELECT progress, target, date_completed, complete_image, 
-		name, description, incomplete_image, achievement_id, 
-		a.imageserver_id as aserver_id, al.imageserver_id as alserver_id 
-		FROM mytcg_userachievementlevel ual 
-		LEFT OUTER JOIN mytcg_achievementlevel al 
-		ON ual.achievementlevel_id = al.id 
-		LEFT OUTER JOIN mytcg_achievement a 
-		ON al.achievement_id = a.id 
-		WHERE ual.user_id = '.$iUserID.' 
-		ORDER BY name, achievement_id, target');
-	
-	$achiQuery = myqu($achiQu);
-	
-	$count = 0;
-	$currentParent = '';
-	
-	$retXml = '<achis>';
-	while ($aOneAchi=$achiQuery[$count]) {
-		$achiId = $aOneAchi['achievement_id'];
-		
-		if ($achiId != $currentParent) {
-			$currentParent = $achiId;
-		
-			if ($count > 0) {
-				$retXml .= '</achi>';
-			}
-			$retXml .= '<achi>';
-			
-			$retXml .= '<name>'.$aOneAchi['name'].'</name>';
-			$retXml .= '<description>'.$aOneAchi['description'].'</description>';
-			
-			$sFound='';
-			$iCountServer=0;
-			while ((!$sFound)&&($aOneServer=$aServers[$iCountServer])){
-				if ($aOneServer['imageserver_id']==$aOneAchi['aserver_id']){
-					$sFound=$aOneServer['URL'];
-				} else {
-					$iCountServer++;
-				}
-			}
-
-			$retXml .= '<incomplete_image>'.$sFound.'achi/'.$aOneAchi['incomplete_image'].'</incomplete_image>';
-		}
-		
-		$retXml .= '<subachi>';
-		
-		$retXml .= '<progress>'.$aOneAchi['progress'].'</progress>';
-		$retXml .= '<target>'.$aOneAchi['target'].'</target>';
-		$retXml .= '<date_completed>'.$aOneAchi['date_completed'].'</date_completed>';
-		
-		$sFound='';
-		$iCountServer=0;
-		while ((!$sFound)&&($aOneServer=$aServers[$iCountServer])){
-			if ($aOneServer['imageserver_id']==$aOneAchi['alserver_id']){
-				$sFound=$aOneServer['URL'];
-			} else {
-				$iCountServer++;
-			}
-		}
-
-		$retXml .= '<complete_image>'.$sFound.'achi/'.$aOneAchi['complete_image'].'</complete_image>';
-		
-		$retXml .= '</subachi>';
-		
-		$count++;
-	}
-	if ($count > 0) {
-		$retXml .= '</achi>';
-	}
-	$retXml .= '</achis>';
-	
-	return $retXml;
-}
-
 function checkAchis($iUserID, $iAchiTypeId) {
 	$achiQu = ('SELECT ual.id, ual.progress, al.target, a.calc_id, a.reset, a.query, a.name 
 		FROM mytcg_userachievementlevel ual
@@ -110,6 +30,7 @@ function checkAchis($iUserID, $iAchiTypeId) {
 		
 		$valQuery = myqu($query);
 		$val = $valQuery[0]['val'];
+		
 		if ($aOneAchi['calc_id'] == ACHI_INC) {
 			if ($val >= 0) {
 				$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = progress + ".$val." WHERE id = ".$userAchiId;
@@ -135,11 +56,12 @@ function checkAchis($iUserID, $iAchiTypeId) {
 			$updateQuery = "UPDATE mytcg_userachievementlevel SET date_completed = now() WHERE id = ".$userAchiId;
 			myqu($updateQuery);
 			
-			myqu('INSERT INTO mytcg_notifications (user_id, notification, notedate, notificationtype_id)
+			myqui('INSERT INTO mytcg_notifications (user_id, notification, notedate, notificationtype_id)
 					VALUES ('.$iUserID.', "Achievement earned! ('.$name.') Well Done!", now(), 1)');
 		}
 	}
 }
+
 
 function validip($ip){
   if (!empty($ip) && ip2long($ip)!=-1){

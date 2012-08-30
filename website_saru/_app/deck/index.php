@@ -137,11 +137,11 @@ if(isset($_GET['init']))
 			JOIN mytcg_competitiondeck CD ON CD.competitiondeck_id = D.competitiondeck_id
 			JOIN mytcg_imageserver I ON I.imageserver_id = D.imageserver_id
 			WHERE D.user_id = ".$userID." 
+			AND ((CD.active='1' AND D.type='2')OR (D.type != '2'))
 			ORDER BY D.description ASC;";
 	$decks = myqu($sql);
 
-	if(count($decks) == null){
-		
+	if(count($decks) == 0){
 		$sql = 'SELECT competitiondeck_id, description, imageserver_id, image, active, end_date 
 				FROM mytcg_competitiondeck 
 				WHERE active = "1" 
@@ -154,8 +154,10 @@ if(isset($_GET['init']))
 		$comp_id = $aCompDeckDetails[0]['competitiondeck_id'];
 		$description = $aCompDeckDetails[0]['description'];
 		$image = $aCompDeckDetails[0]['image'];
-		  //$iCount = 0;
-		 // echo ($aCompDeckDetails[$iCount]['competitiondeck_id']." + ".$aCompDeckDetails[$iCount]['description']." + ".$aCompDeckDetails[$iCount]['imageserver_id']." + ".$aCompDeckDetails[$iCount]['imageserver_id']." + ");
+		$end_date = $aCompDeckDetails[0]['end_date'];
+		 // $iCount = 0;
+		 // echo ($comp_id." compID + ".$description." desc + ".$image." image + ".$end_date." date + ");
+		 // exit;
 		  $sql = "INSERT INTO mytcg_deck (
 					user_id, 
 					category_id, 
@@ -163,7 +165,6 @@ if(isset($_GET['init']))
 					description, 
 					image,
 					type,
-					end_date, 
 					competitiondeck_id
 				) VALUES (
 					$userID,
@@ -312,7 +313,7 @@ if(isset($_GET['cards']))
 			GROUP BY UC.card_id
 			ORDER BY UC.card_id ASC";
 	$cards = myqu($sql);
-	
+
 	// Return XML
 	echo '<init>'.$sCRLF;
 	echo $sTab.'<cardcount val="'.count($cards).'" />'.$sCRLF;
@@ -322,13 +323,13 @@ if(isset($_GET['cards']))
 		$i = 0;
 		foreach($cards as $card)
 		{
-			echo $sTab.'<card_'.$i.'>'.$sCRLF;
-			echo $sTab.$sTab.'<cardid>'.$card['card_id'].'</cardid>'.$sCRLF;
-			echo $sTab.$sTab.'<avail>'.$card['avail'].'</avail>'.$sCRLF;
-			echo $sTab.$sTab.'<description>'.$card['description'].'</description>'.$sCRLF;
-			echo $sTab.$sTab.'<image>'.$card['image'].'</image>'.$sCRLF;
-			echo $sTab.$sTab.'<thumbnail>'.$card['thumbnail'].'</thumbnail>'.$sCRLF;
-			echo $sTab.'</card_'.$i.'>'.$sCRLF;
+			echo $sTab.$sTab.'<card_'.$i.'>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<cardid>'.$card['card_id'].'</cardid>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<avail>'.$card['avail'].'</avail>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<description>'.$card['description'].'</description>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<image>'.$card['image'].'</image>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<thumbnail>'.$card['thumbnail'].'</thumbnail>'.$sCRLF;
+			echo $sTab.$sTab.'</card_'.$i.'>'.$sCRLF;
 			$i++;
 		}
 	}

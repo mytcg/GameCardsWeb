@@ -255,6 +255,8 @@ function randomQualityID($aQuality,$iPackCount){
 		VALUES(".$userID.", ".$iProductID.", NULL, NULL, 
 				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", ".$freemiumCost.", ".$premiumCost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 10)");
         
+       
+        
         $xml .=  '<response>'.$sCRLF;
         $xml .=  $sTab.'<value>1</value>'.$sCRLF;
         $xml .=  $sTab.'<credits>'.$iCreditsAfterPurchase.'</credits>'.$sCRLF;
@@ -292,6 +294,7 @@ function randomQualityID($aQuality,$iPackCount){
       $xml .=  '</response>'.$sCRLF;
       echo($xml);
     }
+	checkAchis($userID, 1);
     exit;
   }
   

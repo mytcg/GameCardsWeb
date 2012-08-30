@@ -116,10 +116,10 @@ if (intval($_GET["login"])==1){
 	if ($iValidUserID){
 		
 		$sUA=$_SERVER["HTTP_USER_AGENT"];
-    $ip = getip();
-    $sUA=myqu("UPDATE ".$pre."_user SET last_useragent='".$sUA."',ip = '".$ip."' WHERE user_id='".$iValidUserID."'");
+	    $ip = getip();
+	    $sUA=myqu("UPDATE ".$pre."_user SET last_useragent='".$sUA."',ip = '".$ip."' WHERE user_id='".$iValidUserID."'");
+	    $cps = intval($aValidUser[0]['completion_process_stage']);
     
-    $cps = intval($aValidUser[0]['completion_process_stage']);
     if(($cps==6)&&($sMobileLastDate==null)){
         myqu("UPDATE ".$pre."_user SET completion_process_stage = 7 WHERE user_id = ".$iValidUserID);
         $cps = 7;
@@ -140,16 +140,15 @@ if (intval($_GET["login"])==1){
     
 		echo '<login>'.$sCRLF;
 		echo $sTab.'<action val="success" />'.$sCRLF;
-    
 		if($cps <= 2){
-      $sql = "UPDATE ".$pre."_user SET completion_process_stage = 3 WHERE user_id = ".$iValidUserID;
-      $ass = myqu($sql);
-      $cps = 3;
+	      $sql = "UPDATE ".$pre."_user SET completion_process_stage = 3 WHERE user_id = ".$iValidUserID;
+	      $ass = myqu($sql);
+	      $cps = 3;
 		}
 		echo $sTab.'<username val="'.$aValidUser[0]['username'].'" />'.$sCRLF;
 		echo $sTab.'<credits val="'.$aValidUser[0]['premium'].'" />'.$sCRLF;
-    echo $sTab.'<process val="'.$cps.'" />'.$sCRLF;
-    echo $sTab.'<xp val="'.$aValidUser[0]['xp'].'" />'.$sCRLF;
+	    echo $sTab.'<process val="'.$cps.'" />'.$sCRLF;
+	    echo $sTab.'<xp val="'.$aValidUser[0]['xp'].'" />'.$sCRLF;
 	} else {
 		echo '<login>'.$sCRLF;
 		echo $sTab.'<action val="fail" />'.$sCRLF;
@@ -191,7 +190,7 @@ if (intval($_GET['init'])==1){
 		.findSQLValueFromKey($aConf,'page','windowtitleheight').'" />'.$sCRLF;
 	echo $sTab.'<windowdecorsize val="'
 		.findSQLValueFromKey($aConf,'page','windowdecorsize').'" />'.$sCRLF;
-  echo $sTab.'<menuleft val="'
+    echo $sTab.'<menuleft val="'
     .findSQLValueFromKey($aConf,'menu','left').'" />'.$sCRLF;
 	
 	// User data and values
@@ -220,7 +219,7 @@ if (intval($_GET['init'])==1){
 		echo '" />'.$sCRLF;
 		echo $sTab.'<username val="'.$_SESSION['user']['username'].'" />'.$sCRLF;
 		echo $sTab.'<credit val="'.$aUser['credits'].'" />'.$sCRLF;
-    echo $sTab.'<process val="'.$cps.'" />'.$sCRLF;
+    	echo $sTab.'<process val="'.$cps.'" />'.$sCRLF;
     	echo $sTab.'<xp val="'.$aUser['xp'].'" />'.$sCRLF;
     	$sLastDate = $aUser['date_last_visit'];
       
@@ -231,7 +230,7 @@ if (intval($_GET['init'])==1){
 			."SET date_last_visit='".$sDate."' "
 			."WHERE user_id='".$userID."'"
 		);
-    
+    	
 		$today = date("Y-m-d");
 		if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
 		{
@@ -247,7 +246,7 @@ if (intval($_GET['init'])==1){
 			echo $sTab.'<dailyvisit val="1" />'.$sCRLF;
 			echo $sTab.'<newcredits val="'.$amount.'" />'.$sCRLF;
 		}
-
+		
 		if(($aUser['freebie']=='0') || (is_null($aUser['freebie']))){
 			$popup = '1';
 			echo $sTab.'<freebie val="1" />'.$sCRLF;
