@@ -56,18 +56,40 @@
 			<div class="segregation" style="top:5px;right:0px;"></div>
 		</div>
 		<div id="aContainer">
-			<div style="margin-left:50px;"><img src="_site/coming_soon.png" /></div>
-			<div id="trophies" style="display:none">
+			<div style="margin-left:50px;"></div>
+			<div id="trophies">
 				<div class="leaderLeftArrow"></div>
 				<div id="achiev">
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
-					<div id="" class="achiev_holder"></div>
+					<div id="scrollAchi">
+	<?php
+	$achiList = ("SELECT A.id AS achievement_id, CONCAT(I.description , 'achi/' , A.incomplete_image) AS imageurl
+				  FROM mytcg_achievement A
+				  INNER JOIN mytcg_imageserver I ON (I.imageserver_id = A.imageserver_id)");
+	$achiList = myqu($achiList);
+	for($i=0;$i<sizeof($achiList);$i++){
+		$achiID = $achiList[$i]['achievement_id'];
+		$achiQu = ("SELECT UAL.progress, UAL.date_completed, UAL.date_updated, AL.id AS achievementlevel_id, AL.target, CONCAT(I.description , 'achi/' , AL.complete_image) AS imageurl
+					FROM mytcg_achievementlevel AL
+					INNER JOIN mytcg_userachievementlevel UAL ON (UAL.achievementlevel_id = AL.id)
+					INNER JOIN mytcg_imageserver I ON (I.imageserver_id = AL.imageserver_id)
+					WHERE AL.achievement_id = {$achiID} AND UAL.user_id = ".$_SESSION['userDetails']['user_id']."
+					ORDER BY AL.target ASC");
+		$achiQuery = myqu($achiQu);
+		
+		$imgComplete = $achiList[$i]['imageurl'];
+		for($a=0;$a<sizeof($achiList);$a++){
+			$target = intval($achiQuery[$a]['target']);
+			$progress = intval($achiQuery[$a]['progress']);
+			
+			if($progress >= $target && $target > 0){
+				$imgComplete = $achiQuery[$a]['imageurl'];
+			}
+		}
+		
+		echo("<div id='{$achiID}' class='achiev_holder'><img src='{$imgComplete}' border='0' /></div>");
+	}
+	?>
+					</div>
 				</div>
 				<div class="leaderRightArrow"></div>
 			</div>
@@ -185,5 +207,21 @@ $(document).ready(function(){
 		setTimeout(function() {App.showDid("Did you know?<br/><br/>To get going trade in some facebook credits and get shopping.",1,true);},1000);
 	}
 	App.getItem(2);
+	
+	var iScroll = 0;
+	var iMax = 2;
+	$(".leaderRightArrow").click(function(){
+		if(iScroll < iMax){
+			$("#scrollAchi").animate({left:"-=555"},500);
+			iScroll++;
+		}
+	});
+	
+	$(".leaderLeftArrow").click(function(){
+		if(iScroll > 0){
+			$("#scrollAchi").animate({left:"+=555"},500);
+			iScroll--;
+		}
+	});
 });
 </script>

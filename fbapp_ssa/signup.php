@@ -46,34 +46,62 @@ if(!$localhost){
     <script language="Javascript">
     $(document).ready (function(){
     	
-	$("#login").click(function(){
-      	$("#txtResponse").fadeIn();
-        var email_address = $("#email_address").val();
-        var password = $("#password").val();
-		if(email_address==""){
-			$("#email_address").focus();
-			$("#txtResponse").fadeOut();
-		}else if(password==""){
-			$("#password").focus();
-			$("#txtResponse").fadeOut();
-		}else{
-			$.post("_app/main.php?login=1&username="+email_address+"&password="+password,function(data){
-	        	if(data == "1"){
-	        		location.href = "<?php echo($fbconfig['baseUrl']); ?>";
-	        	}else{
-	        		$("#txtResponse").fadeOut();
-	        		$(".divSigninText").html(data);
-	        	}
-	        });
-		}
-	});
+	// $("#login").click(function(){
+      	// $("#txtResponse").fadeIn();
+        // var email_address = $("#email_address").val();
+        // var password = $("#password").val();
+		// if(email_address==""){
+			// $("#email_address").focus();
+			// $("#txtResponse").fadeOut();
+		// }else if(password==""){
+			// $("#password").focus();
+			// $("#txtResponse").fadeOut();
+		// }else{
+			// $.post("_app/main.php?login=1&username="+email_address+"&password="+password,function(data){
+	        	// if(data == "1"){
+	        		// location.href = "
+	        		
+	        		// ";
+	        	// }else{
+	        		// $("#txtResponse").fadeOut();
+	        		// $(".divSigninText").html(data);
+	        	// }
+	        // });
+		// }
+	// });
     
     var validateEmail = function(email){
      	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
    		return re.test(email);
 	}
     
-    $("#register").click(function(){
+    
+    $("#send").click(function(){
+    	var email = $("#forgot_email").val();
+    	$.post("_app/main.php?forget="+email,function(data){
+	        	$("#forgot-modal-window").hide();
+    			$("#mask").hide();
+	        	if(data == "1"){
+    				$("#txtError").html("New password has been mailed to you.");
+	        	}else{
+	        		$("#txtError").html(data);
+	        	}
+	        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+	        });
+    });
+    
+    $("#showForgot").click(function(e){
+    	e.preventDefault();
+    	$("#forgot-modal-window").show();
+    	$("#mask").show();
+    });
+    
+    $(".close-button").click(function(){
+    	$("#forgot-modal-window").hide();
+    	$("#mask").hide();
+    });
+    
+    $("#enter").click(function(){
       	var name = $("#name").val();
         var surname = $("#surname").val();
         var email_address = $("#email_address").val();
@@ -147,7 +175,7 @@ if(!$localhost){
 		.errorNotice{
 			display:none;
 			position:absolute;
-			top:135px;
+			top:31px;
 			left:360px;
 			width:300px;
 			padding:3px;
@@ -177,30 +205,30 @@ if(!$localhost){
          xfbml  : true  // parse XFBML
        });
      </script>
+     <div class="awesomeHeader"></div>
       <div class="divPageLogin">
       	<div class="errorNotice">
       		<img src="_site/important.png" width="40" height="40" />
       		<div id='txtError'>Not a valid email</div>
       	</div>
         <div class="divSignin"></div>
-        <div class="divSign"><span>Sign</span> In</div>
-        <div class="divSigninBox" style="top:202px;left:115px;">
+        <div class="divSigninBox" style="top:202px;left:115px;display:none">
           <div syle="">
 	          <span>Name</span><br />
 	          <input type="text" class="signin" id="name" value="<?php echo($userProfile['first_name']); ?>" />
           </div>
-          <div style="position: absolute;left:250px;">
+          <div style="position: absolute;left:250px;display:none">
           	<span>Sur</span>name<br />
           	<input type="text" class="signin" id="surname" value="<?php echo($userProfile['last_name']); ?>" />
           </div>
         </div>
-        <div class="divSigninBox" style="top:262px;left:115px;">
+        <div class="divSigninBox" style="top:129px;left:113px;">
           <span>Email</span> address<br />
           <input type="text" class="signin" id="email_address" value="<?php echo($userProfile['email']); ?>" /><br /><br />
           <span>Pass</span>word<br />
-          <input type="text" class="signin" id="password" />
+          <input type="password" class="signin" id="password" />
         </div>
-        <div class="divSigninBox" style="top:262px;left:365px;">
+        <div class="divSigninBox" style="top:262px;left:365px;display:none">
           <span>Age</span><br />
           <input type="text" class="signin" id="age" style="width:30px;" maxlength="2" value="<?php echo($age); ?>" /><br /><br />
           <span>Gender</span><br />
@@ -210,12 +238,24 @@ if(!$localhost){
           <span>Welcome to Surfing Collectable Cards</span>.
           <br>Just enter your details above, and we will create a brand new shiny account for you.<br /><br />
           <span>Already have an account?</span><br />
-          Just enter the email address and password field and we will link your facebook account to your Surfing Cards account.
+          Just enter the email address and password field and we will link your facebook account to your Surfing Cards account.<br /><br />
+          <span>Forgot your password?</span><br />
+          We can send you a new password if you have trouble logging in. <a id="showForgot" href="#" class="forgotPassword">Click here to reset your password</a>.
           </div>
         <div id="txtResponse" class="profileResponse" style="display:none;height:16px;top:488px;left:670px;"><img src="_site/loading51.gif" width="15" height="15" /></div>
-        <div id="login" class="divSigninEnter" style="top:490px;left:485px;">Login</div> <div id="register" class="divSigninEnter" style="top:490px;left:585px;">Register</div>
+        <div id="enter" class="divSigninEnter" style="top:490px;left:585px;">ENTER</div>
       	<div class="signupTerms"><a href="terms.php">*Terms and conditions apply.</a></div>
       </div>
-
+	  <div id="mask" style="display:none"></div>
+	  <div id="forgot-modal-window" class="modal-window" style="display:none">
+	  	 <div class="divSigninBox" style="top:20px;left:30px;font-weight:normal;">
+	  	  <span>Forgot password</span><br />Simply enter the email address that you were using and hit the send button.<br /><br />
+          <span>Email</span> address<br />
+          <input type="text" class="signin" id="forgot_email" value="<?php echo($userProfile['email']); ?>" /><br /><br />
+         </div>
+         <div class="buyItemButton" id='send' style="bottom:30px;left:510px;">Send</div>
+         <div class="close-button">CLOSE</div>
+	  </div>
+	  
   </body>
 </html>

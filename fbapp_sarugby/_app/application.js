@@ -1969,13 +1969,18 @@
     
      }
      
-     APP_Main.prototype.showCardModal=function(imgID){
+     APP_Main.prototype.showCardModal=function(imgID,showAuction){
         
 			// var imgID = $('#cardBigView img').attr('id');
 			App.cardTarget = imgID;
 			var divBody = document.body;
 			var divModalPic = App.createDiv(divBody,"modal-picture-holder modal-window");
-			var divAuctionText = App.createDiv(divModalPic,"albumViewAuctionText");
+			if(!showAuction){
+				var divAuctionText = App.createDiv(divModalPic,"albumViewAuctionText");
+				$(divAuctionText).html("Auction");
+				var auctionBtn = App.createDiv(divModalPic,"auctionIcon");
+			}
+			
 			$('.albumViewAuctionText').click(function(){
 				$('.modal-window').fadeTo("fast",1);
 				$(".modal-window").remove();
@@ -1986,7 +1991,7 @@
 					
 				});
 			});
-			$(divAuctionText).html("Auction");
+			
 			var divCloseButtonContainer = App.createDiv(divModalPic,"closeButtonContainer");
 			var divClose = App.createDiv(divCloseButtonContainer,"close-button");
 			$(divClose).html("<span>CLOSE</span>");
@@ -1999,7 +2004,6 @@
 		        $("#mask").hide();
 		    });
 			
-			var auctionBtn = App.createDiv(divModalPic,"auctionIcon");
 			$('.auctionIcon').click(function(){
 				$('.modal-window').fadeTo("fast",1);
 				$(".modal-window").remove();
@@ -3468,16 +3472,16 @@ $(document).ready(function(){
 		App.createDeckModal();
 	});
 	
-	$('.deck-container').click(function(e){
-		if (($(e.target).attr('class')) != 'deckDeleteButton') {
-			$('#mask').fadeIn(500);
-			$('#deck-create-modal-window').show();
-			App.showDeckModal('edit',($(this).attr('id')));	
-		} else {
-			$('#mask').fadeIn(500);
-			App.showDeleteDeckModal($(this).attr('id'));
-		}
-	});
+	// $('.deck-container').click(function(e){
+		// if (($(e.target).attr('class')) != 'deckDeleteButton') {
+			// $('#mask').fadeIn(500);
+			// $('#deck-create-modal-window').show();
+			// App.showDeckModal('edit',($(this).attr('id')));	
+		// } else {
+			// $('#mask').fadeIn(500);
+			// App.showDeleteDeckModal($(this).attr('id'));
+		// }
+	// });
 	
 	$('#auction_search_field').text('search');
 	

@@ -12,36 +12,43 @@ $facebook = new Facebook(array(
 ));
 $fbuserID = $facebook->getUser();
 
-if($_GET['login']){
-  $userProfile = $_SESSION['userProfile'];
-  $sUsername = $_GET["username"];
-  $sPassword = $_GET["password"];
-  
-  $sql = "SELECT user_id,password FROM mytcg_user WHERE username='".$sUsername."'";
-  $getUser = myqu($sql);
-  if(!$getUser){
-    echo('Username not found<br />Are you sure you have registered?');
-    exit;
+if ($sEmail=$_GET['forget']){
+  $aUser=myqu('SELECT * FROM mytcg_user WHERE email_address = "'.$sEmail.'"');
+  $iUsercheck = sizeof($aUser);
+  if ($iUsercheck==1){
+     if($aUser[0]['is_active']=="1"){
+       
+       //RANDOM GENERATED PASSWORD
+       $password=substr(time()*rand(5,25), -6);
+       $iUserID=intval($aUser[0]["user_id"]);
+       $iMod=($iUserID % 10)+1;
+       $sSalt=substr(md5($iUserID),$iMod,10);
+       $sPassword = $sSalt.md5($password);
+       
+       $a = myqu("UPDATE mytcg_user SET password = '".$sPassword."' WHERE user_id = ".$iUserID);
+       
+       sendEmail($aUser[0]['email_address'], 'info@mytcg.net', 'Password Update - Mobile Game Card Applications',
+    'So you forgot your password. Don\'t worry, it happens to everyone at some point.
+
+We have randomly generated a new password for you to use. 
+    
+If you are not happy with this password, feel free to change it to whatever you want in the `Profile` section of the site.
+Make sure you log in with this new password first to get to that screen.
+
+Username: '.$aUser[0]['username'].'
+New Password: '.$password);
+       
+       echo '1';
+       
+     }else{
+       echo 'This user has been deactivated';
+     }
+  }else{
+    echo 'This email address is not registered with our system';
   }
-  $user_id = $getUser[0]['user_id'];
-  $iMod=(intval($user_id) % 10)+1;
-  $sPassword=substr(md5($user_id),$iMod,10).md5($sPassword);
-  
-  if($sPassword != $getUser[0]['password']){
-    echo("Invalid password.");
-    exit;
-  }
-  
-  $sql = "UPDATE mytcg_user SET facebook_user_id = '".$userProfile['id']."',facebook_process = 1 WHERE user_id = ".$user_id;
-  $sUA=$_SERVER["HTTP_USER_AGENT"];
-  $sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user_id."'");
-  $response = myqu($sql);
-  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
-	SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
-	FROM mytcg_user WHERE user_id=".$user_id);
-  echo("1");
   exit;
 }
+
 
 if($_GET['signup']){
   $userProfile = $_SESSION['userProfile'];
@@ -56,8 +63,32 @@ if($_GET['signup']){
   $sql = "SELECT user_id FROM mytcg_user WHERE email_address='".$sEmail."'";
   $getUser = myqu($sql);
   if(sizeof($getUser) > 0){
-    echo('Email address already in use.');
-    exit;
+  	  $userProfile = $_SESSION['userProfile'];
+	  $sPassword = $_GET["password"];
+	  $sql = "SELECT user_id,password FROM mytcg_user WHERE email_address='".$sEmail."'";
+	  $getUser = myqu($sql);
+	  if(!$getUser){
+	    echo('Email address not found<br />Are you sure you have registered?');
+	    exit;
+	  }
+	  $user_id = $getUser[0]['user_id'];
+	  $iMod=(intval($user_id) % 10)+1;
+	  $sPassword=substr(md5($user_id),$iMod,10).md5($sPassword);
+	  
+	  if($sPassword != $getUser[0]['password']){
+	    echo("Incorrect password. Try the forgot password link below.");
+	    exit;
+	  }
+	  
+	  $sql = "UPDATE mytcg_user SET facebook_user_id = '".$userProfile['id']."',facebook_process = 1 WHERE user_id = ".$user_id;
+	  $sUA=$_SERVER["HTTP_USER_AGENT"];
+	  $sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user_id."'");
+	  $response = myqu($sql);
+	  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+		SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+		FROM mytcg_user WHERE user_id=".$user_id);
+	  echo("1");
+	  exit;
   }
   
   $sql = "INSERT INTO mytcg_user (name,surname,date_register,username,email_address,age,gender,facebook_user_id,credits,premium) VALUES ('".$sName."','".$sSurname."',NOW(),'".$sEmail."','".$sEmail."',".$sAge.",".$sGender.",'".$userProfile['id']."',0,0)";
@@ -101,8 +132,7 @@ if($_GET['signup']){
 		myqu($sql);
 	}
   }
-  
-  echo("15");
+  echo("1");
   exit;
 }
 
