@@ -30,12 +30,12 @@ function TopMenu($need,$have) {
 if($localhost){
 	$user['user_id'] = 2;
 	$user['username'] = "cole@mytcg.net";
-	$user['credits'] = 60;
-	$user['premium'] = 300;
+	$user['credits'] = 10000;
+	$user['premium'] = 10000;
 	$user['gameswon'] = 0;
 	$user['xp'] = 0;
-	$_SESSION['userProfile'] = "690746721";
-	$_SESSION['userDetails']['user_id'] = 2;
+	$_SESSION['userProfile'] = "746333357";
+	$_SESSION['userDetails']['user_id'] = $user['user_id'];
 }
 
 if($user['premium']==NULL){
@@ -88,6 +88,7 @@ if (isset($_GET['page'])) {
     	<a href="index.php?page=profile"><div id="play" class="navMenuItem <?php fHighlightMenu($page_url,"profile"); ?>">PROFILE</div></a>
     	<a href="index.php?page=credits"><div id="shop" class="navMenuItem <?php fHighlightMenu($page_url,"credits"); ?>">CREDITS</div></a>
     	<a href="index.php?page=auction"><div id="auction" class="navMenuItem <?php fHighlightMenu($page_url,"auction"); ?>">AUCTION</div></a>
+    	<a href="index.php?page=deck"><div id="deck" class="navMenuItem <?php fHighlightMenu($page_url,"deck"); ?>">DECK</div></a>
     	<a href="index.php?page=shop"><div id="deck" class="navMenuItem <?php fHighlightMenu($page_url,"shop"); ?>">SHOP</div></a>
     	<a href="index.php?page=album"><div id="album" class="navMenuItem <?php fHighlightMenu($page_url,"album"); ?>">ALBUM</div></a>    	
     	<div id="mainNavIconContainer">

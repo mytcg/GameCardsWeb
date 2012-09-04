@@ -281,7 +281,7 @@ if(isset($_GET['cards']))
 			JOIN mytcg_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
 			WHERE UC.deck_id IS NULL
 			AND UC.usercardstatus_id = 1
-			AND C.category_id IN(".implode(",",getChildrenIds($_GET['category_id'])).")
+			AND C.category_id IN(1,2,3)
 			AND UC.user_id = ".$userID."
 			GROUP BY UC.card_id
 			ORDER BY UC.card_id ASC";

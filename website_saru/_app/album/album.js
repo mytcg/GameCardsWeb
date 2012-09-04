@@ -384,7 +384,6 @@ function WORK_Album(){
 	      	top:0,
 	      	left:-15,
 	      	width:"100%",
-	      	height:10,
 	      	padding:8,
 	      	textAlign:"right",
 	      	color:"#FFFFFF",
@@ -427,7 +426,7 @@ function WORK_Album(){
         $(menuBlock).attr('alt',i);
         
         var iTop = (i+CatCounter)*ZL.iMenuBlockHeight;
-        $(menuBlock).css({ cursor:"pointer",top:iTop,left:-15,width:"100%",height:10,padding:8,textAlign:"right",fontWeight:"bold","text-shadow":"0px -1px -1px #d1d1d1",color:"#ffffff" }); 
+        $(menuBlock).css({ cursor:"pointer",top:iTop,left:-15,width:"100%",padding:8,textAlign:"right",fontWeight:"bold","text-shadow":"0px -1px -1px #d1d1d1",color:"#ffffff" }); 
         var newTotal = ZA.getXML(sXML,"album_"+i+"/totalcards");
         var newOwned = parseInt(ZA.getXML(sXML,"album_"+i+"/ownedcards"));
         var newDesc = ZA.getXML(sXML,"album_"+i+"/description");

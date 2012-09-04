@@ -1,10 +1,41 @@
 <?php
+function getCardInDeckCount($deckID)
+{
+  //Get all count
+  $sql = "SELECT COUNT(position_id) AS iNr
+         FROM mytcg_position";
+  $r = myqu($sql);
+  $totals[1] = $r[0]['iNr'];
+  
+  //Get owned count
+  $sql = "SELECT COUNT(deckcard_id) AS iNr
+          FROM mytcg_deckcard DC
+          WHERE DC.deck_id = ".$deckID;
+  $r = myqu($sql);
+  $totals[0] = $r[0]['iNr'];
+  return $totals;
+}
+
+
 function ieversion() {
   $match=preg_match('/MSIE ([0-9]\.[0-9])/',$_SERVER['HTTP_USER_AGENT'],$reg);
   if($match==0)
     return 10;
   else
     return floatval($reg[1]);
+}
+
+function getAchievementImage($id){
+	$sql = "SELECT UAL.progress
+			FROM mytcg_achievementlevel AL
+			LEFT OUTER JOIN mytcg_userachievementlevel UAL ON (UAL.achievementlevel_id = AL.id)
+			WHERE AL.achievement_id = ".$id;
+	$result = myqu($sql);
+	
+	
+	
+	$result = "";
+	return $result;
 }
 
 function getUserPic($username) {
