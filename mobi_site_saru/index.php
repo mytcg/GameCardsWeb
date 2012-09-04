@@ -1,6 +1,7 @@
 <?php
 require_once("functions.php");
 require_once("conn.php");
+
 ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,7 +25,9 @@ require_once("conn.php");
 			<div id="logo">
 				<a href="index.php?page=home"><img alt="logo" src="images/header_left.png"/></a>
 			</div>
-			<div class=header_right><img alt="logo" src="images/header_right.png"/></div>
+			<?php if($_SESSION['userID']){ ?>
+			<a href="index.php?page=home"><div class="cmdButton" style="position:absolute;top:-4px;right:10px;z-index:2;">home</div></a>
+			<?php }; ?>
 	</div>
 	<div id="content">
 		<div class="min-width">

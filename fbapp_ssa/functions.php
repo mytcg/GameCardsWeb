@@ -7,6 +7,42 @@ function ieversion() {
     return floatval($reg[1]);
 }
 
+function getCardCategories($iCatID){
+  global $Conf;
+  $pre = $Conf["database"]["table_prefix"];
+  $sCats = "";
+  //GET LEVEL NR
+  $sql = "SELECT level FROM mytcg_category WHERE category_id=".$iCatID;
+  $level = myqu($sql);
+  $level = $level[0]['level'];
+  
+  if($level==3){ //No subs
+    $sCats = $iCatID;
+  }
+  elseif($level==2){ //Subs 1 level down
+    $sql = "SELECT category_id FROM mytcg_category WHERE parent_id=".$iCatID;
+    $aCats = myqu($sql);
+    foreach($aCats as $cat){
+      $sCats .= $cat['category_id'].",";
+    }
+    $sCats = substr($sCats, 0, -1);
+  }
+  elseif($level==1){ //Subs 2 levels down
+    $sql = "SELECT category_id FROM mytcg_category WHERE parent_id=".$iCatID;
+    $aSub = myqu($sql);
+    $aSub = $aSub[0]['category_id'];
+    
+    $sql = "SELECT category_id FROM mytcg_category WHERE parent_id=".$aSub;
+    $aCats = myqu($sql);
+    foreach($aCats as $cat){
+      $sCats .= $cat['category_id'].",";
+    }
+    $sCats = substr($sCats, 0, -1);
+  }
+  return $sCats;
+}
+
+
 function getUserPic($username) {
 	$return = false;
 	$sql = "SELECT facebook_user_id FROM mytcg_user WHERE username = '".$username."' AND facebook_user_id IS NOT NULL";
@@ -54,7 +90,9 @@ function getUserAlbumStrength($userID) {
 function getCardOfDay($userID) {
 	$sql = "SELECT card_id, image
 			FROM mytcg_card C
-			ORDER BY C.card_id DESC LIMIT 1";  
+			WHERE category_id IN (52, 53, 54, 55, 56)
+			ORDER BY C.card_id
+			DESC LIMIT 1";  
   $result = myqu($sql);
   return $result;
 }
@@ -62,7 +100,7 @@ function getCardOfDay($userID) {
 function getBestCard($userID) {
   $sql = "SELECT image, category_id
 		 FROM mytcg_card
-		 WHERE category_id > 52
+		 WHERE category_id IN (52, 53, 54, 55, 56)
 		 ORDER BY RAND()
 		 LIMIT 1";
   // $sql = "SELECT ranking, image
@@ -89,7 +127,8 @@ function getRichestUsers() {
 
 function getCardInAlbumCount($userID,$catID = 52 ){
 	
-  $add = ($catID == 52)? " WHERE C.category_id > 52 "
+  $add = ($catID == 52)? " WHERE C.category_id >= 52 
+						   AND C.category_id <= 58 "
   					   : " WHERE C.category_id = ".$catID;
   
   //Get all count

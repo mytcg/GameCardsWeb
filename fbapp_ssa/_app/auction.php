@@ -28,11 +28,11 @@ if (isset($_GET['market']))
 		else
 		{
 		  $sql = "SELECT C.description
-      FROM mytcg_market M
-      LEFT JOIN mytcg_usercard UC ON (M.usercard_id = UC.usercard_id)
-      LEFT JOIN mytcg_card C ON (UC.card_id = C.card_id)
-      WHERE M.market_id = ".$market_id."
-      LIMIT 1";
+	      FROM mytcg_market M
+	      LEFT JOIN mytcg_usercard UC ON (M.usercard_id = UC.usercard_id)
+	      LEFT JOIN mytcg_card C ON (UC.card_id = C.card_id)
+	      WHERE M.market_id = ".$market_id."
+	      LIMIT 1";
       $carName = myqu($sql);
       $carName = $carName[0]['description'];
     
@@ -342,7 +342,7 @@ if(isset($_GET['create']))
 		$auctionCost = intval(intval($price) * 0.1);
 	}
 	$auctionCost = ($auctionCost < 5) ? 5 : $auctionCost;
-	$userQuery = myqu("SELECT premium FROM mytcg_user WHERE user_id=".$userID);
+	$userQuery = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium FROM mytcg_user WHERE user_id=".$userID);
 	$userCredits = $userQuery[0]['premium'];
 	//if ($userCredits > $auctionCost) {
 		if($market_id = myqu($sql))
@@ -581,7 +581,7 @@ if(isset($_GET['filter'])){
 	        $filter = "owned = 0";
 	    break;
 	    case 'mine':
-	        $filter = "uid = ".$userID;
+	        $filter = "	uid = ".$userID;
 	    break;
 	    case 'other':
 	        $filter = "uid != ".$userID;
@@ -603,6 +603,8 @@ if(isset($_GET['filter'])){
         JOIN mytcg_category CA ON C.category_id = CA.category_id
         JOIN mytcg_user U ON M.user_id = U.user_id
         WHERE M.markettype_id = 1 AND M.marketstatus_id = 1
+        AND C.category_id >= 52
+		AND C.category_id <= 56
         ORDER BY M.date_expired ASC, M.date_created ASC, M.market_id ASC) tmpTable
         WHERE ".$filter;
 	$aAuctions=myqu($query);

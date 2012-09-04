@@ -123,6 +123,7 @@ if (isset($_POST['profile'] ) && ($_GET["saveprofiledetail"]) == 1) {
              <?php
 			 $iCount++;
              } ?>
-            <input type="submit" name="profile" value="Save" class="button" title="Save" alt="Save"/>
+            <input type="submit" name="profile" value="SAVE" class="button" title="Save" alt="Save"/>
+    		<a href="index.php?page=home"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">BACK</div></a>
     	</form>
 	</div>

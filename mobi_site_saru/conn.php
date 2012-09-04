@@ -23,7 +23,7 @@
 	if ($_REQUEST['username']){
 		$sql = "SELECT user_id, username, password FROM mytcg_user WHERE username='{$_REQUEST['username']}' LIMIT 1";
 		$aUser = myqu($sql);
-		if($aUser){
+		if($aUser[0]["user_id"] != null){
 			$userID = $aUser[0]["user_id"];
 			$userPassword = $aUser[0]["password"];
 			$iMod=(intval($userID) % 10)+1;
@@ -35,13 +35,6 @@
 		}
 	}
 
-	 // $_SESSION['userID'] = '92';
- 	 // $_SESSION['username'] = 'Senjiro';
-	 // $user['user_id'] = $_SESSION['userID'];
-	 // $user['username'] = $_SESSION['username'];
-	
-	 // $_SESSION['userID'] = '2';
- 	 // $_SESSION['username'] = 'cole@mytcg.net';
 	 $user['user_id'] = $_SESSION['userID'];
 	 $user['username'] = $_SESSION['username'];
 ?>

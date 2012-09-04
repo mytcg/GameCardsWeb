@@ -503,6 +503,11 @@ WORK_App.prototype.createPage=function(){
 		//not logged in
 		ZA.createWindow(3,"<span style='margin-left: 622px;'>Register <span style='font-family: Arial; color: #575757; font-weight: normal; text-shadow: none;'>here</span></span>");
 		ZA.startJS("register");
+	} else {
+		//logged in
+		ZA.createWindow(3,"Deck");
+		ZA.startJS("deck");
+		$("#component_3").hide();
 	}
 	ZA.createWindow(5,"Auction <span style='font-family: Arial; color: #575757; font-weight: normal; text-shadow: none;'>Cards</span>");
 	var divComponent=document.getElementById("component_7");
@@ -527,6 +532,7 @@ WORK_App.prototype.createPage=function(){
 	ZA.startJS('twitterconnect');
 	ZA.startJS('leaderboard');
 	ZA.startJS('notifications');
+	ZA.startJS('achievements');
 	//ZA.startJS('compare');
 	userAgent = navigator.userAgent;
   uaMatch = userAgent.match(/(Firefox|Chrome|MSIE 9.0|Safari|Opera)/i);
@@ -1258,6 +1264,9 @@ WORK_App.prototype.maximizeWindowA=function(iComponentNo){
 			width:(parseInt(ZA.aComponents[iComponentNo].aPos[2]))+"px"
 			,height:(parseInt(ZA.aComponents[iComponentNo].aPos[3]))+"px"
 			,opacity:ZA.iOpacityWindowInActive},function(){
+				if (iComponentNo==3) {
+					$(divComponent).css({display:"none"});
+				}
 				//hide play window
 				if (iComponentNo==7) {
 					$(divComponent).css({display:"none"});
@@ -1274,6 +1283,7 @@ WORK_App.prototype.maximizeWindowA=function(iComponentNo){
 				if (iComponentNo==10) {
 					$(divComponent).css({display:"none"});
 				}
+				
 			});
 		$(divBottom).animate({
 			width:(parseInt(ZA.aComponents[iComponentNo].aPos[2])-16)+"px"});
@@ -1376,6 +1386,13 @@ WORK_App.prototype.showNotifications=function(){
  	ZA.callAjax("_app/notifications/?init=1",function(xml)
 	{
 		CRT.init(xml);
+	});
+};
+
+WORK_App.prototype.showAchievements=function(){
+ 	ZA.callAjax("_app/achievements/?init=1",function(xml)
+	{
+		ART.init(xml);
 	});
 };
 
@@ -1855,10 +1872,11 @@ WORK_Component.prototype.create=function(iComponentNo,sSize){
 		break;
 		
 		case 3:
-			// aPos[0]="505px";
-			// aPos[1]=parseInt(ZA.aComponents[1].aPos[3])+(2*ZA.iHeightMargin-78)+"px";
-			// aPos[2]="250px";
-			// aPos[3]="230px";
+			// deck view
+			aPos[0]="0px";
+			aPos[1]="10px";
+			aPos[2]="0px";
+			aPos[3]="0px";
 		break;
 		
 		case 4:
@@ -2515,22 +2533,31 @@ WORK_Menu.prototype.action=function(sAction){
 							ZA.callAjax("_app/userprofile/?init=1",function(xml){ ZUP.init(xml); });
 						break;
 						case "2":
+							//auction
 							ZA.maximizeWindowA(5);
 						break;				
 						case "3":
+							//shop
 							ZA.maximizeWindowA(2);
 						break;		
 						case "4":
-	            			ZA.maximizeWindowA(4);
+							// deck
+							$("#component_3").show();
+	            			ZA.maximizeWindowA(3);
 						break;
 						case "5":
-							$("#component_10").show();
-		                     ZA.maximizeWindowA(10);
+							//album
+							ZA.maximizeWindowA(4);
 						break;
 						case "6":
-		                    ZA.showLeaderboard();
+							//credits
+		                    $("#component_10").show();
+		                     ZA.maximizeWindowA(10);
 						break;
 						case "7":
+							ZA.showAchievements();
+						break;
+						case "8":
 							ZA.showNotifications();
 						break;
 					}
@@ -2619,15 +2646,19 @@ WORK_Menu.prototype.createTop=function(){
 	// logged in
 	else{
 		//ZA.sMenuItemsTop = "Logout|Profile|My Deck|Album|Auction|Buy Cards|Leaderboard|Credits|Notifications";
-		ZA.sMenuItemsTop = "Logout|Profile|Auction|Shop|Album|Credits";
+		ZA.sMenuItemsTop = "Logout|Profile|Auction|Shop|Deck|Album|Credits";
 	}
 	
 	var divMenu=ZA.createDiv(divHeader,"menutop","menutop");
 	var divLogo=ZA.createDiv(divMenu,"logo");
 	var divLeft=ZA.createDiv(divMenu,"","left_banner");
 	var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
-	// var homeurl = ZA.createDiv(divLeft,"homeurl");
-	// $(homeurl).html("home");
+	if(ZA.sUsername){
+		var achiv = ZA.createDiv(divLeft,"","achievements");
+			$("#achievements").click(function(event){
+		    ZA.showAchievements();
+	  		});
+  	}
 	if (!ZA.sUsername) {
 		//not logged in
 		$(divLeftInfo).html("<span class='txtGrey' style='top:33px;left:-40px;'>to SA Rugby Cards</span>");
@@ -2653,7 +2684,7 @@ WORK_Menu.prototype.createTop=function(){
 				divItem.innerHTML=sDesc;
 			}
 		}else{
-			if(iCount!=5){
+			if(iCount!=6){
 				var iLength=sDesc.length;
 				var divItem=ZA.createDiv(divMenu,"menutopitem");
 				divItem.onclick=ZM.action("top_"+iCount);
@@ -2812,14 +2843,14 @@ WORK_Menu.prototype.hardcoreFilter=function(categoryID,updateLevel){
    
    if (ZA.sUsername) {
      ZA.callAjax("_app/album/?cat="+categoryID+"&l="+updateLevel,function(xml){ZL.init(xml);});
-     // if(updateLevel < 3){
-      // ZA.callAjax("_app/deck/?cat="+categoryID+"&l="+updateLevel,function(xml){ ZD.init(xml); });
-     // }
+     if(updateLevel < 3){
+      ZA.callAjax("_app/deck/?cat="+categoryID+"&l="+updateLevel,function(xml){ ZD.init(xml); });
+     }
    }
   }else{
     if (ZA.sUsername) {
       ZA.callAjax("_app/album/?init=1",function(xml){ZL.init(xml);});
-      // ZA.callAjax("_app/deck/?init=1",function(xml){ ZD.init(xml); });
+      ZA.callAjax("_app/deck/?init=1",function(xml){ ZD.init(xml); });
     }
     ZA.callAjax("_app/shop/?init=1",function(xml){ ZS.init(xml); },2);
     ZA.callAjax("_app/auction/?init=1",function(xml){ZU.init(xml);});

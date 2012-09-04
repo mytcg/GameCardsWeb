@@ -12,9 +12,9 @@
     $iCount=0;
 
 ?>	
-	<div><p><a href="?page=moola">Spend Moola to buy credits.</a></p></div>
+	<div><p>Need some more credits? <a href="?page=credits_buy">Click here</a></p></div>
 	<ul id="item_list">
-	<li style="text-align:center;"><p>Credits:</p></li>
+	<li style="text-align:center;"><p>Your Credit Balance:</p></li>
 	</ul>
 	<div class="info_textbox">
 		<div class="info_box"><?php echo($aCreditsVal[$iCount]['premium']); ?></div>

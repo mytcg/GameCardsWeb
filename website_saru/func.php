@@ -1,5 +1,67 @@
 <?php
 require_once("config.php");
+define('ACHI_INC','1'); 
+define('ACHI_TOT','2'); 
+
+function checkAchis($iUserID, $iAchiTypeId) {
+	$achiQu = ('SELECT ual.id, ual.progress, al.target, a.calc_id, a.reset, a.query, a.name 
+		FROM mytcg_userachievementlevel ual
+		INNER JOIN mytcg_achievementlevel al
+		ON al.id = ual.achievementlevel_id
+		INNER JOIN mytcg_achievement a
+		ON a.id = al.achievement_id
+		WHERE ual.date_completed IS NULL
+		AND ual.user_id = '.$iUserID.' 
+		AND a.type_id = '.$iAchiTypeId);
+	
+	$achiQuery = myqu($achiQu);
+	
+	$count = 0;
+	while ($aOneAchi=$achiQuery[$count]) {
+		$count++;
+		
+		$userAchiId = $aOneAchi['id'];
+		$reset = $aOneAchi['reset'];
+		$target = $aOneAchi['target'];
+		$progress = $aOneAchi['progress'];
+		$query = $aOneAchi['query'];
+		$name = $aOneAchi['name'];
+		$query = str_replace("useridreplac", $iUserID, $query);
+		
+		$valQuery = myqu($query);
+		$val = $valQuery[0]['val'];
+		
+		if ($aOneAchi['calc_id'] == ACHI_INC) {
+			if ($val >= 0) {
+				$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = progress + ".$val." WHERE id = ".$userAchiId;
+				myqu($updateQuery);
+				
+				$progress = $progress + $val;
+			}
+			else if ($reset == 1) {
+				$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = 0 WHERE id = ".$userAchiId;
+				myqu($updateQuery);
+				
+				$progress = 0;
+			}
+		}
+		else if ($aOneAchi['calc_id'] == ACHI_TOT) {
+			$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = ".$val." WHERE id = ".$userAchiId;
+			myqu($updateQuery);
+			
+			$progress = $val;
+		}
+		
+		if ($progress >= $target) {
+			$updateQuery = "UPDATE mytcg_userachievementlevel SET date_completed = now() WHERE id = ".$userAchiId;
+			myqu($updateQuery);
+			
+			myqui('INSERT INTO mytcg_notifications (user_id, notification, notedate, notificationtype_id)
+					VALUES ('.$iUserID.', "Achievement earned! ('.$name.') Well Done!", now(), 1)');
+		}
+	}
+}
+
 
 function validip($ip){
   if (!empty($ip) && ip2long($ip)!=-1){
@@ -117,7 +179,7 @@ function getUserData($prefix, $userId='')
 {
 	$userId = ($userId == '') ? $_SESSION['user']['id'] : $userId; 
 	$sql = "SELECT user_id, username, password, date_last_visit, mobile_date_last_visit , (ifnull(credits,0)+ifnull(premium,0)) credits,credits freemium, premium, xp, freebie, completion_process_stage "
-		."FROM ".$prefix."_user "
+		."FROM mytcg_user "
 		."WHERE user_id='".$userId."' "
 		."AND is_active='1'";
 	return myqu($sql);

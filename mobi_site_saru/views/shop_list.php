@@ -41,4 +41,4 @@ while ($iPackID=$aProducts[$iCount]['product_id']){
 	$iCount++;
 	}
 ?>
- 
+<div><a href="index.php?page=home"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">BACK</div></a></div>

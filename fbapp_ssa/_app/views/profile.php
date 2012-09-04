@@ -69,7 +69,9 @@ $aUserData = $aUserData[0];
 $sql = "SELECT UD.description, UA.answer, UD.detail_id
 		FROM mytcg_user_answer UA
 		INNER JOIN mytcg_user_detail UD ON (UA.detail_id = UD.detail_id)
-		WHERE UA.user_id = ".$user['user_id'];
+		WHERE UA.user_id = ".$user['user_id']."
+		AND UD.detail_id != 3
+		AND UD.detail_id != 4 ";
 $aPersonalData = myqu($sql);
 
 $verified = ($aUserData['email_verified']==1)? "dotActive" : "" ;

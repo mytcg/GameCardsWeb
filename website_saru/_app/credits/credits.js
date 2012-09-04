@@ -337,7 +337,7 @@ if(dev < 0)
 				for(var i=0; i<logsCount; i++)
 				{
 					var rowclass = (i%2) ? 'even' : 'odd';
-					var signcol = (parseInt(ZA.getXML(xml,"log_"+i+"/amount")) > 0) ? '#000000' : '#CC0000';
+					var signcol = (parseInt(ZA.getXML(xml,"log_"+i+"/amount")) > 0) ? '#d1d1d1' : '#F2C126';
 					tablebody+=
 					'<tr class="'+rowclass+'">'+
 						'<td style="width:110px;text-align:right;padding-right:15px;">'+ZA.getXML(xml,"log_"+i+"/date")+'</td>'+
@@ -604,7 +604,7 @@ if(dev < 0)
 				
 				var div = ZA.createDiv(info);
 				$(div).css({
-					color:"#000",
+					color:"#F2C126",
 					top:46,
 					width:"100%",
 					fontWeight:"bold"
@@ -640,7 +640,7 @@ if(dev < 0)
 				//credits
 				var div = ZA.createDiv(info);
 				$(div).css({
-					color:"#444",
+					color:"#d1d1d1",
 					top:160,
 					width:"100%"
 				})
@@ -657,7 +657,7 @@ if(dev < 0)
 				//cost
 				var div = ZA.createDiv(info);
 				$(div).css({
-					color:"#444",
+					color:"#d1d1d1",
 					top:218,
 					width:"100%"
 				})

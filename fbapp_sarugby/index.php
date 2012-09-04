@@ -32,6 +32,7 @@ if($localhost){
 	$user['username'] = "piero@mytcg.net";
 	$user['credits'] = 10000;
 	$user['premium'] = 10000;
+
 	$user['gameswon'] = 0;
 	$user['xp'] = 0;
 	$_SESSION['userProfile'] = "690746721";

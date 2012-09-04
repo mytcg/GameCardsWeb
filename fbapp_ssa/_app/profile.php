@@ -11,7 +11,7 @@ if($_GET['email']){
     $eCode = base64_encode($sEmail);
     $eCode = substr($eCode, -10);
     
-    $success = sendEmail($sEmail, 'support@xbarsport.com', 'Password Verification - SA Rugby Cards Application','You have sent a request to verify this email address on the SA Rugby Cards System. 
+    $success = sendEmail($sEmail, 'surfingcards@mytcg.net', 'Password Verification - Surfing Card Application','You have sent a request to verify this email address on the Surfing Cards System. 
     		
     If you did not request this, please ignore it.
     

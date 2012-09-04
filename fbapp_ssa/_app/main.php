@@ -49,7 +49,6 @@ New Password: '.$password);
   exit;
 }
 
-
 if($_GET['signup']){
   $userProfile = $_SESSION['userProfile'];
   $sEmail = $_GET["email_address"];
@@ -69,6 +68,7 @@ if($_GET['signup']){
 	  $getUser = myqu($sql);
 	  if(!$getUser){
 	    echo('Email address not found<br />Are you sure you have registered?');
+
 	    exit;
 	  }
 	  $user_id = $getUser[0]['user_id'];

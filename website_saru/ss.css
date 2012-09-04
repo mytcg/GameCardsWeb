@@ -15,6 +15,7 @@
 	font-family:"Arial Black", "Arial";
 	font-weight:900;
 }
+
 .profileInput{
 	width:240px;
 	font-size:12px;
@@ -416,7 +417,7 @@ div{
 	cursor:default;
 }
 body{
-	color:#f1f1f1;
+	color:#d4d4d4;
 	text-transform:uppercase;
 	font-size:9px;
 	font-family:"Arial";
@@ -427,7 +428,34 @@ body{
 	
 	
 }
-
+#achieve_holder{
+	width:700px;
+	height:700px;
+	left: 48px;
+    top: 42px;
+}
+#achieve_con{
+	float:left;
+	margin-left:15px;
+	margin-bottom:15px;
+	width:205px;
+	position:relative;
+	height:210px;
+	border:1px solid #333;
+}
+#achievements{
+	cursor:pointer;
+	height: 50px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 45px;
+    z-index: 2;
+	background:url(_site/trophies.png) -38px 1px no-repeat;
+}
+#achievements:hover{
+	background:url(_site/trophies.png) 3px 1px no-repeat;
+}
 #left_banner{
 	position:absolute;
 	top:15px;
@@ -575,7 +603,7 @@ body{
 	z-index:2;
 	position: relative;
 	width:100%;
-	background-position: 0px -1101px;
+	background-position: 0px -1200px;
 	background-image:url(_site/repeatx.png);
 	background-repeat: repeat-x;
 }
@@ -1090,10 +1118,16 @@ input.registerBox{
 .menutop{
 	background-image:url(_site/header.png);
 	background-repeat: no-repeat;
-	width:1130px;
+	width:990px;
 	height:100%;
 	margin:0 auto;
 	position: relative;
+}
+#password, #surname{
+	width:210px;	
+}
+#name, #age{
+	width:120px;
 }
 .logo{
 	float:left;
@@ -1662,10 +1696,10 @@ table.grid td.score{
 	text-align:center;
 }
 table.grid tr.odd{
-	background:#9C9C9C;
+	background:#161616;
 }
 table.grid tr.even{
-	background:#ccc;
+background:transparent;
 }
 table.grid tr.numberone{
 	font-size:16px;
@@ -1740,29 +1774,30 @@ table.grid tr.numberone td{
 	cursor:pointer;
 }
 #deckcontainer{
-	border:2px solid #D1D1D1;
+	border:1px solid transparent;
 }
 #cardscontainer{
 	overflow:hidden;
 }
 .highlight{
-	border:2px solid #58B1FD!important;
+	border:1px solid #555555!important;
 }
 .lightup{
-	border:2px solid #CC0000!important;
+	border:1px solid #F2C126!important;
 }
 .noimage{
 	width:64px;
 	height:90px;
-	background:#ccc;
+	background:#444;
+	box-shadow:inset 0px 0px 10px #000;
 	display:none;
 }
 .incomplete{
 	color:#cc0000!important;
 }
 #availablecardholders{
-	width: 587px;
-	height: 468px;
+	height:600px;
+	width: 410px;
 	overflow: visible!important;
 	padding-bottom:10px;
 }
@@ -1773,7 +1808,7 @@ table.grid tr.numberone td{
 	padding-bottom:8px;
 }
 .deckBlock:hover{
-	border:1px solid #CC0000!important;
+	border:1px solid #F2C126!important;
 }
 
 

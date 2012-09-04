@@ -1,84 +1,9 @@
 <?php
 $iUserID = $user['user_id'];
-$boosterid = $_GET['buynow'];
 
-//GENERATES THE CONTENTS OF A BOOSTER PACK AND GIVES IT TO THE USER
-function openBooster($userID,$packID){
-	$iReleasedBuffer = 1;
-	
-	//CARD COUNT OF PACK
-	$iPackCount = myqu("SELECT no_of_cards FROM mytcg_product WHERE product_id={$packID}");
-	$iPackCount = $iPackCount[0]['no_of_cards'];
-	
-	$aQuality = myqu("SELECT distinct cq.cardquality_id,((cq.booster_probability)*{$iPackCount}) AS bp 
-		FROM mytcg_cardquality cq 
-		INNER JOIN mytcg_card c 
-		ON c.cardquality_id = cq.cardquality_id 
-		INNER JOIN mytcg_productcard pc 
-		ON pc.card_id = c.card_id 
-		WHERE pc.product_id = {$packID} 
-		ORDER BY booster_probability ASC");
-	$iQualityID = 0;
-	$cards = array();
-	
-	//GET CARDS
-	for ($i = 0; $i < $iPackCount; $i++){
-		//GET A RANDOM QUALITY CARD
-		$iQualityID = randomQualityID($aQuality,$iPackCount);
-	
-		//GET STACK OF SAME QUALITY CARDS
-		$aGetCards = myqu(" SELECT c.card_id, c.cardquality_id, cq.booster_probability
-			FROM mytcg_card c
-			INNER JOIN  mytcg_productcard pc
-			ON pc.card_id = c.card_id
-			INNER JOIN mytcg_cardquality AS cq
-			ON cq.cardquality_id = c.cardquality_id
-			WHERE pc.product_id={$packID}
-			AND c.cardquality_id={$iQualityID}");
-		$iNumCards = sizeof($aGetCards);
-		
-		//PICK A RANDOM CARD FROM THE STACK
-		$iRandom=rand(0,$iNumCards-1);
-		$iCardID=$aGetCards[$iRandom]['card_id'];
-					
-		//GIVE THE CARD TO THE USER
-		myqu('UPDATE mytcg_usercard set loaded = 1 where card_id = '.$iCardID.' and user_id = '.$userID);
-		$aCards=myqu("INSERT INTO mytcg_usercard (user_id, card_id, usercardstatus_id)
-			SELECT {$userID}, {$iCardID}, usercardstatus_id
-			FROM mytcg_usercardstatus
-			WHERE description = 'Album'");
-		
-		$card;
-		if ($cards[$iCardID] == null) {
-			$card = array();
-			$card['cardId'] = $iCardID;
-			$card['quantity'] = 1;
-		}
-		else {
-			$card = $cards[$iCardID];
-			$card['quantity'] = $card['quantity']+1;
-		}
-		$cards[$iCardID] = $card;
-	}
-	
-	//we can remove one of the products from stock though
-	myqu("UPDATE mytcg_product SET in_stock=in_stock-1 WHERE product_id={$packID}");
-	
-	return $cards;
-}
-//ROLL DICE AND CHECK WHAT QUALITY CARD THE USER RECEIVES 
-function randomQualityID($aQuality,$iPackCount){
-  $iRandom = rand(1, $aQuality[sizeof($aQuality) - 1]['bp']);//rand(1,$iPackCount);
-  $interval=0;
-  for($l=0; $l < sizeof($aQuality); $l++){
-      $interval += $aQuality[$l]['bp'];
-        if ($iRandom <= $interval){
-          $iQualityID = $aQuality[$l]['cardquality_id'];
-          break;
-    }
-  }
-  return $iQualityID;
-}
+if (isset($_SESSION['booster'])){
+	$boosterid = $_SESSION['booster'];
+
     //GET PRODUCT DETAIL
     $aDetails=myqu('SELECT P.product_id, PT.description AS ptype, P.description, P.premium, P.price cred, P.no_of_cards 
       FROM mytcg_product P 
@@ -135,7 +60,7 @@ function randomQualityID($aQuality,$iPackCount){
 		VALUES(".$iUserID.", ".$iProductID.", NULL, NULL, 
 				now(), 'Spent ".$itemCost." credits on ".$aDetails[0]['description'].".', -".$itemCost.", ".$freemiumCost.", ".$premiumCost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$iUserID."), 10)");
         
-        $iCount = 0;?>
+        $iCount = 0; ?>
         <div>These are your new cards</div>
         <?php
         foreach($cards as $card){
@@ -146,8 +71,12 @@ function randomQualityID($aQuality,$iPackCount){
           $aCard=myqu($query);
 		  ?>
 		  <div class="album_card_pic">
-			<img src="<?php echo($aCard[0]['path']); ?>cards/jpeg/<?php echo($aCard[0]['image']); ?>_web.jpg" width="64" height="90" title="View potential cards">
+		  	<a href="index.php?page=card_display_front&card_id=<?php echo($aCard[0]['card_id']); ?>">
+				<img src="<?php echo($aCard[0]['path']); ?>cards/jpeg/<?php echo($aCard[0]['image']); ?>_web.jpg" width="64" height="90" title="View potential cards">
+	      	</a>
+	      	<div style="width:64px"><?php echo($aCard[0]['description']); ?></div>
 	      </div>
+	      
 		  <?php
           $iCount++;
         }
@@ -156,6 +85,12 @@ function randomQualityID($aQuality,$iPackCount){
     else{
       echo("Your purchase was unsuccesful...");
     }
+	unset ($_SESSION['booster']);
     exit;
-  
+    }
+    else
+    {
+      echo("Your purchase was unsuccesful...");
+	}
 ?>
+<div><a href="index.php?page=home"><div class="cmdButton" style="margin-top:5px;padding-top:8px;height:17px;">Back</div></a></div>

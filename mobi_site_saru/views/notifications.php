@@ -1,6 +1,9 @@
 <?php
+$iUserID =$user['user_id'];
 $query = "SELECT * FROM mytcg_notifications
-		  ORDER BY notedate DESC LIMIT 10";
+			WHERE user_id={$iUserID}
+			ORDER BY notedate DESC
+			LIMIT 10";
 $aNotifications=myqu($query);
 $iCount = 0;
 ?>
