@@ -1,0 +1,5 @@
+15update table mytcg_user set fbuid = '' where fbuid = ''
+15update table mytcg_user set fbuid = '' where fbuid = ''
+15update table mytcg_user set fbuid = '' where fbuid = '1089362254' --> 
+15update table mytcg_user set fbuid = '' where fbuid = '1089362254' --> 
+15update table mytcg_user set fbuid = '' where fbuid = '100000500907345' --> 
