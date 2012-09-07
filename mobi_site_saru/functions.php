@@ -1,33 +1,4 @@
 <?php
-function addTransaction($type, $gateway, $amount, $cost, $user, $pre)
-{
-	//insert new transaction log and set to submitted (status=1)
-	$sql = "INSERT INTO mytcg_transactionlog(
-					user_id,
-					description,
-					date,
-					val,
-					transactiontype_id,
-					transactionstatus_id
-				) VALUES (
-					{$user},
-					'Purchase {$amount} TCG credits by {$gateway} for {$cost}',
-					NOW(),
-					{$amount},
-					{$type},
-					1
-				)";
-	myqu($sql);
-	
-	//get and return unique transactionlog_id for transaction reference number to be passed to payment gateway
-	$sql = "SELECT MAX(transaction_id) AS 'ref' FROM mytcg_transactionlog
-				WHERE user_id={$user}
-				AND transactiontype_id={$type}
-				AND transactionstatus_id=1";
-	$query = myqu($sql);
-	
-	return $query[0]['ref'];
-}
 
 //GENERATES THE CONTENTS OF A BOOSTER PACK AND GIVES IT TO THE USER
 function openBooster($userID,$packID){

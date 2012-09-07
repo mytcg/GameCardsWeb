@@ -1,18 +1,18 @@
 <?php
 	//database connection to local host
-	$db['host'] = "localhost";
-	$db['database'] = "sarugmhnuf_db1";
-	$db['username'] = "root";
-	$db['password'] = "";
-	$db['pre'] = "mytcg";
+	// $db['host'] = "localhost";
+	// $db['database'] = "sarugmhnuf_db1";
+	// $db['username'] = "root";
+	// $db['password'] = "";
+	// $db['pre'] = "mytcg";
 
 	
 	//database connection to live site 
-	// $db['host'] = "sarugbycards.com";
-	// $db['database'] = "sarugmhnuf_db1";
-	// $db['username'] = "sarugmhnuf_1";
-	// $db['password'] = "j2gcuH88";
-	// $db['pre'] = "mytcg"; 
+	$db['host'] = "sarugbycards.com";
+	$db['database'] = "sarugmhnuf_db1";
+	$db['username'] = "sarugmhnuf_1";
+	$db['password'] = "j2gcuH88";
+	$db['pre'] = "mytcg"; 
 	
 	session_start();
 	//Var short
