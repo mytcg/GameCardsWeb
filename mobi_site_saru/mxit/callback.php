@@ -12,7 +12,7 @@ require_once("conn.php");
        		$mxitParameters = $_GET['mxit_transaction_res'];
        		if ($mxitParameters == 0){
        			echo 'Transaction completed successfully.<br/>';
-				// $description = "Purchased ".$item['description']." for ".$item['price']." Facebook Credits." ;
+				// $description = "Purchased ".$item['description']." for ".$item['price']." Mxit Moola." ;
 				// myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card,
 				// transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
 					// VALUES('.$userID.', NULL, NULL, NULL, 

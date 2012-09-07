@@ -23,13 +23,14 @@ require_once("functions.php");
 	
    	if (isset($_POST['username']) && $_POST['username']!='') {
 		
-	$query = "SELECT user_id, username FROM mytcg_user WHERE username='" . $_POST['username'] . "'";
-	$result = myqu($query);
+		$query = "SELECT user_id, username FROM mytcg_user WHERE username='" . $_POST['username'] . "'";
+		$result = myqu($query);
 		
 		if ($result==true) {
 			$formValid['username'] = 'valid';
 			$validUserName = $result[0]['username'];
 			$userID = $result[0]['user_id'];
+			
 			header("Location: purchase.php");
 			
 			exit;

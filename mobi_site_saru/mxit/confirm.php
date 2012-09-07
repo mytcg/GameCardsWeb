@@ -1,5 +1,36 @@
 <?php
 require_once("conn.php");
+$pre = "mytcg";
+function addTransaction($type, $gateway, $amount, $cost, $user, $pre)
+{
+	//insert new transaction log and set to submitted (status=1)
+	$sql = "INSERT INTO mytcg_transactionlog(
+					user_id,
+					description,
+					date,
+					val,
+					transactiontype_id,
+					transactionstatus_id
+				) VALUES (
+					".$user.",
+					'Purchase ".$amount." TCG credits by ".$gateway." for ".$cost."',
+					NOW(),
+					".$amount.",
+					".$type.",
+					1
+				)";
+	myqu($sql);
+	
+	//get and return unique transactionlog_id for transaction reference number to be passed to payment gateway
+	$sql = "SELECT MAX(transaction_id) AS 'ref' FROM mytcg_transactionlog
+			WHERE user_id=".$user."
+			AND transactiontype_id=".$type."
+			AND transactionstatus_id=1";
+	$query = myqu($sql);
+	
+	return $query[0]['ref'];
+}
+
 ?>
 <html>
    <head>
@@ -8,38 +39,55 @@ require_once("conn.php");
    </head>
    <body>
        <img src="images/header_left.png" border="0" /><br />
-        <?php
-		if ($_SESSION['userID']){
-       // if($_POST['VendorId']!=""){
-	       // echo($_POST['VendorId']."<br>");
-		   // echo($_POST['TransactionReference']."<br>");
-		   // echo($_POST['CallbackUrl']."<br>");
-		   // echo($_POST['ProductId']."<br>");
-		   // echo($_POST['ProductName']."<br>");
-		   // echo($_POST['ProductDescription']."<br>");
-		   // echo($_POST['MoolaAmount']."<br>");
-		   // echo($_POST['CurrencyAmount']."<br>");
-       // }
+<?php
+if ($_SESSION['userID']){
+		
 		$username = $_SESSION['username'];
 		$userID = $_SESSION['userID'];
-       
-       $amount = (int)$_GET['a'];
-       if($amount==2000){
-       	 $credits = 1400;
-		 $worth = "R20.00";
-       }elseif($amount==1000){
-	   	 $credits = 700;
-		 $worth = "R7.00";
-       }else{
-       	 $credits = 350;
-		 $worth = "R5.00";
-       }
-	   
-	   echo("<p>Purchase {$credits} credits for {$amount} Moola?</p>");
+		$amount = (int)$_GET['a'];
+		$cost = $_GET['cost'];
+		$result = 'success';
+		$type = '1';
+			
+	    if($amount==2000){
+	    	$type = '2';
+			$gateway = 'MXIT MOOLA';
+	       	$credits = 1400;
+			$cost = "R20.00";
+	    }elseif($amount==1000){
+	    	$type = '2';
+			$gateway = 'MXIT MOOLA';
+		   	$credits = 700;
+			$cost = "R7.00";
+	    }elseif($amount==500){
+	    	$type = '2';
+			$gateway = 'MXIT MOOLA';
+	       	$credits = 350;
+			$cost = "R5.00";
+	    }
+	    echo ("this ".$type." + ".$gateway." + ".$amount." + ".$cost." + ".$userID." + ".$pre);
+		
+		$referenceNumber = addTransaction($type,$gateway,$amount,$cost,$userID,$pre);
+		echo $referenceNumber;
+		if(is_null($referenceNumber))
+		{
+			$result = 'failed';
+		}
+		
+		
+		//return RESULTS
+		// echo '<transaction>'.$sCRLF;
+		// echo $sTab.'<result val="'.$result.'" />'.$sCRLF;
+		// echo $sTab.'<reference val="'.$referenceNumber.'" />'.$sCRLF;
+		// echo '</transaction>';
+		// exit;
+		
+	   if($result == "success"){
+	   	echo("<p>Purchase {$credits} credits for {$amount} Moola?</p>");
        ?>
-        <form action="http://billing.internal.mxit.com/Transaction/PaymentRequest" method="post"> 
-			<input id="VendorId" name="VendorId" type="hidden" value="211" />
-			<input id="TransactionReference" name="TransactionReference" type="hidden" value="<?php echo($username); ?>" />
+        <form action="http://billing.mxit.com/Transaction/PaymentRequest" method="post"> 
+			<input id="VendorId" name="VendorId" type="hidden" value="1" />
+			<input id="TransactionReference" name="TransactionReference" type="hidden" value="<?php echo($referenceNumber); ?>" />
 			<input id="CallbackUrl" name="CallbackUrl" type="hidden" value="http://www.sarugbycards.com/mxit/callback.php" />
 			<input id="ProductId" name="ProductId" type="hidden" value="<?php echo($userID."-".$amount); ?>" />
 			<input id="ProductName" name="ProductName" type="hidden" value="credits<?php echo($credits); ?>" />
@@ -48,7 +96,8 @@ require_once("conn.php");
 			<input id="CurrencyAmount" name="CurrencyAmount" type="hidden" value="<?php echo($worth); ?>" />
 			<input type="submit" value="Continue" />
 		</form><br />
-		<?php  }else{ echo("No user logged for the purchase, please <a href='info.php'>try again</a> "); }?>
+<?php  }
+	}else{ echo("No user logged for the purchase, please <a href='info.php'>try again</a> "); }?>
        <a href="purchase.php">Back</a>
    </body>
 <html>
