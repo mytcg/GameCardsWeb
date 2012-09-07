@@ -50,7 +50,7 @@ if ($_SESSION['userID']){
 	   if($result == "success"){
 	   	echo("<p>Purchase {$credits} credits for {$amount} Moola?</p>");
        ?>
-        <form action="callback.php" method="post"> 
+        <form action="http://billing.internal.mxit.com/Transaction/PaymentRequest" method="post"> 
 			<input id="VendorId" name="VendorId" type="hidden" value="1" />
 			<input id="TransactionReference" name="TransactionReference" type="hidden" value="<?php echo($referenceNumber); ?>" />
 			<input id="CallbackUrl" name="CallbackUrl" type="hidden" value="http://www.sarugbycards.com/mxit/callback.php" />

@@ -60,5 +60,6 @@ require_once("functions.php");
 	  		</div>
 	  		<input type="submit" value="Continue" />
 		</form>
+		<a href="index.php">Back</a>
    </body>
 <html>
