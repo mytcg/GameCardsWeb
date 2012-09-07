@@ -50,19 +50,20 @@ if ($_SESSION['userID']){
 	   if($result == "success"){
 	   	echo("<p>Purchase {$credits} credits for {$amount} Moola?</p>");
        ?>
-        <form action="http://billing.mxit.com/Transaction/PaymentRequest" method="post"> 
+        <form action="callback.php" method="post"> 
 			<input id="VendorId" name="VendorId" type="hidden" value="1" />
 			<input id="TransactionReference" name="TransactionReference" type="hidden" value="<?php echo($referenceNumber); ?>" />
 			<input id="CallbackUrl" name="CallbackUrl" type="hidden" value="http://www.sarugbycards.com/mxit/callback.php" />
 			<input id="ProductId" name="ProductId" type="hidden" value="<?php echo($userID."-".$referenceNumber); ?>" />
 			<input id="ProductName" name="ProductName" type="hidden" value="tcgCredits_<?php echo($credits); ?>" />
 			<input id="ProductDescription" name="ProductDescription" type="hidden" value="purchasing <?php echo($credits); ?> tcg credits for <?php echo($amount); ?> moola" />
+			<input id="item_cost" name="item_cost" type="hidden" value="<?php echo($credits); ?>" />
 			<input id="MoolaAmount" name="MoolaAmount" type="hidden" value="<?php echo($amount); ?>" />
 			<input id="CurrencyAmount" name="CurrencyAmount" type="hidden" value="<?php echo($cost); ?>" />
 			<input type="submit" value="Continue" />
 		</form><br />
-<?php  }else{echo("Reference Number not created");}
-	}else{ echo("No user logged for the purchase, please <a href='info.php'>try again</a> "); }?>
+<?php  }else{echo("Reference Number not created, try again");}
+	}else{ echo("No user logged for the purchase, please <a href='info.php'>try again</a>< /br> "); }?>
        <a href="purchase.php">Back</a>
    </body>
 <html>

@@ -1,5 +1,11 @@
 <?php
 require_once("conn.php");
+$userID=$_SESSION['userID'];
+$buyer_id = $_SESSION['userID'];
+$order_id = $_REQUEST['TransactionReference'];
+$description = $_REQUEST['ProductDescription'];
+$item_cost = $_REQUEST['item_cost'];
+//echo ($userID."+".$buyer_id."+".$order_id."+".$description."+".$item_cost);
 ?>
 <html>
    <head>
@@ -12,11 +18,17 @@ require_once("conn.php");
        		$mxitParameters = $_GET['mxit_transaction_res'];
        		if ($mxitParameters == 0){
        			echo 'Transaction completed successfully.<br/>';
-				// $description = "Purchased ".$_REQUEST['description']." for ".$_REQUEST['price']." Mxit Moola." ;
-				// myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card,
-				// transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
-					// VALUES('.$userID.', NULL, NULL, NULL, 
-				// now(), '".$description."', ".$_REQUEST['item_id'].", 0, ".$_REQUEST['item_id'].", 5, 'mxit',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15, '".$order_id."')");
+				$query = "insert into mytcg_transactionlog 
+						 (user_id, description, date, val, transactiontype_id, transactionstatus_id, response, transactionlogtype_id, facebook_user_id, order_id)
+						 values 
+						 ((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'),'".$description."', now(), ".$item_cost.", 20, 2, 'Settled', 2, null, ".$order_id.")";
+				myqu($query);
+				
+				myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type, order_id)
+					VALUES((select user_id from mytcg_user where facebook_user_id = '".$buyer_id."'), NULL, NULL, NULL, 
+						now(), '".$description."', ".$item['item_id'].", 0, ".$item_cost.", 5, 'facebook',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = (select user_id from mytcg_user where facebook_user_id = '".$buyer_id."')), 15, '".$order_id."')");
+				$query = "update mytcg_user set premium=ifnull(premium,0)+".$item_cost." where facebook_user_id = '".$buyer_id."'";
+				myqu($query);
        		}elseif($mxitParameters == 1){
        			echo 'Transaction rejected by user.<br/>';
        		}elseif($mxitParameters == 2){
