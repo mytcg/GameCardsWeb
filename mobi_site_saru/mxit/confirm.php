@@ -41,7 +41,7 @@ if ($_SESSION['userID']){
 		
 		$referenceNumber = addTransaction($type,$gateway,$amount,$cost,$userID,$pre);
 		
-		// echo ($referenceNumber."asd;flkj");
+		// echo ($referenceNumber);
 		if(is_null($referenceNumber))
 		{
 			$result = 'failed';
@@ -54,14 +54,14 @@ if ($_SESSION['userID']){
 			<input id="VendorId" name="VendorId" type="hidden" value="1" />
 			<input id="TransactionReference" name="TransactionReference" type="hidden" value="<?php echo($referenceNumber); ?>" />
 			<input id="CallbackUrl" name="CallbackUrl" type="hidden" value="http://www.sarugbycards.com/mxit/callback.php" />
-			<input id="ProductId" name="ProductId" type="hidden" value="<?php echo($userID."-".$amount); ?>" />
-			<input id="ProductName" name="ProductName" type="hidden" value="credits<?php echo($credits); ?>" />
-			<input id="ProductDescription" name="ProductDescription" type="hidden" value="creditPurchase<?php echo($credits); ?>" />
+			<input id="ProductId" name="ProductId" type="hidden" value="<?php echo($userID."-".$referenceNumber); ?>" />
+			<input id="ProductName" name="ProductName" type="hidden" value="tcgCredits_<?php echo($credits); ?>" />
+			<input id="ProductDescription" name="ProductDescription" type="hidden" value="purchasing <?php echo($credits); ?> tcg credits for <?php echo($amount); ?> moola" />
 			<input id="MoolaAmount" name="MoolaAmount" type="hidden" value="<?php echo($amount); ?>" />
-			<input id="CurrencyAmount" name="CurrencyAmount" type="hidden" value="<?php echo($worth); ?>" />
+			<input id="CurrencyAmount" name="CurrencyAmount" type="hidden" value="<?php echo($cost); ?>" />
 			<input type="submit" value="Continue" />
 		</form><br />
-<?php  }
+<?php  }else{echo("Reference Number not created");}
 	}else{ echo("No user logged for the purchase, please <a href='info.php'>try again</a> "); }?>
        <a href="purchase.php">Back</a>
    </body>
