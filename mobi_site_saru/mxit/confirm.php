@@ -1,35 +1,7 @@
 <?php
-require_once("conn.php");
+require_once("../conn.php");
+require_once("../functions.php");
 $pre = "mytcg";
-function addTransaction($type, $gateway, $amount, $cost, $user, $pre)
-{
-	//insert new transaction log and set to submitted (status=1)
-	$sql = "INSERT INTO mytcg_transactionlog(
-					user_id,
-					description,
-					date,
-					val,
-					transactiontype_id,
-					transactionstatus_id
-				) VALUES (
-					".$user.",
-					'Purchase ".$amount." TCG credits by ".$gateway." for ".$cost."',
-					NOW(),
-					".$amount.",
-					".$type.",
-					1
-				)";
-	myqu($sql);
-	
-	//get and return unique transactionlog_id for transaction reference number to be passed to payment gateway
-	$sql = "SELECT MAX(transaction_id) AS 'ref' FROM mytcg_transactionlog
-			WHERE user_id=".$user."
-			AND transactiontype_id=".$type."
-			AND transactionstatus_id=1";
-	$query = myqu($sql);
-	
-	return $query[0]['ref'];
-}
 
 ?>
 <html>
@@ -50,37 +22,30 @@ if ($_SESSION['userID']){
 		$type = '1';
 			
 	    if($amount==2000){
-	    	$type = '2';
-			$gateway = 'MXIT MOOLA';
+	    	$type = '20';
+			$gateway = 'mxit moola';
 	       	$credits = 1400;
 			$cost = "R20.00";
 	    }elseif($amount==1000){
-	    	$type = '2';
-			$gateway = 'MXIT MOOLA';
+	    	$type = '20';
+			$gateway = 'mxit moola';
 		   	$credits = 700;
 			$cost = "R7.00";
 	    }elseif($amount==500){
-	    	$type = '2';
-			$gateway = 'MXIT MOOLA';
+	    	$type = '20';
+			$gateway = 'mxit moola';
 	       	$credits = 350;
 			$cost = "R5.00";
 	    }
-	    echo ("this ".$type." + ".$gateway." + ".$amount." + ".$cost." + ".$userID." + ".$pre);
+	    // echo ("this ".$type." + ".$gateway." + ".$amount." + ".$cost." + ".$userID." + ".$pre);
 		
 		$referenceNumber = addTransaction($type,$gateway,$amount,$cost,$userID,$pre);
-		echo $referenceNumber;
+		
+		// echo ($referenceNumber."asd;flkj");
 		if(is_null($referenceNumber))
 		{
 			$result = 'failed';
 		}
-		
-		
-		//return RESULTS
-		// echo '<transaction>'.$sCRLF;
-		// echo $sTab.'<result val="'.$result.'" />'.$sCRLF;
-		// echo $sTab.'<reference val="'.$referenceNumber.'" />'.$sCRLF;
-		// echo '</transaction>';
-		// exit;
 		
 	   if($result == "success"){
 	   	echo("<p>Purchase {$credits} credits for {$amount} Moola?</p>");
