@@ -23,15 +23,15 @@ require_once("functions.php");
 	
    	if (isset($_POST['username']) && $_POST['username']!='') {
 		
-	$query = "SELECT user_id, username FROM mytcg_user WHERE username='" . $_POST['username'] . "'";
-	$result = myqu($query);
+		$query = "SELECT user_id, username FROM mytcg_user WHERE username='" . $_POST['username'] . "'";
+		$result = myqu($query);
 		
 		if ($result==true) {
 			$formValid['username'] = 'valid';
-			$validUserName = $result[0]['username'];
+			$username = $result[0]['username'];
 			$userID = $result[0]['user_id'];
-			header("Location: purchase.php");
 			
+			header("Location: purchase.php");
 			exit;
 
 		}  elseif ($result==false) {
@@ -59,5 +59,6 @@ require_once("functions.php");
 	  		</div>
 	  		<input type="submit" value="Continue" />
 		</form>
+		<a href="index.php">Back</a>
    </body>
 <html>

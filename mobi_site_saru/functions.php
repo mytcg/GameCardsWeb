@@ -1,4 +1,5 @@
 <?php
+
 //GENERATES THE CONTENTS OF A BOOSTER PACK AND GIVES IT TO THE USER
 function openBooster($userID,$packID){
 	$iReleasedBuffer = 1;

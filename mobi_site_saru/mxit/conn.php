@@ -18,10 +18,10 @@
 	//Var short
 	$sCRLF="\r\n";
 	$sTab=chr(9);
-	
+	echo ($_REQUEST['username']);
 	//Validating User
 	if ($_REQUEST['username']){
-		$sql = "SELECT user_id, username, password FROM mytcg_user WHERE username='{$_REQUEST['username']}' LIMIT 1";
+		$sql = "SELECT user_id, username, `password` FROM mytcg_user WHERE username='{$_REQUEST['username']}' LIMIT 1";
 		$aUser = myqu($sql);
 		if($aUser[0]["user_id"] != null){
 			$userName = $aUser[0]["username"];

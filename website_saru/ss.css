@@ -315,6 +315,7 @@
 }
 
 .btnCreate {
+	background-color:#DAD8D9;
 	position:absolute;
 	cursor:pointer;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad8d9), to(#8c8c8c));
@@ -333,6 +334,7 @@
 	vertical-align: middle;
 }
 .btnCreate:hover {
+	background-color:#F2C126;
 	font-size: 11px;
 	font-weight:bold;
 	color:#2B2B2B;
@@ -1784,6 +1786,12 @@ table.grid tr.numberone td{
 }
 .lightup{
 	border:1px solid #F2C126!important;
+}
+.heading{
+	float:left;
+	width:50%;
+	height:30px;
+	position:relative;
 }
 .noimage{
 	width:64px;

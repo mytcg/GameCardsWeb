@@ -1,5 +1,4 @@
 <?php
-$iCat = 1;
 $query= "SELECT SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,8) AS 'owner', I.description AS 'path', CA.description AS 'category', C.description, C.image, C.category_id, UC.usercard_id, UC.card_id, M.*,
         (SELECT COUNT(usercard_id) FROM mytcg_usercard WHERE user_id=".$user['user_id']." AND card_id=UC.card_id AND usercardstatus_id=1) AS 'owned'
         FROM mytcg_market M
@@ -8,7 +7,7 @@ $query= "SELECT SUBSTRING(IFNULL(U.name, SUBSTRING_INDEX(U.username, '@', 1)),1,
         JOIN mytcg_imageserver I ON C.front_imageserver_id = I.imageserver_id
         JOIN mytcg_category CA ON C.category_id = CA.category_id
         JOIN mytcg_user U ON M.user_id = U.user_id
-        WHERE M.markettype_id = 1 AND M.marketstatus_id = 1 AND C.category_id =".$iCat." ";
+        WHERE M.markettype_id = 1 AND M.marketstatus_id = 1";
 		$aAuctions=myqu($query);
 
 $iCount = 0;
