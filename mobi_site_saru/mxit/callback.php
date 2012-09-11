@@ -1,15 +1,7 @@
 <?php
 require_once("conn.php");
 require_once("functions.php");
-$userID=$_SESSION['userID'];
-$username = $_REQUEST['username'];
-$order_id = $_REQUEST['TransactionReference'];
-$description = $_REQUEST['ProductDescription'];
 
-$string = $_REQUEST['ProductName'];
-$creds = explode("_",$string);
-$item_cost = $creds[1];
-//$item_cost = $_REQUEST['item_cost'];
 
 //echo ($userID."+".$order_id."+".$description."+".$item_cost);
 ?>
@@ -25,7 +17,18 @@ $item_cost = $creds[1];
        		//$mxitParameters = $_GET['mxit_transaction_res'];
 			$mxitParameters = 0;
        		if ($mxitParameters == 0){
-       			echo ($userID."+".$order_id."+".$description."+".$item_cost."+".$username);
+       			$userID = $_SESSION['userID'];
+				$username = $_REQUEST['username'];
+				$order_id = $_REQUEST['TransactionReference'];
+				$description = $_REQUEST['ProductDescription'];
+				
+				$string = $_REQUEST['ProductName'];
+				$creds = explode("_",$string);
+				$item_cost = $creds[1];
+				//$item_cost = $_REQUEST['item_cost'];
+				
+       			//echo ($userID."+".$order_id."+".$description."+".$item_cost."+".$username);
+				
 				$query = "insert into mytcg_transactionlog (user_id, description, date, val, transactiontype_id, transactionstatus_id, response, transactionlogtype_id, facebook_user_id, order_id) values ((select user_id from mytcg_user where username = '".$username."'),'".$description."', now(), ".$item_cost.", 23, 2, 'Settled', 2, NULL, ".$order_id.")";
 				myqu($query);
 				
