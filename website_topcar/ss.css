@@ -1,3 +1,43 @@
+.redeemResponse{
+	width:100px;
+	height:20px;
+	top:63px;
+	left:10px;
+	position:absolute;
+	text-align:left;
+	text-transform: none;
+}
+.redemptionBody{
+	background-color: #CACACA;
+	width:185px;
+	height:70px;
+	top:25px;
+	padding:5px;
+	text-align:left;
+	text-transform: none;
+}
+.redemptionHead{
+	background-color: #9B0000;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	width:181px;
+	height:20px;
+	padding:7px;
+	text-align:right;
+	color:#fff;
+	font-weight:bold;
+}
+.redemptionWindow{
+	background-color: #CACACA;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	width:195px;
+	height:115px;
+	top:190px;
+	left:180px;
+	position:absolute;
+}
+
 .adspace{
 	float: left;
     left: -115px;

@@ -430,7 +430,7 @@ function WORK_Shop(){
       }
     };
 
-    WORK_Shop.prototype.buyResponse=function(xml){
+    WORK_Shop.prototype.buyResponse=function(xml,isVoucher){
       var response = "";
       var icon = "-697px -63px";
       var showMsg = true;
@@ -457,7 +457,11 @@ function WORK_Shop(){
           });
           var divMemo=ZA.createDiv(divData);
           $(divMemo).css({textAlign:"left",position:"absolute",left:"10px",top:"10px"});
-          $(divMemo).html('<strong>Booster Purchase Successful</strong><br />You have received the following cards...');
+          if(isVoucher == "1"){
+          	$(divMemo).html('<strong>Voucher redeemed</strong><br />You have received the following cards...');
+          }else{
+          	$(divMemo).html('<strong>Booster Purchase Successful</strong><br />You have received the following cards...');
+          }
           var divCards = ZA.createDiv(divData);
           $(divCards).css({
           	background:"url(_site/line.gif) repeat",
