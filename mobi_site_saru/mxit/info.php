@@ -28,11 +28,10 @@ require_once("functions.php");
 		
 		if ($result==true) {
 			$formValid['username'] = 'valid';
-			$validUserName = $result[0]['username'];
+			$username = $result[0]['username'];
 			$userID = $result[0]['user_id'];
 			
 			header("Location: purchase.php");
-			
 			exit;
 
 		}  elseif ($result==false) {

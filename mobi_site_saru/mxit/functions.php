@@ -1,5 +1,6 @@
 <?php
 require_once("conn.php");
+
 function addTransaction($type, $gateway, $amount, $cost, $user, $pre)
 {
 	//insert new transaction log and set to submitted (status=1)
@@ -29,6 +30,7 @@ function addTransaction($type, $gateway, $amount, $cost, $user, $pre)
 	
 	return $query[0]['ref'];
 }
+
 function myqu($sQuery){
 	global $db;
   	$aOutput=array();
