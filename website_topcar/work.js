@@ -436,6 +436,7 @@ WORK_App.prototype.createPage=function(){
 	var divLeft=ZA.createDiv(divPage,"","left_banner");
 	var divLeftProfile=ZA.createDiv(divLeft,"left_banner_img","");
 	var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
+	
 	if (!ZA.sUsername) {
 		//not logged in
 		$(divLeftInfo).html("<span class='txtGrey'>WELCOME TO TOPCAR</span><br /><span class='txtRed'>ENJOY YOUR GAMING</span>");
@@ -451,9 +452,9 @@ WORK_App.prototype.createPage=function(){
 	// $(divLeftInfo).html("<span class='txtGrey'>HALLO "+ZA.sUsername+"</span><br /> YOU HAVE: <span class='txtRed'>"+ZA.sUserCredits+" TCG</span>");
 	// var divLeftSms=ZA.createDiv(divLeft,"left_banner_sms","");	
 	var divContainer=ZA.createDiv(divPage,"","bodycontainer");
-	// var divRight=ZA.createDiv(divPage,"","right_banner_container");
-	// var divBanner = ZA.createDiv(divRight,"right_banner","");
-	// var insideBanner = ZA.createDiv(divRight,"right_banner_inside","");
+	var divRight=ZA.createDiv(divPage,"","right_banner_container");
+	var divBanner = ZA.createDiv(divRight,"right_banner","");
+	var insideBanner = ZA.createDiv(divRight,"right_banner_inside","");
 	
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_2");
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_3");

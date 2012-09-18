@@ -100,7 +100,7 @@ function openStarter($pre,$userID,$packID){
   myqu("UPDATE mytcg_product SET in_stock=in_stock-1 WHERE product_id={$packID}");
   
   return $cards;
-}  
+}
   
   //BUY ITEMS IN CART
   if ($_GET['buyItem']){
