@@ -8,10 +8,12 @@
 	</div>
 	
 	<div class="headBody">
-		
 		<div class="dashCredits">
 			<a href="index.php?page=credits"><div class="direct_credits"></div></a>
-			<div class="creditsText"><span><?php echo($user['premium']); ?></span><br />Credits</div>
+			<div class="creditsText"><?php echo($user['premium']); ?></div>
+			<div class="creditsTextTitle">credits</div>
+			<div class="redeemButton"><div class="redeemPic"></div>Redeem a voucher</div>
+			
 			<div class="segregation" style="top:20px;left:200px"></div>
 		</div>
 		<div class="headBlocks">
@@ -210,14 +212,14 @@ $(document).ready(function(){
 	
 	var iScroll = 0;
 	var iMax = 2;
-	$(".leaderRightArrow").click(function(){
+	$("#trophies .leaderRightArrow").click(function(){
 		if(iScroll < iMax){
 			$("#scrollAchi").animate({left:"-=555"},500);
 			iScroll++;
 		}
 	});
 	
-	$(".leaderLeftArrow").click(function(){
+	$("#trophies .leaderLeftArrow").click(function(){
 		if(iScroll > 0){
 			$("#scrollAchi").animate({left:"+=555"},500);
 			iScroll--;

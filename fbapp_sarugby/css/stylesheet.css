@@ -42,6 +42,33 @@ span{
 	color:#F2C126;
 }
 
+.redeemButton{
+	position:absolute;
+	top:109px;
+	left:35px;
+	text-align:center;
+	color:#FFF;
+	width:140px;
+	height:20px;
+	font-weight:bold;
+	background-color: #747474;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	font-size:13pxl
+}
+
+.redeemPic{
+	position:absolute;
+	top:-10px;
+	left:-10px;
+	width:41px;
+	height:41px;
+	background-image:url("../_site/redeem_icon.png");
+}
+
+
+
+
 .divPageLogin {
    top:130px;
    left:0px;
@@ -391,22 +418,27 @@ span{
 }
 
 .dashCredits{
-	text-align:center;
 	position:relative;
 	float:left;
-	margin-top:5px;
-	padding-top:40px;
+	margin-top:25px;
 	width:195px;
 	height:130px;
-	font-size: 20px;
+	font-size: 18px;
 }
 .creditsText{
-	float:left;
-	line-height:45px;
+	line-height:55px;
+	font-size:60px;
+	color:#F0BD00;
+	font-family:"Impact";
+	text-align: center;
+	width: 195px;
+}
+.creditsTextTitle{
 	color: #FFF;
 	font-weight: 900;
-	
+	text-align: center;
 }
+
 .creditsBuyHeader{
 	position: absolute;
 	top:30px;
@@ -436,19 +468,13 @@ span{
 	background:url(../_site/all.png) -210px -120px no-repeat;
 	width:36px;
 	height:38px;
-	position:relative;
-	top:-28px;
+	position:absolute;
+	top:-10px;
 	left:160px;
 	z-index:2;
 	float:left;
 }
-.creditsText span{
-	line-height:45px;
-	font-size:70px;
-	color:#F0BD00;
-	font-family:"Impact";
-	font-weight: normal;
-}
+
 .creditsBody{
 	position:relative;
 	float:left;
@@ -3159,6 +3185,8 @@ input[type="submit"] {
 	border-radius: 9px;
 }
 
+
+
 .saveDeckButton:hover{
 	color:#2E3120;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
@@ -3810,14 +3838,16 @@ input[type="submit"] {
 }
 .official{
 	background:url(../_site/all.png) 0px -282px no-repeat;
+	margin-top:15px;
 	left:10px;
 	width:203px;
-	height:62px;
+	height:70px;
 	float:left;
 	position: relative;
 }
 .poweredby{
 	float:left;
+	margin-top:15px;
 	background:url(../_site/all.png) -365px -420px no-repeat;
     height: 65px;
     left: 390px;

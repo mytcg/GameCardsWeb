@@ -124,46 +124,23 @@ $(document).ready(function(){
 	
 	var obj = null;
 	var sType = null;
-<<<<<<< HEAD
 	var startID = null;
 	
 	function setDraggables(){
 		$(".cardholder img, .deckcardholder img").draggable({
-=======
-	var dragID = null;
-	var sSource = null;
-	
-	function setDraggables(){
-		$(".cardholder img, .deckcardholder img").draggable({
-			snap: ".deckcardholder",
-			snapMode: "inner",
->>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 			stack:".cardholder img",
 			opacity: 1,
 			helper: "clone",
 			start: function(event,ui){
 				obj = $(this);
-<<<<<<< HEAD
 				$(this).css({zIndex:100});
 				startID = $(this).parent().attr("id");
 			}
-=======
-				sType = obj.attr("alt");
-				if(sType=="card"){
-					dragID = obj.attr("id");
-					sSource = obj.attr("src");
-					obj.attr("alt","deck");
-				}else{
-					
-				}
-			},
->>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 		});
 	}
 	setDraggables();
 	
 	$(".deckcardholder").droppable({
-<<<<<<< HEAD
 		tolerance: 'pointer',
 		hoverClass: "drop",
 		drop: function(event,ui){
@@ -192,11 +169,6 @@ $(document).ready(function(){
 			}
 			
 			if(duplicate){
-=======
-		drop: function(event,ui) {
-			//duplicate
-			if(($(".deckcardholder #"+dragID).length)&&($(this).attr("id")!="23")){
->>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 				var divBody = document.body;
 				var divErrorWindow = App.createDiv(divBody,"modal-window","notice-modal-window");
 				$(divErrorWindow).css({color:"#000",fontWeight:"bold",top:380,left:80,height:"20px",width:"150px"});
@@ -204,10 +176,7 @@ $(document).ready(function(){
 		       	$(divErrorWindow).delay(2000).fadeOut('slow',function(){ $(divErrorWindow).remove(); });
 			}else{
 				$(this).html(obj);
-<<<<<<< HEAD
 				$(this).find("img").attr("alt","deck");
-=======
->>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 				$("#card_"+dragID).html("<img alt='card' id='"+dragID+"' border='0' src='"+sSource+"' />");
 				setDraggables();
 			}
@@ -215,14 +184,9 @@ $(document).ready(function(){
 	});
 	$("#playerCards").droppable({
 		drop: function(event,ui){
-<<<<<<< HEAD
 			if(ui.draggable.attr("alt")=="deck"){
 				var thisOBJ = $("#deckCards #"+startID);
 				thisOBJ.html(thisOBJ.attr("alt"));
-=======
-			if(sType=="deck"){
-				obj.parent().html(obj.parent().attr("alt"));
->>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 			}
 		}
 	});
