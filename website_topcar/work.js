@@ -445,7 +445,7 @@ WORK_App.prototype.createPage=function(){
 		//logged in
 		$(divLeftInfo).html("<span class='txtGrey' style='line-height:12px;'>HELLO <br />"+ZA.sUsername+"</span>");
 		var divLeftSms=ZA.createDiv(divLeft,"left_banner_sms_cards","");
-		
+		ZA.drawRedemption(divPage);
 	}
 	
 	// var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
@@ -1040,9 +1040,7 @@ WORK_App.prototype.init=function(sXMLInit){
 	
 	ZA.createPage();
 	
-	if(ZA.sUsername){
-		ZA.drawRedemption(divBody);
-	}
+	
 	
 	var divFooter=ZA.createDiv(divBody,"","bodyfooter");
 	var divFooterCon=ZA.createDiv(divFooter,"bodyfooter_container")
