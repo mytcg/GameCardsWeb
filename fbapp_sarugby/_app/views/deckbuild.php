@@ -54,7 +54,7 @@ function hasCard($positionID,$deckID){
 				for($i=0;$i<sizeof($positions);$i++){
 					$card = hasCard($positions[$i]['position_id'],$iDeckID);
 					if(sizeof($card) > 0){
-						echo("<div id='{$positions[$i]['position_id']}' alt='{$positions[$i]['description']}' class='deckcardholder'><img id='{$card['card_id']}' alt='card' src='{$card['thumbnail']}' border=0 /></div>");
+						echo("<div id='{$positions[$i]['position_id']}' alt='{$positions[$i]['description']}' class='deckcardholder'><img id='{$card['card_id']}' alt='deck' src='{$card['thumbnail']}' border=0 /></div>");
 					}else{
 						echo("<div id='{$positions[$i]['position_id']}' alt='{$positions[$i]['description']}' class='deckcardholder'>{$positions[$i]['description']}</div>");
 					}
@@ -124,6 +124,12 @@ $(document).ready(function(){
 	
 	var obj = null;
 	var sType = null;
+<<<<<<< HEAD
+	var startID = null;
+	
+	function setDraggables(){
+		$(".cardholder img, .deckcardholder img").draggable({
+=======
 	var dragID = null;
 	var sSource = null;
 	
@@ -131,11 +137,17 @@ $(document).ready(function(){
 		$(".cardholder img, .deckcardholder img").draggable({
 			snap: ".deckcardholder",
 			snapMode: "inner",
+>>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 			stack:".cardholder img",
 			opacity: 1,
 			helper: "clone",
 			start: function(event,ui){
 				obj = $(this);
+<<<<<<< HEAD
+				$(this).css({zIndex:100});
+				startID = $(this).parent().attr("id");
+			}
+=======
 				sType = obj.attr("alt");
 				if(sType=="card"){
 					dragID = obj.attr("id");
@@ -145,14 +157,46 @@ $(document).ready(function(){
 					
 				}
 			},
+>>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 		});
 	}
 	setDraggables();
 	
 	$(".deckcardholder").droppable({
+<<<<<<< HEAD
+		tolerance: 'pointer',
+		hoverClass: "drop",
+		drop: function(event,ui){
+			//duplicate
+			var duplicate = false;
+			var dropID = $(this).attr("id");
+			var dragID = parseInt(ui.draggable.attr("id"));
+			var sSource = ui.draggable.attr("src");
+			
+			//Look for duplicate card
+			var d = parseInt($(".deckcardholder").find("#"+dragID).parent().attr("id"));
+			var e = ui.draggable.attr("alt");
+			if((d > 0)&&(e=="card")){
+				duplicate = true;
+			}
+			
+			if((startID=="23")&&(e=="deck")){
+				if(d!=23){
+					duplicate = true;
+				}
+			}
+			
+			//skip if Man of the Match
+			if(dropID=="23"){
+				duplicate = false;
+			}
+			
+			if(duplicate){
+=======
 		drop: function(event,ui) {
 			//duplicate
 			if(($(".deckcardholder #"+dragID).length)&&($(this).attr("id")!="23")){
+>>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 				var divBody = document.body;
 				var divErrorWindow = App.createDiv(divBody,"modal-window","notice-modal-window");
 				$(divErrorWindow).css({color:"#000",fontWeight:"bold",top:380,left:80,height:"20px",width:"150px"});
@@ -160,6 +204,10 @@ $(document).ready(function(){
 		       	$(divErrorWindow).delay(2000).fadeOut('slow',function(){ $(divErrorWindow).remove(); });
 			}else{
 				$(this).html(obj);
+<<<<<<< HEAD
+				$(this).find("img").attr("alt","deck");
+=======
+>>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 				$("#card_"+dragID).html("<img alt='card' id='"+dragID+"' border='0' src='"+sSource+"' />");
 				setDraggables();
 			}
@@ -167,8 +215,14 @@ $(document).ready(function(){
 	});
 	$("#playerCards").droppable({
 		drop: function(event,ui){
+<<<<<<< HEAD
+			if(ui.draggable.attr("alt")=="deck"){
+				var thisOBJ = $("#deckCards #"+startID);
+				thisOBJ.html(thisOBJ.attr("alt"));
+=======
 			if(sType=="deck"){
 				obj.parent().html(obj.parent().attr("alt"));
+>>>>>>> a03089faa7cf8a95e01d3d74b686d8725e26ea8b
 			}
 		}
 	});

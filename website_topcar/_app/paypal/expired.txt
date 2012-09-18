@@ -1,0 +1,5 @@
+The details of your order are as follows:
+Transaction ID: $txn_id
+Payment Date: $payment_date
+Payment Amount: $payment_amount
+Payment Status: $payment_status

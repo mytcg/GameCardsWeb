@@ -8,15 +8,15 @@ session_start();
 class dbconnect
 {
 	 //Piero
-	 // var $host = 'dedi94.flk1.host-h.net';
-	 // var $user = 'mobidvzmrz_1';
-	 // var $pass = 'C9KKLhi8';
-	 // var $dbase = 'mobidvzmrz_db1';
+	 var $host = 'dedi94.flk1.host-h.net';
+	 var $user = 'mobidvzmrz_1';
+	 var $pass = 'C9KKLhi8';
+	 var $dbase = 'mobidvzmrz_db1';
 
-	var $host = 'localhost';
-	var $user = 'root';
-	var $pass = '';
-	var $dbase = 'mobidex';
+	// var $host = 'localhost';
+	// var $user = 'root';
+	// var $pass = '';
+	// var $dbase = 'mobidex';
 
 	var $dbconnection;
 	
@@ -1407,8 +1407,8 @@ function saveCard($description, $orientation, $imgFront, $imgBack, $aFrontFields
 {
 	$start = strrpos($template,"/");
 	$template = substr($template,$start+1);
-	$end = strlen($template)-2;
-	$template = substr($template,0,$end);
+	$template = str_replace(")","",$template);
+	$template = str_replace('"',"",$template);
 	$template = str_replace("png","jpg",$template);
 	
 	$user_id = $_SESSION['user'];

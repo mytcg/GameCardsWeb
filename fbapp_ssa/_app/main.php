@@ -12,6 +12,43 @@ $facebook = new Facebook(array(
 ));
 $fbuserID = $facebook->getUser();
 
+if ($sEmail=$_GET['forget']){
+  $aUser=myqu('SELECT * FROM mytcg_user WHERE email_address = "'.$sEmail.'"');
+  $iUsercheck = sizeof($aUser);
+  if ($iUsercheck==1){
+     if($aUser[0]['is_active']=="1"){
+       
+       //RANDOM GENERATED PASSWORD
+       $password=substr(time()*rand(5,25), -6);
+       $iUserID=intval($aUser[0]["user_id"]);
+       $iMod=($iUserID % 10)+1;
+       $sSalt=substr(md5($iUserID),$iMod,10);
+       $sPassword = $sSalt.md5($password);
+       
+       $a = myqu("UPDATE mytcg_user SET password = '".$sPassword."' WHERE user_id = ".$iUserID);
+       
+       sendEmail($aUser[0]['email_address'], 'info@mytcg.net', 'Password Update - Mobile Game Card Applications',
+    'So you forgot your password. Don\'t worry, it happens to everyone at some point.
+
+We have randomly generated a new password for you to use. 
+    
+If you are not happy with this password, feel free to change it to whatever you want in the `Profile` section of the site.
+Make sure you log in with this new password first to get to that screen.
+
+Username: '.$aUser[0]['username'].'
+New Password: '.$password);
+       
+       echo '1';
+       
+     }else{
+       echo 'This user has been deactivated';
+     }
+  }else{
+    echo 'This email address is not registered with our system';
+  }
+  exit;
+}
+
 if($_GET['signup']){
   $userProfile = $_SESSION['userProfile'];
   $sEmail = $_GET["email_address"];
@@ -26,12 +63,12 @@ if($_GET['signup']){
   $getUser = myqu($sql);
   if(sizeof($getUser) > 0){
   	  $userProfile = $_SESSION['userProfile'];
-	  $sUsername = $_GET["username"];
 	  $sPassword = $_GET["password"];
-	  $sql = "SELECT user_id,password FROM mytcg_user WHERE username='".$sUsername."'";
+	  $sql = "SELECT user_id,password FROM mytcg_user WHERE email_address='".$sEmail."'";
 	  $getUser = myqu($sql);
 	  if(!$getUser){
-	    echo('Username not found<br />Are you sure you have registered?');
+	    echo('Email address not found<br />Are you sure you have registered?');
+
 	    exit;
 	  }
 	  $user_id = $getUser[0]['user_id'];
@@ -39,7 +76,7 @@ if($_GET['signup']){
 	  $sPassword=substr(md5($user_id),$iMod,10).md5($sPassword);
 	  
 	  if($sPassword != $getUser[0]['password']){
-	    echo("Invalid password.");
+	    echo("Incorrect password. Try the forgot password link below.");
 	    exit;
 	  }
 	  

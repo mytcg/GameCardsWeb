@@ -41,7 +41,10 @@
 	<div class="button-small float-right" id="cmdLogin" style="width:50px;">LOGIN</div>
 	<p style="float:left; margin-top:8px;"><label><input name="remember" type="checkbox" value="{$chkValue}"> Remember me</label></p>
 	<div class="clear"></div>
-	<p><a href="" id="signup-from-popup" style="float:right; font-style:italic; font-size:14px; margin-top: -5px;">Sign up</a></p>
+	<p>
+		<a href="" id="signup-from-popup" style="float:right; font-style:italic; font-size:14px; margin-top: -5px;">Sign up</a>
+		<a href="" id="forgot-password-popup" style="float:left; font-style:italic; font-size:14px; margin-top: -5px;">Forgot password</a>
+	</p>
 STR;
 	buildBlock(220, 215, 'float-right', 'login', $contents, '', 'frmLogin');
 

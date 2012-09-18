@@ -719,6 +719,56 @@ $(document).ready(function(){
 		alert(str);
 	}
 
+	function pointToPixel(pointSize)
+	{
+		var pix;
+		switch(pointSize)
+		{
+			case "6":
+			  pix = "8";
+			break;
+			case "8":
+			  pix = "11";
+			break;
+			case "10":
+			  pix = "13";
+			break;
+			case "11":
+			  pix = "15";
+			break;
+			case "12":
+			  pix = "16";
+			break;
+			case "14":
+			  pix = "19";
+			break;
+			case "16":
+			  pix = "22";
+			break;
+			case "18":
+			  pix = "24";
+			break;
+			case "20":
+			  pix = "26";
+			break;
+			case "22":
+			  pix = "29";
+			break;
+			case "24":
+			  pix = "32";
+			break;
+			case "28":
+			  pix = "37";
+			break;
+			case "36":
+			  pix = "48";
+			break;
+			default:
+			  pix = "11";
+		}
+		return pix;
+	}
+
 	function findFontID(fontname)
 	{
 		var aFont = fontlist.split("|");
@@ -1085,16 +1135,19 @@ $(document).ready(function(){
 								var type = getXML(xmlData,"stats/stat_"+i+"/type");
 								
 								if(obj.length == 0){
+									var lastRow = $("#table-fields > tbody tr:last-child").html();
+									$("#table-fields > tbody tr:last-child").remove();
 									var str = '<tr><td class="left"></td>';
 										str +='<td class="middle"><div class="checkbox x-icon" id="f"></div></td>';
 										str +='<td class="middle"><div class="checkbox x-icon" id="b"></div></td>';
 										str +='<td class="middle"><input type="text" alt="'+id+'" value="'+value+'" title="'+type+'" name="txt'+type+'" class="textbox"></td>';
 										str +='<td class="right"><div title="Delete field" class="close-small"></div></td>';
 										str +='</tr>';
-									$("#table-fields > tbody").append(str)
+									$("#table-fields > tbody").append(str);
+									$("#table-fields > tbody").append("<tr>"+lastRow+"</tr>");
 								}
-								var objRow = obj.parent().parent();
-								objRow.find("#f")
+								
+								var objRow = oPopup.find("input[alt='"+id+"']").parent().parent();
 								var frontorback = getXML(xmlData,"stats/stat_"+i+"/frontorback");
 								if(frontorback=="1"){
 									objRow.find("#f").removeClass("x-icon").addClass("check-icon");
@@ -1351,7 +1404,7 @@ $(document).ready(function(){
 										sLeft = getXML(xmlData,"stats/stat_"+i+"/left")+"px";
 										sWidth = getXML(xmlData,"stats/stat_"+i+"/width")+"px";
 										sHeight = getXML(xmlData,"stats/stat_"+i+"/height")+"px";
-										sFontSize = getXML(xmlData,"stats/stat_"+i+"/size")+"pt";
+										sFontSize = pointToPixel(getXML(xmlData,"stats/stat_"+i+"/size"))+"px";
 										sFont = getXML(xmlData,"stats/stat_"+i+"/font_name");
 										sFontColor = "#"+getXML(xmlData,"stats/stat_"+i+"/color");
 										$(this).css({
@@ -1373,7 +1426,7 @@ $(document).ready(function(){
 										sLeft = getXML(xmlData,"stats/stat_"+i+"/left")+"px";
 										sWidth = getXML(xmlData,"stats/stat_"+i+"/width")+"px";
 										sHeight = getXML(xmlData,"stats/stat_"+i+"/height")+"px";
-										sFontSize = getXML(xmlData,"stats/stat_"+i+"/size")+"pt";
+										sFontSize = pointToPixel(getXML(xmlData,"stats/stat_"+i+"/size"))+"px";
 										sFont = getXML(xmlData,"stats/stat_"+i+"/font_name");
 										sFontColor = "#"+getXML(xmlData,"stats/stat_"+i+"/color");
 										$(this).css({

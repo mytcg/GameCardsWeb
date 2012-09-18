@@ -1,0 +1,126 @@
+POST DATA: Array
+(
+    [mc_gross] => 9.99
+    [protection_eligibility] => Ineligible
+    [payer_id] => WTMZKXVSLBYGC
+    [tax] => 0.00
+    [payment_date] => 05:53:57 May 16, 2011 PDT
+    [payment_status] => Completed
+    [charset] => windows-1252
+    [first_name] => Test
+    [option_selection1] => 200 Credits
+    [mc_fee] => 0.59
+    [notify_version] => 3.1
+    [custom] => 57
+    [payer_status] => unverified
+    [business] => psmara_1301296314_biz@mtnloaded.co.za
+    [quantity] => 1
+    [verify_sign] => AiPC9BjkCyDFQXbSkoZcgqH3hpacAuO-VjsEdt7n-mhSU8-XPZ9tUvVw
+    [payer_email] => psmara_1305542069_per@mtnloaded.co.za
+    [option_name1] => Buy Voucher
+    [txn_id] => 6DE54905VR789343B
+    [payment_type] => instant
+    [btn_id] => 1754863
+    [last_name] => User
+    [receiver_email] => psmara_1301296314_biz@mtnloaded.co.za
+    [payment_fee] => 0.59
+    [shipping_discount] => 0.00
+    [insurance_amount] => 0.00
+    [receiver_id] => YFJ5BPPXP88Q6
+    [txn_type] => web_accept
+    [item_name] => MyTCG Credit Voucher
+    [discount] => 0.00
+    [mc_currency] => USD
+    [item_number] => 
+    [residence_country] => US
+    [test_ipn] => 1
+    [handling_amount] => 0.00
+    [shipping_method] => Default
+    [transaction_subject] => 57
+    [payment_gross] => 9.99
+    [shipping] => 0.00
+    [ipn_track_id] => qBuV.CFjrb2NWOZx7iXaYg
+)
+
+File: completed.txt
+Template: The details of your order are as follows:
+Transaction ID: $txn_id
+Payment Date: $payment_date
+Payment Amount: $payment_amount
+Payment Status: $payment_status
+
+This is for user:Body: The details of your order are as follows:
+Transaction ID: 6DE54905VR789343B
+Payment Date: 05:53:57 May 16, 2011 PDT
+Payment Amount: 9.99
+Payment Status: Completed
+
+FP:Resource id #1Succesfull transaction. Give the dude his stuff.POST DATA: Array
+(
+    [mc_gross] => 5.99
+    [protection_eligibility] => Ineligible
+    [payer_id] => WTMZKXVSLBYGC
+    [tax] => 0.00
+    [payment_date] => 05:56:44 May 16, 2011 PDT
+    [payment_status] => Completed
+    [charset] => windows-1252
+    [first_name] => Test
+    [option_selection1] => 100 Credits
+    [mc_fee] => 0.47
+    [notify_version] => 3.1
+    [custom] => 57
+    [payer_status] => unverified
+    [business] => psmara_1301296314_biz@mtnloaded.co.za
+    [quantity] => 1
+    [verify_sign] => AARK9JnxbwvQO8r7JD0VsJjidYf7ARymPyCwiduZPBEaWBI8RSk6jfIP
+    [payer_email] => psmara_1305542069_per@mtnloaded.co.za
+    [option_name1] => Buy Voucher
+    [txn_id] => 0NA165141A483932A
+    [payment_type] => instant
+    [btn_id] => 1754863
+    [last_name] => User
+    [receiver_email] => psmara_1301296314_biz@mtnloaded.co.za
+    [payment_fee] => 0.47
+    [shipping_discount] => 0.00
+    [insurance_amount] => 0.00
+    [receiver_id] => YFJ5BPPXP88Q6
+    [txn_type] => web_accept
+    [item_name] => MyTCG Credit Voucher
+    [discount] => 0.00
+    [mc_currency] => USD
+    [item_number] => 
+    [residence_country] => US
+    [test_ipn] => 1
+    [handling_amount] => 0.00
+    [shipping_method] => Default
+    [transaction_subject] => 57
+    [payment_gross] => 5.99
+    [shipping] => 0.00
+    [ipn_track_id] => fEPYnSotuA1lXQuj3nuuXQ
+)
+
+File: completed.txt
+Template: The details of your order are as follows:
+Transaction ID: $txn_id
+Payment Date: $payment_date
+Payment Amount: $payment_amount
+Payment Status: $payment_status
+
+This is for user:Body: The details of your order are as follows:
+Transaction ID: 0NA165141A483932A
+Payment Date: 05:56:44 May 16, 2011 PDT
+Payment Amount: 5.99
+Payment Status: Completed
+
+FP:Resource id #1RES:HTTP/1.1 200 OK
+RES:Date: Mon, 16 May 2011 12:56:47 GMT
+RES:Server: Apache
+RES:Set-Cookie: c9MWDuvPtT9GIMyPc3jwol1VSlO=mNwLG4IJSmZrQuQRX8hFn6n5G8BG-Y-vyoGlQ5uHVa8fVIU-05yioNQvg_z7h4AoIgY-Nas5Q3DHoDl4R5grjVAx1TCEFWCtKB09xpX_Kt0LpWyoD1meIJubo8NBLTP9eR7Xc0%7cbUDGVuZOieOaM6y4GVcLVBAABLrEu3A7vZdigvAZIyfED5tMbJWlhHtoXZ9r40lnJ2bkHG%7cSmDh08nEhlXCWpoJc3umnB6evlqcAbrudtgKxLDXO7_X-jX8m3Uac70yY6ReaNkCd9FpCW%7c1305550608; domain=.paypal.com; path=/; Secure; HttpOnly
+RES:Set-Cookie: cookie_check=yes; expires=Thu, 13-May-2021 12:56:48 GMT; domain=.paypal.com; path=/; Secure; HttpOnly
+RES:Set-Cookie: navcmd=_notify-validate; domain=.paypal.com; path=/; Secure; HttpOnly
+RES:Set-Cookie: navlns=0.0; expires=Sun, 11-May-2031 12:56:48 GMT; domain=.paypal.com; path=/; Secure; HttpOnly
+RES:Set-Cookie: Apache=10.191.196.11.162871305550607238; path=/; expires=Sun, 02-Apr-05 06:28:31 GMT
+RES:Connection: close
+RES:Content-Type: text/html; charset=UTF-8
+RES:
+RES:VERIFIEDSuccesfull transaction. Give the dude his stuff.update mytcg_user set credits = credits + 200 where user_id = 57update mytcg_user set credits = credits + 1000 where user_id = 57update mytcg_user set credits = credits + 1000 where user_id = 57update mytcg_user set credits = credits + 500 where user_id = 57

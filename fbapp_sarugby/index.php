@@ -28,13 +28,14 @@ function TopMenu($need,$have) {
  	}
  }
 if($localhost){
-	$user['user_id'] = 2;
-	$user['username'] = "cole@mytcg.net";
+	$user['user_id'] = 4;
+	$user['username'] = "piero@mytcg.net";
 	$user['credits'] = 10000;
 	$user['premium'] = 10000;
+
 	$user['gameswon'] = 0;
 	$user['xp'] = 0;
-	$_SESSION['userProfile'] = "746333357";
+	$_SESSION['userProfile'] = "690746721";
 	$_SESSION['userDetails']['user_id'] = $user['user_id'];
 }
 
@@ -60,7 +61,7 @@ if (isset($_GET['page'])) {
     <link rel="icon" href="favicon.ico" />
     <link href="css/stylesheet.css" type="text/css" rel="stylesheet" media="all"  />
     <link href="css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
-    <link rel="stylesheet" type="text/css" href="ui/jquery-ui-1.8.13.custom.css" />
+    <link rel="stylesheet" type="text/css" href="ui/jquery-ui-1.8.23.custom.css" />
 	
 	<?php
 		 $cache_expire = 60*60*24*365;
@@ -69,8 +70,8 @@ if (isset($_GET['page'])) {
 		 header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$cache_expire) . ' GMT');
  	?>
     <script src="//connect.facebook.net/en_US/all.js"></script>
-    <script type="text/javascript" src="jquery/jquery-1.6.1.min.js"></script>
-    <script type="text/javascript" src="jquery/jquery-ui-1.8.13.custom.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui-1.8.23.custom.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.jscrollpane.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="jquery/jquery.countdown.min.js"></script>

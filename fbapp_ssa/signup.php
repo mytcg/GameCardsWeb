@@ -75,6 +75,32 @@ if(!$localhost){
    		return re.test(email);
 	}
     
+    
+    $("#send").click(function(){
+    	var email = $("#forgot_email").val();
+    	$.post("_app/main.php?forget="+email,function(data){
+	        	$("#forgot-modal-window").hide();
+    			$("#mask").hide();
+	        	if(data == "1"){
+    				$("#txtError").html("New password has been mailed to you.");
+	        	}else{
+	        		$("#txtError").html(data);
+	        	}
+	        	$(".errorNotice").fadeIn().delay(5000).fadeOut();
+	        });
+    });
+    
+    $("#showForgot").click(function(e){
+    	e.preventDefault();
+    	$("#forgot-modal-window").show();
+    	$("#mask").show();
+    });
+    
+    $(".close-button").click(function(){
+    	$("#forgot-modal-window").hide();
+    	$("#mask").hide();
+    });
+    
     $("#enter").click(function(){
       	var name = $("#name").val();
         var surname = $("#surname").val();
@@ -120,7 +146,7 @@ if(!$localhost){
         	$(".errorNotice").fadeIn().delay(5000).fadeOut();
 		}else{
 			$("#txtResponse").fadeIn();
-	        $.post("_app/main.php?signup=1&username="+email_address+"&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(data){
+	        $.post("_app/main.php?signup=1&email_address="+email_address+"&password="+password+"&age="+age+"&gender="+gender+"&name="+name+"&surname="+surname,function(data){
 	        	if(data == "1"){
 	        		location.href = "<?php echo($fbconfig['baseUrl']); ?>";	
 	        	}else{
@@ -212,12 +238,24 @@ if(!$localhost){
           <span>Welcome to Surfing Collectable Cards</span>.
           <br>Just enter your details above, and we will create a brand new shiny account for you.<br /><br />
           <span>Already have an account?</span><br />
-          Just enter the email address and password field and we will link your facebook account to your Surfing Cards account.
+          Just enter the email address and password field and we will link your facebook account to your Surfing Cards account.<br /><br />
+          <span>Forgot your password?</span><br />
+          We can send you a new password if you have trouble logging in. <a id="showForgot" href="#" class="forgotPassword">Click here to reset your password</a>.
           </div>
         <div id="txtResponse" class="profileResponse" style="display:none;height:16px;top:488px;left:670px;"><img src="_site/loading51.gif" width="15" height="15" /></div>
         <div id="enter" class="divSigninEnter" style="top:490px;left:585px;">ENTER</div>
       	<div class="signupTerms"><a href="terms.php">*Terms and conditions apply.</a></div>
       </div>
-
+	  <div id="mask" style="display:none"></div>
+	  <div id="forgot-modal-window" class="modal-window" style="display:none">
+	  	 <div class="divSigninBox" style="top:20px;left:30px;font-weight:normal;">
+	  	  <span>Forgot password</span><br />Simply enter the email address that you were using and hit the send button.<br /><br />
+          <span>Email</span> address<br />
+          <input type="text" class="signin" id="forgot_email" value="<?php echo($userProfile['email']); ?>" /><br /><br />
+         </div>
+         <div class="buyItemButton" id='send' style="bottom:30px;left:510px;">Send</div>
+         <div class="close-button">CLOSE</div>
+	  </div>
+	  
   </body>
 </html>
