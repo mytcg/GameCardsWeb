@@ -5,7 +5,7 @@ function WORK_Album(){
 	this.imgAll = "url(_site/all.png)";
 	this.sXML="";
   this.iWindowWidth = 784;  //Hardcoded value
-  this.iWindowHeight = 160; //Hardcoded value
+  this.iWindowHeight = 138; //Hardcoded value
   this.iWidthOfList = 0;
 	this.itemCount = 0;
 	this.imagePath = 'img/card';
@@ -62,7 +62,7 @@ function WORK_Album(){
 		      
 				
 		      ZL.divMenu = ZA.createDiv(ZL.divData,"bgRightMenu","","div");
-		      $(ZL.divMenu).css({ zIndex:5,overflow:"hidden",top:0,right:0});
+		      $(ZL.divMenu).css({ zIndex:5,overflow:"hidden",top:25,right:0});
 				if (ZA.aComponents[ZL.iComponentNo].iIsMaximized) {
 					$(ZL.divMenu).css({ height:ZL.iWindowHeight,width:138 });
 				}
@@ -819,7 +819,7 @@ function WORK_Album(){
 			ZL.perRow = 7;
 			ZL.perPage = 28;
 			ZL.iWindowWidth = 955;
-			ZL.iWindowHeight = 580;
+			ZL.iWindowHeight = 610;
 			ZL.currentPage = 0;
 			$(ZL.divList).css({ height:ZL.iWindowHeight-26 });
 			$(ZL.divMenu).css({ height:ZL.iWindowHeight-26,width:138 });
@@ -828,7 +828,7 @@ function WORK_Album(){
 			ZL.perRow = 7;
 			ZL.perPage = 7;
 			ZL.iWindowWidth = 784;
-			ZL.iWindowHeight = 185;
+			ZL.iWindowHeight = 160;
 			ZL.currentPage = 0;
 			$(ZL.divList).css({ height:ZL.iWindowHeight-25 });
 			$(ZL.divMenu).css({ height:ZL.iWindowHeight-25,width:138 });

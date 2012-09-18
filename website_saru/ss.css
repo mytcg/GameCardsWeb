@@ -458,6 +458,20 @@ body{
 #achievements:hover{
 	background:url(_site/trophies.png) 3px 1px no-repeat;
 }
+.homebutton{
+	cursor:pointer;
+	color: #F8F5F5;
+    font-family: "Arial Black","Arial";
+    font-size: 14px;
+    font-weight: 900;
+    left: 219px;
+    position: absolute;
+    top: 25px;
+    z-index: 2;
+}
+.homebutton:hover{
+	color:#F2C126;
+}
 #left_banner{
 	position:absolute;
 	top:15px;
@@ -1275,7 +1289,7 @@ input.registerBox{
 	right:4px;
 	top:41px;	
 	cursor:pointer;
-	z-index:11;
+	z-index:16;
 }
 .windowmaximize2:hover{
 	background-position:-400px -60px;
@@ -1531,11 +1545,11 @@ input.registerBox{
 
 /** Credits **/
 .logHeader{
-	text-shadow:0px 1px 1px #d1d1d1;
+	text-shadow:0px 1px 1px #000;
 	font-size:11px;
 	position:relative;
 	width:100%;
-	color:#333;
+	color:#F2C126;
 	background:url(_site/repeatx_bottom.png) 0px 7px  repeat-x;
 }
 .creditAmount{
@@ -1565,7 +1579,7 @@ input.registerBox{
 	font-size:16px;
 	font-weight:bold;
 	text-align:left;
-	text-shadow:1px 1px 1px #FFF;
+	text-shadow:1px 1px 1px #000;
 }
 .creditsPayments{
 	background:url(_site/line.gif) repeat;
@@ -1668,7 +1682,7 @@ table.display td.label{
    font-weight:bold;
 }
 table.transactions th{
-	padding:8px!important;
+	padding:10px!important;
 }
 table.transactions td{
 	padding:10px!important;
@@ -1804,7 +1818,7 @@ table.grid tr.numberone td{
 	color:#cc0000!important;
 }
 #availablecardholders{
-	height:580px;
+	height:550px;
 	width: 380px;
 	overflow: visible!important;
 	padding-bottom:10px;

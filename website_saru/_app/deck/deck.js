@@ -636,8 +636,8 @@ function WORK_Deck()
     WORK_Deck.prototype.activateCardsScrollbar=function(){
 		$("#availablecardholders").jScrollPane();
 		$("#availablecardholders").find(".jspContainer").css({
-			'overflow':'visible',
-			width:375
+			// 'overflow':'visible',
+			// width:375
 		});
 		// $("#availablecardholders").find(".jspPane").css({
 			// width:375,

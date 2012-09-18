@@ -1149,7 +1149,7 @@ span{
 }
 
 .drop{
-	border: 1px solid #fff;
+	box-shadow: inset 0 0 10px white;
 }
 
 .shopBody{
@@ -3812,7 +3812,7 @@ input[type="submit"] {
 	background:url(../_site/all.png) 0px -282px no-repeat;
 	left:10px;
 	width:203px;
-	height:62px;
+	height:70px;
 	float:left;
 	position: relative;
 }

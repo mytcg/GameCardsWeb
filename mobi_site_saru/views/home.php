@@ -61,7 +61,7 @@ if (isset($_POST["login"])==1){
 		echo ("invalid user details, please try again <br/>");
 	}
 }
-if($_SERVER['HTTP_X_MXIT_USERID_R'] == null){
+if(($_SERVER['HTTP_X_MXIT_USERID_R'] == null)&&($_SERVER["SERVER_NAME"]!="localhost")){
 	
 	if($_SESSION['userID']){ ?>
 	<ul id="navmenu">
@@ -82,13 +82,13 @@ if($_SERVER['HTTP_X_MXIT_USERID_R'] == null){
 		
 	if($_SESSION['userID']){ ?>
 	<div id="navmenu">
-		<a href="index.php?page=album_list" class="button" style="float:left" >Album</a><br />
-		<a href="index.php?page=shop_list" class="button" style="float:left" >Shop</a><br />
-		<a href="index.php?page=auction_cards" class="button" style="float:left" >Auction</a><br />
-		<a href="index.php?page=credits" class="button" style="float:left" >Credits</a><br />
-		<a href="index.php?page=profile" class="button" style="float:left" >Profile</a><br />
-		<a href="index.php?page=notifications" class="button" style="float:left" >Notifications</a><br />
-		<a href="index.php?page=logout" class="button" style="float:left" >Logout</a>
+		<p><a href="index.php?page=album_list" class="button">Album</a></p>
+		<p><a href="index.php?page=shop_list" class="button">Shop</a></p>
+		<p><a href="index.php?page=auction_cards" class="button">Auction</a></p>
+		<p><a href="index.php?page=credits" class="button">Credits</a></p>
+		<p><a href="index.php?page=profile" class="button">Profile</a></p>
+		<p><a href="index.php?page=notifications" class="button">Notifications</a></p>
+		<p><a href="index.php?page=logout" class="button">Logout</a></p>
 	</div>
 	<?php } else { ?>
 		<p>Error: Your log in was unsuccesful,</p>

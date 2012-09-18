@@ -641,7 +641,7 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 	var divBottom=ZA.createDiv(divRight,"windowrightbottom");
 	$(divBottom).css({height:ZA.iSizeWindowDecor+"px"});
 	var divTitle=ZA.createDiv(divWin,"windowtitle","windowtitle_"+iComponentNo);
-	/*if (iControls) {
+	if (iControls) {
 		if(!ZA.sUsername){
 			if(iComponentNo!=6 && iComponentNo!=3){
 			divTitle.ondblclick=ZA.maximizeWindow(iComponentNo);
@@ -651,7 +651,7 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 			divTitle.ondblclick=ZA.maximizeWindow(iComponentNo);
 			}
 		}
-	}*/
+	}
 	$(divTitle).css({width:(iMaxWidth-2*ZA.iSizeWindowDecor)+"px"
 		,height:ZA.iHeightWindowTitle+"px",left:ZA.iSizeWindowDecor+"px"});
 		//just write the title, no picture
@@ -2654,10 +2654,15 @@ WORK_Menu.prototype.createTop=function(){
 	var divLeft=ZA.createDiv(divMenu,"","left_banner");
 	var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
 	if(ZA.sUsername){
-		var achiv = ZA.createDiv(divLeft,"","achievements");
-			$("#achievements").click(function(event){
-		    ZA.showAchievements();
-	  		});
+		var homeButton = ZA.createDiv(divLeft,"homebutton","");
+		$(".homebutton").html("home");
+		$(".homebutton").click(function(event){
+	    	ZA.refreshBrowser();
+  		});
+		//var achiv = ZA.createDiv(divLeft,"","achievements");
+		//$("#achievements").click(function(event){
+	    // ZA.showAchievements();
+  		//});
   	}
 	if (!ZA.sUsername) {
 		//not logged in

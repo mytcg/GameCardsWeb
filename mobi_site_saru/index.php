@@ -36,11 +36,6 @@ require_once("conn.php");
 		    ?>
 		</div>
 	</div>
-	<!-- 
-	<div id="footer">
-		<p>SA Rugby Mobile App <a href="http://topcar.mytcg.net" target="_blank">Download here</a></p>
-	</div>
-	-->
 </div>
 </body>
 </html>

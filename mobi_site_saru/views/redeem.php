@@ -1,6 +1,6 @@
 <?php
 //redeem card, adds the relevant card to the user's album
-if ($code=$_GET['redeemcode']) {
+if ($code=$_POST['redeemcode']) {
 	$exists = myqu('SELECT *
 		FROM mytcg_card
 		WHERE redeem_code = "'.$code.'"');
@@ -23,7 +23,7 @@ if ($code=$_GET['redeemcode']) {
 	exit;
 }
 ?>
-    	<form method="GET" id="submitForm">
+    	<form method="POST" id="submitForm">
             <div class="profile_form">
             	Redeem code:<br />
             	<input type="text" name="redeem&redeemcode" value="" class="textbox" />

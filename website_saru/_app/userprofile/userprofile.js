@@ -108,7 +108,7 @@ function COMPONENT_UserProfile(){
     };
     
     COMPONENT_UserProfile.prototype.drawLeft=function(divLeft){
-      $(divLeft).append("<span class='txtBlue'>Account Details</span><br />Need some creds, verify your email and update your profile.<br /><br />");
+      $(divLeft).append("<span class='txtBlue'>Account Details</span><br />Need some credits, verify your email and update your profile.<br /><br />");
       
       $(divLeft).append("<span>E</span>mail<br />");
       var inpEmail = ZA.createDiv(divLeft,"profileInput","zupEmail","input");
@@ -163,7 +163,7 @@ function COMPONENT_UserProfile(){
     
     COMPONENT_UserProfile.prototype.drawRight=function(divRight){
       	var xml = ZUP.sXML;
-		$(divRight).append("<span class='txtBlue'>Personal Details</span><br />Completing these all these details will earn you some free creds.<br /><br />");
+		$(divRight).append("<span class='txtBlue'>Personal Details</span><br />Completing these all these details will earn you some free credits.<br /><br />");
    		iTop = 80;
    		iLeft = 265;
 		var iCount = parseInt(ZA.getXML(xml,"answers/count"));
