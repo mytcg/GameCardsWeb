@@ -17,7 +17,7 @@ $userID = $_SESSION["user"]["id"];
  */
 if(isset($_GET['init']))
 {
-	$limit = ($_GET['limit']=='1') ? 'LIMIT 10' : '';
+	$limit = ($_GET['limit']=='1') ? 'LIMIT 8' : '';
 	$sql = "SELECT * FROM mytcg_transactionlog
 				WHERE user_id={$userID}
 				AND (transactionstatus_id=2 OR transactionstatus_id IS NULL)

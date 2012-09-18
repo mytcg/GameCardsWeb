@@ -58,16 +58,5 @@ if (isset($_COOKIE["rLogin"])){
 		<link rel="stylesheet" type="text/css" href="ss.css" />
 	</head>
 	<body>
-		<div class="adspace" >
-			<!-- begin ad tag (tile=1) -->
-			<script type="text/javascript">
-			//<![CDATA[
-			ord=Math.random()*10000000000000000;
-			document.write('<script type="text/javascript" src="http://ad.za.doubleclick.net/adj/P4306.topcar.co.za_new/trading_card_game;tile=1;dcopt=ist;sz=300x600;ord=' + ord + '?"><\/script>');
-			//]]>
-			</script>
-			<noscript><a href="http://ad.za.doubleclick.net/jump/P4306.topcar.co.za_new/trading_card_game;tile=1;sz=300x600;ord=123456789?" target="_blank" ><img src="http://ad.za.doubleclick.net/ad/P4306.topcar.co.za_new/trading_card_game;tile=1;sz=300x600;ord=123456789?" border="0" alt="" /></a></noscript>
-			<!-- end ad tag -->
-		</div>
 	</body>
 </html>

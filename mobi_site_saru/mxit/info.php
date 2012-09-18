@@ -1,5 +1,6 @@
 <?php
 require_once("functions.php");
+require_once("conn.php");
 
    //Display message if form input invalid
 	function displayInvalidMessage($formFieldType) {
@@ -30,7 +31,8 @@ require_once("functions.php");
 			$formValid['username'] = 'valid';
 			$username = $result[0]['username'];
 			$userID = $result[0]['user_id'];
-			
+			$_SESSION['paymentUsername'] = $username;
+			$_SESSION['paymentUserID'] = $userID;
 			header("Location: purchase.php");
 			exit;
 

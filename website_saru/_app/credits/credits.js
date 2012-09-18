@@ -20,7 +20,7 @@ function WORK_Credits()
 	{
 		var container = ZA.createDiv(ZCR.divData,"creditContainer");
 		$(container).css({
-			width:741,
+			width:"100%",
 			height:"100%"
 		});
 		
@@ -56,7 +56,6 @@ function WORK_Credits()
 		//transaction logs
 		var divTransactions = ZA.createDiv(divCredits);
 		$(divTransactions).css({
-			bottom:10,
 			width:"100%",
 		});
 			
@@ -68,7 +67,7 @@ function WORK_Credits()
 				fontSize:16,
 				fontWeight:"bold",
 				textAlign:"left",
-				"text-shadow":"1px 1px 1px #FFF"
+				"text-shadow":"1px 1px 1px #000"
 			})
 			.html('Transaction Logs');
 			
@@ -146,7 +145,7 @@ function WORK_Credits()
 				fontWeight:"bold",
 				textAlign:"left",
 				lineHeight:"120%",
-				"text-shadow":"1px 1px 1px #FFF"
+				"text-shadow":"1px 1px 1px #000"
 			})
 			.html('Buy TCG credits');
 			
@@ -340,7 +339,7 @@ if(dev < 0)
 					var signcol = (parseInt(ZA.getXML(xml,"log_"+i+"/amount")) > 0) ? '#d1d1d1' : '#F2C126';
 					tablebody+=
 					'<tr class="'+rowclass+'">'+
-						'<td style="width:110px;text-align:right;padding-right:15px;">'+ZA.getXML(xml,"log_"+i+"/date")+'</td>'+
+						'<td style="width:110px;text-align:left;padding-right:15px;">'+ZA.getXML(xml,"log_"+i+"/date")+'</td>'+
 						'<td style="text-align:left;">'+ZA.getXML(xml,"log_"+i+"/message")+'</td>'+
 						'<td style="width:60px;padding-right:15px;text-align:right;font-weight:bold;color:'+signcol+';">'+ZA.getXML(xml,"log_"+i+"/amount")+' TCG</td>'+
 					'</tr>';
@@ -351,14 +350,14 @@ if(dev < 0)
 					'<table class="grid transactions" cellspacing="0" cellpadding="0">'+
 						'<thead>'+
 							'<tr>'+
-								'<th style="width:110px;">Transaction Date</th>'+
-								'<th>Description</th>'+
-								'<th style="width:60px;">Amount</th>'+
+								'<th style="width:110px;text-align:left;padding-right:15px;">Transaction Date</th>'+
+								'<th style="text-align:left;">Description</th>'+
+								'<th style="width:60px;padding-right:15px;text-align:right;font-weight:bold;">Amount</th>'+
 							'</tr>'+
 						'</thead>'+
 					'</table>'+
 				'</div>'+
-				'<div style="position:relative;height:320px;width:100%;overflow:hidden;" id="logsHolder">'+
+				'<div style="position:relative;height:260px;width:100%;overflow:hidden;" id="logsHolder">'+
 					'<table class="grid transactions" cellspacing="0" cellpadding="0">'+
 						'<tbody style="border:1px solid green;">'+
 							tablebody+

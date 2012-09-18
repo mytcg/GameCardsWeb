@@ -219,7 +219,7 @@ function WORK_Deck()
 		//-----------------------------------------------------
 	};
     
-    WORK_Deck.prototype.buildDeckViewer=function(deckIndex, aXML)
+    WORK_Deck.prototype.buildDeckViewer_nonactive=function(deckIndex, aXML)
     {
     	$(ZD.divData).find(".mainContainer").remove();
     	
@@ -419,7 +419,7 @@ function WORK_Deck()
         // ZD.activateRemovables();
 		// ZD.activateAddzone();
         // ZD.activateAddables();
-//     	
+
     	//Show the deck viewer
     	$(mainContainer).fadeIn(300);
     	
@@ -557,7 +557,7 @@ function WORK_Deck()
     	var userCards = ZA.createDiv(userCardsHolder,"","availablecardholders","div");
     	$(userCards).css({
     		top:0,
-    		width:547
+    		// width:547
     	});
     	//add user cards
 		for(var i=0; i<userCardCount; i++)
@@ -636,15 +636,15 @@ function WORK_Deck()
     WORK_Deck.prototype.activateCardsScrollbar=function(){
 		$("#availablecardholders").jScrollPane();
 		$("#availablecardholders").find(".jspContainer").css({
-			'overflow':'visible',
-			width:375
+			// 'overflow':'visible',
+			// width:375
 		});
-		$("#availablecardholders").find(".jspPane").css({
-			width:375,
-			"padding-bottom":10
-		});
-		// $("#cardscontainer").css('width','390px');
-		$("#availablecardholders").css('width','390px');
+		// $("#availablecardholders").find(".jspPane").css({
+			// width:375,
+			// "padding-bottom":10
+		// });
+		// // $("#cardscontainer").css('width','390px');
+		// $("#availablecardholders").css('width','390px');
     };
 
     WORK_Deck.prototype.activateRemzone=function()

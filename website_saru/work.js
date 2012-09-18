@@ -641,7 +641,7 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 	var divBottom=ZA.createDiv(divRight,"windowrightbottom");
 	$(divBottom).css({height:ZA.iSizeWindowDecor+"px"});
 	var divTitle=ZA.createDiv(divWin,"windowtitle","windowtitle_"+iComponentNo);
-	/*if (iControls) {
+	if (iControls) {
 		if(!ZA.sUsername){
 			if(iComponentNo!=6 && iComponentNo!=3){
 			divTitle.ondblclick=ZA.maximizeWindow(iComponentNo);
@@ -651,7 +651,7 @@ WORK_App.prototype.createWindow=function(iComponentNo,sName,sPos){
 			divTitle.ondblclick=ZA.maximizeWindow(iComponentNo);
 			}
 		}
-	}*/
+	}
 	$(divTitle).css({width:(iMaxWidth-2*ZA.iSizeWindowDecor)+"px"
 		,height:ZA.iHeightWindowTitle+"px",left:ZA.iSizeWindowDecor+"px"});
 		//just write the title, no picture

@@ -18,7 +18,7 @@
 	//Var short
 	$sCRLF="\r\n";
 	$sTab=chr(9);
-	echo ($_REQUEST['username']);
+	
 	//Validating User
 	if ($_REQUEST['username']){
 		$sql = "SELECT user_id, username, `password` FROM mytcg_user WHERE username='{$_REQUEST['username']}' LIMIT 1";
