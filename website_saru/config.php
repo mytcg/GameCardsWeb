@@ -11,7 +11,7 @@ $Conf=array();
 
 if($_SERVER["SERVER_NAME"]=="localhost"){
 	$Conf["database"]["host"]="localhost";
-	$Conf["database"]["databasename"]="sarugmhnuf_db1";
+	$Conf["database"]["databasename"]="sarugby";
 	$Conf["database"]["username"]="root";
 	$Conf["database"]["password"]="";
 	$Conf["database"]["table_prefix"]="mytcg";

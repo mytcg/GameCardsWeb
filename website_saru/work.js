@@ -964,6 +964,36 @@ WORK_App.prototype.formatUsername=function(username)
    return formattedUsername;
 };
 
+WORK_App.prototype.drawRedemption=function(divBody){
+	//Draw window
+	var divBlock=ZA.createDiv(divBody,"redemptionWindow","");
+	var divHead=ZA.createDiv(divBlock,"redemptionHead","");
+	$(divHead).html("Redeem a coupon");
+	var divThisBody=ZA.createDiv(divBlock,"redemptionBody","");
+	$(divThisBody).html("<b>Enter your code here</b><br /><br /><input class='text' id='thecode' size='30'>");
+	var divButton=ZA.createDiv(divThisBody,"cmdButton","");
+	$(divButton).css({top:57,left:118});
+	$(divButton).html("Redeem");
+	var divResponse=ZA.createDiv(divThisBody,"redeemResponse","");
+	
+	$(divButton).click(function(){
+		var val = $("#thecode").val();
+		$(divButton).html("Busy...");
+		ZA.callAjax("_app/?redeem="+val,function(xml){
+			$(divButton).html("Redeem");
+			var resType = ZA.getXML(xml,"type");
+			if(resType == "error"){
+				$(divResponse).html(ZA.getXML(xml,"value"));
+			}else if(resType == "cards"){
+				ZS.buyResponse(xml,"1");
+			}else{
+				var value = ZA.getXML(xml,"value");
+				ZA.gotCredits("Received "+value+" from voucher",ZA.getXML(xml,"credits"));
+			}
+			$("#thecode").val("");
+		});
+	});
+};
 
 //initialize variables and build page
 WORK_App.prototype.init=function(sXMLInit){
@@ -1002,6 +1032,9 @@ WORK_App.prototype.init=function(sXMLInit){
 	
 	
 	ZA.createPage();
+	if(ZA.sUsername){
+		ZA.drawRedemption(divBody);
+	}
 	
 	var divFooter=ZA.createDiv(divBody,"","bodyfooter");
 	var divFooterCon=ZA.createDiv(divFooter,"bodyfooter_container")
@@ -2654,10 +2687,15 @@ WORK_Menu.prototype.createTop=function(){
 	var divLeft=ZA.createDiv(divMenu,"","left_banner");
 	var divLeftInfo=ZA.createDiv(divLeft,"left_banner_info","");
 	if(ZA.sUsername){
-		var achiv = ZA.createDiv(divLeft,"","achievements");
-			$("#achievements").click(function(event){
-		    ZA.showAchievements();
-	  		});
+		var homeButton = ZA.createDiv(divLeft,"homebutton","");
+		$(".homebutton").html("home");
+		$(".homebutton").click(function(event){
+	    	ZA.refreshBrowser();
+  		});
+		//var achiv = ZA.createDiv(divLeft,"","achievements");
+		//$("#achievements").click(function(event){
+	    // ZA.showAchievements();
+  		//});
   	}
 	if (!ZA.sUsername) {
 		//not logged in

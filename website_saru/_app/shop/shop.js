@@ -433,7 +433,7 @@ function WORK_Shop(){
       }
     };
 
-    WORK_Shop.prototype.buyResponse=function(xml){
+    WORK_Shop.prototype.buyResponse=function(xml,isVoucher){
       var response = "";
       var icon = "-697px -63px";
       var showMsg = true;
@@ -450,8 +450,9 @@ function WORK_Shop(){
           //reload card comparison
           //ZA.callAjax(ZC.sURL+"?init=1",function(xml){ZC.init(xml);});
           //Booster Purchased Display
-		  
-		  ZA.updateCreditView(parseInt(ZA.getXML(xml,"price")));
+		  if(isVoucher != "1"){
+		  	ZA.updateCreditView(parseInt(ZA.getXML(xml,"price")));
+		  }
           ZA.createWindowPopup(-1,"",690,483,1,0);
           var divWindow=document.getElementById("window_-1");
           var divData=ZA.createDiv(divWindow);
@@ -465,7 +466,11 @@ function WORK_Shop(){
           });
           var divMemo=ZA.createDiv(divData);
           $(divMemo).css({textAlign:"left",position:"absolute",left:"10px",top:"10px"});
-          $(divMemo).html('<strong>Booster Purchase Successful</strong><br />You have received the following cards...');
+          if(isVoucher == "1"){
+          	$(divMemo).html('<strong>Voucher redeemed</strong><br />You have received the following cards...');
+          }else{
+          	$(divMemo).html('<strong>Booster Purchase Successful</strong><br />You have received the following cards...');
+          }
           var divCards = ZA.createDiv(divData);
           $(divCards).css({
           	/*background:"url(_site/line.gif) repeat",*/
