@@ -449,7 +449,9 @@ WORK_App.prototype.createPage=function(){
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_5");
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_7");
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_8");
-	
+	if(ZA.sUsername){
+		ZA.drawRedemption(divPage);
+	}
 	var iHeight=ZA.iHeightContainer-ZA.iHeightHeader-ZA.iHeightFooter;
 	
 	//INSERT USER COMPLETION BAR
@@ -1032,9 +1034,6 @@ WORK_App.prototype.init=function(sXMLInit){
 	
 	
 	ZA.createPage();
-	if(ZA.sUsername){
-		ZA.drawRedemption(divBody);
-	}
 	
 	var divFooter=ZA.createDiv(divBody,"","bodyfooter");
 	var divFooterCon=ZA.createDiv(divFooter,"bodyfooter_container")
