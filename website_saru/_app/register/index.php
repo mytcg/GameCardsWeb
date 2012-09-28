@@ -69,6 +69,13 @@ if (intval($_GET["register"])==1)
 	
   $sql = "SELECT * FROM mytcg_user_detail";
   $getUser = myqu($sql);
+  
+  //create empty achievements
+		myqu("INSERT INTO mytcg_userachievementlevel 
+			(user_id, achievementlevel_id)
+			SELECT {$iUserID}, id
+			FROM mytcg_achievementlevel");
+  
   foreach($getUser as $u){
   	$sql = "INSERT INTO mytcg_user_answer (detail_id,answered,user_id) VALUES (".$u['detail_id'].",0,".$iUserID.")";
   	$res = myqu($sql);

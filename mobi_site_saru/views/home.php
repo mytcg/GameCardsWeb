@@ -9,10 +9,10 @@ if (isset($_POST["login"])==1){
 		exit;
 	}
 	
-	$sql = "SELECT user_id, username, password, date_last_visit,mobile_date_last_visit, premium, xp, freebie, completion_process_stage "
-			."FROM mytcg_user "
-			."WHERE username='".$sUsername."' "
-			."AND is_active='1'";
+	$sql = "SELECT user_id, username, password, date_last_visit,mobile_date_last_visit, premium, xp, freebie, completion_process_stage 
+			FROM mytcg_user 
+			WHERE username='".$sUsername."'
+			AND is_active='1'";
 	$aValidUser=myqu($sql);
 	$iValidUserID=$aValidUser[0]["user_id"];
 	
@@ -21,14 +21,13 @@ if (isset($_POST["login"])==1){
 	if ($sPassword!=$aValidUser[0]['password']){
 		$iValidUserID=0;
 	}
-		
 	
 	if ($iValidUserID){
 	$userID = $user['user_id'];
-	$sql = "SELECT user_id, username, password, date_last_visit, mobile_date_last_visit , (ifnull(credits,0)+ifnull(premium,0)) credits,credits freemium, premium, xp, freebie, completion_process_stage "
-			."FROM mytcg_user "
-			."WHERE user_id='".$userID."' "
-			."AND is_active='1'";
+	$sql = "SELECT user_id, username, password, date_last_visit, mobile_date_last_visit , (ifnull(credits,0)+ifnull(premium,0)) credits,credits freemium, premium, xp, freebie, completion_process_stage 
+			FROM mytcg_user 
+			WHERE user_id='".$userID."' 
+			AND is_active='1'";
 			$aUser = myqu($sql);
 			$aUser = $aUser[0];
 			$sMobileLastDate = $aUser['mobile_date_last_visit'];	
@@ -38,10 +37,10 @@ if (isset($_POST["login"])==1){
 			$sDate=date("Y-m-d H:i:s");
 			$aDateVisit=myqu(
 				"UPDATE mytcg_user "
-				."SET date_last_visit='".$sDate."', last_useragent = 'mobi' "
+				."SET date_last_visit='".$sDate."', last_useragent = '".$_SERVER['HTTP_USER_AGENT']."' "
 				."WHERE user_id='".$userID."'"
 			);
-			
+		
 		$today = date("Y-m-d");
 		if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
 		{
@@ -57,7 +56,8 @@ if (isset($_POST["login"])==1){
 			echo ("<div style='font-weight:bold;color:#B0750D;height:25px;text-align:center;'>You have received 20 for logging in today.</div>");
 		}
 	}
-	else{
+	else
+	{
 		echo ("invalid user details, please try again <br/>");
 	}
 }
@@ -77,9 +77,7 @@ if(($_SERVER['HTTP_X_MXIT_USERID_R'] == null)&&($_SERVER["SERVER_NAME"]!="localh
 		Error: Your log in was unsuccesful,<br>
 		<a href='index.php?page=index'>Login in</a>
 	<?php } 
-	
 	}else{
-		
 	if($_SESSION['userID']){ ?>
 	<div id="navmenu">
 		<p><a href="index.php?page=album_list" class="button">Album</a></p>
