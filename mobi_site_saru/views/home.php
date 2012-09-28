@@ -33,13 +33,18 @@ if (isset($_POST["login"])==1){
 			$sMobileLastDate = $aUser['mobile_date_last_visit'];	
 			$sLastDate = $aUser['date_last_visit'];
   			
+  			$sUA=$_SERVER["HTTP_USER_AGENT"];
 			//update last visit
 			$sDate=date("Y-m-d H:i:s");
 			$aDateVisit=myqu(
 				"UPDATE mytcg_user "
-				."SET date_last_visit='".$sDate."', last_useragent = '".$_SERVER['HTTP_USER_AGENT']."' "
+				."SET date_last_visit='".$sDate."', last_useragent = '".$sUA."', apps_id = 2, platform_id = 4 "
 				."WHERE user_id='".$userID."'"
 			);
+			// tcg_user log update 
+			myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, platform_id)
+		      SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, platform_id
+		      FROM mytcg_user WHERE user_id=".$userID);
 		
 		$today = date("Y-m-d");
 		if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
