@@ -294,7 +294,7 @@ p a:hover {color:#D69739; text-decoration:none;}
 	margin-top:10px;
 	width:65px;
 	height:90px;
-	background-image:url('images/thumb.jpg');
+	background-image:url('../images/thumb.jpg');
 	background-repeat:no-repeat;
 	position:relative;
 	left:auto;

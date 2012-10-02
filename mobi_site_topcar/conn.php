@@ -1,20 +1,20 @@
 <?php
 	//database connection to local host
-	/*
+	
 	$db['host'] = "localhost";
 	$db['database'] = "gamecard";
 	$db['username'] = "root";
 	$db['password'] = "";
 	$db['pre'] = "mytcg";
-	*/
 	
+	/*
 	//database connection to live site 
 	$db['host'] = "dedi94.flk1.host-h.net";
 	$db['database'] = "gamecard";
 	$db['username'] = "mytcg_root";
 	$db['password'] = "g4m3c4rd98";
 	$db['pre'] = "mytcg"; 
-
+	*/
 	
 	session_start();
 	//Var short

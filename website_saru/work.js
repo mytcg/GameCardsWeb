@@ -2691,10 +2691,10 @@ WORK_Menu.prototype.createTop=function(){
 		$(".homebutton").click(function(event){
 	    	ZA.refreshBrowser();
   		});
-		//var achiv = ZA.createDiv(divLeft,"","achievements");
-		//$("#achievements").click(function(event){
-	    // ZA.showAchievements();
-  		//});
+		var achiv = ZA.createDiv(divLeft,"","achievements");
+		$("#achievements").click(function(event){
+	    ZA.showAchievements();
+  		});
   	}
 	if (!ZA.sUsername) {
 		//not logged in

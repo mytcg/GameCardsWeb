@@ -12,6 +12,10 @@ body {
 }
 p {height:100%;padding-top:8px;}
 a,a img,:link img,:visited img,fieldset {border:none;}
+a {
+	text-decoration:none;
+	color:#A0171E;
+}
 img {vertical-align:top;}
 
 .clear {clear:both}
@@ -24,6 +28,11 @@ img {vertical-align:top;}
 		background:#ffffff url(images/header-tail.gif) 0 0 repeat-x;
 		font-size:1.125em;
 }
+.header_right{
+	position:absolute;
+	right:0px;
+	top:0px;
+}
 #logo {height:44px;}
 /* --- END header --- */
 
@@ -35,17 +44,48 @@ img {vertical-align:top;}
 	width:30px;
 	height:15px;
 }
-
+.cmdButton{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	font-size:12px;
+	color:#fff;
+	float:left;
+	border: none;
+	background-color:#333;
+	height: 20px;
+	padding-top:5px;
+	width: 70px;
+	margin:15px 5px 10px 0px;
+	text-align:center;
+	cursor:pointer;
+}
+.cmdButton:hover{
+	color: #333;
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(##ff111a), to(#470304));
+	background: -webkit-linear-gradient(top, ##ff111a, #470304);
+	background: -moz-linear-gradient(top, #ff111a, #470304);
+	background: -ms-linear-gradient(top, #ff111a, #470304);
+	background: -o-linear-gradient(top, #ff111a, #470304);
+}
+#buttonContainer{
+	width:100%;
+	height:50px;
+	position:relative;
+}
 #gameOver{
 	text-align: center;
 }
 
-#content {
+#content{
+	width:100%;
 	font-size:1.125em;
 	line-height:1em;
 }
 .min-width {
-	padding:10px 0px 10px 10px;
+	padding:10px;
 	min-width:100px;
 }
 
@@ -67,40 +107,52 @@ em {color:#5e5e5e;}
 	display:inline;
 }
 #submitForm .button{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
 	margin-left:2px;
 	margin-right:2px;
 	font-size:12px;
-	color:#999999;
 	border: none;
-	background-color:#282828;
-	background-image: url('images/background_button_unsel.png');
-	background-repeat:repeat-x;
-	height: 30px;
-	width: 30%;
+	background-color:#333;
+	height: 25px;
+	width: 70px;
 	margin-top:5px;
 }
 #submitForm .button:hover{
-	color: #999;
-	background-image: url('images/background_button_sel.png');
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ff111a), to(#470304));
+	background: -webkit-linear-gradient(top, #ff111a, #470304);
+	background: -moz-linear-gradient(top, #ff111a, #470304);
+	background: -ms-linear-gradient(top, #ff111a, #470304);
+	background: -o-linear-gradient(top, #ff111a, #470304);
 }
 #loginForm .button{
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
 	margin-left:2px;
 	margin-right:2px;
 	font-size:12px;
-	color:#999999;
+	border-bottom: 1px solid #fff;
 	border: none;
 	background-color:#282828;
-	background-image: url('images/background_button_unsel.png');
-	background-repeat:repeat-x;
-	height: 30px;
-	width: 30%;
+	height: 25px;
+	width: 70px;
 	margin-top:5px;
 }
 #loginForm .button:hover{
-	color: #999;
-	background-image: url('images/background_button_sel.png');
+	background-color: #D69739;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ff111a), to(#470304));
+	background: -webkit-linear-gradient(top, #ff111a, #470304);
+	background: -moz-linear-gradient(top, #ff111a, #470304);
+	background: -ms-linear-gradient(top, #ff111a, #470304);
+	background: -o-linear-gradient(top, #ff111a, #470304);
 }
-
+p a {color:#999; text-decoration:none;}
+p a:hover {color:#d1d1d1; text-decoration:none;}
 	
 /* --- END content --- */
 
@@ -121,39 +173,25 @@ em {color:#5e5e5e;}
 /* --- END footer --- */
 
 /* --- Other --- */
-	
+.image_size{
+	height:100%;
+}
 /* --- END Other --- */
 
 /* --- boxes --- */
-.info_box{
-	padding:5px 0 0 5px;
-	height:19px;
-	color:#999999;
-	border: 1px solid #000000;
-	background-color:#303134;
-	width:85%;
-	margin: 10px auto;
-	-moz-box-shadow: 0px 0.5px 0px #424242; /* Firefox */
- 	-webkit-box-shadow: 0px 0.5px 0px #424242; /* Safari/Chrome */
-	box-shadow: 0px 0.5px 0px #424242; /* Opera and other CSS3 supporting browsers */
- 	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=0, Color='#424242')";/* IE 8 */
- 	: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=0, Color='#424242');/* IE 5.5 - 7 */
-}
-.info_box:active{
-	background-color:#720509;
-}
-.info_box:hover{
-	background-color:#720509;
-}
 
 .textbox{
 	height:24px;
 	padding:0 0 0 5px;
 	margin: 10px 0;
 	color:#999999;
+	-moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
 	border: 1px solid #000000;
 	background-color:#303134;
-	width:95%;
+	width:70%;
 	-moz-box-shadow: 0px 0.5px 0px #424242; /* Firefox */
  	-webkit-box-shadow: 0px 0.5px 0px #424242; /* Safari/Chrome */
 	box-shadow: 0px 0.5px 0px #424242; /* Opera and other CSS3 supporting browsers */
@@ -178,12 +216,11 @@ em {color:#5e5e5e;}
 	line-height:14px;
 	text-transform: none;
 	height:40px;
-	width:96%;
 }
 #item_list li a:hover{
 	color:#CC0000;
 }
-#item_list li a{color:#777;text-decoration: none;text-shadow: 1px 1px 3px #000}
+#item_list li a{color:#777;text-decoration: none;text-shadow: 1px 1px 1px #000}
 #card_list{
 	width:100%;
 	list-style:none;
@@ -197,7 +234,18 @@ em {color:#5e5e5e;}
 	padding:0 0 0 0;
 	margin:auto;
 }
-
+#auction_card{
+	list-style:none;
+	width: 100%;
+	padding:0 0 0 0;
+	margin:auto;
+}
+#auction_card li{
+	background-image: url('images/background_bottomline.png');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:270px;
+}
 #card_list_bid li{
 	background-image: url('images/background_bottomline.png');
 	background-repeat:repeat-x;
@@ -213,11 +261,23 @@ em {color:#5e5e5e;}
 	width:96%;
 	color:#777;
 }
-#card_list li a{color:#777;text-decoration: none;text-shadow: 1px 1px 3px #000}
+#card_list li a{
+	color:#777;
+	text-decoration: none;
+	text-shadow: 0px 1px 1px #000;
+}
 #card_list li a:hover{
 	color:#CC0000;
+	text-shadow: 0px 1px 1px #fff
 }
 .cardBlock {
+	width:240px;
+	height:110px;
+	float:left;
+	margin:auto;
+}
+#auctionCardBlock {
+	width:240px;
 	height:110px;
 	float:left;
 	margin:auto;
@@ -234,7 +294,7 @@ em {color:#5e5e5e;}
 	margin-top:10px;
 	width:65px;
 	height:90px;
-	background-image:url('http://www.mytcg.net/img/cards/jpeg/thumb.jpg');
+	background-image:url('../images/thumb.jpg');
 	background-repeat:no-repeat;
 	position:relative;
 	left:auto;
@@ -246,7 +306,6 @@ em {color:#5e5e5e;}
 	margin-left:7px;
 	margin-top:10px;
 	height:90px;
-	background-color:#282828;
 	float:left;
 	display: inline;
 }
@@ -276,9 +335,11 @@ em {color:#5e5e5e;}
  	: progid:DXImageTransform.Microsoft.Shadow(Strength=0, Direction=0, Color='#424242');/* IE 5.5 - 7 */
 }
 .info_box:active{
+	color:#000000;
 	background-color:#720509;
 }
 .info_box:hover{
+	color:#000000;
 	background-color:#720509;
 }
 

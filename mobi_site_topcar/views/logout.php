@@ -1,9 +1,9 @@
 <?php
-if ($_GET['logout']){
+if ($_SESSION['userID']){
 	setcookie('username','',time()-3600);
-	unset($_COOKIE['username']);
+	$_SESSION['userID']==null;
 	session_destroy();
-	echo ("You have been logged out succesfully");
+	echo ('You have been logged out succesfully<br /><a href="index.php?page=index">LOGIN AGAIN?</a>');
 }else { 
-	echo("Click on top car logo, to return");
+	echo("Return to main menu, click on logo");
 }?>
