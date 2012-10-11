@@ -256,6 +256,7 @@ if (intval($_GET["login"])==1){
 	$iValidUserID=$aValidUser[0]["user_id"];
 	$iMod=(intval($iValidUserID) % 10)+1;
 	$sPassword=substr(md5($iValidUserID),$iMod,10).md5($sPassword);
+	
 	if ($sPassword!=$aValidUser[0]['password']){
 		$iValidUserID=0;
 	}
@@ -265,13 +266,20 @@ if (intval($_GET["login"])==1){
 		
 		$sUA=$_SERVER["HTTP_USER_AGENT"];
 	    $ip = getip();
-	    $sUA=myqu("UPDATE ".$pre."_user SET last_useragent='".$sUA."',ip = '".$ip."' WHERE user_id='".$iValidUserID."'");
+	    $sUA=myqu("UPDATE ".$pre."_user SET last_useragent='".$sUA."',ip = '".$ip."', apps_id = 1, platform_id = 2 WHERE user_id='".$iValidUserID."'");
+	    
+	    // tcg_user log update 
+		myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, platform_id)
+	      SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, platform_id
+	      FROM mytcg_user WHERE user_id=".$iValidUserID);
+		
+	    
 	    $cps = intval($aValidUser[0]['completion_process_stage']);
     
-    if(($cps==6)&&($sMobileLastDate==null)){
-        myqu("UPDATE ".$pre."_user SET completion_process_stage = 7 WHERE user_id = ".$iValidUserID);
-        $cps = 7;
-    }
+	    if(($cps==6)&&($sMobileLastDate==null)){
+	        myqu("UPDATE ".$pre."_user SET completion_process_stage = 7 WHERE user_id = ".$iValidUserID);
+	        $cps = 7;
+	    }
     
 	//set session variables
 	$_SESSION['user']['username']=$aValidUser[0]['username'];

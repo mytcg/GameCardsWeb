@@ -598,11 +598,11 @@ body{
 .bodyfooter_social{
 	color:#fff;
 	position:relative;
-	left:325px;
+	left:275px;
 	margin:auto;
 	top:17px;
 }
-.social_fb,.social_twitter,.social_youtube,.social_vimeo,.social_web{
+.social_fb{
 	float: left;
     height: 40px;
     position: relative;
@@ -610,30 +610,57 @@ body{
     cursor:pointer;
     margin-right:5px;
     text-decoration:none;
-}
-.social_fb{
 	background:url(_site/all.png) -500px -247px no-repeat;
 }
 .social_twitter{
+	float: left;
+    height: 40px;
+    position: relative;
+    width: 50px;
+    cursor:pointer;
+    margin-right:5px;
+    text-decoration:none;
 	background:url(_site/all.png) -555px -247px no-repeat;
 }
-.social_youtube{
-	background:url(_site/all.png) -560px -247px no-repeat;
+.footer_help{
+	float: left;
+    height: 40px;
+    position: relative;
+    width: 145px;
+    cursor:pointer;
+    margin-right:5px;
+    text-decoration:none;
+	background:url(_site/help_files/help_button.png) no-repeat;
 }
 .social_vimeo{
+	float: left;
+    height: 40px;
+    position: relative;
+    width: 50px;
+    cursor:pointer;
+    margin-right:5px;
+    text-decoration:none;
 	background:url(_site/all.png) -530px -247px no-repeat;
 }
 .social_web{
+	float: left;
+    height: 40px;
+    position: relative;
+    width: 50px;
+    cursor:pointer;
+    margin-right:5px;
+    text-decoration:none;
 	background:url(_site/all.png) -610px -247px no-repeat;
 }
+
 .social_fb:hover{
 	background:url(_site/all.png) -500px -292px no-repeat;
 }
 .social_twitter:hover{
 	background:url(_site/all.png) -555px -292px no-repeat;
 }
-.social_youtube:hover{
-	background:url(_site/all.png) -560px -156px no-repeat;
+.footer_help:hover{
+	background:url(_site/help_files/help_button_hover.png) no-repeat;
 }
 .social_vimeo:hover{
 	background:url(_site/all.png) -530px -156px no-repeat;

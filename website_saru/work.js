@@ -1032,7 +1032,6 @@ WORK_App.prototype.init=function(sXMLInit){
 	var divHeader=ZA.createDiv(divBody,"","bodyheader");
 	$(divHeader).css({height:112,opacity:1});
 	
-	
 	ZA.createPage();
 	
 	var divFooter=ZA.createDiv(divBody,"","bodyfooter");
@@ -1047,7 +1046,7 @@ WORK_App.prototype.init=function(sXMLInit){
 	var divWeb = ZA.createDiv(divFooterBlock,"social_web","","a");
 	  divWeb.href="http://www.sarugby.net";
 	  divWeb.target="_blank";
-	// var divYou = ZA.createDiv(divFooterBlock,"social_youtube");
+	var divHelp = ZA.createDiv(divFooterBlock,"footer_help");
 	// var divVimeo = ZA.createDiv(divFooterBlock,"social_vimeo");
 	
 	var xbarlogo = ZA.createDiv(divFooterCon,"xbarlogo");

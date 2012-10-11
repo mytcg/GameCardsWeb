@@ -18,8 +18,7 @@ if(isset($_GET['init']))
 	
 	$aServers=myqu('SELECT b.imageserver_id, b.description as URL 
 		FROM mytcg_imageserver b 
-		ORDER BY b.description DESC '
-	);
+		ORDER BY b.description DESC ');
 	
 	$sql = "SELECT progress, target, date_completed, complete_image, 
 				name, description, incomplete_image, achievement_id, 
@@ -38,7 +37,7 @@ if(isset($_GET['init']))
 	
 	//return xml
 	echo '<achieve>'.$sCRLF;
-	echo $sTab.'<count val="'.$iID[0]['id'].'" />'.$sCRLF;
+	echo $sTab.'<count val="'.$iNumAchis.'" />'.$sCRLF;
 	if(sizeof($achiQuery) > 0){
 		$previous = 0;
 		while ($aOneAchi=$achiQuery[$count]) {
@@ -53,7 +52,7 @@ if(isset($_GET['init']))
 					echo $sTab.'</achie>'.$sCRLF;
 				}
 				$previous = $achiId;
-
+				
 				echo $sTab.'<achie>'.$sCRLF;
 				echo $sTab.$sTab.'<achi_'.$achiId.'>'.$sCRLF;
 				echo $sTab.$sTab.$sTab.'<id>'.$achiId.'</id>'.$sCRLF;

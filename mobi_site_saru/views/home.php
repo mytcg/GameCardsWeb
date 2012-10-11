@@ -24,7 +24,7 @@ if (isset($_POST["login"])==1){
 	
 	if ($iValidUserID){
 	$userID = $user['user_id'];
-	$sql = "SELECT user_id, username, password, date_last_visit, mobile_date_last_visit , (ifnull(credits,0)+ifnull(premium,0)) credits,credits freemium, premium, xp, freebie, completion_process_stage 
+	$sql = "SELECT user_id, username, password, date_last_visit, mobile_date_last_visit , (ifnull(credits,0)+ifnull(premium,0)) credits,credits freemium, premium, xp, freebie, completion_process_stage, mxit_id
 			FROM mytcg_user 
 			WHERE user_id='".$userID."' 
 			AND is_active='1'";
@@ -36,14 +36,24 @@ if (isset($_POST["login"])==1){
   			$sUA=$_SERVER["HTTP_USER_AGENT"];
 			//update last visit
 			$sDate=date("Y-m-d H:i:s");
+			$mxit_id = $_SERVER['HTTP_X_MXIT_USERID_R'];
+			
+			if ($mxit_id){
+				$platform_id = 5;
+			}else{
+				$platform_id = 4;
+				$mxit_id = null;
+			}
+			
 			$aDateVisit=myqu(
 				"UPDATE mytcg_user "
-				."SET date_last_visit='".$sDate."', last_useragent = '".$sUA."', apps_id = 2, platform_id = 4 "
+				."SET date_last_visit='".$sDate."', last_useragent = '".$sUA."', apps_id = 2, mxit_id = '".$mxit_id."', platform_id = '".$platform_id."' "
 				."WHERE user_id='".$userID."'"
 			);
+			
 			// tcg_user log update 
-			myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, platform_id)
-		      SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, platform_id
+			myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, mxit_id, platform_id)
+		      SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id, mxit_id, platform_id
 		      FROM mytcg_user WHERE user_id=".$userID);
 		
 		$today = date("Y-m-d");
@@ -67,7 +77,6 @@ if (isset($_POST["login"])==1){
 	}
 }
 if(($_SERVER['HTTP_X_MXIT_USERID_R'] == null)&&($_SERVER["SERVER_NAME"]!="localhost")){
-	
 	if($_SESSION['userID']){ ?>
 	<ul id="navmenu">
 		<li><a href="index.php?page=album_list" class="button"><img alt="Album" src="images/Album.png" width="115px" height="82px" /></a></li>
