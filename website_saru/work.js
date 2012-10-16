@@ -1047,6 +1047,9 @@ WORK_App.prototype.init=function(sXMLInit){
 	  divWeb.href="http://www.sarugby.net";
 	  divWeb.target="_blank";
 	var divHelp = ZA.createDiv(divFooterBlock,"footer_help");
+	$(divHelp).click(function(){
+		ZA.showHelp();
+	});
 	// var divVimeo = ZA.createDiv(divFooterBlock,"social_vimeo");
 	
 	var xbarlogo = ZA.createDiv(divFooterCon,"xbarlogo");
@@ -2590,6 +2593,9 @@ WORK_Menu.prototype.action=function(sAction){
 						break;
 						case "8":
 							ZA.showNotifications();
+						break;
+						case "9":
+							ZA.showHelp();
 						break;
 					}
 				}
