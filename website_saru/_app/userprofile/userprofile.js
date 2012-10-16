@@ -163,7 +163,7 @@ function COMPONENT_UserProfile(){
     
     COMPONENT_UserProfile.prototype.drawRight=function(divRight){
       	var xml = ZUP.sXML;
-		$(divRight).append("<span class='txtBlue'>Personal Details</span><br />Completing these all these details will earn you some free credits.<br /><br />");
+		$(divRight).append("<span class='txtBlue'>Personal Details</span><br />Completing all these details will earn you some free credits.<br /><br />");
    		iTop = 80;
    		iLeft = 265;
 		var iCount = parseInt(ZA.getXML(xml,"answers/count"));

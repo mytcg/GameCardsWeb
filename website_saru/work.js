@@ -449,7 +449,9 @@ WORK_App.prototype.createPage=function(){
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_5");
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_7");
 	// var divArrow=ZA.createDiv(divContainer,"","arrow_8");
-	
+	if(ZA.sUsername){
+		ZA.drawRedemption(divPage);
+	}
 	var iHeight=ZA.iHeightContainer-ZA.iHeightHeader-ZA.iHeightFooter;
 	
 	//INSERT USER COMPLETION BAR
@@ -1030,11 +1032,7 @@ WORK_App.prototype.init=function(sXMLInit){
 	var divHeader=ZA.createDiv(divBody,"","bodyheader");
 	$(divHeader).css({height:112,opacity:1});
 	
-	
 	ZA.createPage();
-	if(ZA.sUsername){
-		ZA.drawRedemption(divBody);
-	}
 	
 	var divFooter=ZA.createDiv(divBody,"","bodyfooter");
 	var divFooterCon=ZA.createDiv(divFooter,"bodyfooter_container")
@@ -1048,7 +1046,10 @@ WORK_App.prototype.init=function(sXMLInit){
 	var divWeb = ZA.createDiv(divFooterBlock,"social_web","","a");
 	  divWeb.href="http://www.sarugby.net";
 	  divWeb.target="_blank";
-	// var divYou = ZA.createDiv(divFooterBlock,"social_youtube");
+	var divHelp = ZA.createDiv(divFooterBlock,"footer_help");
+	$(divHelp).click(function(){
+		ZA.showHelp();
+	});
 	// var divVimeo = ZA.createDiv(divFooterBlock,"social_vimeo");
 	
 	var xbarlogo = ZA.createDiv(divFooterCon,"xbarlogo");
@@ -2593,6 +2594,9 @@ WORK_Menu.prototype.action=function(sAction){
 						case "8":
 							ZA.showNotifications();
 						break;
+						case "9":
+							ZA.showHelp();
+						break;
 					}
 				}
 			break;// case top
@@ -2692,10 +2696,10 @@ WORK_Menu.prototype.createTop=function(){
 		$(".homebutton").click(function(event){
 	    	ZA.refreshBrowser();
   		});
-		//var achiv = ZA.createDiv(divLeft,"","achievements");
-		//$("#achievements").click(function(event){
-	    // ZA.showAchievements();
-  		//});
+		var achiv = ZA.createDiv(divLeft,"","achievements");
+		$("#achievements").click(function(event){
+	    ZA.showAchievements();
+  		});
   	}
 	if (!ZA.sUsername) {
 		//not logged in

@@ -94,7 +94,6 @@ li {
 	margin-bottom:5px;
 	clear:both;
 	background:url(images/marker4.gif) no-repeat 0 4px;
-	text-transform:uppercase;
 }
 em {color:#5e5e5e;}
 	
@@ -295,7 +294,7 @@ p a:hover {color:#D69739; text-decoration:none;}
 	margin-top:10px;
 	width:65px;
 	height:90px;
-	background-image:url('images/thumb.jpg');
+	background-image:url('../images/thumb.jpg');
 	background-repeat:no-repeat;
 	position:relative;
 	left:auto;

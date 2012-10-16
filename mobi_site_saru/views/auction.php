@@ -1,10 +1,25 @@
 <?php
 $userID = $user['user_id'];
-if (isset($_POST['buy']))
+$post = false;
+$bid = false;
+
+if (isset($_POST['buy'])){
+	$post = true;
+}else if(isset($_POST['bid'])){
+	$bid = true;
+}else if (isset($_GET['buy'])){
+	$post = true;
+}else if(isset($_GET['bid'])){
+	$bid = true;
+}
+
+
+if ($post == true)
 {
 	$marketID = $_GET['market'];
 	$newowner = $userID;
 	$now = date('Y-m-d H:i:s');
+	
 	//Retrieve details of auction
 	$sql = "SELECT usercard_id, user_id, price FROM mytcg_market WHERE market_id=".$marketID.";";
 	$uc = myqu($sql);
@@ -88,11 +103,11 @@ if (isset($_POST['buy']))
 		myqu($sql);
 		//Add transaction log
 		myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-				VALUES(".$userID.", 'Spent ".$price." credits on buyout of ".$carName."', NOW(), -".$price.")");
+				VALUES(".$userID.", 'Spent ".$price." credits on buyout of ".$carName." via mobi', NOW(), -".$price.")");
 				
 		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 				VALUES(".$userID.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
-						now(), 'Spent ".$price." credits on buyout of ".$carName."', -".$price.", -".$freemium_cost.", -".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 13)");
+						now(), 'Spent ".$price." credits on buyout of ".$carName." via mobi', -".$price.", -".$freemium_cost.", -".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 13)");
 
 						
 		$our_freemium_fee = $freemium_cost * 0.1;
@@ -112,13 +127,13 @@ if (isset($_POST['buy']))
 				
 		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 				VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
-					now(), 'Received ".$price." credits for buyout on ".$carName."', ".$price.",".$freemium_cost.",".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 14)");
+					now(), 'Received ".$price." credits for buyout on ".$carName." via mobi', ".$price.",".$freemium_cost.",".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 14)");
 		
 		$auction_fee = $our_freemium_fee + $our_premium_fee;
 		
 		myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits,tcg_freemium,tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 				VALUES(".$oldowner.", NULL, ".$usercardID.", (SELECT card_id FROM mytcg_usercard WHERE usercard_id = ".$usercardID."), 
-					now(), 'Transaction fee of ".$auction_fee." credits for buyout on ".$carName."', ".$auction_fee.",".$our_freemium_fee.",".$our_premium_fee.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 17)");
+					now(), 'Transaction fee of ".$auction_fee." credits for buyout on ".$carName." via mobi', ".$auction_fee.",".$our_freemium_fee.",".$our_premium_fee.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$oldowner."), 17)");
 
 		
 		//Close auction
@@ -133,20 +148,23 @@ if (isset($_POST['buy']))
 		$u = myqu($sql);
 		echo ("You now have ".$iCreditsAfterPurchase = $u[0]['premium']." credits<br/>");
 		echo ("You have successfully purchased this auction.<br/>");
-		echo ( $carName." belongs to you. <br/>Return to <a href='index.php?page=home'>main menu</a>");
+		echo ( $carName." belongs to you. <br/>Return to <a href='index.php?page=auction_cards'>Auction</a>");
 		exit;
 	}
 }
 
-if (isset($_POST['bid']))
+if ($bid == true)
 {
 	$market_id = $_GET['market'];
   	
-	if (isset($_POST['bid']))
+	if ($bid == true)
 	{
-		$bid_amount = $_POST['value'];
-		// echo($bid_amount);
-		// exit;
+		if (isset($_POST['value']) && $_POST['value']!='' && $_POST['value']!=' ') {
+			$bid_amount = $_POST['value'];
+		}else{
+			echo ('Invalid input, please try again <br/>Return to <a href="index.php?page=auction_cards">Auction</a>');
+			exit;
+		}
 		//get user's available premium
 		$query = myqu("SELECT (ifnull(premium,0)+ifnull(credits,0)) premium, ifnull(premium,0) prem, ifnull(credits,0) cred FROM mytcg_user WHERE user_id = ".$userID);
 		$available_credits = $query[0]['premium'];
@@ -173,7 +191,7 @@ if (isset($_POST['bid']))
 	      $carName = $carName[0]['description'];
 		
 			if ($selectId == $userID) {
-				echo 'Oops, this is your own auction, why not go bid on another auction? <br/>Return to <a href="index.php?page=auction_card">Auctions</a>';
+				echo 'Oops, this is your own auction, why not go bid on another auction? <br/>Return to <a href="index.php?page=auction_cards">Auctions</a>';
 				exit;
 			}
 			//give premium back to current highest bidder
@@ -189,12 +207,12 @@ if (isset($_POST['bid']))
 					$total = $lastBidder['price'] + $lastBidder['premium'];
 					if ($bid_amount <= $total) {
 						//user has insuffient credits to place the bid
-						echo "Oops, the bid you tried to place was less than the current highest bidder. You need to bid more than ".$lastBidder['price'];
+						echo "Oops, the bid you tried to place was less than the current highest bidder. You need to bid more than ".$lastBidder['price']."<br/>Return to <a href='index.php?page=auction_cards'>Auctions</a>";
 						exit;
 					}
 					
 					if ($lastBidder['user_id'] == $userID) {
-						echo "You are already the highest bidder, no reason to spend more credits." ;
+						echo "You are already the highest bidder, no reason to spend more credits.<br/>Return to <a href='index.php?page=auction_cards'>Auctions</a>" ;
 						exit;
 					}
 					
@@ -202,11 +220,11 @@ if (isset($_POST['bid']))
 				
 					//add transaction log
 					myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-							VALUES(".$lastBidder['user_id'].", 'Refunded with ".$total." credits for losing highest bid on ".$carName."', NOW(), ".$total.")");
+							VALUES(".$lastBidder['user_id'].", 'Refunded with ".$total." credits for losing highest bid on ".$carName." via mobi', NOW(), ".$total.")");
 							
 					myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 							VALUES(".$lastBidder['user_id'].", NULL, (SELECT usercard_id FROM mytcg_market WHERE market_id = ".$market_id."), (SELECT card_id FROM mytcg_usercard a, mytcg_market b WHERE a.usercard_id = b.usercard_id AND market_id = ".$market_id."), 
-							now(), 'Refunded with ".$total." credits for losing highest bid on ".$carName."', ".$total.", ".$lastBidder['price'].", ".$lastBidder['premium'].", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$lastBidder['user_id']."), 8)");
+							now(), 'Refunded with ".$total." credits for losing highest bid on ".$carName." via mobi', ".$total.", ".$lastBidder['price'].", ".$lastBidder['premium'].", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$lastBidder['user_id']."), 8)");
 				}
 			}
 			
@@ -230,11 +248,11 @@ if (isset($_POST['bid']))
 			myqu("UPDATE mytcg_user SET premium = ".$tcg_premium.", credits = ".$tcg_credits." WHERE user_id = ".$userID);
 			//add transaction log
 			myqu("INSERT INTO mytcg_transactionlog (user_id, description, date, val)
-					VALUES(".$userID.", 'Placed bid of ".$bid_amount." credits on ".$carName."', NOW(), -".$bid_amount.")");
+					VALUES(".$userID.", 'Placed bid of ".$bid_amount." credits on ".$carName." via mobi', NOW(), -".$bid_amount.")");
 					
 			myqu("INSERT INTO tcg_transaction_log (fk_user, fk_boosterpack, fk_usercard, fk_card, transaction_date, description, tcg_credits, tcg_freemium, tcg_premium, fk_payment_channel, application_channel, mytcg_reference_id, fk_transaction_type)
 				VALUES(".$userID.", NULL, (SELECT usercard_id FROM mytcg_market WHERE market_id = ".$market_id."), (SELECT card_id FROM mytcg_usercard a, mytcg_market b WHERE a.usercard_id = b.usercard_id AND market_id = ".$market_id."), 
-						now(), 'Placed bid of ".$bid_amount." credits on ".$carName."', -".$bid_amount.", -".$freemium_cost.", -".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 7)");
+						now(), 'Placed bid of ".$bid_amount." credits on ".$carName." via mobi', -".$bid_amount.", -".$freemium_cost.", -".$premium_cost.", NULL, 'web',  (SELECT max(transaction_id) FROM mytcg_transactionlog WHERE user_id = ".$userID."), 7)");
 			
 			//place the bid
 			$sql = "INSERT INTO mytcg_marketcard (market_id, user_id, price, date_of_transaction, premium)
@@ -306,6 +324,7 @@ if (isset($_POST['bid']))
     	</ul>
     	<?php
 	}
+echo ("<br/>Return to <a href='index.php?page=auction_cards'>Auctions</a>");
 exit;
 }
 ?>

@@ -40,11 +40,11 @@ function COMPONENT_Achievement()
 			// $(title).html(AchieveID);
 			if(AchieveCount > 0)
 			{
-				for (iCount=0; iCount<=AchieveCount; iCount++)
+				for (iCount=0; iCount < AchieveCount; iCount++)
 				{
 					var AchieveID = parseInt(ZA.getXML(sXML,"achie/achi_"+iCount+"/id"));
-					if (AchieveID)
-					{
+					// if (AchieveID)
+					// {
 						var divAchievementsCon = ZA.createDiv(divAchievements,"","achieve_con");
 						var progress = ZA.getXML(sXML,"achie/achi_"+iCount+"/subachi_"+iCount+"/progress");
 						var target = ZA.getXML(sXML,"achie/achi_"+iCount+"/subachi_"+iCount+"/target");
@@ -86,7 +86,7 @@ function COMPONENT_Achievement()
 							position:"relative",
 						});
 						$(divAuctionDesc).html('<b>'+ZA.getXML(sXML,"achie/achi_"+iCount+"/description")+'</b>');
-					}
+					// }
 				}
 	 		}
 			else
@@ -100,6 +100,7 @@ function COMPONENT_Achievement()
 				bottom:5,
 				right:15,
 			});
+			
 			//reset vertical scrollbar
 			$("#achieve_holder").css({
 			}).jScrollPane({enableKeyboardNavigation:false});
@@ -107,7 +108,6 @@ function COMPONENT_Achievement()
 			$(divButton).click(function(){
 				ART.clickCloseAchievement();
 			});
-			 
 		};
 	};
 	
