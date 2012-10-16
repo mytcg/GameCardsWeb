@@ -25,17 +25,78 @@ function ieversion() {
     return floatval($reg[1]);
 }
 
-function getAchievementImage($id){
-	$sql = "SELECT UAL.progress
+function getAchievementImg($id){
+	$sql = "SELECT CONCAT(I.description,'achi/',AL.complete_image,'.png') AS 'image'
 			FROM mytcg_achievementlevel AL
-			LEFT OUTER JOIN mytcg_userachievementlevel UAL ON (UAL.achievementlevel_id = AL.id)
-			WHERE AL.achievement_id = ".$id;
+			INNER JOIN mytcg_imageserver I ON (I.imageserver_id = AL.imageserver_id)
+			WHERE AL.id = ".$id;
 	$result = myqu($sql);
+	return $result[0]['image'];
+}
+
+function checkAchis($iUserID, $iAchiTypeId) {
+	$res = false;
+	$achiQu = ('SELECT ual.id, ual.progress, al.target, a.calc_id, a.reset, a.query, a.name, al.id AS alid
+		FROM mytcg_userachievementlevel ual
+		INNER JOIN mytcg_achievementlevel al
+		ON al.id = ual.achievementlevel_id
+		INNER JOIN mytcg_achievement a
+		ON a.id = al.achievement_id
+		WHERE ual.date_completed IS NULL
+		AND ual.user_id = '.$iUserID.' 
+		AND a.type_id = '.$iAchiTypeId);
 	
+	$achiQuery = myqu($achiQu);
 	
-	
-	$result = "";
-	return $result;
+	$count = 0;
+	while ($aOneAchi=$achiQuery[$count]) {
+		$count++;
+		
+		$userAchiId = $aOneAchi['id'];
+		$AchiLvLId = $aOneAchi['alid'];
+		$reset = $aOneAchi['reset'];
+		$target = $aOneAchi['target'];
+		$progress = $aOneAchi['progress'];
+		$query = $aOneAchi['query'];
+		$name = $aOneAchi['name'];
+		$query = str_replace("useridreplac", $iUserID, $query);
+		
+		$valQuery = myqu($query);
+		$val = $valQuery[0]['val'];
+		
+		if ($aOneAchi['calc_id'] == ACHI_INC) {
+			if ($val >= 0) {
+				$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = progress + ".$val." WHERE id = ".$userAchiId;
+				myqu($updateQuery);
+				
+				$progress = $progress + $val;
+			}
+			else if ($reset == 1) {
+				$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = 0 WHERE id = ".$userAchiId;
+				myqu($updateQuery);
+				
+				$progress = 0;
+			}
+		}
+		else if ($aOneAchi['calc_id'] == ACHI_TOT) {
+			$updateQuery = "UPDATE mytcg_userachievementlevel SET date_updated = now(), progress = ".$val." WHERE id = ".$userAchiId;
+			myqu($updateQuery);
+			
+			$progress = $val;
+		}
+		
+		if ($progress >= $target) {
+			$updateQuery = "UPDATE mytcg_userachievementlevel SET date_completed = now() WHERE id = ".$userAchiId;
+			myqu($updateQuery);
+			
+			myqu('INSERT INTO mytcg_notifications (user_id, notification, notedate, notificationtype_id)
+					VALUES ('.$iUserID.', "Achievement earned! ('.$name.') Well Done!", now(), 1)');
+			
+			$res[0] = $name;		
+			$res[1] = getAchievementImg($AchiLvLId);
+		}
+	}
+	return $res;
 }
 
 function getUserPic($username) {

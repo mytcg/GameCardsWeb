@@ -42,10 +42,107 @@ span{
 	color:#F2C126;
 }
 
+.help_display{
+	position:absolute;
+	top:144px;
+	left:0px;
+	width:762px;
+	height:593px;
+	overflow: hidden;
+	display: none;
+}
+.help_viewport{
+	position:absolute;
+	left:0px;
+	width:0px;
+	height:593px;
+}
+
+.help_left{
+	position:absolute;
+	color:#333;
+	top:300px;
+	left:10px;
+	width:45px;
+	height:50px;
+	font-size:45px;
+	font-weight:bold;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	padding-left:20px;
+	cursor:pointer;
+	-moz-box-shadow: 1px 1px 5px #000;
+	-webkit-box-shadow: 1px 1px 5px #000;
+	box-shadow: 1px 1px 5px #000;
+	opacity: 0.4;
+	z-index: 2;
+}
+.help_left:hover{
+	opacity: 1;
+}
+
+.help_right{
+	position:absolute;
+	color:#333;
+	top:300px;
+	right:10px;
+	width:45px;
+	height:50px;
+	font-size:45px;
+	font-weight:bold;
+	-moz-border-radius: 9px;
+	border-radius: 9px;
+	padding-left:20px;
+	cursor:pointer;
+	-moz-box-shadow: 1px 1px 5px #000;
+	-webkit-box-shadow: 1px 1px 5px #000;
+	box-shadow: 1px 1px 5px #000;
+	opacity: 0.4;
+	z-index: 2;
+}
+.help_right:hover{
+	opacity: 1;
+}
+
+.helpcredits{
+	position:absolute;
+	top:200px;
+	left:50px;
+	cursor: pointer;
+}
+.helpshop{
+	position:absolute;
+	top:200px;
+	left:285px;
+	cursor: pointer;
+}
+.helpalbum{
+	position:absolute;
+	top:200px;
+	left:520px;
+	cursor: pointer;
+}
+.helpauction{
+	position:absolute;
+	top:380px;
+	left:160px;
+	cursor: pointer;
+}
+.helpdeck{
+	position:absolute;
+	top:380px;
+	left:400px;
+	cursor: pointer;
+}
+
+
+
+
+
 .redeemButton{
 	position:absolute;
-	top:109px;
-	left:35px;
+	top:100px;
+	left:40px;
 	text-align:center;
 	color:#FFF;
 	width:140px;
@@ -54,13 +151,16 @@ span{
 	background-color: #747474;
 	-moz-border-radius: 9px;
 	border-radius: 9px;
-	font-size:13pxl
+	font-size:12px;
+	text-transform: none;
+	padding-top:5px;
+	cursor:pointer;
 }
 
 .redeemPic{
 	position:absolute;
-	top:-10px;
-	left:-10px;
+	top:-8px;
+	left:-28px;
 	width:41px;
 	height:41px;
 	background-image:url("../_site/redeem_icon.png");
@@ -471,7 +571,6 @@ span{
 	position:absolute;
 	top:-10px;
 	left:160px;
-	z-index:2;
 	float:left;
 }
 
@@ -1060,6 +1159,15 @@ span{
 }
 
 .headDeck{
+	font-size:24px;
+	color:#404040;
+	position:relative;
+	float:left;
+	padding-left:20px;
+	height: 13px;
+}
+
+.headHelp{
 	font-size:24px;
 	color:#404040;
 	position:relative;
@@ -2278,7 +2386,7 @@ input[type="submit"] {
 	margin: 0px 30px;
 }
 
-.gradient-bg, .gameMenuContainer, .return-button,#auctionplate, #albumPlate, .modal-picture-holder, #shopPlate, #deckPlate {
+.gradient-bg, .gameMenuContainer, .return-button,#auctionplate, #albumPlate, .modal-picture-holder, #shopPlate, #deckPlate, #helpPlate {
    background-color: #8c8c8c;
    background:url(../_site/repeatx.png) 0px -541px repeat-x;
    z-index: 3;
@@ -2546,6 +2654,41 @@ input[type="submit"] {
 	padding: 5px;
 	text-shadow: none;
 	line-height:30px;
+}
+
+.modal-achie{
+	border-radius: 8px 8px 8px 8px;
+    box-shadow: 0 4px 4px #222327;
+    padding: 12px;
+    position: absolute;
+    text-shadow: none;
+	width: 400px;
+	height:50px;
+	top:12px;
+	left:170px;
+	z-index: 5;
+	background:url("../_site/repeatx.png") repeat-x scroll -155px 0 transparent;
+}
+
+.achiev_icon{
+	position:absolute;
+	width: 70px;
+	height:50px;
+	top:10px;
+	left:13px;
+}
+
+.achiev_text{
+	position:absolute;
+	color:#999;
+	width: 305px;
+	height:40px;
+	top:20px;
+	left:95px;
+}
+.achiev_text span{
+	font-size:15px;
+	color:#F0BD00;
 }
 
 .modal-window {
@@ -3185,8 +3328,6 @@ input[type="submit"] {
 	border-radius: 9px;
 }
 
-
-
 .saveDeckButton:hover{
 	color:#2E3120;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F2C126), to(#B0750D));
@@ -3601,6 +3742,10 @@ input[type="submit"] {
 	height:575px;
 	margin-top:0;
 }
+#helpPlate{
+	height:600px;
+	margin-top:0;
+}
 
 .deck-container {
 	margin-left:15px;
@@ -3856,3 +4001,48 @@ input[type="submit"] {
     position:relative;
 }
 
+.social_fb {
+	left:390px;
+    background: url("../_site/all.png") no-repeat scroll -527px -425px transparent;
+}
+.social_twitter {
+	left:450px;
+    background: url("../_site/all.png") no-repeat scroll -580px -425px transparent;
+}
+.social_web {
+	left:510px;
+    background: url("../_site/all.png") no-repeat scroll -638px -425px transparent;
+}
+
+.social_fb:hover {
+    background: url("../_site/all.png") no-repeat scroll -527px -471px transparent;
+}
+.social_twitter:hover {
+    background: url("../_site/all.png") no-repeat scroll -580px -471px transparent;
+}
+.social_web:hover {
+    background: url("../_site/all.png") no-repeat scroll -638px -471px transparent;
+}
+
+.social_fb, .social_twitter, .social_web {
+	position: absolute;
+	top:767px;
+    cursor: pointer;
+    height: 40px;
+    margin-right: 5px;
+    text-decoration: none;
+    width: 50px;
+}
+
+.help{
+	cursor:pointer;
+	background:url(../_site/help_button.png) no-repeat;	
+	left:245px;
+	top:770px;
+	width:135px;
+	height:36px;
+	position: absolute;
+}
+.help:hover{
+	background:url(../_site/help_button_hover.png) no-repeat;	
+}

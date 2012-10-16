@@ -61,7 +61,7 @@ if (isset($_GET['page'])) {
     <link rel="icon" href="favicon.ico" />
     <link href="css/stylesheet.css" type="text/css" rel="stylesheet" media="all"  />
     <link href="css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
-    <link rel="stylesheet" type="text/css" href="ui/jquery-ui-1.8.23.custom.css" />
+    <link rel="stylesheet" type="text/css" href="ui/jquery-ui-1.8.13.custom.css" />
 	
 	<?php
 		 $cache_expire = 60*60*24*365;
@@ -70,8 +70,8 @@ if (isset($_GET['page'])) {
 		 header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$cache_expire) . ' GMT');
  	?>
     <script src="//connect.facebook.net/en_US/all.js"></script>
-    <script type="text/javascript" src="jquery/jquery-1.8.1.min.js"></script>
-    <script type="text/javascript" src="jquery/jquery-ui-1.8.23.custom.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui-1.8.13.custom.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.jscrollpane.min.js"></script>
     <script type="text/javascript" src="jquery/jquery.mousewheel.js"></script>
     <script type="text/javascript" src="jquery/jquery.countdown.min.js"></script>
@@ -109,9 +109,17 @@ if (isset($_GET['page'])) {
     <!-- footer -->
     <div id="footer">
     	<div class="official"></div>
+    	<a href="index.php?page=help"><div class="help"></div></a>
+    	<a class="social_fb" href="https://apps.facebook.com/sarugbycards" target="_blank"></a>
+    	<a class="social_twitter" href="https://twitter.com/#!/bokrugby" target="_blank"></a>
+    	<a class="social_web" href="http://www.sarugby.net" target="_blank"></a>
     	<div class="poweredby"></div>
     </div>
     <!-- mask for modal window -->
     <div id="mask" style="display:none"></div>
+    <div id="achievement" class="modal-achie" style="display:none">
+    	<div class="achiev_icon"><img id="imgAchi" src="" width="70px" /></div>
+    	<div class="achiev_text"></div>
+    </div>
   </body>
 </html>

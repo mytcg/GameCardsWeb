@@ -6,6 +6,9 @@ session_start();
 $sCRLF="\r\n";
 $sTab=chr(9);
 
+define('ACHI_INC','1'); 
+define('ACHI_TOT','2'); 
+
 if($localhost){
 	$db['host'] = "localhost";
 	$db['database'] = "sarugby";

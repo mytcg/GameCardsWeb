@@ -28,11 +28,96 @@
      	if(credits=="1"){
      		App.showNotice("You have received 20 credits for logging in today.",2,true);
      		App.updateCreditView(-20);
-     		var iCreds = parseInt($(".creditsText span").html());
+     		var iCreds = parseInt($(".creditsText").html());
      		iCreds += 20;
-     		$(".creditsText span").html(iCreds);
+     		$(".creditsText").html(iCreds);
      	}
      }
+     
+     APP_Main.prototype.achievement=function(sXML){
+     	var img = App.getXML(sXML,"achiev/img");
+     	var trohpy = App.getXML(sXML,"achiev/trophy");
+     	var obj = $(".modal-achie");
+     	
+     	
+     };
+     
+     APP_Main.prototype.voucherCards=function(sXML){
+     	var divBody = document.body;
+		var divPurchasedWindow = App.createDiv(divBody,"modal-window","booster-purchased-window");
+		
+		var divCloseButtonContainer = App.createDiv(divPurchasedWindow,"closeButtonContainer");
+		var divClose = App.createDiv(divCloseButtonContainer,"close-button");
+		$(divClose).html("<span>Close</span>");
+		$(divClose).click(function() {
+			$('.modal-window').fadeTo("fast",1);
+			$(".modal-window").remove();
+			$(".modal-picture-holder").remove();
+			$("#mask").hide();
+		});
+		
+		var divHeading = App.createDiv(divPurchasedWindow,"booster-purchase-heading");
+		$(divHeading).html("<span>Voucher redeemed.</span><br>You have received the following cards...");
+        var divFullSize = App.createDiv(divPurchasedWindow,"game-card-logo-container");
+        App.setSelectNone(divFullSize);
+        var divReceivedWindow = App.createDiv(divPurchasedWindow,"scroll_pane","booster-possibles-window");
+        $(divReceivedWindow).css("width",320);
+        var iCount = App.getXML(sXML,"count");
+        
+        for (i = 0; i < iCount; i++) {
+            var iQty = parseInt(App.getXML(sXML,"cards/card_"+i+"/qty"));
+            for (z = 0; z < iQty; z++) {
+	        		var divPlace = App.createDiv(divReceivedWindow,"booster-list-placeholder");
+	        		$(divPlace).css("paddingRight",10)
+		        	var divPicList = App.createDiv(divPlace,"booster-list-pic");
+		        	var divImg = App.createDiv(divPicList,"","","img");
+					$(divImg).css("cursor","pointer");
+		        	var sSource = App.getXML(sXML,"cards/card_"+i+"/path")+'cards/'+App.getXML(sXML,"cards/card_"+i+"/img")+'_web.jpg';
+		        	divImg.src = sSource;
+		        	
+		        	$(divImg).click({a:sSource},function(event){
+			        	var display = event.data.a.replace("web","front");
+			        	$(".game-card-logo-container").html("");
+						$(".game-card-logo-container").css({"background":"url("+display+")"});
+				   });
+	        	
+	        	    var divPicCaption = App.createDiv(divPicList,"booster-list-pic-caption");
+	        	    $(divPicCaption).css("bottom",0);
+	        	    $(divPicCaption).html(App.getXML(sXML,"cards/card_"+i+"/description"));
+            }
+        }
+        
+        $("#booster-possibles-window").jScrollPane();
+        $(divFullSize).click(function(){
+        	var sSide = $(divFullSize).css("background-image");
+	        sSide = (sSide.indexOf("front") > 0) ? sSide.replace("front","back") : sSide.replace("back","front");
+        	$(divFullSize).css({"background":sSide});
+        	sSide = sSide.replace("url(\"","");
+        	sSide = sSide.replace("\")","");
+			$(divFullSize).flip({
+				speed:150,
+				direction:'lr',
+				content:""//<img src='"+sSide+"'/>"
+			});
+				
+			
+		});
+        
+        
+        //Get the screen height and width
+	     var maskHeight = $(document).height();
+	     var maskWidth = $(window).width();
+	     
+	     //Set height and width of mask to fill up the whole screen
+	     $('#mask').css({'width':maskWidth,'height':maskHeight});
+	      
+	     //transition effect - show the mask  
+	     $('#mask').fadeIn('fast');   
+	     $('#mask').fadeTo("medium",0.6); 
+        
+        $('#booster-purchased-window').css({top:'120px',left:'50px',zIndex:2});
+		$('#booster-purchased-window').show('300');
+     };
      
      APP_Main.prototype.calcAuctionCost=function(sMin,sPrice){
      	sMin = parseInt(sMin);

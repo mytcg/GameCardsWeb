@@ -70,11 +70,10 @@ function hasCard($positionID,$deckID){
 					FROM mytcg_usercard UC
 					JOIN mytcg_card C USING(card_id)
 					JOIN mytcg_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
-					WHERE UC.deck_id IS NULL
-					AND UC.usercardstatus_id = 1
+					WHERE UC.usercardstatus_id = 1
 					AND UC.user_id = ".$iUserID."
 					GROUP BY UC.card_id
-					ORDER BY UC.card_id ASC";
+					ORDER BY C.description ASC";
 			$cards = myqu($sql);
 			for($i=0;$i<sizeof($cards);$i++){
 				$card = $cards[$i];
