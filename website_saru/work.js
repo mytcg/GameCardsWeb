@@ -1048,7 +1048,7 @@ WORK_App.prototype.init=function(sXMLInit){
 	  divWeb.target="_blank";
 	var divHelp = ZA.createDiv(divFooterBlock,"footer_help");
 	$(divHelp).click(function(){
-		ZA.showHelp();
+		ZA.showAchievements();
 	});
 	// var divVimeo = ZA.createDiv(divFooterBlock,"social_vimeo");
 	
@@ -2593,9 +2593,6 @@ WORK_Menu.prototype.action=function(sAction){
 						break;
 						case "8":
 							ZA.showNotifications();
-						break;
-						case "9":
-							ZA.showHelp();
 						break;
 					}
 				}
