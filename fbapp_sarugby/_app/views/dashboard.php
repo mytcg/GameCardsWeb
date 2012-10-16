@@ -225,5 +225,66 @@ $(document).ready(function(){
 			iScroll--;
 		}
 	});
+	
+	$(".redeemButton, .redeemPic").click(function(){
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+		
+		if($('#mask').css("display")=="none"){
+			$('#mask').css({'width':maskWidth,'height':maskHeight});
+			$('#mask').fadeIn('fast');
+			$('#mask').fadeTo("medium",0.6);
+		}
+       
+		var divBody = document.body;
+		var divErrorWindow = App.createDiv(divBody,"modal-window","notice-modal-window");
+		$(divErrorWindow).css({top:180,left:200,height:"120px",width:"400px"});
+       	var divCenter = App.createDiv(divErrorWindow,"modal-window-error");
+       	$(divCenter).css({top:0,left:0,height:"120px",width:"400px"});
+       	$(divCenter).html("<span>Redeem a voucher</span><br /><br /><b>Enter your code here</b><br /><input class='text' id='thecode' size='30'>");
+       	$(divCenter).find("span").css({fontSize:"14px",color:"#404040"});
+       	$(divCenter).find("b").css({fontSize:"12px",color:"#404040",textTransform:"none"});
+       	
+       	var divResponse = App.createDiv(divCenter,"modal-error-text");
+       	$(divResponse).css({fontSize:"10px",top:100,left:15,height:"20px",width:"200px"});
+       	
+       	var divButton = App.createDiv(divErrorWindow,"buttonGrey");
+		$(divButton).css({bottom:10,right:10});
+		$(divButton).append('Redeem');
+
+       	$(divButton).click(function(){
+			var val = $("#thecode").val();
+			App.callAjax("_app/redeem.php?code="+val,function(xml){
+				var resType = App.getXML(xml,"type");
+				if(resType == "error"){
+					$(divResponse).html(App.getXML(xml,"value"));
+				}else if(resType == "cards"){
+					App.voucherCards(xml);
+					$("#notice-modal-window").remove();
+				}else{
+					$("#notice-modal-window").remove();
+					var value = parseInt(App.getXML(xml,"value"));
+					App.showNotice("You have received "+value+" from voucher.",2,true);
+					App.updateCreditView(-value);
+		     		var iCreds = parseInt($(".creditsText").html());
+		     		iCreds += value;
+		     		$(".creditsText").html(iCreds);
+				}
+				$("#thecode").val("");
+			});
+		});
+       	
+       	
+		var divClose = App.createDiv(divErrorWindow,"buttonGrey");
+		$(divClose).css({bottom:10,right:100});
+		$(divClose).append('Close');
+		$(divClose).click(function() {
+			$('#notice-modal-window').fadeTo("fast",1);
+			$("#notice-modal-window").remove();
+			$("#mask").hide();
+		});
+        $('.modal-window').fadeIn('fast');
+	});
+	
 });
 </script>

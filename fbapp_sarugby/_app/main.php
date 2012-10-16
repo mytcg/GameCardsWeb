@@ -36,9 +36,6 @@ if($_GET['login']){
   $sUA=$_SERVER["HTTP_USER_AGENT"];
   $sUA=myqu("UPDATE mytcg_user SET last_useragent='".$sUA."' WHERE user_id='".$user_id."'");
   $response = myqu($sql);
-  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
-	SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
-	FROM mytcg_user WHERE user_id=".$user_id);
   echo("1");
   exit;
 }
@@ -67,10 +64,6 @@ if($_GET['signup']){
   $getUser = myqu($sql);
   
   $user_id = $getUser[0]['user_id'];
-  
-  myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
-	SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
-	FROM mytcg_user WHERE user_id=".$user_id);
   
   $iMod=(intval($user_id) % 10)+1;
   $sPassword=substr(md5($user_id),$iMod,10).md5($sPassword);
@@ -110,16 +103,28 @@ if($_GET['init']){
 	$userProfile = $_SESSION['userProfile']['id'];
 
 	//FREE CREDITS ON DAILY LOGIN
-	$aUser = myqu("SELECT user_id,credits,date_last_visit,mobile_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile."' LIMIT 1");
+	$aUser = myqu("SELECT user_id,credits,date_last_visit,mobile_date_last_visit,facebook_date_last_visit FROM mytcg_user WHERE facebook_user_id = '".$userProfile."' LIMIT 1");
 	$aUser = $aUser[0];
 	$sLastDate = $aUser['date_last_visit'];
 	$sMobileLastDate = $aUser['mobile_date_last_visit'];
-      
+   	$sFacebookLastDate = $aUser['facebook_date_last_visit'];
+	
 	//update last visit
 	$sDate=date("Y-m-d H:i:s");
 	$aDateVisit=myqu("UPDATE mytcg_user SET date_last_visit='".$sDate."', facebook_date_last_visit='".$sDate."' WHERE user_id=".$aUser['user_id']);
     
 	$today = date("Y-m-d");
+	if(substr($sFacebookLastDate,0,10) != $today){
+		myqu("UPDATE mytcg_user SET apps_id=4, platform_id=3 WHERE user_id=".$aUser['user_id']);
+		
+		myqu("INSERT INTO tcg_user_log (user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id)
+			SELECT user_id, name, surname, email_address, email_verified, date_register, date_last_visit, msisdn, imsi, imei, version, os, make, model, osver, touch, width, height, facebook_user_id, mobile_date_last_visit, web_date_last_visit, facebook_date_last_visit, last_useragent, ip, apps_id, age, gender, referer_id
+			FROM mytcg_user WHERE user_id=".$aUser['user_id']);
+			
+		$res = checkAchis($aUser['user_id'], ACHI_INC);
+		echo("ball");
+	}
+	
 	if((substr($sLastDate,0,10) != $today)&&(substr($sMobileLastDate,0,10) != $today))
 	{
 		//give user credits for daily login
