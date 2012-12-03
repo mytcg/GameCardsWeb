@@ -367,6 +367,7 @@ function WORK_Album(){
     
 
     //All Cards Menu
+    /*
     var newTotal = ZA.getXML(sXML,"album_all/totalcards");
     var newOwned = ZA.getXML(sXML,"album_all/ownedcards");
     var menuBlock = ZA.createDiv(menuHolder,"menuBlock","","div");
@@ -384,6 +385,7 @@ function WORK_Album(){
      $(divLine).css({ bottom:-2,left:0,width:"100%",height:2,backgroundImage:"url(_site/repeatx.png)",backgroundPosition:"0px -121px" });
      CatCounter++;
      //END All Cards Menu
+     */
      
      //Cats
       for (i=0;i<iCount;i++){

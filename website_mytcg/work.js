@@ -481,7 +481,7 @@ WORK_App.prototype.createPage=function(){
 	var divArrow=ZA.createDiv(divContainer,"","arrow_7");
 	var divArrow=ZA.createDiv(divContainer,"","arrow_8");
 	var iHeight=ZA.iHeightContainer-ZA.iHeightHeader-ZA.iHeightFooter;
-	divPage.style.height=iHeight+43+"px";
+	divPage.style.height=iHeight+20+"px";
 	
 	//INSERT USER COMPLETION BAR
 	var divCompletion = ZA.createDiv(divContainer,"divcompletion","divcompletion");
@@ -542,7 +542,7 @@ WORK_App.prototype.createPage=function(){
 	$(divComponent).css({display:"none"});
 	ZA.createWindow(7,"Play");
 	ZA.createWindow(8,"TTGame");
-	ZA.createWindow(9,"Compare");
+
 	//not logged in
 	if (!ZA.sUsername) {
 		ZA.createWindow(4,"How It Works");
@@ -561,7 +561,7 @@ WORK_App.prototype.createPage=function(){
 	ZA.startJS('fbconnect');
 	ZA.startJS('twitterconnect');
 	ZA.startJS('leaderboard');
-	ZA.startJS('compare');
+	
 	//Notifications window JS 
 	ZA.startJS('notifications');
 	
@@ -969,7 +969,7 @@ WORK_App.prototype.init=function(sXMLInit){
 	ZA.iHeightHeader=parseInt(ZA.getXML(sXMLInit,"headerheight"));
 	ZA.iHeightHeader=parseInt(ZA.getXML(sXMLInit,"headerheight"));
 	ZA.iWidthMargin=parseInt(ZA.getXML(sXMLInit,"componentmarginx"));
-	ZA.iHeightMargin=parseInt(ZA.getXML(sXMLInit,"componentmarginy"));
+	ZA.iHeightMargin=parseInt(ZA.getXML(sXMLInit,"componentmarginy"))-33;
 	ZA.iHeightWindowTitle=parseInt(ZA.getXML(sXMLInit,"windowtitleheight"));
 	ZA.iSizeWindowDecor=parseInt(ZA.getXML(sXMLInit,"windowdecorsize"));
 	ZA.iOpacityHeader=ZA.getXML(sXMLInit,"headeropacity");
@@ -1579,13 +1579,13 @@ WORK_App.prototype.showWindow=function(icon,message,delay)
 
 WORK_App.prototype.sendCardScreen=function(card_id)
 {
-    var i = ZC.cards[card_id];
-	var description = ZA.getXML(ZC.sXML,"cards/card_"+i+"/description");
-	var image = ZA.getXML(ZC.sXML,"cards/card_"+i+"/path")+'cards/'+ZA.getXML(ZC.sXML,"cards/card_"+i+"/image");
-	var quality = ZA.getXML(ZC.sXML,"cards/card_"+i+"/quality");
-	var ranking = ZA.getXML(ZC.sXML,"cards/card_"+i+"/ranking");
-	var avgranking = ZA.getXML(ZC.sXML,"cards/card_"+i+"/avgranking");
-	var value = ZA.getXML(ZC.sXML,"cards/card_"+i+"/value");
+    var i = ZA.cards[card_id];
+	var description = ZA.getXML(ZA.sXML,"cards/card_"+i+"/description");
+	var image = ZA.getXML(ZA.sXML,"cards/card_"+i+"/path")+'cards/'+ZA.getXML(ZC.sXML,"cards/card_"+i+"/image");
+	var quality = ZA.getXML(ZA.sXML,"cards/card_"+i+"/quality");
+	var ranking = ZA.getXML(ZA.sXML,"cards/card_"+i+"/ranking");
+	var avgranking = ZA.getXML(ZA.sXML,"cards/card_"+i+"/avgranking");
+	var value = ZA.getXML(ZA.sXML,"cards/card_"+i+"/value");
 	//var possess = ZA.getXML(ZC.sXML,"cards/card_"+i+"/possess");
 	
 	ZA.createWindowPopup(777,"Send to Friend",480,360,1,0);
@@ -1718,20 +1718,13 @@ WORK_App.prototype.sendCardScreen=function(card_id)
 						ZA.showWindow(icon,'Card was sent to your friend',5000);
 						//remove the opened card
 						$("#cardfull").remove();
-						//reload the card comparison component
-						ZC = new WORK_Compare();
-						$(ZC.divData).empty();
-						ZA.callAjax(ZC.sURL+"?init=1",function(xml){
-							ZC.init(xml);
-							//reload the album
-							$(ZL.divData).empty();
-							ZA.callAjax(ZL.sURL+"?init=1",function(xml){
-								ZL.init(xml);
-								//close send screen
-								$("#bodycloak_777").remove();
-								$("#windowcontainer_777").remove();
-								$("#window_777").remove();
-							});
+						
+						ZA.callAjax(ZL.sURL+"?init=1",function(xml){
+							ZL.init(xml);
+							//close send screen
+							$("#bodycloak_777").remove();
+							$("#windowcontainer_777").remove();
+							$("#window_777").remove();
 						});
 					}
 					else{
@@ -1961,10 +1954,10 @@ WORK_Component.prototype.create=function(iComponentNo,sSize){
 		
 		case 4:
 			aPos[0]="0px";
-			aPos[1]=parseInt(ZA.aComponents[1].aPos[3])+(2*ZA.iHeightMargin-43)+"px";
+			aPos[1]=parseInt(ZA.aComponents[1].aPos[3])+(2*ZA.iHeightMargin-5)+"px";
 			aPos[2]=aSize[0];
 			aPos[3]=ZA.iHeightContainer-ZA.iHeightHeader-ZA.iHeightFooter-
-				(parseInt(ZA.aComponents[1].aPos[3]))-(3*(ZA.iHeightMargin-43))+"px";
+				(parseInt(ZA.aComponents[1].aPos[3]))-(3*(ZA.iHeightMargin-8))+"px";
 		break;
 		
 		case 5:

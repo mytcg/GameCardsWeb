@@ -28,12 +28,14 @@ if(intval($_GET["cat"]) > 0){
   echo $sTab.'<albumcount val="'.$iSizeAlbums.'" />'.$sCRLF;
   
   //ALL CARDS ALBUM LIST
+  
   $query='SELECT C.card_id, C.image, C.description,I.description AS path '
-        .'FROM '.$pre.'_card C '
-        .'INNER JOIN '.$pre.'_imageserver I ON (C.front_imageserver_id = imageserver_id) ';
+        .'FROM mytcg_card C '
+        .'INNER JOIN mytcg_imageserver I ON (C.front_imageserver_id = imageserver_id) '
+		.'WHERE C.category_id BETWEEN 18 AND 50 ';
   $aAll=myqu($query);
   $iAll=sizeof($aAll);
-  echo $sTab.'<album_all>'.$sCRLF;
+    echo $sTab.'<album_all>'.$sCRLF;
     echo $sTab.$sTab.'<category_id>all</category_id>'.$sCRLF;
     echo $sTab.$sTab.'<description>All</description>'.$sCRLF;
     echo $sTab.$sTab.'<cards>'.$sCRLF;
@@ -54,8 +56,8 @@ if(intval($_GET["cat"]) > 0){
     echo $sTab.$sTab.'</cards>'.$sCRLF;
     echo $sTab.'<totalcards>'.$iAll.'</totalcards>'.$sCRLF;
     echo $sTab.'<ownedcards>'.$iOwned.'</ownedcards>'.$sCRLF;
-  echo $sTab.'</album_all>'.$sCRLF;
-  
+    echo $sTab.'</album_all>'.$sCRLF;
+  	
   
   for ($iCount=0;$iCount<$iSizeAlbums;$iCount++){
     $ownedCards = 0;
@@ -150,9 +152,11 @@ $query='SELECT DISTINCT C.category_id, CA.description  '
 	echo $sTab.'<albumcount val="'.$iSizeAlbums.'" />'.$sCRLF;
   
   //ALL CARDS ALBUM LIST
-  $query='SELECT C.card_id, C.image, C.description,I.description AS path, C.value '
-        .'FROM '.$pre.'_card C '
-        .'INNER JOIN '.$pre.'_imageserver I ON (C.front_imageserver_id = imageserver_id) '
+  
+  $query='SELECT C.card_id, C.image, C.description,I.description AS path, C.value, C.category_id '
+        .'FROM mytcg_card C '
+        .'INNER JOIN mytcg_imageserver I ON (C.front_imageserver_id = imageserver_id) '
+        .'WHERE C.category_id BETWEEN 18 AND 50 '
         .'ORDER BY C.description ASC ';
   $aAll=myqu($query);
   $iAll=sizeof($aAll);
@@ -180,6 +184,7 @@ $query='SELECT DISTINCT C.category_id, CA.description  '
     echo $sTab.'<ownedcards>'.$iOwned.'</ownedcards>'.$sCRLF;
   echo $sTab.'</album_all>'.$sCRLF;
   
+   
   //NEW CARDS ALBUM LIST
   $query='SELECT C.*,COUNT(UC.card_id) AS iQty, I.description AS path
           FROM mytcg_usercard UC 

@@ -15,16 +15,16 @@ $userID = $_SESSION["user"]["id"];
 if(isset($_GET['init']))
 {
 	$sql = "SELECT C.*, IMG.description AS 'path', CQ.description AS quality,
-				(SELECT COUNT(*) AS 'possess' FROM ".$pre."_usercard WHERE card_id=C.card_id AND usercardstatus_id=1 AND user_id=".$userID.") AS possess,
+				(SELECT COUNT(*) AS 'possess' FROM mytcg_usercard WHERE card_id=C.card_id AND usercardstatus_id=1 AND user_id=".$userID.") AS possess,
 				(SELECT GROUP_CONCAT(DISTINCT description SEPARATOR ',')
-					FROM ".$pre."_productcard
-					JOIN ".$pre."_product USING (product_id)
+					FROM mytcg_productcard
+					JOIN mytcg_product USING (product_id)
 					WHERE card_id = C.card_id
 					ORDER BY producttype_id ASC, description ASC
 				) AS packs
-			FROM ".$pre."_card C 
-			JOIN ".$pre."_imageserver IMG ON C.back_imageserver_id = IMG.imageserver_id
-			JOIN ".$pre."_cardquality CQ USING (cardquality_id) 
+			FROM mytcg_card C 
+			JOIN mytcg_imageserver IMG ON C.back_imageserver_id = IMG.imageserver_id
+			JOIN mytcg_cardquality CQ USING (cardquality_id) 
 			GROUP BY C.card_id 
 			ORDER BY C.description ASC";
 	$allcards = myqu($sql);

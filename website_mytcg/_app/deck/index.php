@@ -28,10 +28,10 @@ if(intval($_GET["cat"]) > 0)
     }
   }
   
-  $sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', D.description, D.image, CONCAT(I.description,'decks/',D.image,'.png') AS 'imageurl'
-      FROM ".$pre."_deck D
-      JOIN ".$pre."_category CAT USING(category_id)
-      JOIN ".$pre."_imageserver I ON I.imageserver_id = D.imageserver_id
+  $sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', D.description, D.image, CONCAT(I.description,'decks/',D.image,'.jpg') AS 'imageurl'
+      FROM mytcg_deck D
+      JOIN mytcg_category CAT USING(category_id)
+      JOIN mytcg_imageserver I ON I.imageserver_id = D.imageserver_id
       WHERE D.user_id = ".$userID." AND CAT.category_id IN (".$sCats.")
       ORDER BY D.description ASC";
   $decks = myqu($sql);
@@ -46,10 +46,10 @@ if(intval($_GET["cat"]) > 0)
     foreach($decks as $deck)
     {
       // Get cards in deck from database
-      $sql = "SELECT UC.card_id, UC.usercard_id, CONCAT(I.description,'cards/',C.image,'_web.png') AS 'thumbnail', C.image, C.description, C.ranking
-          FROM ".$pre."_usercard UC
-          JOIN ".$pre."_card C USING(card_id)
-          JOIN ".$pre."_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
+      $sql = "SELECT UC.card_id, UC.usercard_id, CONCAT(I.description,'cards/',C.image,'_web.jpg') AS 'thumbnail', C.image, C.description, C.ranking
+          FROM mytcg_usercard UC
+          JOIN mytcg_card C USING(card_id)
+          JOIN mytcg_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
           WHERE UC.deck_id = '".$deck['deck_id']."'
           AND UC.user_id = '".$userID."'
           ORDER BY UC.card_id, UC.usercard_id ASC";
@@ -130,14 +130,42 @@ if(intval($_GET["cat"]) > 0)
 
 if(isset($_GET['init']))
 {
+	myqu('UPDATE mytcg_competitiondeck SET active=2 WHERE active = 1 AND end_date <= NOW()');
 	// Get decks from database
-	$sql = "SELECT D.deck_id, D.category_id, CAT.description AS 'category', D.description, D.image, CONCAT(I.description,'decks/',D.image,'.png') AS 'imageurl'
-			FROM ".$pre."_deck D
-			JOIN ".$pre."_category CAT USING(category_id)
-			JOIN ".$pre."_imageserver I ON I.imageserver_id = D.imageserver_id
-			WHERE D.user_id = '".$userID."'
-			ORDER BY D.description ASC;";
+	$sql = "SELECT competitiondeck_id, imageserver_id, description, image, end_date 
+			FROM mytcg_competitiondeck 
+			WHERE active IN (1,2)";
 	$decks = myqu($sql);
+
+	foreach ($decks as $aCData) {
+		$iCompDeckID = $aCData['competitiondeck_id'];
+		$query = "SELECT D.*, I.description AS path
+				  FROM mytcg_deck D
+				  INNER JOIN mytcg_imageserver I ON (D.imageserver_id = I.imageserver_id)
+				  WHERE competitiondeck_id = ".$iCompDeckID." AND user_id = ".$userID;
+		$aGetDeck = myqu($query);
+		if(sizeof($aGetDeck)==0){
+			$query = "INSERT INTO mytcg_deck (user_id, category_id, imageserver_id, description, image, type, competitiondeck_id)
+					  VALUES ({$userID},{$aCData['category_id']},{$aCData['imageserver_id']},'{$aCData['description']}','{$aCData['image']}',{$aCData['type']},{$iCompDeckID})";
+			$rInsert = myqu($query);
+		}
+	}
+	
+	// Get decks from database
+	$query = "SELECT D.description, 
+				D.image, 
+				D.type, 
+				CAT.description as catdesc, 
+				D.category_id, 
+				D.deck_id, 
+				I.description AS path 
+				FROM mytcg_deck D 
+				INNER JOIN mytcg_imageserver I 
+				ON (D.imageserver_id = I.imageserver_id) 
+				INNER JOIN mytcg_category CAT 
+				ON (D.category_id = CAT.category_id) 
+				WHERE D.user_id= ".$userID;
+	$decks = myqu($query);
 	
 	// Return XML
 	echo '<init>'.$sCRLF;
@@ -149,10 +177,10 @@ if(isset($_GET['init']))
 		foreach($decks as $deck)
 		{
 			// Get cards in deck from database
-			$sql = "SELECT UC.card_id, UC.usercard_id, CONCAT(I.description,'cards/',C.image,'_web.png') AS 'thumbnail', C.image, C.description, C.ranking, C.value
-					FROM ".$pre."_usercard UC
-					JOIN ".$pre."_card C USING(card_id)
-					JOIN ".$pre."_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
+			$sql = "SELECT UC.card_id, UC.usercard_id, CONCAT(I.description,'cards/',C.image,'_web.jpg') AS 'thumbnail', C.image, C.description, C.ranking, C.value
+					FROM mytcg_usercard UC
+					JOIN mytcg_card C USING(card_id)
+					JOIN mytcg_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
 					WHERE UC.deck_id = '".$deck['deck_id']."'
 					AND UC.user_id = '".$userID."'
 					ORDER BY UC.card_id, UC.usercard_id ASC";
@@ -165,8 +193,8 @@ if(isset($_GET['init']))
 			echo $sTab.$sTab.$sTab.'<deckid>'.$deck['deck_id'].'</deckid>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<description>'.$deck['description'].'</description>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<categoryid>'.$deck['category_id'].'</categoryid>'.$sCRLF;
-			echo $sTab.$sTab.$sTab.'<category>'.$deck['category'].'</category>'.$sCRLF;
-			echo $sTab.$sTab.$sTab.'<image>'.$deck['imageurl'].'</image>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<type>'.$deck['type'].'</type>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<image>'.$deck['path'].'decks/'.$deck['image'].'.png'.'</image>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<imageid>'.$deck['image'].'</imageid>'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<cardcount val="'.count($deckcards).'" />'.$sCRLF;
 			echo $sTab.$sTab.$sTab.'<cards>'.$sCRLF;
@@ -232,6 +260,46 @@ if(isset($_GET['init']))
 	echo '</init>';
 }
 
+if (isset($_GET['deck']) == 1){
+	$iDeckID = $_GET['deck'];
+	$query = "SELECT CD.active, D.category_id
+			  FROM mytcg_deck D
+			  INNER JOIN mytcg_competitiondeck CD ON (D.competitiondeck_id = CD.competitiondeck_id)
+			  WHERE D.deck_id = ".$iDeckID;
+	$response = myqu($query);
+	$active = $response[0]['active'];
+	$category_id = $response[0]['category_id'];
+	
+	$sql = "SELECT P.description, P.position_id
+						FROM mytcg_deck D
+						INNER JOIN mytcg_competitiondeck CD ON (D.competitiondeck_id = CD.competitiondeck_id) 
+						INNER JOIN mytcg_position P ON (P.type = CD.type)
+						WHERE deck_id = ".$iDeckID;
+				$positions = myqu($sql);
+				for($i=0;$i<sizeof($positions);$i++){
+					$card = hasCard($positions[$i]['position_id'],$iDeckID);
+					if(sizeof($card) > 0){
+						echo("<div id='{$positions[$i]['position_id']}' alt='{$positions[$i]['description']}' class='deckcardholder'><img id='{$card['card_id']}' alt='deck' src='{$card['thumbnail']}' border=0 /></div>");
+					}else{
+						echo("<div id='{$positions[$i]['position_id']}' alt='{$positions[$i]['description']}' class='deckcardholder'>{$positions[$i]['description']}</div>");
+					}
+					if(sizeof($cards[$i]) > 0){
+						$card = $cards[$i];
+					}
+				}
+
+}
+function hasCard($positionID,$deckID){
+	$sql = "SELECT CONCAT(I.description,'cards/',C.image,'_web.jpg') AS 'thumbnail', C.description, C.image, C.card_id
+			FROM mytcg_deckcard DC 
+			INNER JOIN mytcg_card C ON (DC.card_id = C.card_id)
+			JOIN mytcg_imageserver I ON (C.front_imageserver_id = I.imageserver_id)
+			WHERE DC.deck_id = ".$deckID."
+			AND DC.position_id = ".$positionID;
+	$card = myqu($sql);
+	return $card[0];
+}
+
 /*
 function getChildrenIds($id)
 {
@@ -247,21 +315,26 @@ function getChildrenIds($id)
 	}
 	return $children;
 }
-
+*/
 if(isset($_GET['cards']))
 {
-	$sql = "SELECT UC.card_id, COUNT(UC.card_id) AS 'avail', CONCAT(I.description,'cards/',C.image,'_web.png') AS 'thumbnail', C.description, C.image
-			FROM ".$pre."_usercard UC 
-			JOIN ".$pre."_card C USING(card_id)
-			JOIN ".$pre."_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
-			WHERE UC.deck_id IS NULL
-			AND UC.usercardstatus_id = 1
-			AND C.category_id IN(".implode(",",getChildrenIds($_GET['category_id'])).")
-			AND UC.user_id = ".$userID."
-			GROUP BY UC.card_id
-			ORDER BY UC.card_id ASC";
-	$cards = myqu($sql);
+	$category_id = $_GET['category'];
 	
+	if($category_id==75){
+		$category_id = "76,77";
+	}
+	
+	$sql = "SELECT UC.card_id, COUNT(UC.card_id) AS 'avail', CONCAT(I.description,'cards/',C.image,'_web.jpg') AS 'thumbnail', C.description, C.image
+					FROM mytcg_usercard UC
+					JOIN mytcg_card C USING(card_id)
+					JOIN mytcg_imageserver I ON C.thumbnail_imageserver_id = I.imageserver_id
+					WHERE UC.usercardstatus_id = 1
+					AND UC.user_id = ".$userID."
+					AND C.category_id IN ({$category_id}) 
+					GROUP BY UC.card_id
+					ORDER BY C.description ASC";
+	$cards = myqu($sql);
+
 	// Return XML
 	echo '<init>'.$sCRLF;
 	echo $sTab.'<cardcount val="'.count($cards).'" />'.$sCRLF;
@@ -271,55 +344,73 @@ if(isset($_GET['cards']))
 		$i = 0;
 		foreach($cards as $card)
 		{
-			echo $sTab.'<card_'.$i.'>'.$sCRLF;
-			echo $sTab.$sTab.'<cardid>'.$card['card_id'].'</cardid>'.$sCRLF;
-			echo $sTab.$sTab.'<avail>'.$card['avail'].'</avail>'.$sCRLF;
-			echo $sTab.$sTab.'<description>'.$card['description'].'</description>'.$sCRLF;
-			echo $sTab.$sTab.'<image>'.$card['image'].'</image>'.$sCRLF;
-			echo $sTab.$sTab.'<thumbnail>'.$card['thumbnail'].'</thumbnail>'.$sCRLF;
-			echo $sTab.'</card_'.$i.'>'.$sCRLF;
+			echo $sTab.$sTab.'<card_'.$i.'>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<cardid>'.$card['card_id'].'</cardid>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<description>'.$card['description'].'</description>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<avail>'.$card['avail'].'</avail>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<ranking>'.$card['ranking'].'</ranking>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<value>'.$card['value'].'</value>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<image>'.$card['image'].'</image>'.$sCRLF;
+			echo $sTab.$sTab.$sTab.'<thumbnail>'.$card['thumbnail'].'</thumbnail>'.$sCRLF;
+			echo $sTab.$sTab.'</card_'.$i.'>'.$sCRLF;
 			$i++;
 		}
 	}
 	echo $sTab.'</cards>'.$sCRLF;
 	echo '</init>';
-}
 
+}
 
 if(isset($_GET['add']))
 {
-	$deck_id = $_GET['deckid'];
-	$card_id = $_GET['cardid'];
+	$iDeckID=$_GET['deckid'];
+	$iCardID=$_GET['cardid'];
+	$iPositionID=$_GET['position'];
 	
-	$sql = "SELECT usercard_id 
-			FROM ".$pre."_usercard UC
-			WHERE UC.card_id = '".$card_id."'
-			AND UC.deck_id IS NULL AND UC.usercardstatus_id=1
-			AND UC.user_id = ".$userID."
-			ORDER BY UC.usercard_id ASC
-			LIMIT 1;";
-	$usercard_id = myqu($sql);
-	
-	if(count($usercard_id) > 0)
+	$cardQuery = myqu('SELECT usercard_id 
+		FROM mytcg_usercard 
+		WHERE user_id = '.$userID.' 
+		AND card_id = '.$iCardID.' 
+		AND deck_id IS NULL 
+		AND usercardstatus_id = 1 
+		LIMIT 1');
+	// echo ($iDeckID.' dID+ '.$iCardID.' cID+ '.$iPositionID.' pID+ '.sizeof($cardQuery));
+	// exit;
+	if(count($cardQuery) > 0)
 	{
-		$usercard_id = $usercard_id[0][0];
+		$usercard_id = $cardQuery[0]['usercard_id'];
+
+		$query = "INSERT INTO mytcg_deckcard(
+					card_id,
+					position_id,
+					usercard_id,
+					deck_id
+					)
+					VALUES(
+					{$iCardID},
+					{$iPositionID},
+					{$usercard_id},
+					{$iDeckID}
+				)";
+		$res = myqu($query);
 		
-		$sql = "UPDATE ".$pre."_usercard 
-				SET
-					deck_id = ".$deck_id.",
-					usercardstatus_id = 1 
-				WHERE usercard_id = ".$usercard_id."
-				AND user_id = ".$userID;
-		myqu($sql);
+		// $sql = "UPDATE mytcg_usercard 
+				// SET
+					// deck_id = ".$deck_id.",
+					// usercardstatus_id = 1 
+				// WHERE usercard_id = ".$usercard_id."
+				// AND user_id = ".$userID;
+		// myqu($sql);
 		echo $usercard_id;
 	}
 	else
 	{
 		echo '0';
 	}
+
 }
 
-
+/*
 if(isset($_GET['remove']))
 {
 	$usercard_id = $_GET['id'];
@@ -374,43 +465,28 @@ if(isset($_GET['load']))
 	echo '</deck>';
 }
 
-/*
+
 if(isset($_GET['save']))
 {
-	$description = addslashes($_GET['deckname']);
-	$category_id = $_GET['deckcategory'];
-	$image = $_GET['deckimage'];
 	
-	//check that deck name (description) does not exist
-	$sql = "SELECT COUNT(deck_id) AS 'total' FROM ".$pre."_deck 
-			WHERE description = \"".$_GET['deckname']."\"
-			AND user_id = '$userID';";
-	$found = myqu($sql);
-	$found = $found[0]['total'];
-	if($found == '0')
-	{
-		$sql = "INSERT INTO ".$pre."_deck (
-					user_id, 
-					category_id, 
-					imageserver_id, 
-					description, 
-					image
-				) VALUES (
-					$userID,
-					$category_id,
-					1,
-					'$description',
-					'$image'
-				);";
-		myqu($sql);
-		echo '1';
+	$deckID = $_GET['deck'];
+	$sString = substr($_GET['list'], 0, -1);
+	
+	$query = "DELETE FROM mytcg_deckcard WHERE deck_id = ".$deckID;
+	$res = myqu($query);
+	
+	$aList = explode("@",$sString);
+	for($i=0;$i < sizeof($aList);$i++){
+		$aSplit = explode("||",$aList[$i]);
+		$pos = $aSplit[0];
+		$card_id =  $aSplit[1];
+		
+		$query = "INSERT INTO mytcg_deckcard (card_id,position_id,deck_id) VALUES ({$card_id},{$pos},{$deckID})";
+		$res = myqu($query);
 	}
-	else
-	{
-		echo 'Deck name \''.$_GET['deckname'].'\' already exists. Please enter a different name.';
-	}
+	exit;
 }
-*/
+
 
 if(isset($_GET['update']))
 {
@@ -432,7 +508,7 @@ if(isset($_GET['update']))
 		
 		if($updateDeck == '1'){
 			//update deck details
-			$sql = "UPDATE {$pre}_deck SET 
+			$sql = "UPDATE mytcg_deck SET 
 						description='{$deckDescription}',
 						image={$deckImage}
 					WHERE user_id={$userID}
@@ -443,7 +519,7 @@ if(isset($_GET['update']))
 		
 		if($updateDeckCards == '1'){
 			//remove all cards from deck
-			$sql = "UPDATE {$pre}_usercard SET deck_id=NULL WHERE deck_id={$deckId} AND user_id={$userID}";
+			$sql = "UPDATE mytcg_usercard SET deck_id=NULL WHERE deck_id={$deckId} AND user_id={$userID}";
 			myqu($sql);//echo $sql.$sCRLF;
 			
 			//get usercard_id's of selected cards to deck

@@ -31,6 +31,7 @@ function WORK_Deck()
 	this.cardsArray=null;
 	this.updateDeck='0';
 	this.updateDeckCards='0';
+	this.deckIndex = null;
 
 
 	if (typeof WORK_Deck._iInited=="undefined"){
@@ -72,6 +73,7 @@ function WORK_Deck()
 		        $(itemBlock).css({ cursor:"pointer",width:135,height:185,top:2,left:73,position:"absolute" });
 		        itemBlock.src = ZA.getXML(ZD.sXML,"decks/deck_"+a+"/image");
 		        itemBlock.alt = a;
+		        itemBlock.id =  ZA.getXML(ZD.sXML,"decks/deck_"+a+"/type");
 		        var itemTitle = ZA.createDiv(pageBlock,"","","div");
 		        $(itemTitle).css({
 		        	"background":"transparent",
@@ -83,7 +85,8 @@ function WORK_Deck()
 			//click event handler for deck image
 			$(".deckImage").click(function(){
 		      	var index = $(this).attr('alt');
-				ZD.showDeckBuilder(index);
+		      	var deckType = $(this).attr('id');
+				ZD.showDeckBuilder(index,deckType);
 			});
       		ZD.buildScroller();
 		}
@@ -100,6 +103,416 @@ function WORK_Deck()
 			});
 		}
     };
+    
+    WORK_Deck.prototype.activateAddzone=function(){
+    	
+    	// Remove all previous droppable implementations
+    	$(".thumbholder").droppable("destroy");
+    	
+    	// Droppable area for available cards
+    	// to add card to deck
+		$(".thumbholder").droppable(
+		{
+		    accept: ".cardImage",
+		    activeClass: "highlight",
+		    hoverClass: "lightup",
+		    drop: function(event, ui){
+		    	// Check that deck is not full
+		    	if(ZD.addDropzone >= 23)
+				{
+					var icon = "-697px -63px";
+					ZS.showWindow(icon,"Deck is full");
+				}
+				else
+				{
+						ZD.location = parseInt($(this).attr('id').split("_")[1]);
+						ZD.addDropped = true;
+					
+				}
+		    }
+		});
+		
+    };
+    
+    WORK_Deck.prototype.activateRemzone=function()
+    {
+    	// Remove all previous droppable implementations
+    	$("#availableCardsHolder").droppable("destroy");
+    	// Droppable area for cards in deck
+    	// to remove cards from deck
+    	$("#availableCardsHolder").droppable({
+    		accept: ".cardImage",
+    		activeClass: "highlight",
+    		hoverClass: "lightup",
+    		drop: function(event, ui){
+    			ZD.remDropped = true;
+    		}
+    	});	
+    };
+    
+    WORK_Deck.prototype.activateAddables=function()
+    {
+    	// Add card viewer to click event
+    	$(".cardImage").unbind();
+        $(".cardImage").click(function(){
+        	if(!ZD.dragging)
+        	{
+	        	var id = "availablecardholder_"+$(this).attr('alt');
+	        	var image = $(this).attr('src').split('_')[0];
+	        	ZD.clickShowFullImage(id, image);
+        	}
+        });
+        $(".cardImage").css('cursor','pointer');
+	        
+    	// Remove previous draggable implementations
+    	$(".cardImage").each(function(){
+    		$(this).draggable("destroy");
+    	});
+    	
+    	// Card dragging to deck
+    	$(".cardImage").draggable({
+    		containment: "#window_"+ZD.iComponentNo,
+    		cursor: "move",
+    		helper: "clone",
+    		revert: "invalid",
+    		stack: ".cardImage",
+    		start: function(event, ui){
+    			$("#availableCardsHolder").css('overflow','visible');
+    			ZD.addDropped = false;
+    			var a = "#availablecardholder_"+$(this).attr('alt');
+    		},
+    		stop: function(event, ui) {
+    			var a = "#availablecardholder_"+$(this).attr('alt');
+    			//var availVal = parseInt($(a).find(".avail").text());
+    			if($(a).size())
+    			{
+    				if(ZD.addDropped)
+    				{
+    					
+    					var cardid = $(this).attr('id');
+    					var src = $(this).attr('src');
+    					var description = $(this).attr('title');
+    					var position = "deckcard_"+$(this).attr('title');
+    					ZD.setAddDropzone();
+						
+    					ZA.callAjax("_app/deck/?add=1&cardid="+cardid+"&deckid="+ZD.iDeckID+"&position="+ZD.addDropzone,function(usercardid){
+    						if(usercardid != '0')
+    						{
+    							var thumbHolder = document.getElementById('deckcard_'+ZD.addDropzone);
+    							$(thumbHolder).html(
+					    			'<input type="hidden" class="usercard_id" value="'+usercardid+'" />'+
+					    			'<input type="hidden" class="card_id" value="'+cardid+'" />'
+					    		);
+				    			var cardImage = ZA.createDiv(thumbHolder,"cardImage","","img");
+					        	cardImage.src = src;
+					        	$(cardImage).attr({
+					        		'id':ZD.addDropzone,
+					        		'src':src,
+					        		'title':description
+					        	});
+					        	$(cardImage).css({
+					        		width:64,
+					        		height:90
+					        	});
+					    		ZD.activateRemovables();
+					    		ZD.setAddDropzone();
+		    					ZD.activateAddables();
+		    					ZD.activateAddzone();
+      							ZD.deckChanged = true;
+      							
+    						}
+    						else
+    						{
+    							alert('Add failed!');
+    						}
+						});
+    					ZD.activateAddables();
+    					ZD.activateAddzone();
+    				}
+    			}
+    		},
+    		zIndex: 2700
+    	});
+    };
+    
+    WORK_Deck.prototype.activateRemovables=function()
+    {
+    	// Add card viewer to click event
+    	$(".cardImage").unbind();
+        $(".cardImage").click(function(){
+        	if(!ZD.dragging)
+        	{
+	        	var id = "deckcard_"+$(this).attr('id');
+	        	var image = $(this).attr('src').split('_')[0];
+	        	ZD.clickShowFullImage(id, image);
+        	}
+        });
+        $(".cardImage").css('cursor','pointer');
+    	
+    	// Remove previous draggable implementations
+    	$(".cardImage").each(function(){
+    		$(this).draggable("destroy");
+    	});
+    	
+    	// Card dragging from deck to available cards
+    	$(".cardImage").draggable({
+    		containment: "#window_"+ZD.iComponentNo,
+    		helper: "original",
+    		revert: "invalid",
+    		stack: ".cardImage",
+    		start: function(event, ui){
+    			$("#availableCardsHolder").css('overflow','hidden');
+    			ZD.remDropped = false;
+    			ZD.dragging = true;
+    		},
+    		stop: function(event, ui){
+    			ZD.dragging = false;
+    			if(ZD.remDropped)
+    			{
+    				var card_id = $(this).parent().find(".card_id").val();
+    				var usercard_id = $(this).parent().find(".usercard_id").val();
+    				var card_src = $(this).attr('src');
+    				var description = $(this).attr('title');
+    				$(this).parent().html('');
+    				$(this).remove();
+    				
+					ZA.callAjax("_app/deck/?remove=1&cardid="+card_id+"&deckid="+ZD.iDeckID+"&id="+card_id,function(reply){
+	    				if(reply == '1')
+	    				{
+							//Adding removed card back to available cards
+							var availHolder = $("#availablecardholder_"+i);
+							ZD.setAddDropzone();
+	    					ZD.activateAddables();
+	    					ZD.activateAddzone();
+	    					ZD.deckChanged = true;
+	    					
+    						//re-initialise the scrollbar
+    						ZD.activateCardsScrollbar();
+						}
+	    				else
+	    				{
+	    					alert('Remove failed!');
+	    				}
+					});
+    			}
+    		},
+    		zIndex: 2700
+    	});
+    	
+    };
+    
+    
+    
+    // new deck view
+    WORK_Deck.prototype.newDeckBuilder=function(deckIndex)
+    {
+		var divData = document.getElementById("window_222");
+		//$(ZD.divData).find(".mainContainer").remove();
+    	
+    	var deckCardLimit = 6;
+    	var deckCardCounts = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cardcountowned");
+    	var deckCardCount = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cardcount");
+    	var userCardCount = ZA.getXML(aXML, "cardcount");
+    	
+    	ZD.addDropzone = deckCardCounts;
+    	ZD.iDeckID = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/deckid");
+    	
+    	var mainContainer = ZA.createDiv(ZD.divData,"mainContainer","","div");
+    	$(mainContainer).css({
+    		top:0,
+    		height:"100%",
+    		width:"100%",
+    		"overflow":"hidden"
+    	});
+    	var heading = ZA.createDiv(mainContainer,"heading");
+    	$(heading).html('<h2>Cards in Deck: '+ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/description")+'</h2>');
+    	
+    	var heading = ZA.createDiv(mainContainer,"heading");
+    	$(heading).html('<h2>Available Cards: Your Collection</h2>');
+    	
+    	var overflowCon = ZA.createDiv(mainContainer,"overflowCon");
+    	$(overflowCon).css({
+    		width:785,
+    		height:593,
+    		"overflow":"hidden",
+    		"position":"relative",
+    	})
+    	// Cards in deck
+    	var deckCardsHolder = ZA.createDiv(overflowCon,"","deckcontainer","div");
+    	$(deckCardsHolder).css({
+    		top:0,
+    		height:610,
+    		width:385,
+    	});
+    	
+    	var deckCards = ZA.createDiv(deckCardsHolder,"deckcardholders","","div");
+    	$(deckCards).css({
+    		left:5
+    	});
+    	var iLeft = 0;
+    	var iTop = 0;
+    	for(var i=0; i<deckCardLimit; i++)
+        {
+        	var id = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cards/card_"+i+"/usercardid");
+        	var cardDescription = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cards/card_"+i+"/description");
+        	var cardLocation = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cards/card_"+i+"/position");
+        	var cardHolder = ZA.createDiv(deckCards,"","deckcardholder_"+i,"div");
+        	$(cardHolder).css({
+        		width:70,
+        		height:95,
+        		margin:5,
+        		left:iLeft,
+        		top:iTop
+        	});
+        	var card_id = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cards/card_"+i+"/cardid");
+        	
+        	// Thumbnail display of card in deck
+        	
+    		var cardThumb = ZA.createDiv(cardHolder,"thumbholder","deckcard_"+cardLocation,"div");
+    		$(cardThumb).css({
+    			height:90,
+    			width:64,
+    			"box-shadow":"inset 0px 0px 10px #000",
+    		});
+    		
+        	
+    		if(i < deckCardCount)
+    		{
+	    		if(card_id){
+		    		$(cardThumb).html(
+		    			'<input type="hidden" class="usercard_id" value="'+id+'" />'+
+		    			'<input type="hidden" class="card_id" value="'+card_id+'" />'
+		    		);
+		    	
+	    			var cardImage = ZA.createDiv(cardThumb,"cardImage",i.toString(),"img");
+		        	var description = ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cards/card_"+i+"/description");
+		        	$(cardImage).attr({
+		        		'title':description,
+		        		'src':ZA.getXML(ZD.sXML, "decks/deck_"+deckIndex+"/cards/card_"+i+"/thumbnail")
+		        	});
+		        	$(cardImage).css({
+		        		width:64,
+		        		height:90
+		        	});
+	        	}
+	        	else
+	        	{
+	    			$(cardThumb).html(cardDescription);
+	    		};
+	        	// var cardDescription = ZA.createDiv(cardThumb,"","","div");
+	        	// $(cardDescription).css({
+	        		// width:"100%",
+	        		// 'text-align':'center'
+	    		// });
+	    		// var label = ZA.getLimitedString(description, 24, ' ');
+	    		// var labeltitle = description;
+		        // if(label.length < description.length){
+		        	// label+='..';
+		        // }
+	        	// $(cardDescription).html('<span title="'+labeltitle+'">'+label+'</span>');
+	        	
+    		}
+        	
+	        iLeft += 75;
+	        if ((i+1) % 5 == 0) {
+	          iLeft = 0;
+	          iTop += 110;
+	          
+	        }
+        }
+    	
+    	// User's available cards
+    	
+    	var userCardsHolder = ZA.createDiv(overflowCon,"","cardscontainer","div");
+    	$(userCardsHolder).css({
+    		"border":"1px solid transparent",
+    		paddingLeft:15,
+    		top:0,
+    		left:385,
+    		width:382,
+    		height:590,
+    	});
+    	
+    	var userCards = ZA.createDiv(userCardsHolder,"","availablecardholders","div");
+    	$(userCards).css({
+    		top:0,
+    		// width:547
+    	});
+    	//add user cards
+		for(var i=0; i<userCardCount; i++)
+        {
+    		var description = ZA.getXML(aXML, "cards/card_"+i+"/description");
+        	var cardHolder = ZA.createDiv(userCards,"","availablecardholder_"+i,"div");
+        	$(cardHolder).css({
+        		width:64,
+        		height:105,
+        		"margin":"5px 10px 0 0",
+        		"float":"left",
+        		"position":"relative"
+        	});
+        	var card_id = ZA.getXML(aXML, "cards/card_"+i+"/cardid");
+    		$(cardHolder).html(
+    			'<input type="hidden" class="card_id" value="'+card_id+'" />'
+    		);
+        	var cardEmpty = ZA.createDiv(cardHolder,"noimage","","div");
+        	var img = ZA.getXML(aXML, "cards/card_"+i+"/image");
+        	var cardThumb = ZA.createDiv(cardHolder,"thumb","","img");
+        	cardThumb.src = ZA.getXML(aXML, "cards/card_"+i+"/thumbnail");
+        	$(cardThumb).attr({
+        		'id':card_id,
+        		'alt':i.toString(),
+        		'title':description
+        	});
+        	$(cardThumb).css({
+        		width:64,
+        		height:90
+        	});
+        	
+        	// var cardDescription = ZA.createDiv(cardHolder,"","","div");
+        	// $(cardDescription).css({
+        		// width:"100%",
+        		// 'text-align':'center'
+    		// });
+    		// var label = ZA.getLimitedString(description, 11, ' ');
+    		// var labeltitle = description;
+	        // if(label.length < description.length){
+	        	// label+='..';
+	        // }
+        	// $(cardDescription).html('<span title="'+labeltitle+'">'+label+'</span>');
+        	
+    		// var avail = ZA.getXML(aXML, "cards/card_"+i+"/avail");
+        	// var availDisplay = ZA.createDiv(cardHolder,"avail","","div");
+        	// $(availDisplay).html(avail);
+        	// $(availDisplay).css({
+        		// top:-5,
+        		// left:-2,
+        		// padding:"0px 2px",
+        		// "z-index":99,
+        		// "background":"#000",
+        		// "color":"#fff",
+        		// "font-weight":"bold",
+        		// "-moz-border-radius":5
+        	// });
+        	// if(avail == '1'){
+        		// $(availDisplay).hide();
+        	// }
+        }
+        
+    	// Fresh start for deck viewer - nothing has changed yet
+      	//ZD.deckChanged = false;
+      	
+        ZD.activateRemzone();
+        ZD.activateRemovables();
+		ZD.activateAddzone();
+        ZD.activateAddables();
+    	
+    	//Show the deck viewer
+    	$(mainContainer).fadeIn(300);
+    	
+		ZD.activateCardsScrollbar();
+   };
+    
+    
     
     
     WORK_Deck.prototype.initDeckBuilder=function(deckIndex)
@@ -160,7 +573,7 @@ function WORK_Deck()
 		}
 		$(divInput).html('<select id="deckcategory" style="width:263px">'+categories+'</select>');
 		iTop+=30;
-		
+		$("#deckcategory").attr('disabled',true);
 			//click event handler for category dropdown
 			$(divInput).change(function(){
 				var catId = $(this).find("option:selected").val();
@@ -203,7 +616,7 @@ function WORK_Deck()
 		for(i=1; i<=16; i++)
 		{
 			var img = ZA.createDiv(divImages,"","","img");
-			img.src = "img/decks/"+i+".jpg";
+			img.src = "img/decks/"+i+".png";
 			$(img).css({"-moz-user-select":"none",margin:10});
 		}
 		//arrow left
@@ -348,6 +761,7 @@ function WORK_Deck()
 	        	borderRight:"1px solid #999"
 	        });
 	        var deckCards = ZA.createDiv(deckCardsHolder,"","deckCards");
+	        ZD.deckSize = 10
 	        for(var i=0; i<ZD.deckSize; i++){
 	        	var card = ZA.createDiv(deckCards,"deckCard",i.toString());
 	        	$(card).css({
@@ -399,7 +813,7 @@ function WORK_Deck()
 	    		if(possess > 0){
 					var description = ZA.getXML(ZL.sXML,"album_all/cards/card_"+i+"/description");
 					var image = ZA.getXML(ZL.sXML,"album_all/cards/card_"+i+"/path")+'cards/'+ZA.getXML(ZL.sXML,"album_all/cards/card_"+i+"/img");
-					var cardid = ZA.getXML(ZC.sXML,"cards/card_"+i+"/card_id");
+					var cardid = ZA.getXML(ZL.sXML,"album_all/cards/card_"+i+"/cardid");
 					ZD.cardsArray[cardid] = i;
 	    			var card = ZA.createDiv(divCards,"cardBlock",i.toString());
 	    			$(card).html(
@@ -486,7 +900,7 @@ function WORK_Deck()
         			//display loader
         			ZA.addLoader($("#window_222"),222);
         			//update existing deck
-					var deckId = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/deckid");
+					var deckId = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/deckid");
 					var deckDescription = $("#deckname").val();
 					var deckCategory = $("#deckcategory").val();
 					var deckImage = $("#deckimage").val();
@@ -534,11 +948,11 @@ function WORK_Deck()
     	}
     	else{
     		//load deck info
-			var description = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/description");
-			var category = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/categoryid");
-			var image = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/imageid");
-			var ranking = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/ranking");
-			var value = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/value");
+			var description = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/description");
+			var category = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/categoryid");
+			var image = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/imageid");
+			var ranking = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/ranking");
+			var value = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/value");
 			$("#deckname").val(description);
 			$("#deckcategory").find("option[value='"+category+"']").attr('selected',true);
 			$("#deckcategory").attr('disabled',true);
@@ -556,9 +970,9 @@ function WORK_Deck()
 			$("#deckRanking").html(ranking);
 			$("#deckValue").html(value);
 			//load deck cards
-			var cardcount = parseInt(ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/cardcount"));
+			var cardcount = parseInt(ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/cardcount"));
 			for(var i=0; i<cardcount; i++){
-				var cardid = ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/cards/card_"+i+"/cardid");
+				var cardid = ZA.getXML(ZD.sXML,"decks/deck_"+ZD.deckIndex+"/cards/card_"+i+"/cardid");
 				var index = ZD.cardsArray[cardid];
 				ZD.createDeckCard(index);
 			}
@@ -567,14 +981,20 @@ function WORK_Deck()
     	ZA.removeLoader();
    };
     
-    WORK_Deck.prototype.showDeckBuilder=function(deckIndex)
+    WORK_Deck.prototype.showDeckBuilder=function(deckIndex,type)
     {
     	//create popup window
     	var windowTitle = (typeof(deckIndex)=="undefined") ? ' (Untitled Deck)' : ' '+ZA.getXML(ZD.sXML,"decks/deck_"+deckIndex+"/description");
 		ZA.createWindowPopup(222,windowTitle,858,624,1,0);
 		ZA.addLoader($("#window_222"));
 		//delay initialisation of window contents
-		setTimeout("ZD.initDeckBuilder("+deckIndex+")",750);
+		ZD.deckIndex = deckIndex;
+		ZD.deckType = type;
+		if(ZD.deckType == 4){
+			setTimeout("ZD.newDeckBuilder("+ZD.deckIndex+")",750);
+		}else{
+			setTimeout("ZD.initDeckBuilder("+ZD.deckIndex+")",750);
+		};
     };
     
     
@@ -603,11 +1023,30 @@ function WORK_Deck()
     
     WORK_Deck.prototype.createDeckCard=function(index)
     {
-		var cardid = ZA.getXML(ZC.sXML,"cards/card_"+index+"/card_id");
-		var image = ZA.getXML(ZC.sXML,"cards/card_"+index+"/path")+'cards/'+ZA.getXML(ZC.sXML,"cards/card_"+index+"/image")+'_web.jpg';
-		var description = ZA.getXML(ZC.sXML,"cards/card_"+index+"/description");
-		var ranking = ZA.getXML(ZC.sXML,"cards/card_"+index+"/ranking");
-		var value = ZA.getXML(ZC.sXML,"cards/card_"+index+"/value");
+		var cardid = ZA.getXML(ZL.sXML,"album_all/cards/card_"+index+"/cardid");
+		var image = ZA.getXML(ZL.sXML,"album_all/cards/card_"+index+"/path")+'cards/'+ZA.getXML(ZL.sXML,"album_all/cards/card_"+index+"/img")+'_web.jpg';
+		var description = ZA.getXML(ZL.sXML,"album_all/cards/card_"+index+"/description");
+		var ranking = ZA.getXML(ZL.sXML,"album_all/cards/card_"+index+"/ranking");
+		var value = ZA.getXML(ZL.sXML,"album_all/cards/card_"+index+"/value");
+		$("#deckCards").find(".deckCard").each(function(){
+			if(!$(this).find(".deckCardImage").size()){
+				$(this).html(
+					'<img src="'+image+'" class="deckCardImage" id="'+cardid+'" title="'+description+'" />'+
+					'<input type="hidden" class="ranking" value="'+ranking+'" />'+
+					'<input type="hidden" class="value" value="'+value+'" />'
+				);
+				return false;
+			}
+		});
+    };
+    
+    WORK_Deck.prototype.addDeckCard=function(index,xml)
+    {
+		var cardid = ZA.getXML(xml,"cards/card_"+index+"/cardid");
+		var image = ZA.getXML(xml,"cards/card_"+index+"/thumbnail");
+		var description = ZA.getXML(xml,"cards/card_"+index+"/description");
+		var ranking = ZA.getXML(xml,"cards/card_"+index+"/ranking");
+		var value = ZA.getXML(xml,"cards/card_"+index+"/value");
 		$("#deckCards").find(".deckCard").each(function(){
 			if(!$(this).find(".deckCardImage").size()){
 				$(this).html(
@@ -886,6 +1325,7 @@ function WORK_Deck()
 		        var imgBlock = ZA.createDiv(deckBlock,"imageBlock","","img");
 		        $(imgBlock).css({ cursor:"pointer",width:104,height:140,top:25,left:23,position:"absolute" });
 		        $(imgBlock).attr('alt',a);
+		        $(imgBlock).attr('id',ZA.getXML(ZD.sXML, "decks/deck_"+a+"/type"));
 		        $(imgBlock).attr('title','View Deck');
 		        imgBlock.src = ZA.getXML(ZD.sXML, "decks/deck_"+a+"/image");
 		        
@@ -960,7 +1400,8 @@ function WORK_Deck()
 			$(".imageBlock").unbind()
 			.click(function(){
 				var index = $(this).attr('alt');
-				ZD.showDeckBuilder(index);
+				var deckType = $(this).attr('id');
+				ZD.showDeckBuilder(index,deckType);
 			});
 			
 			//Click event handler for deleting deck
